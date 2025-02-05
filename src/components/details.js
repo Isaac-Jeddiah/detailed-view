@@ -50,13 +50,16 @@ export default function DetailsTable() {
 
   const handleChange = (event, newValue) => setActiveTab(newValue);
   const handleEdit = (field) => {
+    setAllFieldsEditable(true);
     setFormData(prev => ({
       ...prev,
       [field]: { ...prev[field], edit: !prev[field].edit }
     }));
   };
   const [editingFields, setEditingFields] = useState({});
-
+const hello=()=>{
+  setAllFieldsEditable(true);
+}
   const handleEdit1 = (fieldName) => {
     setEditingFields(prev => ({
       ...prev,
@@ -127,13 +130,13 @@ export default function DetailsTable() {
           <Typography variant="subtitle2" sx={{ fontSize: '1.5rem' }}>
             Section Heading
           </Typography>
-          <IconButton 
+          {/* <IconButton 
             size="small" 
             onClick={() => setAllFieldsEditable(!allFieldsEditable)}
             sx={{ ml: 1 }}
           >
             <EditIcon fontSize="small" />
-          </IconButton>
+          </IconButton> */}
         </Box>
         
         <Grid container spacing={2.4}>
@@ -171,7 +174,7 @@ export default function DetailsTable() {
                 },
                 endAdornment: (
                   <InputAdornment position="end">
-                    <EditIconButton onClick={() => {handleEdit('email');
+                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
                       handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
                   </InputAdornment>
@@ -216,7 +219,7 @@ export default function DetailsTable() {
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
               size="small"
-              disabled={!allFieldsEditable}
+              
               InputLabelProps={{ 
                 sx: { 
                   fontSize: '0.75rem',
