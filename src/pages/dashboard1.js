@@ -5,7 +5,8 @@ import Navbar from '../components/navbar';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import DataTable from '../components/table';
 import Filterbar from '../components/filterbar';
-
+import DetailsTable from '../components/details';
+import Sidebar from '../components/sidebar';
 const Dashboard1 = () => {
     const [selectedIndex, setSelectedIndex] = useState(1);
     const [open, setOpen] = useState(true);
@@ -15,8 +16,8 @@ const Dashboard1 = () => {
     }, [selectedIndex]);
 
     return (
-        <Box display="flex" height="100vh">
-
+        <Box display="flex" height="90vh">
+          <Sidebar selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
             <Box
                 sx={{
                     position: 'relative',
@@ -67,7 +68,7 @@ const Dashboard1 = () => {
                     }}
                 >
                     <Filterbar />
-                    <DataTable />
+                    <DetailsTable />
                 </Box>
             </List>
         </Box>

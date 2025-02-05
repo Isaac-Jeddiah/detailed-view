@@ -1,4 +1,5 @@
-
+import BackspaceIcon from '@mui/icons-material/Backspace';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
 import React, { useState } from 'react';
 import { Box, Button, Typography, Grid, TextField, InputAdornment, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
@@ -6,12 +7,29 @@ import EditIcon from '@mui/icons-material/Edit';
 const Popup = ({ closePopup }) => {
   const [emailEdit, setEmailEdit] = useState(false);
   const [phoneEdit, setPhoneEdit] = useState(false);
+  const [values, setValues] = useState({
+    email1: 'Value',
+    email2: 'Small',
+    state: 'Alabama',
+    zipcode: '567032',
+    bio: 'test test',
+    cardNumber1: '4242 **** **** ****',
+    cardNumber2: '4242 **** **** ****',
+    expDate: 'MM/YY',
+    cvc: '567032'
+  });
 
+  const handleBackspace = (field) => {
+    setValues(prev => ({
+      ...prev,
+      [field]: prev[field].slice(0, -1)
+    }));
+  };
   return (
     <Box
       sx={{
         position: 'fixed', // Fix the position on screen
-        top: '20vh', // Reduce the margin from the top to make it larger
+        top: '15vh', // Reduce the margin from the top to make it larger
         left: '20vw', // Reduce the margin from the left to make it larger
         width: '70vw', // Increase width to 70% of the viewport
         height: '70vh', // Increase height to 70% of the viewport
@@ -25,9 +43,25 @@ const Popup = ({ closePopup }) => {
         zIndex: 9999,
       }}
     > 
-      <Box sx={{ backgroundColor: "white", width: "93%", height: "300px", pb: 20 }}>
-        <Typography variant="h5" sx={{ mb: 2,paddingRight:2, marginLeft: 0 }}>Section Heading</Typography>
-        <Grid container spacing={2}>
+       <Box sx={{ backgroundColor: "white", width: "96%", height: "460px", pb: 20, p: 3 }}>
+       <Typography 
+    variant="body1" 
+    sx={{ 
+      color: '#666',
+      mb: 1  // Margin bottom to create space between "Edit" and "Section Heading"
+    }}
+  >
+    Edit
+  </Typography>
+  <Typography 
+    variant="h5" 
+    sx={{ 
+      mb: 3  // Margin bottom for space before the form fields
+    }}
+  >
+    Section Heading
+  </Typography>
+            <Grid container spacing={2}>
           <Grid item xs={6}>
           <TextField
               disabled={emailEdit}
@@ -40,13 +74,22 @@ const Popup = ({ closePopup }) => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton edge="end" onClick={() => setEmailEdit(!emailEdit)}>
-                      <EditIcon />
+                    <IconButton
+                      onClick={() => handleBackspace('email1')}
+                      edge="end"
+                      sx={{ 
+                        color: 'red',
+                        bgcolor: 'white',
+                        
+                        '&:hover': { bgcolor: 'white' }
+                      }}
+                    >
+                      <BackspaceIcon />
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
-              onBlur={() => setEmailEdit(true)}
+              //onBlur={() => setEmailEdit(true)}
             />
           </Grid>
           <Grid item xs={6}>
@@ -56,18 +99,25 @@ const Popup = ({ closePopup }) => {
               id="outlined-size-small"
               defaultValue="Small"
               size="small"
-              fullWidth
-              sx={{ width: "60ch" }}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton edge="end" onClick={() => setEmailEdit(!emailEdit)}>
-                      <EditIcon />
+                    <IconButton
+                      onClick={() => handleBackspace('email1')}
+                      edge="end"
+                      sx={{ 
+                        color: 'red',
+                        bgcolor: 'white',
+                        
+                        '&:hover': { bgcolor: 'white' }
+                      }}
+                    >
+                      <BackspaceIcon />
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
-              onBlur={() => setEmailEdit(true)}
+              //onBlur={() => setEmailEdit(true)}
             />
           </Grid>
         </Grid>
@@ -84,13 +134,23 @@ const Popup = ({ closePopup }) => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton edge="end" onClick={() => setEmailEdit(!emailEdit)}>
-                      <EditIcon />
+                    <IconButton
+                      onClick={() => handleBackspace('email1')}
+                      edge="end"
+                      sx={{ 
+                        color: 'red',
+                        bgcolor: 'white',
+                        
+                        '&:hover': { bgcolor: 'white' }
+                      }}
+                    >
+                      <BackspaceIcon />
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
-              onBlur={() => setEmailEdit(true)}
+              //{...setEmailEdit(!emailEdit)}
+             // onBlur={() => setEmailEdit(true)}
             />
           </Grid>
           <Grid item xs={6}>
@@ -105,13 +165,23 @@ const Popup = ({ closePopup }) => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton edge="end" onClick={() => setEmailEdit(!emailEdit)}>
-                      <EditIcon />
+                    <IconButton
+                      onClick={() => handleBackspace('email1')}
+                      edge="end"
+                      sx={{ 
+                        color: 'red',
+                        bgcolor: 'white',
+                        
+                        '&:hover': { bgcolor: 'white' }
+                      }}
+                    >
+                      <BackspaceIcon />
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
-              onBlur={() => setEmailEdit(true)}
+             // {...setEmailEdit(!emailEdit)}
+             // onBlur={() => setEmailEdit(true)}
             />
           </Grid>
         </Grid>
@@ -121,20 +191,30 @@ const Popup = ({ closePopup }) => {
               disabled={emailEdit}
               label="Bio*"
               id="outlined-size-small"
-              defaultValue="She is a very good girl she is a very good girl she is a very good girl she is a very good girl lorem y good girl she is a very good girl she is a very good girl she is a very good gi"
+              defaultValue="test test"
               size="normal"
               fullWidth
               sx={{ width: "119ch" }}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton edge="end" onClick={() => setEmailEdit(!emailEdit)}>
-                      <EditIcon />
+                    <IconButton
+                      onClick={() => handleBackspace('email1')}
+                      edge="end"
+                      sx={{ 
+                        color: 'red',
+                        bgcolor: 'white',
+                        
+                        '&:hover': { bgcolor: 'white' }
+                      }}
+                    >
+                      <BackspaceIcon />
                     </IconButton>
-                    </InputAdornment>
+                  </InputAdornment>
                 ),
               }}
-              onBlur={() => setEmailEdit(true)}
+             // {...setEmailEdit(!emailEdit)}
+             // onBlur={() => setEmailEdit(true)}
             />
           </Grid>
         </Grid>
@@ -151,42 +231,35 @@ const Popup = ({ closePopup }) => {
               fullWidth
               sx={{ width: "119ch" }}
               InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <CreditCardIcon color="action" />
+                  </InputAdornment>
+                ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton edge="end" onClick={() => setEmailEdit(!emailEdit)}>
-                      <EditIcon />
+                    <IconButton
+                      onClick={() => handleBackspace('email1')}
+                      edge="end"
+                      sx={{ 
+                        color: 'red',
+                        bgcolor: 'white',
+                        
+                        '&:hover': { bgcolor: 'white' }
+                      }}
+                    >
+                      <BackspaceIcon />
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
-              onBlur={() => setEmailEdit(true)}
+             // {...setEmailEdit(!emailEdit)}
+             // onBlur={() => setEmailEdit(true)}
             />
           </Grid>
         </Grid>
 
-        <Grid container spacing={2} sx={{mt:0}}>
-          <Grid item xs={6}>
-          <TextField
-              disabled={emailEdit}
-              label="Cardnumber*"
-              id="outlined-size-small"
-              defaultValue="4242 **** **** ****"
-              size="small"
-              fullWidth
-              sx={{ width: "119ch" }}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton edge="end" onClick={() => setEmailEdit(!emailEdit)}>
-                      <EditIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              onBlur={() => setEmailEdit(true)}
-            />
-          </Grid>
-        </Grid>
+        
         <Grid container spacing={2} sx={{ mt: 0 }}>
           <Grid item xs={6}>
           <TextField
@@ -200,13 +273,23 @@ const Popup = ({ closePopup }) => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton edge="end" onClick={() => setEmailEdit(!emailEdit)}>
-                      <EditIcon />
+                    <IconButton
+                      onClick={() => handleBackspace('email1')}
+                      edge="end"
+                      sx={{ 
+                        color: 'red',
+                        bgcolor: 'white',
+                        
+                        '&:hover': { bgcolor: 'white' }
+                      }}
+                    >
+                      <BackspaceIcon />
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
-              onBlur={() => setEmailEdit(true)}
+             // {...setEmailEdit(!emailEdit)}
+             // onBlur={() => setEmailEdit(true)}
             />
           </Grid>
           <Grid item xs={6}>
@@ -221,40 +304,48 @@ const Popup = ({ closePopup }) => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton edge="end" onClick={() => setEmailEdit(!emailEdit)}>
-                      <EditIcon />
+                    <IconButton
+                      onClick={() => handleBackspace('email1')}
+                      edge="end"
+                      sx={{ 
+                        color: 'red',
+                        bgcolor: 'white',
+                        
+                        '&:hover': { bgcolor: 'white' }
+                      }}
+                    >
+                      <BackspaceIcon />
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
-              onBlur={() => setEmailEdit(true)}
+            //  {...setEmailEdit(!emailEdit)}
+              //onBlur={() => setEmailEdit(true)}
             />
           </Grid>
         </Grid>
-        <Box display="flex" justifyContent="flex-end" gap={2} mt={1}>
-                        <Button
-                                 onClick={closePopup}  
+        <Box display="flex" justifyContent="flex-end" gap={2} mt={3}>
+        <Button
+            onClick={closePopup}
+            sx={{
+              color: "black",
+              backgroundColor: "#ffffff00",
+              border: "1px solid lightgrey",
+              textTransform: 'none',
+              padding: '6px 16px',
+            }}
+          >
+            CANCEL
+          </Button>
 
-                            sx={{
-                                color: "black",                    // Text color inside the button
-                                backgroundColor: "#ffffff00",      // Transparent background (no color)
-                                border: "1px solid lightgrey",         // Black border around the button
-                                textTransform: 'none',             // Prevent text from being capitalized
-                                padding: '4px 12px',               // Padding for button size
-                                minWidth: 'auto',                  // Make the button width flexible based on content
-                                display: 'flex',                   // Flexbox layout for centering icons and text
-                                justifyContent: 'center',          // Center text/icon horizontally
-                                alignItems: 'center'               // Center text/icon vertically
-                            }}
-                        >
-                            CANCEL
-                        </Button>
                         <Button
-                            type="submit" 
-                            variant="contained"
-                        >
-                            SUBMIT
-                        </Button>
+                        onClick={closePopup}
+            type="submit"
+            variant="contained"
+            sx={{ padding: '6px 16px' }}
+          >
+            SUBMIT
+          </Button>
                     </Box>
       </Box>
       
