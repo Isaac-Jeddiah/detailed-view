@@ -468,7 +468,7 @@ export default function DetailsTable() {
                 borderRadius: '4px',
                 top:'312px',
                 left:'1328px',
-                padding: '2px 2px 2px 2px',
+                padding: '20px 28px 20px 28px',
                 gap:'16px',
                 boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
                 margin: 'auto 1.4rem '  // Center the box
