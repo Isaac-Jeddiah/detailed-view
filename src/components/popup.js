@@ -21,7 +21,8 @@ import { InputAdornment, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'; 
+import DeleteIcon from '@mui/icons-material/Delete'; 
 import React, { useState } from 'react';
 import { 
   Box, 
@@ -58,7 +59,17 @@ const handleBackspace = (field) => {
 };
 const Popup = ({ closePopup }) => {
   const [state, setState] = useState('Alabama');
+  const [fieldValue, setFieldValue] = useState("Value"); // State for field value
+  const [phoneValue, setPhoneValue] = useState("414 141 414"); // State for phone value
 
+  const handleSaveValue = (setter) => {
+    // This function can be used to save the value if needed
+    setter((prev) => prev); // Placeholder for saving logic
+  };
+
+  const handleClearValue = (setter) => {
+    setter(""); // Clear the value
+  };
   return (
     <Box
       sx={{
@@ -95,23 +106,25 @@ const Popup = ({ closePopup }) => {
                 size="small"
                 fullWidth
                 InputProps={{
-  endAdornment: (
-    <InputAdornment position="end">
-      <IconButton
-        onClick={() => handleBackspace('email1')}
-        edge="end"
-        sx={{ 
-          color: 'red',
-          bgcolor: 'white',
-          
-          '&:hover': { bgcolor: 'white' }
-        }}
-      >
-        <BackspaceIcon />
-      </IconButton>
-    </InputAdornment>
-  ),
-}}
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => handleSaveValue(setFieldValue)}
+                        edge="end"
+                        sx={{ color: 'green' }}
+                      >
+                        <CheckCircleIcon />
+                      </IconButton>
+                      <IconButton
+                        onClick={() => handleClearValue(setFieldValue)}
+                        edge="end"
+                        sx={{ color: 'red' }}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -124,16 +137,18 @@ const Popup = ({ closePopup }) => {
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        onClick={() => handleBackspace('email1')}
+                        onClick={() => handleSaveValue(setFieldValue)}
                         edge="end"
-                        sx={{ 
-                          color: 'red',
-                          bgcolor: 'white',
-                          
-                          '&:hover': { bgcolor: 'white' }
-                        }}
+                        sx={{ color: 'green' }}
                       >
-                        <BackspaceIcon />
+                        <CheckCircleIcon />
+                      </IconButton>
+                      <IconButton
+                        onClick={() => handleClearValue(setFieldValue)}
+                        edge="end"
+                        sx={{ color: 'red' }}
+                      >
+                        <DeleteIcon />
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -168,16 +183,18 @@ const Popup = ({ closePopup }) => {
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        onClick={() => handleBackspace('email1')}
+                        onClick={() => handleSaveValue(setFieldValue)}
                         edge="end"
-                        sx={{ 
-                          color: 'red',
-                          bgcolor: 'white',
-                          
-                          '&:hover': { bgcolor: 'white' }
-                        }}
+                        sx={{ color: 'green' }}
                       >
-                        <BackspaceIcon />
+                        <CheckCircleIcon />
+                      </IconButton>
+                      <IconButton
+                        onClick={() => handleClearValue(setFieldValue)}
+                        edge="end"
+                        sx={{ color: 'red' }}
+                      >
+                        <DeleteIcon />
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -198,16 +215,18 @@ const Popup = ({ closePopup }) => {
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
-                      onClick={() => handleBackspace('email1')}
+                      onClick={() => handleSaveValue(setFieldValue)}
                       edge="end"
-                      sx={{ 
-                        color: 'red',
-                        bgcolor: 'white',
-                        
-                        '&:hover': { bgcolor: 'white' }
-                      }}
+                      sx={{ color: 'green' }}
                     >
-                      <BackspaceIcon />
+                      <CheckCircleIcon />
+                    </IconButton>
+                    <IconButton
+                      onClick={() => handleClearValue(setFieldValue)}
+                      edge="end"
+                      sx={{ color: 'red' }}
+                    >
+                      <DeleteIcon />
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -235,16 +254,18 @@ const Popup = ({ closePopup }) => {
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
-                      onClick={() => handleBackspace('email1')}
+                      onClick={() => handleSaveValue(setFieldValue)}
                       edge="end"
-                      sx={{ 
-                        color: 'red',
-                        bgcolor: 'white',
-                        
-                        '&:hover': { bgcolor: 'white' }
-                      }}
+                      sx={{ color: 'green' }}
                     >
-                      <BackspaceIcon />
+                      <CheckCircleIcon />
+                    </IconButton>
+                    <IconButton
+                      onClick={() => handleClearValue(setFieldValue)}
+                      edge="end"
+                      sx={{ color: 'red' }}
+                    >
+                      <DeleteIcon />
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -262,16 +283,18 @@ const Popup = ({ closePopup }) => {
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
-                      onClick={() => handleBackspace('email1')}
+                      onClick={() => handleSaveValue(setFieldValue)}
                       edge="end"
-                      sx={{ 
-                        color: 'red',
-                        bgcolor: 'white',
-                        
-                        '&:hover': { bgcolor: 'white' }
-                      }}
+                      sx={{ color: 'green' }}
                     >
-                      <BackspaceIcon />
+                      <CheckCircleIcon />
+                    </IconButton>
+                    <IconButton
+                      onClick={() => handleClearValue(setFieldValue)}
+                      edge="end"
+                      sx={{ color: 'red' }}
+                    >
+                      <DeleteIcon />
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -290,16 +313,18 @@ const Popup = ({ closePopup }) => {
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        onClick={() => handleBackspace('email1')}
+                        onClick={() => handleSaveValue(setFieldValue)}
                         edge="end"
-                        sx={{ 
-                          color: 'red',
-                          bgcolor: 'white',
-                          
-                          '&:hover': { bgcolor: 'white' }
-                        }}
+                        sx={{ color: 'green' }}
                       >
-                        <BackspaceIcon />
+                        <CheckCircleIcon />
+                      </IconButton>
+                      <IconButton
+                        onClick={() => handleClearValue(setFieldValue)}
+                        edge="end"
+                        sx={{ color: 'red' }}
+                      >
+                        <DeleteIcon />
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -316,16 +341,18 @@ const Popup = ({ closePopup }) => {
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        onClick={() => handleBackspace('email1')}
+                        onClick={() => handleSaveValue(setFieldValue)}
                         edge="end"
-                        sx={{ 
-                          color: 'red',
-                          bgcolor: 'white',
-                          
-                          '&:hover': { bgcolor: 'white' }
-                        }}
+                        sx={{ color: 'green' }}
                       >
-                        <BackspaceIcon />
+                        <CheckCircleIcon />
+                      </IconButton>
+                      <IconButton
+                        onClick={() => handleClearValue(setFieldValue)}
+                        edge="end"
+                        sx={{ color: 'red' }}
+                      >
+                        <DeleteIcon />
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -349,6 +376,7 @@ const Popup = ({ closePopup }) => {
             CANCEL
           </Button>
           <Button
+          onClick={closePopup}
             type="submit"
             variant="contained"
             sx={{ 
