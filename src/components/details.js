@@ -50,16 +50,14 @@ export default function DetailsTable() {
 
   const handleChange = (event, newValue) => setActiveTab(newValue);
   const handleEdit = (field) => {
-    setAllFieldsEditable(true);
+    
     setFormData(prev => ({
       ...prev,
       [field]: { ...prev[field], edit: !prev[field].edit }
     }));
   };
   const [editingFields, setEditingFields] = useState({});
-const hello=()=>{
-  setAllFieldsEditable(true);
-}
+
   const handleEdit1 = (fieldName) => {
     setEditingFields(prev => ({
       ...prev,
