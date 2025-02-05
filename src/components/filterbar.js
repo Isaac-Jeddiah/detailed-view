@@ -82,7 +82,7 @@ const Filterbar = () => {
       width: '100%',
       height: '100%',
       backgroundColor: 'rgba(0, 0, 0, 0.3)',
-      zIndex: 9998
+      zIndex: 9
     }}
   />
 )}
@@ -101,7 +101,7 @@ const Filterbar = () => {
                         }}
                         onClick={openPopup} 
                     >
-                        New
+                        Edit
                     </Button>
                 </ButtonGroup>
 
