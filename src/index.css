@@ -11,3 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* Add this CSS in your styles */
+.avatar-container:hover .MuiIconButton-root {
+  display: block; /* Show edit icon on hover */
+}

@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import { Box, ButtonGroup, Button, IconButton } from '@mui/material';
-import { Settings, Person } from '@mui/icons-material'; // Added Person icon
-import Popup from './popup'; 
-import { Typography } from '@mui/material';
+import { Box, ButtonGroup, Button, IconButton, Typography, Avatar } from '@mui/material';
+import { Settings, Edit } from '@mui/icons-material'; // Removed Person icon as it's not used
+import Popup from './popup';
 
 const Filterbar = () => {
     const [showPopup, setShowPopup] = useState(false);
+    const [profileImage, setProfileImage] = useState(null);
 
-    const openPopup = () => {
-        setShowPopup(true); 
-    };
+    const openPopup = () => setShowPopup(true);
+    const closePopup = () => setShowPopup(false);
 
-    const closePopup = () => {
-        setShowPopup(false); 
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const imageUrl = URL.createObjectURL(file);
+            setProfileImage(imageUrl);
+        }
     };
 
     return (
@@ -22,18 +25,64 @@ const Filterbar = () => {
             alignItems="center"
             sx={{
                 backgroundColor: "white",
-                width: "100%",
-                height: "60px",
-                padding: "0 16px",
+                height: "auto",
+                minHeight: "52px",
+                width: `calc(100% - 20px)`, 
                 position: "relative",
+                marginLeft: `calc(2px + 4px)`,
+                marginRight: "10px",
+                padding: "4px"
             }}
         >
-            {/* Modified title section */}
+            {/* Profile Image with Editable Overlay */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Person sx={{ color: '#283356' }} />
+            <Box 
+                    sx={{
+                        position: "relative",
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "50%",
+                        overflow: "hidden",
+                        cursor: "pointer",
+                        "&:hover .edit-overlay": { opacity: 1 },
+                    }}
+                    onClick={() => document.getElementById('imageUpload').click()} // Clicking on Avatar opens file input
+                >
+                    <Avatar 
+                        src={profileImage || "https://via.placeholder.com/48"}
+                        sx={{ width: 48, height: 48 }} 
+                    />
+                      <Box 
+        className="edit-overlay"
+        sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            opacity: 0,  // Initially hidden
+            transition: "opacity 0.3s ease-in-out",
+        }}
+        onClick={() => document.getElementById('imageUpload').click()} // Clicking on overlay also opens file input
+    >
+        <Edit sx={{ color: "white", fontSize: 24 }} />
+    </Box>
+                </Box>
+                <input
+                    type="file"
+                    id="imageUpload"
+                    accept="image/*"
+                    hidden
+                    onChange={handleImageUpload}
+                />
                 <Typography variant="h5">Senior Manager</Typography>
             </Box>
 
+            {/* Button Group and Settings Icon */}
             <Box sx={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
                 <ButtonGroup
                     variant="contained"
@@ -42,64 +91,44 @@ const Filterbar = () => {
                 >
                     <Button
                         sx={{
-                            backgroundColor: "white", 
-                            color: "#283356", 
-                            '&:hover': {
-                                backgroundColor: "#1976D2", 
-                                color: "white",
-                            },
-                            '&:active, &:focus, &.Mui-focused': {
-                                backgroundColor: "#1976D2", 
-                                color: "white",
-                            }
+                            backgroundColor: "white",
+                            color: "#283356",
+                            '&:hover': { backgroundColor: "#1976D2", color: "white" }
                         }}
                     >
                         Action
                     </Button>
                     <Button
                         sx={{
-                            backgroundColor: "white", 
-                            color: "#283356", 
-                            '&:hover': {
-                                backgroundColor: "#1976D2", 
-                                color: "white",
-                            },
-                            '&:active, &:focus, &.Mui-focused': {
-                                backgroundColor: "#1976D2", 
-                                color: "white",
-                            }
+                            backgroundColor: "white",
+                            color: "#283356",
+                            '&:hover': { backgroundColor: "#1976D2", color: "white" }
                         }}
                     >
                         Label
                     </Button>
-                    // In Filterbar.js, add this right before the popup component
-{showPopup && (
-  <Box
-    sx={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.3)',
-      zIndex: 9
-    }}
-  />
-)}
+
+                    {showPopup && (
+                        <Box
+                            sx={{
+                                position: 'fixed',
+                                top: 0,
+                                left: 0,
+                                width: '100%',
+                                height: '100%',
+                                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                                zIndex: 9
+                            }}
+                        />
+                    )}
+
                     <Button
                         sx={{
-                            backgroundColor: "white", 
-                            color: "#283356", 
-                            '&:hover': {
-                                backgroundColor: "#1976D2", 
-                                color: "white",
-                            },
-                            '&:active, &:focus, &.Mui-focused': {
-                                backgroundColor: "#1976D2", 
-                                color: "white",
-                            }
+                            backgroundColor: "white",
+                            color: "#283356",
+                            '&:hover': { backgroundColor: "#1976D2", color: "white" }
                         }}
-                        onClick={openPopup} 
+                        onClick={openPopup}
                     >
                         Edit
                     </Button>
@@ -110,7 +139,7 @@ const Filterbar = () => {
                         color: "grey",
                         borderRadius: "50%",
                         padding: "8px",
-                        marginLeft: "16px", 
+                        marginLeft: "4rem"
                     }}
                 >
                     <Settings />

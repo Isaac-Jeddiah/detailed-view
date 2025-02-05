@@ -20,6 +20,8 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
+
+
 const US_STATES = [
   'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   // ...add more states as needed
@@ -33,14 +35,18 @@ function TabPanel({ children, value, index }) {
   );
 }
 
+
+ 
+
+
 export default function DetailsTable() {
   const [activeTab, setActiveTab] = useState(0);
   const [formData, setFormData] = useState({
-    email: { value: '', edit: false },
-    phone: { value: '', edit: false },
-    state: { value: '', edit: false },
-    zipcode: { value: '563231', edit: false },
-    bio: { value: '', edit: false },
+    email: { value: 'Email', edit: true },
+    phone: { value: '12345', edit: true },
+    state: { value: 'State', edit: true },
+    zipcode: { value: '56', edit: true },
+    bio: { value: 'I am ...', edit: false },
     cardNumber: { value: '', edit: false },
     cardHolder: { value: '', edit: false },
     expiry: { value: '', edit: false },
@@ -82,8 +88,127 @@ export default function DetailsTable() {
     </IconButton>
   );
 
+  const [showMoreOverdue, setShowMoreOverdue] = useState(false);
+  const [showMoreCompleted, setShowMoreCompleted] = useState(false);
+
+  const overdueItems = [
+    {
+      title: "Follow Up",
+      date: "16:30:42, 4 Feb 2022",
+      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+    },
+    {
+      title: "Follow Up",
+      date: "16:30:42, 4 Feb 2022",
+      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+    },
+    {
+      title: "Follow Up",
+      date: "16:30:42, 4 Feb 2022",
+      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+    },
+    {
+      title: "Follow Up",
+      date: "16:30:42, 4 Feb 2022",
+      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+    }
+  ];
+
+  const completedItems = [
+    {
+      title: "Follow Up",
+      date: "16:30:42, 4 Feb 2022",
+      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+    },
+    {
+      title: "Follow Up",
+      date: "16:30:42, 4 Feb 2022",
+      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+    },
+    {
+      title: "Follow Up",
+      date: "16:30:42, 4 Feb 2022",
+      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+    }
+  ];
+
+  const renderTimelineItems = (items, showMore, maxItems = 2) => {
+    const displayItems = showMore ? items : items.slice(0, maxItems);
+    
+    return displayItems.map((item, index) => (
+      <TimelineItem key={index}
+      sx={{
+        '&:not(:last-child)': {
+          '& .MuiTimelineContent-root': {
+            borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+            paddingBottom: '16px',
+            marginBottom: '16px'
+          }
+        }
+      }}
+
+      >
+        <TimelineSeparator>
+          <TimelineDot sx={{ bgcolor: '#1976D2' }} />
+          {index !== displayItems.length - 1 && <TimelineConnector sx={{ bgcolor: '#1976D2' }} />}
+        </TimelineSeparator>
+        <TimelineContent>
+          <Box display="flex" justifyContent="space-between">
+            <Typography variant="body2" sx={{ fontSize: '1rem' }}>{item.title}</Typography>
+            <Typography variant="caption" color="primary" sx={{ fontSize: '0.7rem' }}>
+              {item.date}
+            </Typography>
+          </Box>
+          <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
+            {item.description}
+          </Typography>
+        </TimelineContent>
+      </TimelineItem>
+    ));
+  };
+
+  const accordionStyle = {
+    minHeight: '60px',
+    height: 'auto',
+    border: 'none',
+    boxShadow: 'none',
+    '& .MuiAccordion-region': {
+      height: '230px',
+      overflow: 'auto',
+      '&::-webkit-scrollbar': {
+        width: '4px'
+      },
+      '&::-webkit-scrollbar-track': {
+        background: 'transparent'
+      },
+      '&::-webkit-scrollbar-thumb': {
+        background: '#88888850',
+        borderRadius: '4px'
+      }
+    }
+  };
+
+  const summaryStyle = {
+    bgcolor: 'primary.main',
+    color: '#fff',
+    height: '40px',
+    minHeight: '40px !important',
+    borderRadius: '8px',
+    '& .MuiAccordionSummary-content': {
+      margin: '0 !important'
+    },
+    '&.Mui-expanded': {
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0
+    }
+  };
+
+
   return (
     <Box sx={{ 
+      //display: 'flex',
+      //height:"100vh",
+      position: 'relative',
       width: "100%", 
       height: "calc(100vh - 120px)", 
       overflow: "hidden",
@@ -145,8 +270,10 @@ export default function DetailsTable() {
               fullWidth
               size="small"
               InputLabelProps={{ 
+                shrink: allFieldsEditable,
                 sx: { 
                   fontSize: '0.75rem',
+                  
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
                   ...(allFieldsEditable && {
                     backgroundColor: 'white',
@@ -157,6 +284,9 @@ export default function DetailsTable() {
               InputProps={{
                 sx: { 
                   fontSize: '0.75rem',
+                  paddingRight:'4px',
+                  
+          position: 'relative',
                   ...(allFieldsEditable && {
                     '& .MuiOutlinedInput-notchedOutline': {
                       borderColor: '#1976d2',
@@ -171,7 +301,7 @@ export default function DetailsTable() {
                   })
                 },
                 endAdornment: (
-                  <InputAdornment position="end">
+                  <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
                     <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
                       handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
@@ -187,6 +317,9 @@ export default function DetailsTable() {
               fullWidth
               size="small"
               InputLabelProps={{ 
+                shrink: allFieldsEditable,
+                transform: allFieldsEditable ? 'translate(14px, -9px) scale(0.75)' : 'translate(14px, 8px) scale(1)',
+       
                 sx: { 
                   fontSize: '0.75rem',
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
@@ -199,6 +332,7 @@ export default function DetailsTable() {
               InputProps={{
                 sx: { 
                   fontSize: '0.75rem',
+                  shrink: allFieldsEditable,
                   ...(allFieldsEditable && {
                     '& .MuiOutlinedInput-notchedOutline': {
                       borderColor: '#1976d2',
@@ -206,7 +340,13 @@ export default function DetailsTable() {
                     }
                   })
                 },
-               
+                endAdornment: (
+                  <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
+                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
+                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    }} />
+                  </InputAdornment>
+                ),
               }}
             />
           </Grid>
@@ -219,42 +359,7 @@ export default function DetailsTable() {
               size="small"
               
               InputLabelProps={{ 
-                sx: { 
-                  fontSize: '0.75rem',
-                  color: allFieldsEditable ? '#1976d2' : 'inherit',
-                  ...(allFieldsEditable && {
-                    backgroundColor: 'white',
-                    padding: '0 4px',
-                  })
-                } 
-              }}
-              InputProps={{
-                sx: { 
-                  fontSize: '0.75rem',
-                  ...(allFieldsEditable && {
-                    '& .MuiOutlinedInput-notchedOutline': {
-                      borderColor: '#1976d2',
-                      borderWidth: '1px',
-                    }
-                  })
-                }
-              }}
-            >
-              {US_STATES.map((state) => (
-                <MenuItem key={state} value={state}>
-                  {state}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              label="Zip code"
-              variant={allFieldsEditable ? "outlined" : "standard"}
-              value="563231"
-              fullWidth
-              size="small"
-              InputLabelProps={{ 
+                shrink: allFieldsEditable,
                 sx: { 
                   fontSize: '0.75rem',
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
@@ -276,16 +381,23 @@ export default function DetailsTable() {
                 },
                 
               }}
-            />
+            >
+              {US_STATES.map((state) => (
+                <MenuItem key={state} value={state}>
+                  {state}
+                </MenuItem>
+              ))}
+            </TextField>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <TextField
-              label="Bio*"
+              label="Zip code"
               variant={allFieldsEditable ? "outlined" : "standard"}
+              value="563231"
               fullWidth
-              multiline
               size="small"
               InputLabelProps={{ 
+                shrink: allFieldsEditable,
                 sx: { 
                   fontSize: '0.75rem',
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
@@ -305,7 +417,51 @@ export default function DetailsTable() {
                     }
                   })
                 },
-               
+                endAdornment: (
+                  <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
+                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
+                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    }} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Bio*"
+              variant={allFieldsEditable ? "outlined" : "standard"}
+              fullWidth
+              multiline
+              size="small"
+              InputLabelProps={{ 
+                shrink: allFieldsEditable,
+                sx: { 
+                  fontSize: '0.75rem',
+                  color: allFieldsEditable ? '#1976d2' : 'inherit',
+                  ...(allFieldsEditable && {
+                    backgroundColor: 'white',
+                    padding: '0 4px',
+                  })
+                } 
+              }}
+              InputProps={{
+                sx: { 
+                  fontSize: '0.75rem',
+                  ...(allFieldsEditable && {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#1976d2',
+                      borderWidth: '1px',
+                    }
+                  })
+                },
+                endAdornment: (
+                  <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
+                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
+                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    }} />
+                  </InputAdornment>
+                ),
               }}
             />
           </Grid>
@@ -336,6 +492,7 @@ export default function DetailsTable() {
               fullWidth
               size="small"
               InputLabelProps={{ 
+                shrink: allFieldsEditable,
                 sx: { 
                   fontSize: '0.75rem',
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
@@ -360,7 +517,13 @@ export default function DetailsTable() {
                     }
                   })
                 },
-                
+                endAdornment: (
+                  <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
+                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
+                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    }} />
+                  </InputAdornment>
+                ),
               }}
             />
           </Grid>
@@ -371,6 +534,7 @@ export default function DetailsTable() {
               fullWidth
               size="small"
               InputLabelProps={{ 
+                shrink: allFieldsEditable,
                 sx: { 
                   fontSize: '0.75rem',
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
@@ -391,7 +555,13 @@ export default function DetailsTable() {
                     }
                   })
                 },
-                
+                endAdornment: (
+                  <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
+                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
+                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    }} />
+                  </InputAdornment>
+                ),
               }}
             />
           </Grid>
@@ -402,6 +572,7 @@ export default function DetailsTable() {
               fullWidth
               size="small"
               InputLabelProps={{ 
+                shrink: allFieldsEditable,
                 sx: { 
                   fontSize: '0.75rem',
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
@@ -421,7 +592,13 @@ export default function DetailsTable() {
                     }
                   })
                 },
-              
+                endAdornment: (
+                  <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
+                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
+                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    }} />
+                  </InputAdornment>
+                ),
               }}
             />
           </Grid>
@@ -432,6 +609,7 @@ export default function DetailsTable() {
               fullWidth
               size="small"
               InputLabelProps={{ 
+                shrink: allFieldsEditable,
                 sx: { 
                   fontSize: '0.75rem',
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
@@ -451,7 +629,13 @@ export default function DetailsTable() {
                     }
                   })
                 },
-                
+                endAdornment: (
+                  <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
+                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
+                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    }} />
+                  </InputAdornment>
+                ),
               }}
             />
           </Grid>
@@ -459,145 +643,99 @@ export default function DetailsTable() {
     </Box>
     </Grid>
     
-          <Grid item xs={4.5}>
-          <Box 
-              sx={{ 
-                backgroundColor: "white",
-                maxWidth: '409px',  // Set maximum width
-                width: "409px",     // Set actual width
-                height: "550px",
-                borderRadius: '4px',
-                top:'312px',
-                left:'1328px',
-                padding: '20px 28px 20px 28px',
-                gap:'16px',
-                boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
-                margin: 'auto 1.4rem '  // Center the box
-              }}
-            >
-              <Typography variant="subtitle2" sx={{ p: 2.4, pb: 2.4, fontSize: '0.8rem' }}>Timeline</Typography>
-              <hr style={{  margin: "0 2.4rem" }} />
-              
-              <Accordion defaultExpanded sx={{ mx: 1, mt: 1 }}>
-                <AccordionSummary 
-                  expandIcon={<ExpandMore sx={{ color: '#fff', fontSize: '0.9rem' }}/> }
-                  sx={{ 
-                    bgcolor: 'primary.main', 
-                    color: '#fff',
-                    minHeight: '40px',
-                    '& .MuiTypography-root': { fontSize: '1rem' }
-                  }}
-                >
-                  <Typography variant="body2">Upcoming & Overdue</Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{ p: 1 }}>
-                  <Timeline sx={{ 
-                    [`& .${timelineItemClasses.root}:before`]: { flex: 0, padding: 0 },
-                    '& .MuiTimelineDot-root': { 
-                      width: 2, 
-                      height: 2,
-                      backgroundColor: '#1976D266',
-                      //borderColor: '#1976D2'
-                    }
-                  }}>
-                    <TimelineItem>
-                      <TimelineSeparator>
-                        <TimelineDot sx={{ bgcolor: '#1976D2' }} />
-                        <TimelineConnector sx={{ bgcolor: '#1976D2' }} />
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <Box display="flex" justifyContent="space-between">
-                          <Typography variant="body2" sx={{ fontSize: '1rem' }}>Follow Up</Typography>
-                          <Typography variant="caption" color="primary" sx={{ fontSize: '0.7rem' }}>
-                            16:30:42, 4 Feb 2022
-                          </Typography>
-                        </Box>
-                        <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
-                          Meghana P has an upcoming task about OVUM Hospitals- India.
-                        </Typography>
-                      </TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                      <TimelineSeparator>
-                        <TimelineDot sx={{ bgcolor: '#1976D2' }} />
-                        <TimelineConnector sx={{ bgcolor: '#1976D2' }} />
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <Box display="flex" justifyContent="space-between">
-                          <Typography variant="body2" sx={{ fontSize: '1rem' }}>Follow Up</Typography>
-                          <Typography variant="caption" color="primary" sx={{ fontSize: '0.7rem' }}>
-                            16:30:42, 4 Feb 2022
-                          </Typography>
-                        </Box>
-                        <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
-                          Meghana P has an upcoming task about OVUM Hospitals- India.
-                        </Typography>
-                        
-                      </TimelineContent>
-                    </TimelineItem>
-                    
-                  </Timeline>
-                                    <Box
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Chip label="View More" color="primary" />
-                  </Box>
-                </AccordionDetails>
-                
-              </Accordion>
-
-              <Accordion defaultExpanded sx={{ mx: 2.4, mt: 2.4 }}>
-                <AccordionSummary 
-                  expandIcon={<ExpandMore sx={{ color: '#fff', fontSize: '0.9rem' }}/> }
-                  sx={{ 
-                    bgcolor: 'primary.main', 
-                    color: '#fff',
-                    minHeight: '40px',
-                    '& .MuiTypography-root': { fontSize: '1rem' }
-                  }}
-                >
-                  <Typography variant="body2">Completed</Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{ p: 1 }}>
-                  <Timeline sx={{ 
-                    [`& .${timelineItemClasses.root}:before`]: { flex: 0, padding: 0 },
-                    '& .MuiTimelineDot-root': { 
-                      width: 2, 
-                      height: 2,
-                      backgroundColor: '#1976D266',
-                      //borderColor: '#1976D2'
-                    }
-                  }}>
-                    <TimelineItem>
-                      <TimelineSeparator>
-                        <TimelineDot sx={{ bgcolor: '#1976D2' }} />
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <Box display="flex" justifyContent="space-between">
-                          <Typography variant="body2" sx={{ fontSize: '1rem' }}>Follow Up</Typography>
-                          <Typography variant="caption" color="primary" sx={{ fontSize: '0.7rem' }}>
-                            16:30:42, 4 Feb 2022
-                          </Typography>
-                        </Box>
-                        <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
-                          Meghana P has an upcoming task about OVUM Hospitals- India.
-                        </Typography>
-                        <Box
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Chip label="View More" color="primary" />
-                  </Box>
-                      </TimelineContent>
-                    </TimelineItem>
-                  </Timeline>
-                </AccordionDetails>
-              </Accordion>
+    <Grid item xs={4.5}>
+      <Box 
+        sx={{ 
+          backgroundColor: "white",
+          width: "409px",
+          height: "650px",
+          borderRadius: '4px',
+          padding: '20px 28px',
+          gap: '0px',
+         // boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
+          margin: 'auto 1.4rem',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        <Typography variant="h6" sx={{ p: 2.4, pb: 2.4 }}>Timeline</Typography>
+        
+        <Accordion defaultExpanded sx={accordionStyle}>
+          <AccordionSummary 
+            expandIcon={<ExpandMore sx={accordionStyle}/> }
+            sx={summaryStyle}
+          >
+            <Typography variant="body2">Upcoming & Overdue</Typography>
+          </AccordionSummary>
+          <AccordionDetails sx={{ p: 1, display: 'flex', flexDirection: 'column' ,
+            backgroundColor: 'white',
+          //   borderBottomLeftRadius: '8px',
+          //   borderBottomRightRadius: '8px',
+          //  // border: '1px solid rgba(0,0,0,0.1)',
+          //   borderTop: 'none',
+          //   borderLeft: '1px solid rgba(0,0,0,0.1)',
+          //     borderRight: '1px solid rgba(0,0,0,0.1)',
+          //     borderBottom: '1px solid rgba(0,0,0,0.1)',
+          // 
+          }}>
+            <Timeline sx={{ 
+              [`& .${timelineItemClasses.root}:before`]: { flex: 0, padding: 0 },
+              '& .MuiTimelineDot-root': { 
+                width: 2, 
+                height: 2,
+                backgroundColor: '#1976D266',
+              },
+              mb:1
+            }}>
+              {renderTimelineItems(overdueItems, showMoreOverdue)}
+            </Timeline>
+            <Box sx={{ mt: 'auto', display: 'flex', justifyContent: 'center' }}>
+              <Chip 
+                label={showMoreOverdue ? "View Less" : "View More"} 
+                color="primary" 
+                onClick={() => setShowMoreOverdue(!showMoreOverdue)}
+                sx={{ cursor: 'pointer' }}
+              />
             </Box>
-          </Grid>
+          </AccordionDetails>
+        </Accordion>
+
+        <Accordion sx={accordionStyle}>
+          <AccordionSummary 
+            expandIcon={<ExpandMore /> }
+            sx={summaryStyle}
+          >
+            <Typography variant="body2">Completed</Typography>
+          </AccordionSummary>
+          <AccordionDetails sx={{ p: 1, display: 'flex', flexDirection: 'column',
+             backgroundColor: 'white',
+             borderBottomLeftRadius: '8px',
+             borderBottomRightRadius: '8px',
+            // border: '1px solid rgba(0,0,0,0.1)',
+             borderTop: 'none'
+           }}>
+            <Timeline sx={{ 
+              [`& .${timelineItemClasses.root}:before`]: { flex: 0, padding: 0 },
+              '& .MuiTimelineDot-root': { 
+                width: 2, 
+                height: 2,
+                backgroundColor: '#1976D266',
+              }
+            }}>
+              {renderTimelineItems(completedItems, showMoreCompleted)}
+            </Timeline>
+            <Box sx={{ mt: 1, display: 'flex', justifyContent: 'center' }}>
+              <Chip 
+                label={showMoreCompleted ? "View Less" : "View More"} 
+                color="primary" 
+                onClick={() => setShowMoreCompleted(!showMoreCompleted)}
+                sx={{ cursor: 'pointer' }}
+             />
+            </Box>
+          </AccordionDetails>
+        </Accordion>
+      </Box>
+    </Grid>
         </Grid>
       </TabPanel>
     </Box>

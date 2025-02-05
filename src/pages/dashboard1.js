@@ -16,15 +16,24 @@ const Dashboard1 = () => {
     }, [selectedIndex]);
 
     return (
-        <Box display="flex" height="90vh">
+        <Box display="flex" 
+        sx={{
+            height: '100vh',
+            width: '100vw',
+            overflow: 'hidden',
+            position: 'fixed',
+            top: 0,
+            left: 0
+        }}>
           <Sidebar selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
             <Box
                 sx={{
                     position: 'relative',
                     height: "100%",
-                    width: open ? "300px" : 15,
+                    width: open ? "290px" : 2,
                     backgroundColor: '#f4f5fa',
                     borderRight: '1px solid #ddd',
+                    // flexShrink: 0,
                 }}
             >
                 <SecondarySidebar selectedIndex={selectedIndex} open={open} />
