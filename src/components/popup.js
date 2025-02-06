@@ -183,7 +183,7 @@ const Popup = ({ closePopup }) => {
             <Grid item xs={12} md={6}>
               <TextField
                 label="Zipcode*"
-                defaultValue="563231"
+                defaultValue=""
                 size="small"
                 fullWidth
                 InputProps={{
