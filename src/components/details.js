@@ -131,7 +131,10 @@ export default function DetailsTable() {
       description: "Meghana P has an upcoming task about OVUM Hospitals- India."
     }
   ];
+ const [text , setText] = useState("")
 
+  const clearTextField = () => setText("")
+  
   const renderTimelineItems = (items, showMore, maxItems = 2) => {
     const displayItems = showMore ? items : items.slice(0, maxItems);
     
@@ -270,6 +273,8 @@ export default function DetailsTable() {
               label="Email*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
+                value={text ? text : ""}
+                onChange={(e)=>setText(e.target.value)}
               size="small"
               InputLabelProps={{ 
                 shrink: allFieldsEditable,
@@ -317,6 +322,8 @@ export default function DetailsTable() {
               label="Phone Number*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
+                value={text ? text : ""}
+                onChange={(e)=>setText(e.target.value)}
               size="small"
               InputLabelProps={{ 
                 shrink: allFieldsEditable,
@@ -358,6 +365,8 @@ export default function DetailsTable() {
               label="State*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
+                value={text ? text : ""}
+                onChange={(e)=>setText(e.target.value)}
               size="small"
               
               InputLabelProps={{ 
@@ -397,6 +406,8 @@ export default function DetailsTable() {
               variant={allFieldsEditable ? "outlined" : "standard"}
               value="563231"
               fullWidth
+                value={text ? text : ""}
+                onChange={(e)=>setText(e.target.value)}
               size="small"
               InputLabelProps={{ 
                 shrink: allFieldsEditable,
@@ -434,6 +445,8 @@ export default function DetailsTable() {
               label="Bio*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
+                value={text ? text : ""}
+                onChange={(e)=>setText(e.target.value)}
               multiline
               size="small"
               InputLabelProps={{ 
@@ -492,6 +505,8 @@ export default function DetailsTable() {
               label="Card number*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
+                value={text ? text : ""}
+                onChange={(e)=>setText(e.target.value)}
               size="small"
               InputLabelProps={{ 
                 shrink: allFieldsEditable,
@@ -534,6 +549,8 @@ export default function DetailsTable() {
               label="Card holder name*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
+                value={text ? text : ""}
+                onChange={(e)=>setText(e.target.value)}
               size="small"
               InputLabelProps={{ 
                 shrink: allFieldsEditable,
@@ -572,6 +589,8 @@ export default function DetailsTable() {
               label="MM/YY*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
+                value={text ? text : ""}
+                onChange={(e)=>setText(e.target.value)}
               size="small"
               InputLabelProps={{ 
                 shrink: allFieldsEditable,
@@ -609,6 +628,8 @@ export default function DetailsTable() {
               label="CVC/CV2*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
+                value={text ? text : ""}
+                onChange={(e)=>setText(e.target.value)}
               size="small"
               InputLabelProps={{ 
                 shrink: allFieldsEditable,

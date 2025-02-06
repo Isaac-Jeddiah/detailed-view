@@ -70,6 +70,11 @@ const Popup = ({ closePopup }) => {
   const handleClearValue = (setter) => {
     setter(""); // Clear the value
   };
+  
+  const [text , setText] = useState("")
+
+  const clearTextField = () => setText("")
+  
   return (
     <Box
       sx={{
@@ -102,7 +107,7 @@ const Popup = ({ closePopup }) => {
             <Grid item xs={12} md={6}>
               <TextField
                 label="Field*"
-                defaultValue="Value"
+                //defaultValue="Value"
                 size="small"
                 fullWidth
                 InputProps={{
@@ -120,7 +125,7 @@ const Popup = ({ closePopup }) => {
                         edge="end"
                         sx={{ color: 'red' }}
                       >
-                        <DeleteIcon />
+                        <DeleteIcon onClick={clearTextField}/>
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -130,9 +135,11 @@ const Popup = ({ closePopup }) => {
             <Grid item xs={12} md={6}>
               <TextField
                 label="Phone number*"
-                defaultValue="414 141 414"
+                //defaultValue="414 141 414"
                 size="small"
                 fullWidth
+                value={text ? text : ""}
+                onChange={(e)=>setText(e.target.value)}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -148,7 +155,7 @@ const Popup = ({ closePopup }) => {
                         edge="end"
                         sx={{ color: 'red' }}
                       >
-                        <DeleteIcon />
+                        <DeleteIcon onClick={clearTextField}/>
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -194,7 +201,7 @@ const Popup = ({ closePopup }) => {
                         edge="end"
                         sx={{ color: 'red' }}
                       >
-                        <DeleteIcon />
+                        <DeleteIcon onClick={clearTextField}/>
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -226,7 +233,7 @@ const Popup = ({ closePopup }) => {
                       edge="end"
                       sx={{ color: 'red' }}
                     >
-                      <DeleteIcon />
+                      <DeleteIcon onClick={clearTextField}/>
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -265,7 +272,7 @@ const Popup = ({ closePopup }) => {
                       edge="end"
                       sx={{ color: 'red' }}
                     >
-                      <DeleteIcon />
+                      <DeleteIcon onClick={clearTextField}/>
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -294,7 +301,7 @@ const Popup = ({ closePopup }) => {
                       edge="end"
                       sx={{ color: 'red' }}
                     >
-                      <DeleteIcon />
+                      <DeleteIcon onClick={clearTextField}/>
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -324,7 +331,7 @@ const Popup = ({ closePopup }) => {
                         edge="end"
                         sx={{ color: 'red' }}
                       >
-                        <DeleteIcon />
+                        <DeleteIcon onClick={clearTextField}/>
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -352,7 +359,7 @@ const Popup = ({ closePopup }) => {
                         edge="end"
                         sx={{ color: 'red' }}
                       >
-                        <DeleteIcon />
+                        <DeleteIcon onClick={clearTextField}/>
                       </IconButton>
                     </InputAdornment>
                   ),
