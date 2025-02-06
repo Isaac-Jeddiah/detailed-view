@@ -205,6 +205,8 @@ const Popup = ({ closePopup }) => {
                 defaultValue=""
                 size="small"
                 fullWidth
+                value={formValues.zipcode}
+                onChange={(e) => handleTextChange('zipcode', )}
                 
                 InputProps={{
                   endAdornment: (
