@@ -212,7 +212,8 @@ export default function DetailsTable() {
       width: "100%", 
       height: "calc(100vh - 120px)", 
       overflow: "hidden",
-      ml: 1 
+      ml: 1 ,
+      
     }}>
       <AppBar position="static" color="default" elevation={0}>
         <Tabs 
@@ -240,13 +241,14 @@ export default function DetailsTable() {
       <Box 
         sx={{ 
           backgroundColor: "white",
-          maxWidth: "calc(100% - 4px)",
-          width: "calc(100% - 4px)",
+          maxWidth: "calc(100% - 4px) !important",
+          width: "calc(100% - 4px) !important",
           borderRadius: '4px',
-          boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
+          //boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
           margin: '',
           p: 2.4,
-          ml:-2.4
+          ml:-2.4,
+          borderRadius:"4px"
         }}
       >
         <Box display="flex" alignItems="center" mb={1}>
@@ -646,16 +648,18 @@ export default function DetailsTable() {
     <Grid item xs={4.5}>
       <Box 
         sx={{ 
+          borderRadius:"4px",
           backgroundColor: "white",
-          width: "409px",
-          height: "650px",
+          width: "409px !important",
+          height: "650px !important",
           borderRadius: '4px',
           padding: '20px 28px',
           gap: '0px',
          // boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
           margin: 'auto 1.4rem',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          
         }}
       >
         <Typography variant="h6" sx={{ p: 2.4, pb: 2.4 }}>Timeline</Typography>
