@@ -168,7 +168,7 @@ export default function DetailsTable() {
         </TimelineSeparator>
         <TimelineContent>
           <Box display="flex" justifyContent="space-between">
-            <Typography variant="body2" sx={{ fontSize: '1rem' }}>{item.title}</Typography>
+            <Typography variant="small" sx={{ fontSize: '1rem' }}>{item.title}</Typography>
             <Typography variant="caption" color="primary" sx={{ fontSize: '0.7rem' }}>
               {item.date}
             </Typography>
@@ -305,16 +305,14 @@ export default function DetailsTable() {
                 } 
               }}
              InputProps={{
-                shrink: allFieldsEditable,
-                
+               shrink: allFieldsEditable,
+            
+               
+                sx: { fontSize: '12px' },
                 endAdornment: (
                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '0px', marginBottom:"5px",
-                    '&.Mui-disabled': {
-                      color: 'inherit',
-                    }
-                   }}>      <EditIconButton sx={{backgroundcolor: "rgba(25, 118, 210, 0.3)"
-                   
-                   }} onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                    
+                   }}>      <EditIconButton   onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
                     }} />
                   </InputAdornment>
                 ),
@@ -342,7 +340,9 @@ export default function DetailsTable() {
                 } 
               }}
              InputProps={{
-                shrink: allFieldsEditable,
+               shrink: allFieldsEditable,
+            
+                sx: { fontSize: '12px' },
                 
                 endAdornment: (
                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
@@ -379,7 +379,9 @@ export default function DetailsTable() {
                 } 
               }}
              InputProps={{
-                shrink: allFieldsEditable,
+               shrink: allFieldsEditable,
+            
+                sx: { fontSize: '12px' },
                 
               }}
               
@@ -416,7 +418,9 @@ export default function DetailsTable() {
                 } 
               }}
              InputProps={{
-                shrink: allFieldsEditable,
+               shrink: allFieldsEditable,
+            
+                sx: { fontSize: '12px' },
                 
                 endAdornment: (
                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
@@ -454,7 +458,9 @@ export default function DetailsTable() {
                 } 
               }}
              InputProps={{
-                shrink: allFieldsEditable,
+               shrink: allFieldsEditable,
+            
+                sx: { fontSize: '12px' },
                 
                 endAdornment: (
                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
@@ -512,7 +518,9 @@ export default function DetailsTable() {
               }}
              InputProps={{
                 
-                shrink: allFieldsEditable,
+               shrink: allFieldsEditable,
+            
+                sx: { fontSize: '12px' },
         startAdornment: (
           <InputAdornment position="start" >
           <CreditCardIcon color="action" />
@@ -591,7 +599,9 @@ export default function DetailsTable() {
                 } 
               }}
              InputProps={{
-                shrink: allFieldsEditable,
+               shrink: allFieldsEditable,
+            
+                sx: { fontSize: '12px' },
                 
                 endAdornment: (
                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
@@ -629,7 +639,9 @@ export default function DetailsTable() {
                 } 
               }}
              InputProps={{
-                shrink: allFieldsEditable,
+               shrink: allFieldsEditable,
+            
+                sx: { fontSize: '12px' },
                 
                 endAdornment: (
                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
@@ -667,7 +679,9 @@ export default function DetailsTable() {
                 } 
               }}
              InputProps={{
-                shrink: allFieldsEditable,
+               shrink: allFieldsEditable,
+            
+                sx: { fontSize: '12px' },
                 
                 endAdornment: (
                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
@@ -705,9 +719,9 @@ export default function DetailsTable() {
         <Box display="flex" alignItems="center" mb={1} >
         <Typography variant="h5" >Timeline</Typography>
         
-        <Divider />
-        </Box>
         
+        </Box>
+        <Divider />
         <Accordion defaultExpanded sx={accordionStyle}>
           <AccordionSummary 
             expandIcon={<ExpandMore sx={{color:"#1976D2"
@@ -735,7 +749,7 @@ export default function DetailsTable() {
             <Box sx={{ mt: 'auto', display: 'flex', justifyContent: 'center' }}>
               <Chip 
                 label={showMoreOverdue ? "View Less" : "View More"} 
-                color="primary" 
+                variant="outlined"
                 onClick={() => setShowMoreOverdue(!showMoreOverdue)}
                 sx={{ cursor: 'pointer' }}
               />
@@ -770,7 +784,7 @@ export default function DetailsTable() {
             <Box sx={{ mt: 1, display: 'flex', justifyContent: 'center' }}>
               <Chip 
                 label={showMoreCompleted ? "View Less" : "View More"} 
-                color="primary" 
+                variant="outlined"
                 onClick={() => setShowMoreCompleted(!showMoreCompleted)}
                 sx={{ cursor: 'pointer' }}
              />
