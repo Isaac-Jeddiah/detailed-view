@@ -56,13 +56,17 @@ export default function DetailsTable() {
 
   const handleChange = (event, newValue) => setActiveTab(newValue);
   const handleEdit = (field) => {
-    
-    // setFormData(prev => ({
-    //   ...prev,
-    //   [field]: { ...prev[field], edit: !prev[field].edit }
-    // }));
+    setEditableStates(prev => ({
+      ...prev,
+      [field]: !prev[field]
+    }));
   };
+
   const [editingFields, setEditingFields] = useState({});
+  const [editableStates, setEditableStates] = useState({
+    email: false,
+    phone: false
+  });
 
   const handleEdit1 = (fieldName) => {
     setEditingFields(prev => ({
@@ -70,7 +74,16 @@ export default function DetailsTable() {
       [fieldName]: !prev[fieldName]
     }));
   };
-  
+  const handleFieldChange = (field, value) => {
+    setFieldValues(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+  const [fieldValues, setFieldValues] = useState({
+    email: '',
+    phone: ''
+  });
   const EditIconButton = ({ onClick }) => (
     <IconButton 
       size="small" 
@@ -255,7 +268,7 @@ export default function DetailsTable() {
         }}
       >
         <Box display="flex" alignItems="center" mb={1}>
-          <Typography variant="subtitle2" sx={{ fontSize: '1.5rem' }}>
+          <Typography variant="h6" >
             Section Heading
           </Typography>
           {/* <IconButton 
@@ -273,11 +286,12 @@ export default function DetailsTable() {
               label="Email*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
-                
+              value={fieldValues.email}
+              onChange={(e) => handleFieldChange('email', e.target.value)}
                 disabled={!allFieldsEditable}             
               size="small"
               InputLabelProps={{ 
-                shrink: allFieldsEditable,
+                shrink: editableStates.email,
                 sx: { 
                   fontSize: '0.75rem',
                   
@@ -292,7 +306,7 @@ export default function DetailsTable() {
                 sx: { 
                   fontSize: '0.75rem',
                   paddingRight:'4px',
-                  
+                  marginTop: '5px',
           position: 'relative',
                   ...(allFieldsEditable && {
                     '& .MuiOutlinedInput-notchedOutline': {
@@ -375,8 +389,11 @@ export default function DetailsTable() {
               fullWidth
                 
               size="small"
-              
+              disabled={!allFieldsEditable}       
+                     
               InputLabelProps={{ 
+                transform: allFieldsEditable ? 'translate(14px, -9px) scale(0.75)' : 'translate(14px, 8px) scale(1)',
+       
                 shrink: allFieldsEditable,
                 sx: { 
                   fontSize: '0.75rem',
@@ -390,10 +407,12 @@ export default function DetailsTable() {
               InputProps={{
                 sx: { 
                   fontSize: '0.75rem',
+                  shrink: allFieldsEditable,
                   ...(allFieldsEditable && {
                     '& .MuiOutlinedInput-notchedOutline': {
                       borderColor: '#1976d2',
                       borderWidth: '1px',
+                      
                     }
                   })
                 },
@@ -411,7 +430,7 @@ export default function DetailsTable() {
             <TextField
               label="Zip code"
               variant={allFieldsEditable ? "outlined" : "standard"}
-              value=""
+              
               fullWidth
               disabled={!allFieldsEditable}              size="small"
               InputLabelProps={{ 
@@ -454,7 +473,7 @@ export default function DetailsTable() {
               label="Bio*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
-                
+                disabled={!allFieldsEditable}             
               multiline
               size="small"
               InputLabelProps={{ 
@@ -510,11 +529,12 @@ export default function DetailsTable() {
           p: 2.4
         }}
       >
-        <Typography variant="subtitle2" sx={{ mb: 2, fontSize: '1.5rem' }}>Typography</Typography>
+        <Typography variant="h6">Typography</Typography>
         <Grid container spacing={2.4}>
           <Grid item xs={12}
           >
             <TextField
+            marginLeft="0"
       label="Card number*"
       variant={allFieldsEditable ? "outlined" : "standard"}
       fullWidth
@@ -525,11 +545,12 @@ export default function DetailsTable() {
       InputLabelProps={{
         shrink: allFieldsEditable,
         sx: {
+          marginLeft: 0,
           fontSize: '0.75rem',
           color: allFieldsEditable ? '#1976d2' : 'inherit',
           ...(allFieldsEditable && {
             backgroundColor: 'white',
-            padding: '0 4px',
+            
             transform: 'translate(14px, -9px) scale(0.75)',
             transition: 'transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
           }),
@@ -548,9 +569,9 @@ export default function DetailsTable() {
       }}
       InputProps={{
         startAdornment: (
-          <InputAdornment position="start">
-            <CreditCardIcon color="action" />
-          </InputAdornment>
+          <InputAdornment position="start" sx={{ ml: '2px' }}>
+          <CreditCardIcon color="action" />
+        </InputAdornment>
         ),
         sx: {
           fontSize: '0.75rem',
@@ -575,6 +596,7 @@ export default function DetailsTable() {
             position="end" 
             sx={{ 
               position: 'relative', 
+              marginLeft: '0px',
               marginRight: '4px', 
               marginBottom: "5px",
               '&.Mui-disabled': {
@@ -592,7 +614,7 @@ export default function DetailsTable() {
         ),
       }}
       sx={{
-        mt: '5px',
+      
         '& .MuiInputBase-root': {
           paddingTop: '0',
           paddingBottom: '0',
