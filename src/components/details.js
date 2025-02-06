@@ -710,7 +710,8 @@ export default function DetailsTable() {
         
         <Accordion defaultExpanded sx={accordionStyle}>
           <AccordionSummary 
-            expandIcon={<ExpandMore sx={{color:"white"}}/> }
+            expandIcon={<ExpandMore sx={{color:"#1976D2"
+}}/> }
             sx={summaryStyle}
           >
             <Typography variant="body2">Upcoming & Overdue</Typography>
@@ -744,7 +745,7 @@ export default function DetailsTable() {
 
         <Accordion sx={accordionStyle}>
           <AccordionSummary 
-            expandIcon={<ExpandMore sx={{color:"white"}}/> }
+            expandIcon={<ExpandMore sx={{color:"#1976D2"}}/> }
             sx={summaryStyle}
           >
             <Typography variant="body2">Completed</Typography>
