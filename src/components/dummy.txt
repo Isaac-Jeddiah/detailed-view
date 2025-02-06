@@ -11,7 +11,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineDot, TimelineContent } from '@mui/lab';
-import { Accordion, AccordionDetails, AccordionSummary, Divider } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import { timelineItemClasses } from '@mui/lab/TimelineItem';
 import MenuItem from '@mui/material/MenuItem';
@@ -19,6 +19,7 @@ import Avatar from '@mui/material/Avatar';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+
 
 
 const US_STATES = [
@@ -41,7 +42,7 @@ function TabPanel({ children, value, index }) {
 export default function DetailsTable() {
   const [activeTab, setActiveTab] = useState(0);
   const [formData, setFormData] = useState({
-    name: { value: 'name', edit: true },
+    email: { value: 'Email', edit: true },
     phone: { value: '12345', edit: true },
     state: { value: 'State', edit: true },
     zipcode: { value: '56', edit: true },
@@ -63,7 +64,7 @@ export default function DetailsTable() {
 
   const [editingFields, setEditingFields] = useState({});
   const [editableStates, setEditableStates] = useState({
-    name: false,
+    email: false,
     phone: false
   });
 
@@ -80,7 +81,7 @@ export default function DetailsTable() {
     }));
   };
   const [fieldValues, setFieldValues] = useState({
-    name: '',
+    email: '',
     phone: ''
   });
   const EditIconButton = ({ onClick }) => (
@@ -155,7 +156,8 @@ export default function DetailsTable() {
       sx={{
         '&:not(:last-child)': {
           '& .MuiTimelineContent-root': {
-           paddingBottom: '16px',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+            paddingBottom: '16px',
             marginBottom: '16px'
           }
         }
@@ -182,7 +184,6 @@ export default function DetailsTable() {
   };
 
   const accordionStyle = {
-    
     minHeight: '60px',
     height: 'auto',
     border: 'none',
@@ -204,10 +205,8 @@ export default function DetailsTable() {
   };
 
   const summaryStyle = {
-    bgcolor: '#1976D21F',
-    //bgcolor: 'primary.main',
-    marginTop:"10px",
-    color: '#1976D2',
+    bgcolor: 'primary.main',
+    color: '#fff',
     height: '40px',
     minHeight: '40px !important',
     borderRadius: '8px',
@@ -254,23 +253,22 @@ export default function DetailsTable() {
       <TabPanel value={activeTab} index={0}>
         <Grid container spacing={2.4}>
         
-    <Grid item xs={7}>
+    <Grid item xs={7.5}>
       <Box 
         sx={{ 
-          height:"220px", 
           backgroundColor: "white",
           maxWidth: "calc(100% - 4px) !important",
           width: "calc(100% - 4px) !important",
           borderRadius: '4px',
-          gap:"0px",
+          //boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
+          margin: '',
           p: 2.4,
           ml:-2.4,
-          borderRadius:"4px",
-          overflow:"hidden"
+          borderRadius:"4px"
         }}
       >
         <Box display="flex" alignItems="center" mb={1}>
-          <Typography variant="h5" >
+          <Typography variant="h6" >
             Section Heading
           </Typography>
           {/* <IconButton 
@@ -285,183 +283,230 @@ export default function DetailsTable() {
         <Grid container spacing={2.4}>
           <Grid item xs={6}>
             <TextField
-              label="Name*"
+              label="Email*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
-              value={fieldValues.name}
-              onChange={(e) => handleFieldChange('name', e.target.value)}
+              value={fieldValues.email}
+              onChange={(e) => handleFieldChange('email', e.target.value)}
                 disabled={!allFieldsEditable}             
               size="small"
-               InputLabelProps={{ 
-                
-                //               
+              InputLabelProps={{ 
+                shrink: editableStates.email,
                 sx: { 
-                
+                  fontSize: '0.75rem',
+                  
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
                   ...(allFieldsEditable && {
                     backgroundColor: 'white',
-                    
+                    padding: '0 4px',
                   })
                 } 
               }}
-             InputProps={{
-                shrink: allFieldsEditable,
-                
-                endAdornment: (
-               <InputAdornment position="end" sx={{ position: 'relative', marginRight: '0px', marginBottom:"5px",
-                    '&.Mui-disabled': {
-                      color: 'inherit',
+              InputProps={{
+                sx: { 
+                  fontSize: '0.75rem',
+                  paddingRight:'4px',
+                  marginTop: '5px',
+          position: 'relative',
+                  ...(allFieldsEditable && {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#1976d2',
+                      borderWidth: '1px',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#1976d2',
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#1976d2',
                     }
-                   }}>      <EditIconButton sx={{backgroundcolor: "rgba(25, 118, 210, 0.3)"
-                   
-                   }} onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
-                    }} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              label="Phone *"
-              variant={allFieldsEditable ? "outlined" : "standard"}
-              fullWidth
-              value={fieldValues.phone}
-              onChange={(e) => handleFieldChange('phone', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
-              
-                sx: { 
-                
-                  color: allFieldsEditable ? '#1976d2' : 'inherit',
-                  ...(allFieldsEditable && {
-                    backgroundColor: 'white',
-                    
                   })
-                } 
-              }}
-             InputProps={{
-                shrink: allFieldsEditable,
-                
+                },
                 endAdornment: (
                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
                     '&.Mui-disabled': {
-                      color: '#1976d2',
+                      color: '#1976d2', // Maintains color for adornment when disabled
                     }
-                   }}>      <EditIconButton onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                   }}>      <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
+                      //handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
                   </InputAdornment>
                 ),
               }}
             />
           </Grid>
-          
           <Grid item xs={6}>
             <TextField
-              label="State *"
+              label="Phone Number*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
-              select
-              value={fieldValues.phone}
-              onChange={(e) => handleFieldChange('phone', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
-              
-                sx: { 
                 
+              disabled={!allFieldsEditable}              size="small"
+              InputLabelProps={{ 
+                shrink: allFieldsEditable,
+                transform: allFieldsEditable ? 'translate(14px, -9px) scale(0.75)' : 'translate(14px, 8px) scale(1)',
+       
+                sx: { 
+                  fontSize: '0.75rem',
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
                   ...(allFieldsEditable && {
                     backgroundColor: 'white',
-                    
+                    padding: '0 4px',
                   })
                 } 
               }}
-             InputProps={{
+              InputProps={{
+                sx: { 
+                  fontSize: '0.75rem',
+                  shrink: allFieldsEditable,
+                  ...(allFieldsEditable && {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#1976d2',
+                      borderWidth: '1px',
+                      
+                    }
+                  })
+                },
+                endAdornment: (
+                  <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
+                    '&.Mui-disabled': {
+                      color: '#1976d2', // Maintains color for adornment when disabled
+                    }
+                   }}>
+                    <EditIconButton onClick={() => { setAllFieldsEditable(!allFieldsEditable);
+                    handleEdit('phone');
+                    //   handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    }} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              select
+              label="State*"
+              variant={allFieldsEditable ? "outlined" : "standard"}
+              fullWidth
+              margin="dense"
+              size="small"
+              disabled={!allFieldsEditable}       
+                     
+              InputLabelProps={{ 
+                transform: allFieldsEditable ? 'translate(14px, -9px) scale(0.75)' : 'translate(14px, 8px) scale(1)',
+       
                 shrink: allFieldsEditable,
+                sx: { 
+                  fontSize: '0.75rem',
+                  color: allFieldsEditable ? '#1976d2' : 'inherit',
+                  ...(allFieldsEditable && {
+                    backgroundColor: 'white',
+                    padding: '0 4px',
+                  })
+                } 
+              }}
+              InputProps={{
+                sx: { 
+                  fontSize: '0.75rem',
+                  shrink: allFieldsEditable,
+                  ...(allFieldsEditable && {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#1976d2',
+                      borderWidth: '1px',
+                      
+                    }
+                  })
+                },
                 
               }}
-              
             >
-            {US_STATES.map((state) => (
+              {US_STATES.map((state) => (
                 <MenuItem key={state} value={state}>
                   {state}
                 </MenuItem>
               ))}
-    </TextField>
+            </TextField>
           </Grid>
-          
           <Grid item xs={6}>
             <TextField
-              label="Zip Code*"
-              id="outlined-multiline-static"
+              label="Zip code"
               variant={allFieldsEditable ? "outlined" : "standard"}
+              
               fullWidth
-              rows="2"
-              value={fieldValues.zipcode}
-              onChange={(e) => handleFieldChange('zipcode', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
-                
-                //               
+              disabled={!allFieldsEditable}              size="small"
+              InputLabelProps={{ 
+                shrink: allFieldsEditable,
                 sx: { 
-                
+                  fontSize: '0.75rem',
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
                   ...(allFieldsEditable && {
                     backgroundColor: 'white',
-                    
+                    padding: '0 4px',
                   })
                 } 
               }}
-             InputProps={{
-                shrink: allFieldsEditable,
-                
+              InputProps={{
+                sx: { 
+                  fontSize: '0.75rem',
+                  ...(allFieldsEditable && {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#1976d2',
+                      borderWidth: '1px',
+                    }
+                  })
+                },
                 endAdornment: (
                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
                     '&.Mui-disabled': {
-                      color: '#1976d2',
+                      color: '#1976d2', // Maintains color for adornment when disabled
                     }
-                   }}>      <EditIconButton onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
-                    }} />
+                   }}>      <EditIconButton onClick={() => { setAllFieldsEditable(!allFieldsEditable);
+                     // handleEdit('phone');   handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                      handleEdit('state');
+                   }} />
                   </InputAdornment>
                 ),
               }}
             />
           </Grid>
-          
           <Grid item xs={12}>
             <TextField
               label="Bio*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
-              Multiline
-              value={fieldValues.bio}
-              onChange={(e) => handleFieldChange('bio', e.target.value)}
                 disabled={!allFieldsEditable}             
+              multiline
               size="small"
-               InputLabelProps={{ 
-                
-                //               
+              margin="dense"
+              InputLabelProps={{ 
+                paddingTop: '10px',
+                shrink: allFieldsEditable,
                 sx: { 
-                
+                  fontSize: '0.75rem',
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
                   ...(allFieldsEditable && {
                     backgroundColor: 'white',
-                    
+                    padding: '0 4px',
                   })
                 } 
               }}
-             InputProps={{
-                shrink: allFieldsEditable,
-                
+              InputProps={{
+                marginTop: '-5px',
+                sx: { 
+                  fontSize: '0.75rem',
+                  ...(allFieldsEditable && {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#1976d2',
+                      borderWidth: '1px',
+                    }
+                  })
+                },
                 endAdornment: (
                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
                     '&.Mui-disabled': {
-                      color: '#1976d2',
+                      color: '#1976d2', // Maintains color for adornment when disabled
                     }
-                   }}>      <EditIconButton onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                   }}>      <EditIconButton onClick={() => {handleEdit('bio'); setAllFieldsEditable(!allFieldsEditable);
+                    //  handleEdit('phone');  handleEdit('state'); handleEdit('zipcode');  handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
                   </InputAdornment>
                 ),
@@ -485,34 +530,44 @@ export default function DetailsTable() {
           p: 2.4
         }}
       >
-        <Typography variant="h5" sx={{marginBottom:"10px"}}>Typography</Typography>
+        <Typography variant="h6">Typography</Typography>
         <Grid container spacing={2.4}>
-        <Grid item xs={12}>
+          <Grid item xs={12}
+          >
             <TextField
-              label="Card Number*"
-              id="outlined-multiline-static"
-              variant={allFieldsEditable ? "outlined" : "standard"}
-              fullWidth
-              rows="2"
-              value={fieldValues.cardNumber}
-              onChange={(e) => handleFieldChange('cardNumber', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
-                
-                //               
-                sx: { 
-                
-                  color: allFieldsEditable ? '#1976d2' : 'inherit',
-                  ...(allFieldsEditable && {
-                    backgroundColor: 'white',
-                    
-                  })
-                } 
-              }}
-             InputProps={{
-                
-                shrink: allFieldsEditable,
+            
+      label="Card number*"
+      variant={allFieldsEditable ? "outlined" : "standard"}
+      fullWidth
+      value={text || ""}
+      onChange={(e) => setText(e.target.value)}
+      disabled={!allFieldsEditable}
+      size="small"
+      margin="dense"
+      InputLabelProps={{
+        shrink: allFieldsEditable,
+        sx: {
+          marginLeft: 0,
+          fontSize: '0.75rem',
+          color: allFieldsEditable ? '#1976d2' : 'inherit',
+          ...(allFieldsEditable && {
+            backgroundColor: 'white',
+            
+          }),
+          ...(!allFieldsEditable && {
+            transform: 'translate(14px, 8px) scale(1)',
+            transition: 'transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
+            '&[data-shrink="true"]': {
+              transform: 'translate(14px, -9px) scale(0.75)',
+            }
+          }),
+          pointerEvents: 'auto',
+          '&.MuiInputLabel-shrink': {
+            transform: 'translate(14px, -9px) scale(0.75)',
+          }
+        }
+      }}
+      InputProps={{
         startAdornment: (
           <InputAdornment position="start" >
           <CreditCardIcon color="action" />
@@ -569,36 +624,43 @@ export default function DetailsTable() {
           </Grid>
           <Grid item xs={12}>
             <TextField
-              label="Card Holder Name*"
-              id="outlined-multiline-static"
+              label="Card holder name*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
-              rows="2"
-              value={fieldValues.cardHolder}
-              onChange={(e) => handleFieldChange('cardHolder', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
                 
-                //               
-                sx: { 
-                
-                  color: allFieldsEditable ? '#1976d2' : 'inherit',
-                  ...(allFieldsEditable && {
-                    backgroundColor: 'white',
-                    
-                  })
+              disabled={!allFieldsEditable}              size="small"
+              InputLabelProps={{ 
+                marginTop: '5px',
+                shrink: allFieldsEditable,
+                sx: {
+          fontSize: '0.75rem',
+          color: allFieldsEditable ? '#1976d2' : 'inherit',
+          ...(allFieldsEditable && {
+            backgroundColor: 'white',
+            padding: '0 4px',
+            transform: 'translate(14px, -9px) scale(0.75)',
+            transition: 'transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
+          }),
                 } 
               }}
-             InputProps={{
-                shrink: allFieldsEditable,
+              InputProps={{
                 
+                sx: { 
+                  fontSize: '0.75rem',
+                  ...(allFieldsEditable && {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#1976d2',
+                      borderWidth: '1px',
+                    }
+                  })
+                },
                 endAdornment: (
                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
                     '&.Mui-disabled': {
-                      color: '#1976d2',
+                      color: '#1976d2', // Maintains color for adornment when disabled
                     }
-                   }}>      <EditIconButton onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                   }}>      <EditIconButton onClick={() => {handleEdit('cardHolder'); setAllFieldsEditable(!allFieldsEditable);
+                     // handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
                   </InputAdornment>
                 ),
@@ -607,36 +669,39 @@ export default function DetailsTable() {
           </Grid>
           <Grid item xs={6}>
             <TextField
-              label="Expiry*"
-              id="outlined-multiline-static"
+              label="MM/YY*"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
-              rows="2"
-              value={fieldValues.expiry}
-              onChange={(e) => handleFieldChange('expiry', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
                 
-                //               
+              disabled={!allFieldsEditable}              size="small"
+              InputLabelProps={{ 
+                shrink: allFieldsEditable,
                 sx: { 
-                
+                  fontSize: '0.75rem',
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
                   ...(allFieldsEditable && {
                     backgroundColor: 'white',
-                    
+                    padding: '0 4px',
                   })
                 } 
               }}
-             InputProps={{
-                shrink: allFieldsEditable,
-                
+              InputProps={{
+                sx: { 
+                  fontSize: '0.75rem',
+                  ...(allFieldsEditable && {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#1976d2',
+                      borderWidth: '1px',
+                    }
+                  })
+                },
                 endAdornment: (
                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
                     '&.Mui-disabled': {
-                      color: '#1976d2',
+                      color: '#1976d2', // Maintains color for adornment when disabled
                     }
-                   }}>      <EditIconButton onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                   }}>      <EditIconButton onClick={() => {handleEdit('expiry'); setAllFieldsEditable(!allFieldsEditable);
+                      //handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
                   </InputAdornment>
                 ),
@@ -646,35 +711,38 @@ export default function DetailsTable() {
           <Grid item xs={6}>
             <TextField
               label="CVC/CV2*"
-              id="outlined-multiline-static"
               variant={allFieldsEditable ? "outlined" : "standard"}
               fullWidth
-              rows="2"
-              value={fieldValues.cvc}
-              onChange={(e) => handleFieldChange('cvc', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
                 
-                //               
+              disabled={!allFieldsEditable}              size="small"
+              InputLabelProps={{ 
+                shrink: allFieldsEditable,
                 sx: { 
-                
+                  fontSize: '0.75rem',
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
                   ...(allFieldsEditable && {
                     backgroundColor: 'white',
-                    
+                    padding: '0 4px',
                   })
                 } 
               }}
-             InputProps={{
-                shrink: allFieldsEditable,
-                
+              InputProps={{
+                sx: { 
+                  fontSize: '0.75rem',
+                  ...(allFieldsEditable && {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#1976d2',
+                      borderWidth: '1px',
+                    }
+                  })
+                },
                 endAdornment: (
                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
                     '&.Mui-disabled': {
-                      color: '#1976d2',
+                      color: '#1976d2', // Maintains color for adornment when disabled
                     }
-                   }}>      <EditIconButton onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                   }}>      <EditIconButton onClick={() => {handleEdit('cvc'); setAllFieldsEditable(!allFieldsEditable);
+                    //  handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
                   </InputAdornment>
                 ),
@@ -702,30 +770,32 @@ export default function DetailsTable() {
           
         }}
       >
-        <Box display="flex" alignItems="center" mb={1} >
-        <Typography variant="h5" >Timeline</Typography>
-        
-        <Divider />
-        </Box>
+        <Typography variant="h6" sx={{ p: 2.4, pb: 2.4 }}>Timeline</Typography>
         
         <Accordion defaultExpanded sx={accordionStyle}>
           <AccordionSummary 
-            expandIcon={<ExpandMore sx={{color:"white"}}/> }
+            expandIcon={<ExpandMore sx={accordionStyle}/> }
             sx={summaryStyle}
           >
             <Typography variant="body2">Upcoming & Overdue</Typography>
           </AccordionSummary>
           <AccordionDetails sx={{ p: 1, display: 'flex', flexDirection: 'column' ,
             backgroundColor: 'white',
-         
+          //   borderBottomLeftRadius: '8px',
+          //   borderBottomRightRadius: '8px',
+          //  // border: '1px solid rgba(0,0,0,0.1)',
+          //   borderTop: 'none',
+          //   borderLeft: '1px solid rgba(0,0,0,0.1)',
+          //     borderRight: '1px solid rgba(0,0,0,0.1)',
+          //     borderBottom: '1px solid rgba(0,0,0,0.1)',
+          // 
           }}>
             <Timeline sx={{ 
               [`& .${timelineItemClasses.root}:before`]: { flex: 0, padding: 0 },
               '& .MuiTimelineDot-root': { 
                 width: 2, 
                 height: 2,
-                backgroundColor:' rgba(25, 118, 210, 0.4)',
-
+                backgroundColor: '#1976D266',
               },
               mb:1
             }}>
@@ -744,7 +814,7 @@ export default function DetailsTable() {
 
         <Accordion sx={accordionStyle}>
           <AccordionSummary 
-            expandIcon={<ExpandMore sx={{color:"white"}}/> }
+            expandIcon={<ExpandMore /> }
             sx={summaryStyle}
           >
             <Typography variant="body2">Completed</Typography>

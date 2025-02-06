@@ -130,56 +130,20 @@ const Popup = ({ closePopup }) => {
                 fullWidth
                 value={formValues.email}
                 onChange={(e) => handleTextChange('email', )}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => handleSaveValue(setFieldValue)}
-                        edge="end"
-                        sx={{ color: 'green' }}
-                      >
-                        <CheckCircleIcon />
-                      </IconButton>
-                      <IconButton
-                        onClick={() => handleClearValue('email')}
-                        edge="end"
-                        sx={{ color: 'red' }}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
+                focused={true}
+                 color="rgba(25, 118, 210, 0.12)"
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField
-                label="Phone number*"
-                //defaultValue="414 141 414"
-                size="small"
-                fullWidth
-                value={formValues.phone}
-                onChange={(e) => handleTextChange('phone', )}
-               InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => handleSaveValue('phone')}
-                        edge="end"
-                        sx={{ color: 'green' }}
-                      >
-                        <CheckCircleIcon />
-                      </IconButton>
-                      <IconButton
-                        onClick={() => handleClearValue('phone')}edge="end"
-                        sx={{ color: 'red' }}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
+            <TextField
+          label="Phone*"
+          focused={true}
+          size='small'
+          fullWidth
+          
+          color="rgba(25, 118, 210, 0.12)"
+          
+        />
             </Grid>
           </Grid>
 
@@ -187,11 +151,15 @@ const Popup = ({ closePopup }) => {
             <Grid item xs={12} md={6}>
               <FormControl fullWidth size="small">
                 <InputLabel id="state-label">State*</InputLabel>
+                
+
                 <Select
                   labelId="state-label"
                   value={state}
+                  focused={true}
                   label="State*"
-                  onChange={(e) => setState()}
+                  
+                  onChange={(e) => setState(e.target.value)}
                 >
                   {states.map((state) => (
                     <MenuItem key={state} value={state}>{state}</MenuItem>
@@ -203,31 +171,32 @@ const Popup = ({ closePopup }) => {
               <TextField
                 label="Zipcode*"
                 defaultValue=""
+                focused={true}
                 size="small"
                 fullWidth
                 value={formValues.zipcode}
                 onChange={(e) => handleTextChange('zipcode', )}
-                
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => handleSaveValue('zipcode')}
-                        edge="end"
-                        sx={{ color: 'green' }}
-                      >
-                        <CheckCircleIcon />
-                      </IconButton>
-                      <IconButton
-                        onClick={() => handleClearValue('zipcode')}
-                        edge="end"
-                        sx={{ color: 'red' }}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
+                  color="rgba(25, 118, 210, 0.12)"
+                // InputProps={{
+                //   endAdornment: (
+                //     <InputAdornment position="end">
+                //       <IconButton
+                //         //onClick={() => handleSaveValue('zipcode')}
+                //         edge="end"
+                //         sx={{ color: 'green' }}
+                //       >
+                //         <CheckCircleIcon />
+                //       </IconButton>
+                //       <IconButton
+                //         //onClick={() => handleClearValue('zipcode')}
+                //         edge="end"
+                //         sx={{ color: 'red' }}
+                //       >
+                //         <DeleteIcon />
+                //       </IconButton>
+                //     </InputAdornment>
+                //   ),
+                // }}
               />
             </Grid>
           </Grid>
@@ -235,34 +204,16 @@ const Popup = ({ closePopup }) => {
           <Box sx={{ mt: 2 }}>
             <TextField
               label="Bio*"
+              focused={true}
               defaultValue="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
               size="small"
               fullWidth
               value={formValues.bio}
                 onChange={(e) => handleTextChange('bio', )}
-                
+                  color="rgba(25, 118, 210, 0.12)"
               multiline
               rows={4}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => handleSaveValue('bio')}
-                      edge="end"
-                      sx={{ color: 'green' }}
-                    >
-                      <CheckCircleIcon />
-                    </IconButton>
-                    <IconButton
-                      onClick={() => handleClearValue('bio')}
-                      edge="end"
-                      sx={{ color: 'red' }}
-                    >
-                      <DeleteIcon  />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
+              
             />
           </Box>
         </Box>
@@ -274,34 +225,17 @@ const Popup = ({ closePopup }) => {
           <Box sx={{ mb: 2 }}>
             <TextField
               label="Card number*"
+              focused={true}
               defaultValue="4242 ** ** **"
               size="small"
               fullWidth
               value={formValues.cardNumber}
                 onChange={(e) => handleTextChange('cardNumber', )}
-                
+                  color="rgba(25, 118, 210, 0.12)"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
                     <CreditCardIcon color="action" />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => handleSaveValue(setFieldValue)}
-                      edge="end"
-                      sx={{ color: 'green' }}
-                    >
-                      <CheckCircleIcon />
-                    </IconButton>
-                    <IconButton
-                      onClick={() => handleClearValue('cardNumber')}
-                      edge="end"
-                      sx={{ color: 'red' }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
                   </InputAdornment>
                 ),
               }}
@@ -311,32 +245,14 @@ const Popup = ({ closePopup }) => {
           <Box sx={{ mb: 2 }}>
             <TextField
               label="Cardholder name*"
+              focused={true}
               defaultValue="John Doe"
               size="small"
               fullWidth
               value={formValues.cardHolder}
                 onChange={(e) => handleTextChange('cardHolder', )}
-                
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => handleSaveValue(setFieldValue)}
-                      edge="end"
-                      sx={{ color: 'green' }}
-                    >
-                      <CheckCircleIcon />
-                    </IconButton>
-                    <IconButton
-                      onClick={() => handleClearValue('cardHolder')}
-                      edge="end"
-                      sx={{ color: 'red' }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
+                  color="rgba(25, 118, 210, 0.12)"
+              
             />
           </Box>
 
@@ -344,63 +260,27 @@ const Popup = ({ closePopup }) => {
             <Grid item xs={12} md={6}>
               <TextField
                 label="Expiration date*"
+                focused={true}
                 defaultValue="MM / YY"
                 size="small"
                 fullWidth
                 value={formValues.expiry}
                 onChange={(e) => handleTextChange('expiry', )}
                 
-               InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => handleSaveValue(setFieldValue)}
-                        edge="end"
-                        sx={{ color: 'green' }}
-                      >
-                        <CheckCircleIcon />
-                      </IconButton>
-                      <IconButton
-                        onClick={() => handleClearValue('expiry')}
-                        edge="end"
-                        sx={{ color: 'red' }}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
+                 color="rgba(25, 118, 210, 0.12)"
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
                 label="CVC/CVV2*"
+                focused={true}
                 defaultValue="*"
                 size="small"
                 fullWidth
                 value={formValues.cvc}
                 onChange={(e) => handleTextChange('cvc', )}
-                
-               InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => handleSaveValue('cvc')}
-                        edge="end"
-                        sx={{ color: 'green' }}
-                      >
-                        <CheckCircleIcon />
-                      </IconButton>
-                      <IconButton
-                        onClick={() => handleClearValue('cvc')}
-                        edge="end"
-                        sx={{ color: 'red' }}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
+                  color="rgba(25, 118, 210, 0.12)"
+               
               />
             </Grid>
           </Grid>
