@@ -310,7 +310,7 @@ export default function DetailsTable() {
                 endAdornment: (
                   <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
                     <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
-                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                      //handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
                   </InputAdornment>
                 ),
@@ -351,8 +351,9 @@ export default function DetailsTable() {
                 },
                 endAdornment: (
                   <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
-                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
-                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    <EditIconButton onClick={() => { setAllFieldsEditable(!allFieldsEditable);
+                    handleEdit('phone');
+                    //   handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
                   </InputAdornment>
                 ),
@@ -406,8 +407,6 @@ export default function DetailsTable() {
               variant={allFieldsEditable ? "outlined" : "standard"}
               value="563231"
               fullWidth
-                value={text ? text : ""}
-                onChange={(e)=>setText(e.target.value)}
               size="small"
               InputLabelProps={{ 
                 shrink: allFieldsEditable,
@@ -432,9 +431,10 @@ export default function DetailsTable() {
                 },
                 endAdornment: (
                   <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
-                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
-                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
-                    }} />
+                    <EditIconButton onClick={() => { setAllFieldsEditable(!allFieldsEditable);
+                     // handleEdit('phone');   handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                      handleEdit('state');
+                   }} />
                   </InputAdornment>
                 ),
               }}
@@ -472,8 +472,8 @@ export default function DetailsTable() {
                 },
                 endAdornment: (
                   <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
-                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
-                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    <EditIconButton onClick={() => {handleEdit('bio'); setAllFieldsEditable(!allFieldsEditable);
+                    //  handleEdit('phone');  handleEdit('state'); handleEdit('zipcode');  handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
                   </InputAdornment>
                 ),
@@ -536,8 +536,8 @@ export default function DetailsTable() {
                 },
                 endAdornment: (
                   <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
-                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
-                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    <EditIconButton onClick={() => {handleEdit('cardNumber'); setAllFieldsEditable(!allFieldsEditable);
+                    //  handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
                   </InputAdornment>
                 ),
@@ -576,8 +576,8 @@ export default function DetailsTable() {
                 },
                 endAdornment: (
                   <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
-                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
-                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    <EditIconButton onClick={() => {handleEdit('cardHolder'); setAllFieldsEditable(!allFieldsEditable);
+                     // handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
                   </InputAdornment>
                 ),
@@ -615,8 +615,8 @@ export default function DetailsTable() {
                 },
                 endAdornment: (
                   <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
-                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
-                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    <EditIconButton onClick={() => {handleEdit('expiry'); setAllFieldsEditable(!allFieldsEditable);
+                      //handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
                   </InputAdornment>
                 ),
@@ -654,8 +654,8 @@ export default function DetailsTable() {
                 },
                 endAdornment: (
                   <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px" }}>
-                    <EditIconButton onClick={() => {handleEdit('email'); setAllFieldsEditable(!allFieldsEditable);
-                      handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
+                    <EditIconButton onClick={() => {handleEdit('cvc'); setAllFieldsEditable(!allFieldsEditable);
+                    //  handleEdit('phone');  handleEdit('state'); handleEdit('zipcode'); handleEdit('bio'); handleEdit('cardNumber'); handleEdit('cardHolder'); handleEdit('expiry'); handleEdit('cvc'); 
                     }} />
                   </InputAdornment>
                 ),
