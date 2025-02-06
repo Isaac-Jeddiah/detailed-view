@@ -88,15 +88,24 @@ export default function DetailsTable() {
       size="small" 
       onClick={onClick}
       sx={{
-        backgroundColor: '#e3f2fd',
-        '&:hover': {
-          backgroundColor: '#bbdefb',
-        },
         width: 28,
-        height: 28
+        height: 28,
+        color:"primary",
+        backgroundColor: "rgba(25, 118, 210, 0.3)", // 30% opacity of #1976D2
+        borderRadius: "50%", // Ensuring circular shape
+        "&:hover": {
+          backgroundColor: "rgba(25, 118, 210, 0.4)", // Slightly darker on hover
+        },
       }}
     >
-      <EditIcon fontSize="small" sx={{ color: '#1976d2' }} />
+      <EditIcon 
+        fontSize="small" 
+        sx={{
+          color: "transparent", // No fill
+          stroke: "black", // Outline color
+          strokeWidth: 2, // Adjusting stroke thickness
+        }} 
+      />
     </IconButton>
   );
 
@@ -130,19 +139,20 @@ export default function DetailsTable() {
     {
       title: "Follow Up",
       date: "16:30:42, 4 Feb 2022",
-      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+      description: 'User <a href="/user/meghana-p" target="_blank">Meghana P</a> has an upcoming task about OVUM Hospitals- India at <a href="/time/16-30-42-4-feb-2022" target="_blank">16:30:42, 4 Feb 2022</a>.'
     },
     {
       title: "Follow Up",
       date: "16:30:42, 4 Feb 2022",
-      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+      description: 'User <a href="/user/meghana-p" target="_blank">Meghana P</a> has an upcoming task about OVUM Hospitals- India at <a href="/time/16-30-42-4-feb-2022" target="_blank">16:30:42, 4 Feb 2022</a>.'
     },
     {
       title: "Follow Up",
       date: "16:30:42, 4 Feb 2022",
-      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+      description: 'User <a href="/user/meghana-p" target="_blank">Meghana P</a> has an upcoming task about OVUM Hospitals- India at <a href="/time/16-30-42-4-feb-2022" target="_blank">16:30:42, 4 Feb 2022</a>.'
     }
   ];
+  
  const [text , setText] = useState("")
 
   const clearTextField = () => setText("")
@@ -204,13 +214,15 @@ export default function DetailsTable() {
   };
 
   const summaryStyle = {
+    
+    position: 'relative',
     bgcolor: '#1976D21F',
     //bgcolor: 'primary.main',
     marginTop:"10px",
     color: '#1976D2',
     height: '40px',
     minHeight: '40px !important',
-    borderRadius: '8px',
+    borderRadius: '4px',
     '& .MuiAccordionSummary-content': {
       margin: '0 !important'
     },
