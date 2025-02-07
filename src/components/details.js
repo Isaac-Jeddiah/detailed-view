@@ -21,7 +21,9 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Link from '@mui/material/Link';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'; 
-import DeleteIcon from '@mui/icons-material/Delete'; 
+//import CloseIcon from '@mui/icons-material/Delete'; 
+import { Close } from '@mui/icons-material';
+import CloseIcon from '@mui/icons-material/Close';
 const US_STATES = [
   'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   // ...add more states as needed
@@ -629,13 +631,14 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     <CheckCircleIcon />
                   </IconButton>
                   <IconButton
-                    onClick={() =>{ handleClearValue("name"); fieldValues.name ="";}}
+                    //onClick={() =>{ handleClearValue("name"); fieldValues.name ="";}}
+                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
                     sx={{  opacity: 0.7 ,marginTop: '5px',
                       width: 28,
                       height: 28,marginRight: '1px'}}
                   >
-                    <DeleteIcon />
+                    <CloseIcon />
                   </IconButton>
                 </>
               )}
@@ -704,13 +707,14 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     <CheckCircleIcon />
                   </IconButton>
                   <IconButton
-                    onClick={() => {handleClearValue("phone"); fieldValues.phone = "";}}
+                    //onClick={() => {handleClearValue("phone"); fieldValues.phone = "";}}
+                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
                     sx={{  opacity: 0.7 ,marginTop: '5px',
                       width: 28,
                       height: 28,marginRight: '1px'}}
                   >
-                    <DeleteIcon />
+                    <CloseIcon />
                   </IconButton>
                 </>
               )}
@@ -815,13 +819,14 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     <CheckCircleIcon />
                   </IconButton>
                   <IconButton
-                    onClick={() => {handleClearValue("zipcode"); fieldValues.zipcode=""}}
+                    //onClick={() => {handleClearValue("zipcode"); fieldValues.zipcode=""}}
+                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
                     sx={{  opacity: 0.7 ,marginTop: '5px',
                       width: 28,
                       height: 28,marginRight: '1px'}}
                   >
-                    <DeleteIcon />
+                    <CloseIcon />
                   </IconButton>
                 </>
 
@@ -882,13 +887,14 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     <CheckCircleIcon />
                   </IconButton>
                   <IconButton
-                    onClick={() => {handleClearValue("bio"); fieldValues.bio=""; }}
+                    //onClick={() => {handleClearValue("bio"); fieldValues.bio=""; }}
+                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
                     sx={{  opacity: 0.7 ,marginTop: '5px',
                       width: 28,
                       height: 28,marginRight: '1px'}}
                   >
-                    <DeleteIcon />
+                    <CloseIcon />
                   </IconButton>
                 </>
               )}  {!allFieldsEditable && (  <>
@@ -994,13 +1000,14 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                 <CheckCircleIcon />
               </IconButton>
               <IconButton
-                onClick={() => {handleClearValue("cardNumber"); fieldValues.cardNumber="";}}
+                //onClick={() => {handleClearValue("cardNumber"); fieldValues.cardNumber="";}}
+                onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
                 edge="end"
                 sx={{  opacity: 0.7 ,marginTop: '5px',
                   width: 28,
                   height: 28,marginRight: '1px'}}
               >
-                <DeleteIcon />
+                <CloseIcon />
               </IconButton>
             </>
           )}
@@ -1070,13 +1077,14 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     <CheckCircleIcon />
                   </IconButton>
                   <IconButton
-                    onClick={() =>{ handleClearValue("cardHolder"); fieldValues.cardHolder="";}}
+                    //onClick={() =>{ handleClearValue("cardHolder"); fieldValues.cardHolder="";}}
+                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
                     sx={{  opacity: 0.7 ,marginTop: '5px',
                       width: 28,
                       height: 28,marginRight: '1px'}}
                   >
-                    <DeleteIcon />
+                    <CloseIcon />
                   </IconButton>
                 </>
               )}{!allFieldsEditable && (  <>
@@ -1134,13 +1142,14 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     <CheckCircleIcon />
                   </IconButton>
                   <IconButton
-                    onClick={() => {handleClearValue("expiry"); fieldValues.expiry="";}}
+                    //onClick={() => {handleClearValue("expiry"); fieldValues.expiry="";}}
+                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
                     sx={{  opacity: 0.7 ,marginTop: '5px',
                       width: 28,
                       height: 28,marginRight: '1px'}}
                   >
-                    <DeleteIcon />
+                    <CloseIcon />
                   </IconButton>
                 </>
 
@@ -1199,13 +1208,16 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     <CheckCircleIcon />
                   </IconButton>
                   <IconButton
-                    onClick={() => {handleClearValue("cv2"); fieldValues.cvc="";}}
+                    //onClick={() => {handleClearValue("cv2"); fieldValues.cvc="";}}
+                    
+                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
-                    sx={{  opacity: 0.7 ,marginTop: '5px',
+                    
+                    sx={{  opacity: 0.7 ,marginTop: '5px',//borderRadius: "50%",
                       width: 28,
                       height: 28,marginRight: '1px'}}
                   >
-                    <DeleteIcon />
+                    <CloseIcon />
                   </IconButton>
                 </>
               )}{!allFieldsEditable && (  <>
@@ -1239,11 +1251,11 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         }}
       >
         <Box display="flex" alignItems="center" mb={1} >
-        <Typography variant="h6" >Timeline</Typography>
-        
+        <Typography variant="h6" padding="0 0 8px!important 0" >Timeline</Typography>
+        <Divider/>
         
         </Box>
-       
+       <Box></Box>
         <Accordion defaultExpanded sx={accordionStyle}>
           <AccordionSummary 
             expandIcon={<ExpandMore sx={{color:"#1976D2"
