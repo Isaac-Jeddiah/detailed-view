@@ -112,7 +112,7 @@ const Popup = ({ closePopup }) => {
         fontSize="small" 
         sx={{
           color: "transparent", // No fill
-          stroke: "black", // Outline color
+          stroke: "#90A4AE", // Outline color
           strokeWidth: 2, // Adjusting stroke thickness
         }} 
       />

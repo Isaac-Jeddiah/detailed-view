@@ -20,7 +20,8 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Link from '@mui/material/Link';
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'; 
+import DeleteIcon from '@mui/icons-material/Delete'; 
 const US_STATES = [
   'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   // ...add more states as needed
@@ -73,12 +74,15 @@ export default function DetailsTable() {
       [fieldName]: !prev[fieldName]
     }));
   };
-  const handleFieldChange = (field, value) => {
-    setFieldValues(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
+  // const handleFieldChange = (field, value) => {
+  //   setFieldValues(prev => ({
+  //     ...prev,
+  //     [field]: value
+  //   }));
+  // };
+  
+
+
   const [fieldValues, setFieldValues] = useState({
     name: 'John Doe',
     email: 'xyz@abcmail.com',
@@ -91,6 +95,18 @@ export default function DetailsTable() {
     expiry: '06/28',
     cvc: '5252'
   });
+  const [tempValue, setTempValue] = useState(fieldValues.name); // Store temporary edit value
+
+
+
+  const handleFieldChange = (key, value) => {
+    setTempValue(value);
+  };
+
+  const handleSaveValue = (key) => {
+    setFieldValues({ ...fieldValues, [key]: tempValue });
+    setAllFieldsEditable(false);
+  };
   const EditIconButton = ({ onClick }) => (
     <IconButton 
       size="small" 
@@ -111,7 +127,7 @@ export default function DetailsTable() {
         fontSize="small" 
         sx={{
           color: "transparent", // No fill
-          stroke: "black", // Outline color
+          stroke: "#90A4AE", // Outline color
           strokeWidth: 2, // Adjusting stroke thickness
         }} 
       />
@@ -333,7 +349,12 @@ const overdueItems = [
     }
   }
 ];
-
+const handleClearValue = (field) => {
+  setFormData(prev => ({
+    ...prev,
+    [field]: ''
+  }));
+};
 // Modified renderTimelineItems function
 const renderTimelineItems = (items, showMore, maxItems = 2) => {
   const displayItems = showMore ? items : items.slice(0, maxItems);
@@ -565,49 +586,72 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         </Box>
         
         <Grid container spacing={2.4}>
-          <Grid item xs={6}>
-            <TextField
-              label="Name*"
-              variant="outlined"
-              fullWidth
-              value={fieldValues.name}
-              onChange={(e) => handleFieldChange('name', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
-                
-                //               
-                sx: { 
-                
-                  color: allFieldsEditable ? '#1976d2' : 'inherit',
-                  ...(allFieldsEditable && {
-                    backgroundColor: 'white',
-                    '& .MuiOutlinedInput-root': {
-                      '&:hover fieldset': {
-                        borderColor: '#1976d2', // blue color on hover
-                      },
-                      '&.Mui-focused fieldset': {
-                        borderColor: '#1976d2', // blue color when focused
-                      },
-                    }
-                  })
-                } 
-              }}
-             InputProps={{
-               shrink: allFieldsEditable,
-            
+        <Grid item xs={6}>
+      <TextField
+        label="Name*"
+        variant="outlined"
+        fullWidth
+        value={fieldValues.name}
+        onChange={(e) => handleFieldChange('name', e.target.value)}
+        disabled={!allFieldsEditable}
+        size="small"
+        InputLabelProps={{
+          sx: {
+            color: allFieldsEditable ? "#1976d2" : "inherit",
+            ...(allFieldsEditable && {
+              backgroundColor: "white",
+              "& .MuiOutlinedInput-root": {
+                "&:hover fieldset": { borderColor: "#1976d2" }, // blue on hover
+                "&.Mui-focused fieldset": { borderColor: "#1976d2" }, // blue when focused
+              },
+            }),
+          },
+        }}
+        InputProps={{
+          shrink: allFieldsEditable,
+          sx: { fontSize: "12px" },
+          endAdornment: (
+            <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
+              '&.Mui-disabled': {
+                color: '#1976d2',
+              }
+             }}>
+              {allFieldsEditable && (
+                <>
+                  <IconButton
+                  
+                    onClick={() => handleSaveValue("name")}
+                    edge="end"
+                    sx={{ color: "green", opacity: 0.7,marginTop: '5px',
+                      width: 28,
+                      height: 28, marginRight: '1px' }}
+                  >
+                    <CheckCircleIcon />
+                  </IconButton>
+                  <IconButton
+                    onClick={() =>{ handleClearValue("name"); fieldValues.name ="";}}
+                    edge="end"
+                    sx={{ color: "red", opacity: 0.7 ,marginTop: '5px',
+                      width: 28,
+                      height: 28,marginRight: '1px'}}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </>
+              )}
+              <EditIconButton
+                onClick={() => setAllFieldsEditable(!allFieldsEditable)}
+                edge="end"
+                sx={{ marginLeft: allFieldsEditable ? "4px" : "0px" }}
+              >
                
-                sx: { fontSize: '12px' },
-                endAdornment: (
-               <InputAdornment position="end" sx={{ position: 'relative', marginRight: '0px', marginBottom:"5px",
-                    
-                   }}>      <EditIconButton   onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
-                    }} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
+              </EditIconButton>
+            </InputAdornment>
+          ),
+        }}
+      />
+    </Grid>
+
           <Grid item xs={6}>
             <TextField
               label="Phone *"
@@ -645,7 +689,31 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     '&.Mui-disabled': {
                       color: '#1976d2',
                     }
-                   }}>      <EditIconButton onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                   }}>     
+                    {allFieldsEditable && (
+                <>
+                  <IconButton
+                  
+                    onClick={() => handleSaveValue("phone")}
+                    edge="end"
+                    sx={{ color: "green", opacity: 0.7,marginTop: '5px',
+                      width: 28,
+                      height: 28, marginRight: '1px' }}
+                  >
+                    <CheckCircleIcon />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => {handleClearValue("phone"); fieldValues.phone = "";}}
+                    edge="end"
+                    sx={{ color: "red", opacity: 0.7 ,marginTop: '5px',
+                      width: 28,
+                      height: 28,marginRight: '1px'}}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </>
+              )}
+                    <EditIconButton onClick={() => {handleEdit('phone'); setAllFieldsEditable(!allFieldsEditable);
                     }} />
                   </InputAdornment>
                 ),
@@ -730,7 +798,30 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     '&.Mui-disabled': {
                       color: '#1976d2',
                     }
-                   }}>      <EditIconButton onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                   }}>      
+                    {allFieldsEditable && (
+                <>
+                  <IconButton
+                  
+                    onClick={() => handleSaveValue("zipcode")}
+                    edge="end"
+                    sx={{ color: "green", opacity: 0.7,marginTop: '5px',
+                      width: 28,
+                      height: 28, marginRight: '1px' }}
+                  >
+                    <CheckCircleIcon />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => {handleClearValue("zipcode"); fieldValues.zipcode=""}}
+                    edge="end"
+                    sx={{ color: "red", opacity: 0.7 ,marginTop: '5px',
+                      width: 28,
+                      height: 28,marginRight: '1px'}}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </>
+              )}<EditIconButton onClick={() => {handleEdit('zipcode'); setAllFieldsEditable(!allFieldsEditable);
                     }} />
                   </InputAdornment>
                 ),
@@ -772,7 +863,31 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     '&.Mui-disabled': {
                       color: '#1976d2',
                     }
-                   }}>      <EditIconButton onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                   }}>    
+                    {allFieldsEditable && (
+                <>
+                  <IconButton
+                  
+                    onClick={() => handleSaveValue("bio")}
+                    edge="end"
+                    sx={{ color: "green", opacity: 0.7,marginTop: '5px',
+                      width: 28,
+                      height: 28, marginRight: '1px' }}
+                  >
+                    <CheckCircleIcon />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => {handleClearValue("bio"); fieldValues.bio=""; }}
+                    edge="end"
+                    sx={{ color: "red", opacity: 0.7 ,marginTop: '5px',
+                      width: 28,
+                      height: 28,marginRight: '1px'}}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </>
+              )}  
+                   <EditIconButton onClick={() => {handleEdit('bio'); setAllFieldsEditable(!allFieldsEditable);
                     }} />
                   </InputAdornment>
                 ),
@@ -861,7 +976,29 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                 color: '#1976d2',
               }
             }}
-          >
+          > {allFieldsEditable && (
+            <>
+              <IconButton
+              
+                onClick={() => handleSaveValue("cardnumber")}
+                edge="end"
+                sx={{ color: "green", opacity: 0.7,marginTop: '5px',
+                  width: 28,
+                  height: 28, marginRight: '1px' }}
+              >
+                <CheckCircleIcon />
+              </IconButton>
+              <IconButton
+                onClick={() => {handleClearValue("cardNumber"); fieldValues.cardNumber="";}}
+                edge="end"
+                sx={{ color: "red", opacity: 0.7 ,marginTop: '5px',
+                  width: 28,
+                  height: 28,marginRight: '1px'}}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </>
+          )}
             <EditIconButton 
               onClick={() => {
                 handleEdit('cardNumber');
@@ -913,7 +1050,31 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     '&.Mui-disabled': {
                       color: '#1976d2',
                     }
-                   }}>      <EditIconButton onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                   }}>     
+                    {allFieldsEditable && (
+                <>
+                  <IconButton
+                  
+                    onClick={() => handleSaveValue("cardHolder")}
+                    edge="end"
+                    sx={{ color: "green", opacity: 0.7,marginTop: '5px',
+                      width: 28,
+                      height: 28, marginRight: '1px' }}
+                  >
+                    <CheckCircleIcon />
+                  </IconButton>
+                  <IconButton
+                    onClick={() =>{ handleClearValue("cardHolder"); fieldValues.cardHolder="";}}
+                    edge="end"
+                    sx={{ color: "red", opacity: 0.7 ,marginTop: '5px',
+                      width: 28,
+                      height: 28,marginRight: '1px'}}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </>
+              )}
+                    <EditIconButton onClick={() => {handleEdit('cardholder'); setAllFieldsEditable(!allFieldsEditable);
                     }} />
                   </InputAdornment>
                 ),
@@ -953,7 +1114,30 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     '&.Mui-disabled': {
                       color: '#1976d2',
                     }
-                   }}>      <EditIconButton onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                   }}>      
+                    {allFieldsEditable && (
+                <>
+                  <IconButton
+                  
+                    onClick={() => handleSaveValue("expiry")}
+                    edge="end"
+                    sx={{ color: "green", opacity: 0.7,marginTop: '5px',
+                      width: 28,
+                      height: 28, marginRight: '1px' }}
+                  >
+                    <CheckCircleIcon />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => {handleClearValue("expiry"); fieldValues.expiry="";}}
+                    edge="end"
+                    sx={{ color: "red", opacity: 0.7 ,marginTop: '5px',
+                      width: 28,
+                      height: 28,marginRight: '1px'}}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </>
+              )}<EditIconButton onClick={() => {handleEdit('expiry'); setAllFieldsEditable(!allFieldsEditable);
                     }} />
                   </InputAdornment>
                 ),
@@ -993,7 +1177,31 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     '&.Mui-disabled': {
                       color: '#1976d2',
                     }
-                   }}>      <EditIconButton onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                   }}>     
+                    {allFieldsEditable && (
+                <>
+                  <IconButton
+                  
+                    onClick={() => handleSaveValue("cv2")}
+                    edge="end"
+                    sx={{ color: "green", opacity: 0.7,marginTop: '5px',
+                      width: 28,
+                      height: 28, marginRight: '1px' }}
+                  >
+                    <CheckCircleIcon />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => {handleClearValue("cv2"); fieldValues.cvc="";}}
+                    edge="end"
+                    sx={{ color: "red", opacity: 0.7 ,marginTop: '5px',
+                      width: 28,
+                      height: 28,marginRight: '1px'}}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </>
+              )}
+                    <EditIconButton onClick={() => {handleEdit('cv2'); setAllFieldsEditable(!allFieldsEditable);
                     }} />
                   </InputAdornment>
                 ),
