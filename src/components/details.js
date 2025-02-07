@@ -125,56 +125,127 @@ export default function DetailsTable() {
   //   {
   //     title: "Follow Up",
   //     date: "16:30:42, 4 Feb 2022",
-  //     description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+  //     description: "Meghana P has an upcoming task about a meeting at OVUM Hospitals- India."
   //   },
     
   //   {
   //     title: "Follow Up",
   //     date: "16:30:42, 4 Feb 2022",
-  //     description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+  //     description: "Meghana P has an upcoming task about a meeting at OVUM Hospitals- India."
   //   },
   //   {
   //     title: "Follow Up",
   //     date: "16:30:42, 4 Feb 2022",
-  //     description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+  //     description: "Meghana P has an upcoming task about a meeting at OVUM Hospitals- India."
   //   },
     
   // ];
 
   const completedItems = [
     {
-      title: "Follow Up",
-      date: "16:30:42, 4 Feb 2022",
-      description: {
-        text: " has an upcoming task about OVUM Hospitals- India.",
-        link: {
-          text: "Meghana P",
-          url: "/profile/meghana" // or whatever URL you want to link to
-        }
-      }
-    },
-    {
-      title: "Follow Up",
-      date: "16:30:42, 4 Feb 2022",
-      description: {
-        text: " has an upcoming task about OVUM Hospitals- India.",
-        link: {
+    title: "Follow Up",
+    date: "16:30:42, 4 Feb 2022",
+    description: {
+      segments: [
+        {
+          type: 'link',
           text: "Meghana P",
           url: "/profile/meghana"
+        },
+        {
+          type: 'text',
+          text: " has an upcoming task about a meeting at "
+        },
+        {
+          type: 'link',
+          text: "OVUM Hospitals- India",
+          url: "/hospitals/ovum"
+        },
+        {
+          type: 'text',
+          text: "."
         }
-      }
-    },
-    {
-      title: "Follow Up",
-      date: "16:30:42, 4 Feb 2022",
-      description: {
-        text: " has an upcoming task about OVUM Hospitals- India.",
-        link: {
-          text: "Meghana P",
-          url: "/profile/meghana"
-        }
-      }
+      ]
     }
+  },
+  {
+    title: "Follow Up",
+    date: "16:30:42, 4 Feb 2022",
+    description: {
+      segments: [
+        {
+          type: 'link',
+          text: "Meghana P",
+          url: "/profile/meghana"
+        },
+        {
+          type: 'text',
+          text: " has an upcoming task about a meeting at "
+        },
+        {
+          type: 'link',
+          text: "OVUM Hospitals- India",
+          url: "/hospitals/ovum"
+        },
+        {
+          type: 'text',
+          text: "."
+        }
+      ]
+    }
+  },
+ {
+    title: "Follow Up",
+    date: "16:30:42, 4 Feb 2022",
+    description: {
+      segments: [
+        {
+          type: 'link',
+          text: "Meghana P",
+          url: "/profile/meghana"
+        },
+        {
+          type: 'text',
+          text: " has an upcoming task about a meeting at "
+        },
+        {
+          type: 'link',
+          text: "OVUM Hospitals- India",
+          url: "/hospitals/ovum"
+        },
+        {
+          type: 'text',
+          text: "."
+        }
+      ]
+    }
+  },
+    {
+    title: "Follow Up",
+    date: "16:30:42, 4 Feb 2022",
+    description: {
+      segments: [
+        {
+          type: 'link',
+          text: "Meghana P",
+          url: "/profile/meghana"
+        },
+        {
+          type: 'text',
+          text: " has an upcoming task about a meeting at "
+        },
+        {
+          type: 'link',
+          text: "OVUM Hospitals- India",
+          url: "/hospitals/ovum"
+        },
+        {
+          type: 'text',
+          text: "."
+        }
+      ]
+    }
+  }
   ];
   
  const [text , setText] = useState("")
@@ -186,33 +257,79 @@ const overdueItems = [
     title: "Follow Up",
     date: "16:30:42, 4 Feb 2022",
     description: {
-      text: " has an upcoming task about OVUM Hospitals- India.",
-      link: {
-        text: "Meghana P",
-        url: "/profile/meghana" // or whatever URL you want to link to
-      }
+      segments: [
+        {
+          type: 'link',
+          text: "Meghana P",
+          url: "/profile/meghana"
+        },
+        {
+          type: 'text',
+          text: " has an upcoming task about a meeting at "
+        },
+        {
+          type: 'link',
+          text: "OVUM Hospitals- India",
+          url: "/hospitals/ovum"
+        },
+        {
+          type: 'text',
+          text: "."
+        }
+      ]
     }
   },
   {
     title: "Follow Up",
     date: "16:30:42, 4 Feb 2022",
     description: {
-      text: " has an upcoming task about OVUM Hospitals- India.",
-      link: {
-        text: "Meghana P",
-        url: "/profile/meghana"
-      }
+      segments: [
+        {
+          type: 'link',
+          text: "Meghana P",
+          url: "/profile/meghana"
+        },
+        {
+          type: 'text',
+          text: " has an upcoming task about a meeting at "
+        },
+        {
+          type: 'link',
+          text: "OVUM Hospitals- India",
+          url: "/hospitals/ovum"
+        },
+        {
+          type: 'text',
+          text: "."
+        }
+      ]
     }
   },
   {
     title: "Follow Up",
     date: "16:30:42, 4 Feb 2022",
     description: {
-      text: " has an upcoming task about OVUM Hospitals- India.",
-      link: {
-        text: "Meghana P",
-        url: "/profile/meghana"
-      }
+      segments: [
+        {
+          type: 'link',
+          text: "Meghana P",
+          url: "/profile/meghana"
+        },
+        
+        {
+          type: 'text',
+          text: " has an upcoming task about a meeting at "
+        },
+        {
+          type: 'link',
+          text: "OVUM Hospitals- India",
+          url: "/hospitals/ovum"
+        },
+        {
+          type: 'text',
+          text: "."
+        }
+      ]
     }
   }
 ];
@@ -227,50 +344,88 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       sx={{
         '&:not(:last-child)': {
           '& .MuiTimelineContent-root': {
-            paddingBottom: '16px',
-            marginBottom: '16px'
+            paddingBottom: '8px',
+            marginBottom: '8px'
           }
         }
       }}
     >
       <TimelineSeparator>
-        <TimelineDot sx={{ bgcolor: '#1976D2' }} />
-        {index !== displayItems.length - 1 && <TimelineConnector sx={{ bgcolor: '#1976D2' }} />}
+        <TimelineDot sx={{ bgcolor: '#1976D2', boxShadow:'none' }} />
+        {index !== displayItems.length - 1 && <TimelineConnector sx={{bgcolor:' rgba(25, 118, 210, 0.12)', boxShadow:'none' }} />}
       </TimelineSeparator>
       <TimelineContent>
         <Box display="flex" justifyContent="space-between">
-          <Typography variant="small" sx={{ fontSize: '1rem' }}>
+          <Typography variant="small" sx={{fontWeight: 'bold'}}>
             {item.title}
           </Typography>
           <Typography variant="caption" color="primary" sx={{ fontSize: '0.7rem' }}>
             {item.date}
           </Typography>
         </Box>
-        <Typography 
-          variant="body2" 
-          color="text.secondary" 
-          sx={{ fontSize: '0.7rem' }}
+        <Typography
+  variant="body2"
+  color="text.secondary"
+  sx={{
+    fontFamily: 'var(--fontFamily)',
+    fontSize: 'var(--fontSize1rem)',
+    fontWeight: 400,
+    lineHeight: '24px',
+    letterSpacing: '0.15px',
+    textAlign: 'left',
+    textUnderlinePosition: 'from-font',
+    textDecorationSkipInk: 'none',
+  }}
+>
+  {item.description.segments.map((segment, i) => (
+    <span
+      key={i}
+      style={{
+        fontFamily: 'var(--fontFamily)',
+        fontSize: '12px',
+        fontWeight: 400,
+        lineHeight: '24px',
+        letterSpacing: '0.15px',
+        textAlign: 'left',
+        textUnderlinePosition: 'from-font',
+        textDecorationSkipInk: 'none',
+        display: 'inline',
+      }}
+    >
+      {segment.type === 'link' ? (
+        <Link
+          href={segment.url}
+          component="button"
+          onClick={(e) => {
+            e.preventDefault();
+            console.log('Navigating to:', segment.url);
+          }}
+          sx={{
+            color: '#1976D2',
+            textDecoration: 'none',
+            display: 'inline',
+            '&:hover': {
+              textDecoration: 'underline',
+              cursor: 'pointer',
+            },
+          }}
         >
-          <Link
-            href={item.description.link.url}
-            sx={{
-              color: '#1976D2',
-              textDecoration: 'none',
-              '&:hover': {
-                textDecoration: 'underline',
-                cursor: 'pointer'
-              }
-            }}
-          >
-            {item.description.link.text}
-          </Link>
-          {item.description.text}
-        </Typography>
+          {segment.text}
+        </Link>
+      ) : (
+        segment.text
+      )}
+    </span>
+  ))}
+  <Divider />
+</Typography>
+
+
       </TimelineContent>
+      <Divider />
     </TimelineItem>
   ));
 };
-  
   // const renderTimelineItems = (items, showMore, maxItems = 2) => {
   //   const displayItems = showMore ? items : items.slice(0, maxItems);
     
