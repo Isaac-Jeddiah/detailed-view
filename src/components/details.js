@@ -21,7 +21,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Link from '@mui/material/Link';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'; 
-//import CloseIcon from '@mui/icons-material/Delete'; 
+ 
 import { Close } from '@mui/icons-material';
 import CloseIcon from '@mui/icons-material/Close';
 const US_STATES = [
@@ -97,7 +97,7 @@ export default function DetailsTable() {
     expiry: '06/28',
     cvc: '5252'
   });
-  const [tempValue, setTempValue] = useState(fieldValues.name); // Store temporary edit value
+  const [tempValue, setTempValue] = useState(fieldValues.name); 
 
 
 
@@ -118,19 +118,17 @@ export default function DetailsTable() {
         width: 28,
         height: 28,
         color:"primary",
-        //backgroundColor: "rgba(25, 118, 210, 0.3)", // 30% opacity of #1976D2
-        borderRadius: "50%", // Ensuring circular shape
-        "&:hover": {
-       //   backgroundColor: "rgba(25, 118, 210, 0.4)", // Slightly darker on hover
-        },
+       
+        borderRadius: "50%", 
+       
       }}
     >
       <EditIcon 
         fontSize="small" 
         sx={{
-          color: "transparent", // No fill
-          stroke: "#90A4AE", // Outline color
-          strokeWidth: 2, // Adjusting stroke thickness
+          color: "transparent",
+          stroke: "#90A4AE",
+          strokeWidth: 2, 
         }} 
       />
     </IconButton>
@@ -269,7 +267,7 @@ export default function DetailsTable() {
  const [text , setText] = useState("")
 
   const clearTextField = () => setText("")
-  // Modified data structure with link property
+  
 const overdueItems = [
   {
     title: "Follow Up",
@@ -484,46 +482,41 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
   // };
 
   const accordionStyle = {
-    
     minHeight: '60px',
     height: 'auto',
     border: 'none',
     boxShadow: 'none',
+    marginTop: '0px !important', // Prevents unwanted movement
     '& .MuiAccordion-region': {
       height: '250px',
       overflow: 'auto',
       '&::-webkit-scrollbar': {
         width: '0px'
-      },
-      '&::-webkit-scrollbar-track': {
-        background: 'transparent'
-      },
-      '&::-webkit-scrollbar-thumb': {
-        background: '#88888850',
-        borderRadius: '4px'
       }
     }
   };
+  
 
   const summaryStyle = {
-    
     position: 'relative',
     bgcolor: '#1976D21F',
-    //bgcolor: 'primary.main',
-    
     color: '#1976D2',
     height: '40px !important',
     minHeight: '40px !important',
     borderRadius: '4px',
+    display: 'flex', // Ensures the text stays centered
+    alignItems: 'center', // Centers text vertically
     '& .MuiAccordionSummary-content': {
-      marginTop: '10px !important'
+      margin: '0 !important', // Remove margin changes
+      alignItems: 'center', // Keep text centered
     },
     '&.Mui-expanded': {
       height: '40px !important',
       borderBottomLeftRadius: 0,
-      borderBottomRightRadius: 0
-    }
+      borderBottomRightRadius: 0,
+    },
   };
+  
 
 
   return (
@@ -1238,19 +1231,27 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         sx={{ 
           borderRadius:"4px",
           backgroundColor: "white",
+          maxWidth:"100%",
+          minWidth: "300px",
+          width:"auto",
+          height:"auto",
           width: "409px !important",
-          height: "650px !important",
+         // height: "650px !important",
           borderRadius: '4px',
           padding: '20px 28px',
           gap: '0px',
          // boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
           margin: 'auto 1.4rem',
-          display: 'flex',
-          flexDirection: 'column',
+          // display: 'flex',
+          // flexDirection: 'column',
+          flexWrap:"wrap",
+          //overflowX:"auto",
           
         }}
       >
-        <Box display="flex" alignItems="center" mb={1} >
+
+        <Box display="flex" alignItems="center" mb={1} 
+ >
         <Typography variant="h6" padding="0 0 8px!important 0" >Timeline</Typography>
         <Divider/>
         
@@ -1262,7 +1263,12 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
 }}/> }
             sx={summaryStyle}
           >
-            <Typography variant="body2" sx={{marginTop:"10px"}}>Upcoming & Overdue</Typography>
+            <Box display="flex" alignItems="center" mb={1} sx={{ position: "relative", zIndex: 2 }}>
+            <Typography variant="body2" >Upcoming & Overdue</Typography>
+              <Divider sx={{ flexGrow: 1, ml: 2, borderBottomWidth: 2, backgroundColor: "rgba(0, 0, 0, 0.2)" }} />
+
+            </Box>
+           
           </AccordionSummary>
           <AccordionDetails sx={{  display:'flex' ,flexDirection: 'column',
             backgroundColor: 'white',
