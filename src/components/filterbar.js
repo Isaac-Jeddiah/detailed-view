@@ -39,7 +39,7 @@ const Filterbar = () => {
         position: "relative",
         marginLeft: `calc(2px + 4px)`,
         marginRight: "10px",
-        padding: "4px",
+        padding: "16px 24px 16px 24px",
       }}
     >
       {/* Profile Image with Editable Overlay */}

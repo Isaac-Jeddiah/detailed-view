@@ -67,14 +67,14 @@ const Popup = ({ closePopup }) => {
     setter((prev) => prev); // Placeholder for saving logic
   };
   const [formValues, setFormValues] = useState({
-    email: '',
-    phone: '',
-    zipcode: '',
-    bio:'',
-    cardNumber: '',
-    cardHolder: '',
-    expiry: '',
-    cvc: ''
+    email: 'xyz@abcmail.com',
+    phone: '987654321',
+    zipcode: '534768',
+    bio:'I am an employee of abc company and i am a full time employee. I am good at ...',
+    cardNumber: '4123 **** **** ****',
+    cardHolder: 'John Doe',
+    expiry: '06/28',
+    cvc: '5252'
   });
   
   // Handler for text field changes
@@ -119,6 +119,8 @@ const Popup = ({ closePopup }) => {
       >
         {/* Section 1 */}
         <Box sx={{ mb: 4 }}>
+        <Typography variant="h6" sx={{ mb: 2 }}>Edit</Typography>
+          
           <Typography variant="h6" sx={{ mb: 2 }}>Section heading</Typography>
           
           <Grid container spacing={2}>
@@ -130,19 +132,38 @@ const Popup = ({ closePopup }) => {
                 fullWidth
                 value={formValues.email}
                 onChange={(e) => handleTextChange('email', )}
-                focused={true}
+                //focused={true}}
                  color="rgba(25, 118, 210, 0.12)"
+                 sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&:hover fieldset': {
+                      borderColor: '#1976d2', // blue color on hover
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#1976d2', // blue color when focused
+                    },
+                  }
+                }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
             <TextField
           label="Phone*"
-          focused={true}
+          //focused={true}}
           size='small'
           fullWidth
           
           color="rgba(25, 118, 210, 0.12)"
-          
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '&:hover fieldset': {
+                borderColor: '#1976d2', // blue color on hover
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#1976d2', // blue color when focused
+              },
+            }
+          }}
         />
             </Grid>
           </Grid>
@@ -156,7 +177,7 @@ const Popup = ({ closePopup }) => {
                 <Select
                   labelId="state-label"
                   value={state}
-                  focused={true}
+                  //focused={true}}
                   label="State*"
                   
                   onChange={(e) => setState(e.target.value)}
@@ -171,12 +192,23 @@ const Popup = ({ closePopup }) => {
               <TextField
                 label="Zipcode*"
                 defaultValue=""
-                focused={true}
+                
+                //focused={true}}
                 size="small"
                 fullWidth
                 value={formValues.zipcode}
                 onChange={(e) => handleTextChange('zipcode', )}
                   color="rgba(25, 118, 210, 0.12)"
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '&:hover fieldset': {
+                        borderColor: '#1976d2', // blue color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1976d2', // blue color when focused
+                      },
+                    }
+                  }}
                 // InputProps={{
                 //   endAdornment: (
                 //     <InputAdornment position="end">
@@ -204,7 +236,7 @@ const Popup = ({ closePopup }) => {
           <Box sx={{ mt: 2 }}>
             <TextField
               label="Bio*"
-              focused={true}
+              ////focused={true}}
               defaultValue="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
               size="small"
               fullWidth
@@ -213,7 +245,16 @@ const Popup = ({ closePopup }) => {
                   color="rgba(25, 118, 210, 0.12)"
               multiline
               rows={4}
-              
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '&:hover fieldset': {
+                    borderColor: '#1976d2', // blue color on hover
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#1976d2', // blue color when focused
+                  },
+                }
+              }}
             />
           </Box>
         </Box>
@@ -225,13 +266,23 @@ const Popup = ({ closePopup }) => {
           <Box sx={{ mb: 2 }}>
             <TextField
               label="Card number*"
-              focused={true}
+              //focused={true}}
               defaultValue="4242 ** ** **"
               size="small"
               fullWidth
               value={formValues.cardNumber}
                 onChange={(e) => handleTextChange('cardNumber', )}
                   color="rgba(25, 118, 210, 0.12)"
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '&:hover fieldset': {
+                        borderColor: '#1976d2', // blue color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1976d2', // blue color when focused
+                      },
+                    }
+                  }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -245,14 +296,23 @@ const Popup = ({ closePopup }) => {
           <Box sx={{ mb: 2 }}>
             <TextField
               label="Cardholder name*"
-              focused={true}
+              //focused={true}}
               defaultValue="John Doe"
               size="small"
               fullWidth
               value={formValues.cardHolder}
                 onChange={(e) => handleTextChange('cardHolder', )}
                   color="rgba(25, 118, 210, 0.12)"
-              
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '&:hover fieldset': {
+                        borderColor: '#1976d2', // blue color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1976d2', // blue color when focused
+                      },
+                    }
+                  }}
             />
           </Box>
 
@@ -260,27 +320,45 @@ const Popup = ({ closePopup }) => {
             <Grid item xs={12} md={6}>
               <TextField
                 label="Expiration date*"
-                focused={true}
+                //focused={true}}
                 defaultValue="MM / YY"
                 size="small"
                 fullWidth
                 value={formValues.expiry}
                 onChange={(e) => handleTextChange('expiry', )}
-                
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&:hover fieldset': {
+                      borderColor: '#1976d2', // blue color on hover
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#1976d2', // blue color when focused
+                    },
+                  }
+                }}
                  color="rgba(25, 118, 210, 0.12)"
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
                 label="CVC/CVV2*"
-                focused={true}
+                //focused={true}}
                 defaultValue="*"
                 size="small"
                 fullWidth
                 value={formValues.cvc}
                 onChange={(e) => handleTextChange('cvc', )}
                   color="rgba(25, 118, 210, 0.12)"
-               
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '&:hover fieldset': {
+                        borderColor: '#1976d2', // blue color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1976d2', // blue color when focused
+                      },
+                    }
+                  }}
               />
             </Grid>
           </Grid>

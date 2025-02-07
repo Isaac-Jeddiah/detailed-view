@@ -80,8 +80,16 @@ export default function DetailsTable() {
     }));
   };
   const [fieldValues, setFieldValues] = useState({
-    name: '',
-    phone: ''
+    name: 'John Doe',
+    email: 'xyz@abcmail.com',
+    phone: '987654321',
+    state: 'Alabama',
+    zipcode: '534768',
+    bio:'I am an employee of abc company and i am a full time employee. I am good at ...',
+    cardNumber: '4123 **** **** ****',
+    cardHolder: 'John Doe',
+    expiry: '06/28',
+    cvc: '5252'
   });
   const EditIconButton = ({ onClick }) => (
     <IconButton 
@@ -118,6 +126,7 @@ export default function DetailsTable() {
       date: "16:30:42, 4 Feb 2022",
       description: "Meghana P has an upcoming task about OVUM Hospitals- India."
     },
+    
     {
       title: "Follow Up",
       date: "16:30:42, 4 Feb 2022",
@@ -128,28 +137,24 @@ export default function DetailsTable() {
       date: "16:30:42, 4 Feb 2022",
       description: "Meghana P has an upcoming task about OVUM Hospitals- India."
     },
-    {
-      title: "Follow Up",
-      date: "16:30:42, 4 Feb 2022",
-      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
-    }
+    
   ];
 
   const completedItems = [
     {
       title: "Follow Up",
       date: "16:30:42, 4 Feb 2022",
-      description: 'User <a href="/user/meghana-p" target="_blank">Meghana P</a> has an upcoming task about OVUM Hospitals- India at <a href="/time/16-30-42-4-feb-2022" target="_blank">16:30:42, 4 Feb 2022</a>.'
+      description: 'User 16:30:42, 4 Feb 2022</a>.'
     },
     {
       title: "Follow Up",
       date: "16:30:42, 4 Feb 2022",
-      description: 'User <a href="/user/meghana-p" target="_blank">Meghana P</a> has an upcoming task about OVUM Hospitals- India at <a href="/time/16-30-42-4-feb-2022" target="_blank">16:30:42, 4 Feb 2022</a>.'
+      description: 'User  has an upcoming task about OVUM Hospitals- India at <a href="/time/16-30-42-4-feb-2022" target="_blank">16:30:42, 4 Feb 2022</a>.'
     },
     {
       title: "Follow Up",
       date: "16:30:42, 4 Feb 2022",
-      description: 'User <a href="/user/meghana-p" target="_blank">Meghana P</a> has an upcoming task about OVUM Hospitals- India at <a href="/time/16-30-42-4-feb-2022" target="_blank">16:30:42, 4 Feb 2022</a>.'
+      description: 'User 16:30:42, 4 Feb 2022</a>.'
     }
   ];
   
@@ -249,9 +254,9 @@ export default function DetailsTable() {
           value={activeTab} 
           onChange={handleChange}
           sx={{
-            width: 'var(--xs)',
+            minWidth: '444px',
             height: '42px',
-           // ml: '304px',
+            //ml: '304px',
             '& .MuiTab-root': {
               fontSize: '1rem',
               minHeight: '42px'
@@ -266,7 +271,7 @@ export default function DetailsTable() {
       <TabPanel value={activeTab} index={0}>
         <Grid container spacing={2.4}>
         
-    <Grid item xs={7}>
+    <Grid item xs={7} >
       <Box 
         sx={{ 
           height:"220px", 
@@ -282,7 +287,7 @@ export default function DetailsTable() {
         }}
       >
         <Box display="flex" alignItems="center" mb={1}>
-          <Typography variant="h5" >
+          <Typography variant="h6"  >
             Section Heading
           </Typography>
           {/* <IconButton 
@@ -298,7 +303,7 @@ export default function DetailsTable() {
           <Grid item xs={6}>
             <TextField
               label="Name*"
-              variant={allFieldsEditable ? "outlined" : "standard"}
+              variant="outlined"
               fullWidth
               value={fieldValues.name}
               onChange={(e) => handleFieldChange('name', e.target.value)}
@@ -312,7 +317,14 @@ export default function DetailsTable() {
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
                   ...(allFieldsEditable && {
                     backgroundColor: 'white',
-                    
+                    '& .MuiOutlinedInput-root': {
+                      '&:hover fieldset': {
+                        borderColor: '#1976d2', // blue color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1976d2', // blue color when focused
+                      },
+                    }
                   })
                 } 
               }}
@@ -334,7 +346,7 @@ export default function DetailsTable() {
           <Grid item xs={6}>
             <TextField
               label="Phone *"
-              variant={allFieldsEditable ? "outlined" : "standard"}
+              variant="outlined"
               fullWidth
               value={fieldValues.phone}
               onChange={(e) => handleFieldChange('phone', e.target.value)}
@@ -343,7 +355,14 @@ export default function DetailsTable() {
                InputLabelProps={{ 
               
                 sx: { 
-                
+                  '& .MuiOutlinedInput-root': {
+                    '&:hover fieldset': {
+                      borderColor: '#1976d2', // blue color on hover
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#1976d2', // blue color when focused
+                    },
+                  },
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
                   ...(allFieldsEditable && {
                     backgroundColor: 'white',
@@ -372,11 +391,11 @@ export default function DetailsTable() {
           <Grid item xs={6}>
             <TextField
               label="State *"
-              variant={allFieldsEditable ? "outlined" : "standard"}
+              variant="outlined"
               fullWidth
               select
-              value={fieldValues.phone}
-              onChange={(e) => handleFieldChange('phone', e.target.value)}
+              value={fieldValues.state}
+              onChange={(e) => handleFieldChange('state',)}
                 disabled={!allFieldsEditable}             
               size="small"
                InputLabelProps={{ 
@@ -386,7 +405,14 @@ export default function DetailsTable() {
                   color: allFieldsEditable ? '#1976d2' : 'inherit',
                   ...(allFieldsEditable && {
                     backgroundColor: 'white',
-                    
+                    '& .MuiOutlinedInput-root': {
+                      '&:hover fieldset': {
+                        borderColor: '#1976d2', // blue color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1976d2', // blue color when focused
+                      },
+                    }
                   })
                 } 
               }}
@@ -410,7 +436,7 @@ export default function DetailsTable() {
             <TextField
               label="Zip Code*"
               id="outlined-multiline-static"
-              variant={allFieldsEditable ? "outlined" : "standard"}
+              variant="outlined"
               fullWidth
               rows="2"
               value={fieldValues.zipcode}
@@ -450,9 +476,11 @@ export default function DetailsTable() {
           <Grid item xs={12}>
             <TextField
               label="Bio*"
-              variant={allFieldsEditable ? "outlined" : "standard"}
+              variant="outlined"
               fullWidth
-              Multiline
+              rows={4}
+              multiline
+              
               value={fieldValues.bio}
               onChange={(e) => handleFieldChange('bio', e.target.value)}
                 disabled={!allFieldsEditable}             
@@ -496,20 +524,20 @@ export default function DetailsTable() {
           width: "calc(100% - 4px)",
         
           borderRadius: '4px',
-          boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
+          //boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
           margin: '0 auto',
           ml:-2.4,
           mt: 2.4,
           p: 2.4
         }}
       >
-        <Typography variant="h5" sx={{marginBottom:"10px"}}>Typography</Typography>
+        <Typography variant="h6" sx={{marginBottom:"10px"}}>Typography</Typography>
         <Grid container spacing={2.4}>
         <Grid item xs={12}>
             <TextField
               label="Card Number*"
               id="outlined-multiline-static"
-              variant={allFieldsEditable ? "outlined" : "standard"}
+              variant="outlined"
               fullWidth
               rows="2"
               value={fieldValues.cardNumber}
@@ -591,7 +619,7 @@ export default function DetailsTable() {
             <TextField
               label="Card Holder Name*"
               id="outlined-multiline-static"
-              variant={allFieldsEditable ? "outlined" : "standard"}
+              variant="outlined"
               fullWidth
               rows="2"
               value={fieldValues.cardHolder}
@@ -631,7 +659,7 @@ export default function DetailsTable() {
             <TextField
               label="Expiry*"
               id="outlined-multiline-static"
-              variant={allFieldsEditable ? "outlined" : "standard"}
+              variant="outlined"
               fullWidth
               rows="2"
               value={fieldValues.expiry}
@@ -671,7 +699,7 @@ export default function DetailsTable() {
             <TextField
               label="CVC/CV2*"
               id="outlined-multiline-static"
-              variant={allFieldsEditable ? "outlined" : "standard"}
+              variant="outlined"
               fullWidth
               rows="2"
               value={fieldValues.cvc}
@@ -729,7 +757,7 @@ export default function DetailsTable() {
         }}
       >
         <Box display="flex" alignItems="center" mb={1} >
-        <Typography variant="h5" >Timeline</Typography>
+        <Typography variant="h6" >Timeline</Typography>
         
         
         </Box>
