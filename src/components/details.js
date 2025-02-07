@@ -467,10 +467,10 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
     border: 'none',
     boxShadow: 'none',
     '& .MuiAccordion-region': {
-      height: '230px',
+      height: '250px',
       overflow: 'auto',
       '&::-webkit-scrollbar': {
-        width: '4px'
+        width: '0px'
       },
       '&::-webkit-scrollbar-track': {
         background: 'transparent'
@@ -493,9 +493,10 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
     minHeight: '40px !important',
     borderRadius: '4px',
     '& .MuiAccordionSummary-content': {
-      margin: '0 !important'
+      marginTop: '10px !important'
     },
     '&.Mui-expanded': {
+      
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0
     }
@@ -1034,7 +1035,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
           >
             <Typography variant="body2">Upcoming & Overdue</Typography>
           </AccordionSummary>
-          <AccordionDetails sx={{ p: 1, display: 'flex', flexDirection: 'column' ,
+          <AccordionDetails sx={{  display:'flex' ,flexDirection: 'column',
             backgroundColor: 'white',
          
           }}>

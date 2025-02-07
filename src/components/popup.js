@@ -92,7 +92,32 @@ const Popup = ({ closePopup }) => {
       [field]: ''
     }));
   };
-
+  const EditIconButton = ({ onClick }) => (
+    <IconButton 
+      size="small" 
+      onClick={onClick}
+      sx={{
+        marginTop: '5px',
+        width: 28,
+        height: 28,
+        color:"primary",
+        backgroundColor: "rgba(25, 118, 210, 0.3)", // 30% opacity of #1976D2
+        borderRadius: "50%", // Ensuring circular shape
+        "&:hover": {
+          backgroundColor: "rgba(25, 118, 210, 0.4)", // Slightly darker on hover
+        },
+      }}
+    >
+      <EditIcon 
+        fontSize="small" 
+        sx={{
+          color: "transparent", // No fill
+          stroke: "black", // Outline color
+          strokeWidth: 2, // Adjusting stroke thickness
+        }} 
+      />
+    </IconButton>
+  );
   return (
     <Box
       sx={{
@@ -144,6 +169,14 @@ const Popup = ({ closePopup }) => {
                     },
                   }
                 }}
+                 InputProps={{endAdornment: (
+                               <InputAdornment position="end" sx={{ position: 'relative', marginRight: '0px', marginBottom:"5px",
+                                    
+                                   }}>      <EditIconButton   //onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                                     />
+                                  </InputAdornment>
+                                ),
+                              }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -164,6 +197,14 @@ const Popup = ({ closePopup }) => {
               },
             }
           }}
+          InputProps={{endAdornment: (
+            <InputAdornment position="end" sx={{ position: 'relative', marginRight: '0px', marginBottom:"5px",
+                 
+                }}>      <EditIconButton   //onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                  />
+               </InputAdornment>
+             ),
+           }}
         />
             </Grid>
           </Grid>
@@ -209,6 +250,14 @@ const Popup = ({ closePopup }) => {
                       },
                     }
                   }}
+                  InputProps={{endAdornment: (
+                    <InputAdornment position="end" sx={{ position: 'relative', marginRight: '0px', marginBottom:"5px",
+                         
+                        }}>      <EditIconButton   //onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                          />
+                       </InputAdornment>
+                     ),
+                   }}
                 // InputProps={{
                 //   endAdornment: (
                 //     <InputAdornment position="end">
@@ -255,6 +304,14 @@ const Popup = ({ closePopup }) => {
                   },
                 }
               }}
+              InputProps={{endAdornment: (
+                <InputAdornment position="end" sx={{ position: 'relative', marginRight: '0px', marginBottom:"5px",
+                     
+                    }}>      <EditIconButton   //onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                      />
+                   </InputAdornment>
+                 ),
+               }}
             />
           </Box>
         </Box>
@@ -289,6 +346,14 @@ const Popup = ({ closePopup }) => {
                     <CreditCardIcon color="action" />
                   </InputAdornment>
                 ),
+                endAdornment: (
+                  <InputAdornment position="end" sx={{ position: 'relative', marginRight: '0px', marginBottom:"5px",
+                       
+                      }}>      <EditIconButton   //onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                        />
+                     </InputAdornment>
+                   ),
+                 
               }}
             />
           </Box>
@@ -313,6 +378,14 @@ const Popup = ({ closePopup }) => {
                       },
                     }
                   }}
+                  InputProps={{endAdornment: (
+                    <InputAdornment position="end" sx={{ position: 'relative', marginRight: '0px', marginBottom:"5px",
+                         
+                        }}>      <EditIconButton   //onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                          />
+                       </InputAdornment>
+                     ),
+                   }}
             />
           </Box>
 
@@ -336,6 +409,14 @@ const Popup = ({ closePopup }) => {
                     },
                   }
                 }}
+                InputProps={{endAdornment: (
+                  <InputAdornment position="end" sx={{ position: 'relative', marginRight: '0px', marginBottom:"5px",
+                       
+                      }}>      <EditIconButton   //onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                        />
+                     </InputAdornment>
+                   ),
+                 }}
                  color="rgba(25, 118, 210, 0.12)"
               />
             </Grid>
@@ -359,6 +440,14 @@ const Popup = ({ closePopup }) => {
                       },
                     }
                   }}
+                  InputProps={{endAdornment: (
+                    <InputAdornment position="end" sx={{ position: 'relative', marginRight: '0px', marginBottom:"5px",
+                         
+                        }}>      <EditIconButton   //onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                          />
+                       </InputAdornment>
+                     ),
+                   }}
               />
             </Grid>
           </Grid>
