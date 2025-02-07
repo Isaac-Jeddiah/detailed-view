@@ -19,7 +19,7 @@ import Avatar from '@mui/material/Avatar';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-
+import Link from '@mui/material/Link';
 
 const US_STATES = [
   'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
@@ -121,81 +121,189 @@ export default function DetailsTable() {
   const [showMoreOverdue, setShowMoreOverdue] = useState(false);
   const [showMoreCompleted, setShowMoreCompleted] = useState(false);
 
-  const overdueItems = [
-    {
-      title: "Follow Up",
-      date: "16:30:42, 4 Feb 2022",
-      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
-    },
+  // const overdueItems = [
+  //   {
+  //     title: "Follow Up",
+  //     date: "16:30:42, 4 Feb 2022",
+  //     description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+  //   },
     
-    {
-      title: "Follow Up",
-      date: "16:30:42, 4 Feb 2022",
-      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
-    },
-    {
-      title: "Follow Up",
-      date: "16:30:42, 4 Feb 2022",
-      description: "Meghana P has an upcoming task about OVUM Hospitals- India."
-    },
+  //   {
+  //     title: "Follow Up",
+  //     date: "16:30:42, 4 Feb 2022",
+  //     description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+  //   },
+  //   {
+  //     title: "Follow Up",
+  //     date: "16:30:42, 4 Feb 2022",
+  //     description: "Meghana P has an upcoming task about OVUM Hospitals- India."
+  //   },
     
-  ];
+  // ];
 
   const completedItems = [
     {
       title: "Follow Up",
       date: "16:30:42, 4 Feb 2022",
-      description: 'User 16:30:42, 4 Feb 2022</a>.'
+      description: {
+        text: " has an upcoming task about OVUM Hospitals- India.",
+        link: {
+          text: "Meghana P",
+          url: "/profile/meghana" // or whatever URL you want to link to
+        }
+      }
     },
     {
       title: "Follow Up",
       date: "16:30:42, 4 Feb 2022",
-      description: 'User  has an upcoming task about OVUM Hospitals- India at <a href="/time/16-30-42-4-feb-2022" target="_blank">16:30:42, 4 Feb 2022</a>.'
+      description: {
+        text: " has an upcoming task about OVUM Hospitals- India.",
+        link: {
+          text: "Meghana P",
+          url: "/profile/meghana"
+        }
+      }
     },
     {
       title: "Follow Up",
       date: "16:30:42, 4 Feb 2022",
-      description: 'User 16:30:42, 4 Feb 2022</a>.'
+      description: {
+        text: " has an upcoming task about OVUM Hospitals- India.",
+        link: {
+          text: "Meghana P",
+          url: "/profile/meghana"
+        }
+      }
     }
   ];
   
  const [text , setText] = useState("")
 
   const clearTextField = () => setText("")
-  
-  const renderTimelineItems = (items, showMore, maxItems = 2) => {
-    const displayItems = showMore ? items : items.slice(0, maxItems);
-    
-    return displayItems.map((item, index) => (
-      <TimelineItem key={index}
+  // Modified data structure with link property
+const overdueItems = [
+  {
+    title: "Follow Up",
+    date: "16:30:42, 4 Feb 2022",
+    description: {
+      text: " has an upcoming task about OVUM Hospitals- India.",
+      link: {
+        text: "Meghana P",
+        url: "/profile/meghana" // or whatever URL you want to link to
+      }
+    }
+  },
+  {
+    title: "Follow Up",
+    date: "16:30:42, 4 Feb 2022",
+    description: {
+      text: " has an upcoming task about OVUM Hospitals- India.",
+      link: {
+        text: "Meghana P",
+        url: "/profile/meghana"
+      }
+    }
+  },
+  {
+    title: "Follow Up",
+    date: "16:30:42, 4 Feb 2022",
+    description: {
+      text: " has an upcoming task about OVUM Hospitals- India.",
+      link: {
+        text: "Meghana P",
+        url: "/profile/meghana"
+      }
+    }
+  }
+];
+
+// Modified renderTimelineItems function
+const renderTimelineItems = (items, showMore, maxItems = 2) => {
+  const displayItems = showMore ? items : items.slice(0, maxItems);
+
+  return displayItems.map((item, index) => (
+    <TimelineItem 
+      key={index}
       sx={{
         '&:not(:last-child)': {
           '& .MuiTimelineContent-root': {
-           paddingBottom: '16px',
+            paddingBottom: '16px',
             marginBottom: '16px'
           }
         }
       }}
-
-      >
-        <TimelineSeparator>
-          <TimelineDot sx={{ bgcolor: '#1976D2' }} />
-          {index !== displayItems.length - 1 && <TimelineConnector sx={{ bgcolor: '#1976D2' }} />}
-        </TimelineSeparator>
-        <TimelineContent>
-          <Box display="flex" justifyContent="space-between">
-            <Typography variant="small" sx={{ fontSize: '1rem' }}>{item.title}</Typography>
-            <Typography variant="caption" color="primary" sx={{ fontSize: '0.7rem' }}>
-              {item.date}
-            </Typography>
-          </Box>
-          <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
-            {item.description}
+    >
+      <TimelineSeparator>
+        <TimelineDot sx={{ bgcolor: '#1976D2' }} />
+        {index !== displayItems.length - 1 && <TimelineConnector sx={{ bgcolor: '#1976D2' }} />}
+      </TimelineSeparator>
+      <TimelineContent>
+        <Box display="flex" justifyContent="space-between">
+          <Typography variant="small" sx={{ fontSize: '1rem' }}>
+            {item.title}
           </Typography>
-        </TimelineContent>
-      </TimelineItem>
-    ));
-  };
+          <Typography variant="caption" color="primary" sx={{ fontSize: '0.7rem' }}>
+            {item.date}
+          </Typography>
+        </Box>
+        <Typography 
+          variant="body2" 
+          color="text.secondary" 
+          sx={{ fontSize: '0.7rem' }}
+        >
+          <Link
+            href={item.description.link.url}
+            sx={{
+              color: '#1976D2',
+              textDecoration: 'none',
+              '&:hover': {
+                textDecoration: 'underline',
+                cursor: 'pointer'
+              }
+            }}
+          >
+            {item.description.link.text}
+          </Link>
+          {item.description.text}
+        </Typography>
+      </TimelineContent>
+    </TimelineItem>
+  ));
+};
+  
+  // const renderTimelineItems = (items, showMore, maxItems = 2) => {
+  //   const displayItems = showMore ? items : items.slice(0, maxItems);
+    
+  //   return displayItems.map((item, index) => (
+  //     <TimelineItem key={index}
+  //     sx={{
+  //       '&:not(:last-child)': {
+  //         '& .MuiTimelineContent-root': {
+  //          paddingBottom: '16px',
+  //           marginBottom: '16px'
+  //         }
+  //       }
+  //     }}
+
+  //     >
+  //       <TimelineSeparator>
+  //         <TimelineDot sx={{ bgcolor: '#1976D2' }} />
+  //         {index !== displayItems.length - 1 && <TimelineConnector sx={{ bgcolor: '#1976D2' }} />}
+  //       </TimelineSeparator>
+  //       <TimelineContent>
+  //         <Box display="flex" justifyContent="space-between">
+  //           <Typography variant="small" sx={{ fontSize: '1rem' }}>{item.title}</Typography>
+  //           <Typography variant="caption" color="primary" sx={{ fontSize: '0.7rem' }}>
+  //             {item.date}
+  //           </Typography>
+  //         </Box>
+  //         <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
+  //           {item.description}
+  //         </Typography>
+  //       </TimelineContent>
+  //     </TimelineItem>
+  //   ));
+  // };
 
   const accordionStyle = {
     marginTop:'10px', 
