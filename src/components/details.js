@@ -620,7 +620,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                 <>
                   <IconButton
                   
-                    onClick={() => handleSaveValue("name")}
+                    onClick={() =>{ handleSaveValue("name"); setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
                     sx={{  opacity: 0.7,marginTop: '5px',
                       width: 28,
@@ -639,13 +639,14 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                   </IconButton>
                 </>
               )}
+              {!allFieldsEditable && (  <>
               <EditIconButton
                 onClick={() => setAllFieldsEditable(!allFieldsEditable)}
                 edge="end"
                 sx={{ marginLeft: allFieldsEditable ? "4px" : "0px" }}
-              >
-               
-              </EditIconButton>
+              ></EditIconButton>
+              </> )}
+              
             </InputAdornment>
           ),
         }}
@@ -694,7 +695,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                 <>
                   <IconButton
                   
-                    onClick={() => handleSaveValue("phone")}
+                    onClick={() => {handleSaveValue("phone"); setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
                     sx={{  opacity: 0.7,marginTop: '5px',
                       width: 28,
@@ -713,8 +714,10 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                   </IconButton>
                 </>
               )}
+               {!allFieldsEditable && (  <>
                     <EditIconButton onClick={() => {handleEdit('phone'); setAllFieldsEditable(!allFieldsEditable);
                     }} />
+                    </> )}
                   </InputAdornment>
                 ),
               }}
@@ -803,7 +806,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                 <>
                   <IconButton
                   
-                    onClick={() => handleSaveValue("zipcode")}
+                    onClick={() =>{ handleSaveValue("zipcode"); setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
                     sx={{  opacity: 0.7,marginTop: '5px',
                       width: 28,
@@ -821,8 +824,10 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     <DeleteIcon />
                   </IconButton>
                 </>
-              )}<EditIconButton onClick={() => {handleEdit('zipcode'); setAllFieldsEditable(!allFieldsEditable);
-                    }} />
+
+              )}{!allFieldsEditable && (  <>
+              <EditIconButton onClick={() => {handleEdit('zipcode'); setAllFieldsEditable(!allFieldsEditable);
+                    }} /></> )}
                   </InputAdornment>
                 ),
               }}
@@ -868,7 +873,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                 <>
                   <IconButton
                   
-                    onClick={() => handleSaveValue("bio")}
+                    onClick={() =>{ handleSaveValue("bio"); setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
                     sx={{  opacity: 0.7,marginTop: '5px',
                       width: 28,
@@ -886,9 +891,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     <DeleteIcon />
                   </IconButton>
                 </>
-              )}  
+              )}  {!allFieldsEditable && (  <>
                    <EditIconButton onClick={() => {handleEdit('bio'); setAllFieldsEditable(!allFieldsEditable);
-                    }} />
+                    }} /></> )}
                   </InputAdornment>
                 ),
               }}
@@ -980,7 +985,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
             <>
               <IconButton
               
-                onClick={() => handleSaveValue("cardnumber")}
+                onClick={() =>{handleSaveValue("cardnumber"); setAllFieldsEditable(!allFieldsEditable)}}
                 edge="end"
                 sx={{  opacity: 0.7,marginTop: '5px',
                   width: 28,
@@ -999,12 +1004,13 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
               </IconButton>
             </>
           )}
+          {!allFieldsEditable && (  <>
             <EditIconButton 
               onClick={() => {
                 handleEdit('cardNumber');
                 setAllFieldsEditable(!allFieldsEditable);
               }}
-            />
+            />  </> )}
           </InputAdornment>
         ),
       }}
@@ -1055,7 +1061,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                 <>
                   <IconButton
                   
-                    onClick={() => handleSaveValue("cardHolder")}
+                    onClick={() =>{ handleSaveValue("cardHolder"); setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
                     sx={{  opacity: 0.7,marginTop: '5px',
                       width: 28,
@@ -1073,9 +1079,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     <DeleteIcon />
                   </IconButton>
                 </>
-              )}
+              )}{!allFieldsEditable && (  <>
                     <EditIconButton onClick={() => {handleEdit('cardholder'); setAllFieldsEditable(!allFieldsEditable);
-                    }} />
+                    }} />  </> )}
                   </InputAdornment>
                 ),
               }}
@@ -1119,7 +1125,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                 <>
                   <IconButton
                   
-                    onClick={() => handleSaveValue("expiry")}
+                    onClick={() =>{handleSaveValue("expiry"); setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
                     sx={{  opacity: 0.7,marginTop: '5px',
                       width: 28,
@@ -1137,8 +1143,10 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     <DeleteIcon />
                   </IconButton>
                 </>
-              )}<EditIconButton onClick={() => {handleEdit('expiry'); setAllFieldsEditable(!allFieldsEditable);
-                    }} />
+
+              )}
+              {!allFieldsEditable && (  <><EditIconButton onClick={() => {handleEdit('expiry'); setAllFieldsEditable(!allFieldsEditable);
+                    }} /></> )}
                   </InputAdornment>
                 ),
               }}
@@ -1182,7 +1190,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                 <>
                   <IconButton
                   
-                    onClick={() => handleSaveValue("cv2")}
+                    onClick={() =>{ handleSaveValue("cv2"); setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
                     sx={{  opacity: 0.7,marginTop: '5px',
                       width: 28,
@@ -1200,10 +1208,11 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                     <DeleteIcon />
                   </IconButton>
                 </>
-              )}
+              )}{!allFieldsEditable && (  <>
                     <EditIconButton onClick={() => {handleEdit('cv2'); setAllFieldsEditable(!allFieldsEditable);
-                    }} />
+                    }} /> </> )}
                   </InputAdornment>
+
                 ),
               }}
             />
