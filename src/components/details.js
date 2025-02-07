@@ -96,6 +96,7 @@ export default function DetailsTable() {
       size="small" 
       onClick={onClick}
       sx={{
+        marginTop: '5px',
         width: 28,
         height: 28,
         color:"primary",
@@ -197,7 +198,7 @@ export default function DetailsTable() {
   };
 
   const accordionStyle = {
-    
+    marginTop:'10px', 
     minHeight: '60px',
     height: 'auto',
     border: 'none',
@@ -274,7 +275,7 @@ export default function DetailsTable() {
     <Grid item xs={7} >
       <Box 
         sx={{ 
-          height:"220px", 
+          height:"240px", 
           backgroundColor: "white",
           maxWidth: "calc(100% - 4px) !important",
           width: "calc(100% - 4px) !important",
@@ -287,7 +288,7 @@ export default function DetailsTable() {
         }}
       >
         <Box display="flex" alignItems="center" mb={1}>
-          <Typography variant="h6"  >
+          <Typography variant="h6" padding="0 0 16px 0" >
             Section Heading
           </Typography>
           {/* <IconButton 
@@ -531,7 +532,7 @@ export default function DetailsTable() {
           p: 2.4
         }}
       >
-        <Typography variant="h6" sx={{marginBottom:"10px"}}>Typography</Typography>
+        <Typography variant="h6" padding="0 0 16px 0" sx={{marginBottom:"10px"}}>Typography</Typography>
         <Grid container spacing={2.4}>
         <Grid item xs={12}>
             <TextField
@@ -761,7 +762,7 @@ export default function DetailsTable() {
         
         
         </Box>
-        <Divider />
+       
         <Accordion defaultExpanded sx={accordionStyle}>
           <AccordionSummary 
             expandIcon={<ExpandMore sx={{color:"#1976D2"
