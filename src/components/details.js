@@ -100,10 +100,10 @@ export default function DetailsTable() {
         width: 28,
         height: 28,
         color:"primary",
-        backgroundColor: "rgba(25, 118, 210, 0.3)", // 30% opacity of #1976D2
+        //backgroundColor: "rgba(25, 118, 210, 0.3)", // 30% opacity of #1976D2
         borderRadius: "50%", // Ensuring circular shape
         "&:hover": {
-          backgroundColor: "rgba(25, 118, 210, 0.4)", // Slightly darker on hover
+       //   backgroundColor: "rgba(25, 118, 210, 0.4)", // Slightly darker on hover
         },
       }}
     >
@@ -461,7 +461,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
   // };
 
   const accordionStyle = {
-    marginTop:'10px', 
+    
     minHeight: '60px',
     height: 'auto',
     border: 'none',
@@ -487,16 +487,16 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
     position: 'relative',
     bgcolor: '#1976D21F',
     //bgcolor: 'primary.main',
-    marginTop:"10px",
+    
     color: '#1976D2',
-    height: '40px',
+    height: '40px !important',
     minHeight: '40px !important',
     borderRadius: '4px',
     '& .MuiAccordionSummary-content': {
       marginTop: '10px !important'
     },
     '&.Mui-expanded': {
-      
+      height: '40px !important',
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0
     }
@@ -1033,7 +1033,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
 }}/> }
             sx={summaryStyle}
           >
-            <Typography variant="body2">Upcoming & Overdue</Typography>
+            <Typography variant="body2" sx={{marginTop:"10px"}}>Upcoming & Overdue</Typography>
           </AccordionSummary>
           <AccordionDetails sx={{  display:'flex' ,flexDirection: 'column',
             backgroundColor: 'white',

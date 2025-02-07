@@ -38,7 +38,7 @@ const Filterbar = () => {
         width: `calc(100% - 20px)`,
         position: "relative",
         marginLeft: `calc(2px + 4px)`,
-        marginRight: "10px",
+        marginRight: "20px",
         padding: "16px 24px 16px 24px",
       }}
     >

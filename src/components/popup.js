@@ -101,10 +101,10 @@ const Popup = ({ closePopup }) => {
         width: 28,
         height: 28,
         color:"primary",
-        backgroundColor: "rgba(25, 118, 210, 0.3)", // 30% opacity of #1976D2
+        //backgroundColor: "rgba(25, 118, 210, 0.3)", // 30% opacity of #1976D2
         borderRadius: "50%", // Ensuring circular shape
         "&:hover": {
-          backgroundColor: "rgba(25, 118, 210, 0.4)", // Slightly darker on hover
+         // backgroundColor: "rgba(25, 118, 210, 0.4)", // Slightly darker on hover
         },
       }}
     >
