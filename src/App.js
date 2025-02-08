@@ -9,9 +9,7 @@ function App() {
       <Routes>
        <Route path="/" element={<Dashboard1 />} />
       <Route path="/gridlayout" element={<Gridlayout />} />
-
-       <Route path="*" element={<Dashboard1 />} />
-      </Routes>
+</Routes>
     </Router>
   );
 }
