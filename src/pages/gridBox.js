@@ -23,14 +23,17 @@ const Gridlayout = () => {
       const containerWidth = window.innerWidth ;
 console.log(window.innerHeight)
 
-      const MARGIN = 32;
+      const MARGIN = 24;
       const GAPS = 11 * MARGIN; 
       const CONTAINER_PADDING = 2 * 24;
-   
-      const availableWidth = containerWidth - CONTAINER_PADDING - GAPS -290;
-      const smallBoxWidth = Math.floor(availableWidth / 12);
-      
-      
+    var a=0;
+    if(containerWidth > 1429){a=5}
+    if(containerWidth>1583){a=30}
+      const availableWidth = containerWidth - 534-1-a;
+      const smallBoxWidth = ((availableWidth) / 12);
+      console.log('availableWidth: ' + availableWidth)
+      console.log(availableWidth)
+      console.log('small' + smallBoxWidth)
       const bigBoxWidth = (smallBoxWidth * 2) + 16;
       
       return { smallBoxWidth, bigBoxWidth };
@@ -93,16 +96,16 @@ console.log(boxSizes.smallBoxWidth)
     width: boxSizes.smallBoxWidth,
     bgcolor: 'rgba(204, 204, 204, 1)',
     borderRadius: 1,
-    marginLeft: "16px",
+    marginLeft: "8px",
     marginBottom: "16px",
   };
 
   const bigBoxStyle = {
     height: BOX_HEIGHT,
-    width: (boxSizes.smallBoxWidth * 2+16+8) ,
+    width: (boxSizes.smallBoxWidth * 2+16) ,
     bgcolor: 'rgba(204, 204, 204, 1)',
     borderRadius: 1,
-    marginLeft: "16px",
+    marginLeft: "8px",
     marginBottom: "16px"
   };
     useEffect(() => {
@@ -159,7 +162,7 @@ console.log(boxSizes.smallBoxWidth)
                         zIndex: 1,
                         backgroundColor: '#007bff',
                         color: '#fff',
-                        padding: "5px",
+                        //padding: "5px",
                         margin: "0",
                         ":hover": {
                             backgroundColor: "#0275f0"
@@ -197,7 +200,7 @@ console.log(boxSizes.smallBoxWidth)
                 <Box sx={{ 
                     width: 'auto',
                     p: 1,
-                    marginLeft: '8px',
+                    marginLeft: '16px',
                     marginRight:'24px',
                     marginTop:'56px',
                 }}>
