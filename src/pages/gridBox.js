@@ -83,7 +83,7 @@ console.log(window.innerHeight)
     }, []);
 
   const BOX_HEIGHT = boxSizes.smallBoxWidth;
-  const rows=Math.floor((windowHeight)/(boxSizes.smallBoxWidth*2));
+  const rows=Math.floor((windowHeight)/(boxSizes.smallBoxWidth*2))-1;
 console.log("rows",rows);
 
  
@@ -206,7 +206,7 @@ console.log("rows",rows);
                 >
                       <Box sx={{marginTop: "62px",  }}>
            
-                         {Array.from({ length: rows-1 }).map((_, index) => (
+                         {Array.from({ length: rows }).map((_, index) => (
                             renderPair()
                         ))}   
                       </Box>
