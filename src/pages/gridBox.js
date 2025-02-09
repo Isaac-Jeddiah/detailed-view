@@ -29,13 +29,9 @@ console.log(window.innerHeight)
     var a=0;
     if(containerWidth > 1429){a=5}
     if(containerWidth>1583){a=30}
-      const availableWidth = containerWidth - 534-1-a;
+      const availableWidth = containerWidth - 544;
       const smallBoxWidth = ((availableWidth) / 12);
-      console.log('availableWidth: ' + availableWidth)
-      console.log(availableWidth)
-      console.log('small' + smallBoxWidth)
       const bigBoxWidth = (smallBoxWidth * 2) + 16;
-      
       return { smallBoxWidth, bigBoxWidth };
     };
   
@@ -86,49 +82,63 @@ console.log(window.innerHeight)
       return () => window.removeEventListener('resize', calculateDimensions);
     }, []);
 
-    const SMALL_BOX_WIDTH = 128;
-  const BIG_BOX_WIDTH = 272;
   const BOX_HEIGHT = boxSizes.smallBoxWidth;
-  const rows=(windowHeight-100)/(SMALL_BOX_WIDTH/2);
-console.log(boxSizes.smallBoxWidth)
-  const smallBoxStyle = {
-    height: boxSizes.smallBoxWidth,
-    width: boxSizes.smallBoxWidth,
-    bgcolor: 'rgba(204, 204, 204, 1)',
-    borderRadius: 1,
-    marginLeft: "8px",
-    marginBottom: "16px",
-  };
+  const rows=Math.floor((windowHeight)/(boxSizes.smallBoxWidth*2));
+console.log("rows",rows);
 
-  const bigBoxStyle = {
-    height: BOX_HEIGHT,
-    width: (boxSizes.smallBoxWidth * 2+16) ,
-    bgcolor: 'rgba(204, 204, 204, 1)',
-    borderRadius: 1,
-    marginLeft: "8px",
-    marginBottom: "16px"
-  };
-    useEffect(() => {
-        setOpen(true);
-    }, [selectedIndex]);
+ 
 
     const renderPair = (index) => (
-    <Box key={index}>
-    <Grid container spacing={1} sx={{ mb: 1 }}>
-      {[...Array(12)].map((_, idx) => (
-        <Grid item key={`small-${idx}`}>
-          <Box sx={smallBoxStyle} />
+      
+      <Box sx={{ marginX: "8px", paddingY: "0px",marginY: "-16px" }} >
+                    
+      <Box sx={{ padding: 2 }}>
+      
+        <Grid container spacing={"16px"} justifyContent="center">
+          {Array.from({ length: 12 }).map((_, index) => (
+            <Grid item xs={1} key={index}>
+              <Box
+                sx={{
+                  bgcolor: "secondary.main",
+                  color: "white",
+                  display: "flex",
+                  bgcolor: 'rgba(204, 204, 204, 1)',
+                  alignItems: "center",
+                  justifyContent: "center",
+                  aspectRatio: "1 / 1", // Makes it a square
+                }}
+              >
+              
+              </Box>
+            </Grid>
+          ))}
         </Grid>
-      ))}
-    </Grid>
-    <Grid container spacing={1} sx={{ mb: 1 }}>
-      {[...Array(6)].map((_, idx) => (
-        <Grid item key={`big-${idx}`}>
-          <Box sx={bigBoxStyle} />
+
+        <Box sx={{ marginY: "16px" }} /> 
+
+      
+        <Grid container spacing={"16px"} justifyContent="center">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <Grid item xs={2} key={index}>
+              <Box
+                sx={{
+                  bgcolor: "primary.main",
+                  color: "white",
+                  display: "flex",
+                  alignItems: "center",
+                  bgcolor: 'rgba(204, 204, 204, 1)',
+                  justifyContent: "center",
+                  aspectRatio: "1.5 / 1", // Makes it a square
+                }}
+              >
+                
+              </Box>
+            </Grid>
+          ))}
         </Grid>
-      ))}
-    </Grid>
-  </Box>
+      </Box>
+
+      </Box>
 );
 
     return (
@@ -190,23 +200,17 @@ console.log(boxSizes.smallBoxWidth)
                     sx={{
                         flexGrow: 1,
                         backgroundColor: "#f4f5fa",
-                        //padding: "20px",
-                        //marginTop: "-20px", 
+                        marginTop: "-20px",
+                        
                     }}
                 >
-                   
-                                {/* New Grid Section */}
-                        
-                <Box sx={{ 
-                    width: 'auto',
-                    p: 1,
-                    marginLeft: '16px',
-                    marginRight:'24px',
-                    marginTop:'56px',
-                }}>
-                    {[...Array(dimensions.rows)].map((_, index) => renderPair(index))}
-                </Box>
-                </Box>
+                      <Box sx={{marginTop: "62px",  }}>
+           
+                         {Array.from({ length: rows-1 }).map((_, index) => (
+                            renderPair()
+                        ))}   
+                      </Box>
+               </Box>
                 
             </List>
         </Box>
@@ -214,3 +218,4 @@ console.log(boxSizes.smallBoxWidth)
 };
 
 export default Gridlayout;
+
