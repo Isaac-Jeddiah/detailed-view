@@ -83,7 +83,7 @@ console.log(window.innerHeight)
     }, []);
 
   const BOX_HEIGHT = boxSizes.smallBoxWidth;
-  const rows=Math.floor((windowHeight)/(boxSizes.smallBoxWidth*2))-1;
+  const rows=Math.floor((windowHeight)/(boxSizes.smallBoxWidth*2+16));
 console.log("rows",rows);
 
  
