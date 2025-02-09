@@ -36,8 +36,8 @@ useEffect(() => {
 
 const windowHeight = window.innerHeight;
 const BOX_HEIGHT = boxSizes.smallBoxWidth || 50; // Default if not yet calculated
-const rows = Math.max(1, Math.floor((windowHeight  - TOP_MARGIN) / (BOX_HEIGHT * 2)))+3;
-
+const rows = Math.max(1, Math.floor((windowHeight-56 ) / (BOX_HEIGHT )));
+console.log("rows",rows);
 const renderPair = (index) => {
   const isOdd = index % 2 !== 0;
   return (
@@ -107,14 +107,17 @@ const renderPair = (index) => {
                     {open ? <ArrowBackIos sx={{ fontSize: "14px", transform: "translateX(3px)" }} /> : <ArrowForwardIos sx={{ fontSize: "14px", transform: "translateX(1px)" }} />}
                 </IconButton>
             </Box>
-
+            
             <List
                 sx={{
                     display: "flex",
                     flexDirection: "column",
                     height: "100%",
                     width: "100%",
-                    padding: 0,
+                
+                  
+    minHeight: "calc(100vh - 16px)", // Ensure space from the bottom
+    
                 }}
             >
                 <Box>
@@ -125,10 +128,13 @@ const renderPair = (index) => {
                         flexGrow: 1,
                         backgroundColor: "#f4f5fa",
                         marginTop: "-20px",
+                        paddingBottom: "16px",marginBottom: "16px",
                         
+    minHeight: "calc(100vh - 16px)", // Ensure space from the bottom
+    
                     }}
                 >
-                      <Box sx={{marginTop: "62px",marginBottom: "16px"  }}>
+                      <Box sx={{marginTop: "62px",marginBottom: "16px",paddingBottom: "16px"  }}>
            
                          {Array.from({ length: rows }).map((_, index) => (
                             renderPair(index+1)
@@ -137,6 +143,7 @@ const renderPair = (index) => {
                </Box>
                 
             </List>
+            
         </Box>
     );
 };
