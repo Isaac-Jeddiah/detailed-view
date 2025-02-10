@@ -55,6 +55,7 @@ const renderPair = (index) => {
                   justifyContent: "center",
                   aspectRatio: isOdd ? "1 / 1" : "1.5 / 1",
                   bgcolor: "rgba(204, 204, 204, 1)",
+                  borderRadius: "4px",
                 }}
               ></Box>
             </Grid>
