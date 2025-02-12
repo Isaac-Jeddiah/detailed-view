@@ -503,6 +503,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
     color: '#1976D2',
     height: '40px !important',
     minHeight: '40px !important',
+    paddingRight: '16px !important',
     borderRadius: '4px',
     display: 'flex', // Ensures the text stays centered
     alignItems: 'center', // Centers text vertically
@@ -1263,7 +1264,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
           <AccordionSummary 
             expandIcon={<ExpandMore sx={{color:"#1976D2"
 }}/> }
-            sx={{summaryStyle, paddingRight: "16px"}}
+            sx={summaryStyle}
           >
             <Box display="flex" alignItems="center" mb={1} sx={{ position: "relative", zIndex: 2 }}>
             <Typography variant="body2" >Upcoming & Overdue</Typography>
