@@ -566,7 +566,8 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
           p: 2.4,
           ml:-2.4,
           borderRadius:"4px",
-          overflow:"hidden"
+          overflow:"hidden",
+          flexWrap: "wrap",
         }}
       >
         <Box display="flex" alignItems="center" mb={1}>
@@ -1236,7 +1237,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
           
           width:"100%",
           height:"auto",
-          width: "409px !important",
+          //width: "409px !important",
          // height: "650px !important",
           borderRadius: '4px',
           padding: '20px 28px',
