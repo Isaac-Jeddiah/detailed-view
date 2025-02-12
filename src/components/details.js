@@ -1263,7 +1263,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
           <AccordionSummary 
             expandIcon={<ExpandMore sx={{color:"#1976D2"
 }}/> }
-            sx={summaryStyle}
+            sx={{summaryStyle, paddingRight: "16px"}}
           >
             <Box display="flex" alignItems="center" mb={1} sx={{ position: "relative", zIndex: 2 }}>
             <Typography variant="body2" >Upcoming & Overdue</Typography>
