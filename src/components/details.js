@@ -485,7 +485,8 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
     minHeight: '60px',
     height: 'auto',
     border: 'none',
-    marginLeft:'32px !important',
+    width: '100%',
+    maxWidth: '100%',
     boxShadow: 'none',
     marginTop: '0px !important', // Prevents unwanted movement
     '& .MuiAccordion-region': {
@@ -502,7 +503,8 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
     position: 'relative',
     bgcolor: '#1976D21F',
     color: '#1976D2',
-    marginLeft: '32px !important',
+    width: '100%',
+    maxWidth: '100%',
     height: '40px !important',
     minHeight: '40px !important',
     paddingRight: '16px !important',
@@ -556,7 +558,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       <Grid item xs={12} md={7} lg={7}> 
         <Grid container spacing={2.4}>
         
-    <Grid item xs={7} >
+             <Grid item xs={7} >
       <Box 
         sx={{ 
           height:"240px", 
@@ -1230,9 +1232,11 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
           </Grid>
         </Grid>
     </Box>
-    </Grid>
+              </Grid>
     
-    <Grid item xs={5}>
+          <Grid item xs={5}>
+    <Grid container sx={{ width: '100%', flexWrap: 'wrap' }}>
+    
       <Box 
         sx={{ 
           borderRadius:"4px",
@@ -1261,7 +1265,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         <Divider/>
         
         </Box>
-       <Box></Box>
+       
         <Accordion defaultExpanded sx={accordionStyle}>
           <AccordionSummary 
             expandIcon={<ExpandMore sx={{color:"#1976D2"
@@ -1337,8 +1341,10 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         </Accordion>
       </Box>
     </Grid>
+          </Grid>
         </Grid>
-        </Grid>
+      </Grid>
+        
       </TabPanel>
     </Box>
   );
