@@ -485,7 +485,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
     minHeight: '60px',
     height: 'auto',
     border: 'none',
-    marginRight:'32px !important',
+    marginLeft:'32px !important',
     boxShadow: 'none',
     marginTop: '0px !important', // Prevents unwanted movement
     '& .MuiAccordion-region': {
@@ -502,7 +502,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
     position: 'relative',
     bgcolor: '#1976D21F',
     color: '#1976D2',
-    marginRight: '32px !important',
+    marginLeft: '32px !important',
     height: '40px !important',
     minHeight: '40px !important',
     paddingRight: '16px !important',
