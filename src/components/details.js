@@ -590,31 +590,56 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         
         <Grid container spacing={2.4}>
         <Grid item xs={6}>
-      <TextField
+        <TextField
         label="Name*"
-        variant="outlined"
+        variant={!allFieldsEditable ? "standard" : "outlined"}
         fullWidth
         value={fieldValues.name}
         onChange={(e) => handleFieldChange('name', e.target.value)}
         disabled={!allFieldsEditable}
-        size="small"
+        sx={{
+          '& .MuiInputBase-root': {
+            height: '36px',
+          },
+          // Remove extra spacing between label and input for standard variant
+          '& .MuiInput-root': {
+            marginTop: '3px',
+          },
+          // Adjust label position for standard variant
+          '& .MuiInputLabel-root.MuiInputLabel-standard': {
+            transform: 'translate(0, -1.5px) scale(0.75)',
+            transformOrigin: 'top left'
+          }
+        }}
         InputLabelProps={{
           sx: {
             color: allFieldsEditable ? "#1976d2" : "inherit",
             ...(allFieldsEditable && {
               backgroundColor: "white",
-              "& .MuiOutlinedInput-root": {
-                "&:hover fieldset": { borderColor: "#1976d2" }, // blue on hover
-                "&.Mui-focused fieldset": { borderColor: "#1976d2" }, // blue when focused
-              },
             }),
           },
+          shrink: true // Keep label shrunk
         }}
         InputProps={{
-          shrink: allFieldsEditable,
-          sx: { fontSize: "12px" },
+          sx: { 
+            fontSize: "12px",
+            ...(allFieldsEditable && {
+              '&:after': {
+                borderBottom: '2px solid #1976d2',
+              },
+              '&:before': {
+                borderBottom: '1px solid rgba(0, 0, 0, 0.42)',
+              },
+              '&:hover:before': {
+                borderBottom: '2px solid #1976d2',
+              }
+            })
+          },
           endAdornment: (
-            <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
+            <InputAdornment position="end" sx={{ 
+              position: 'relative', 
+              marginRight: '4px', 
+              marginBottom: "5px",
               '&.Mui-disabled': {
                 color: '#1976d2',
               }
@@ -622,35 +647,42 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
               {allFieldsEditable && (
                 <>
                   <IconButton
-                  
                     onClick={() =>{ handleSaveValue("name"); setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
-                    sx={{  opacity: 0.7,marginTop: '5px',
+                    sx={{  
+                      opacity: 0.7,
+                      marginTop: '5px',
                       width: 28,
-                      height: 28, marginRight: '1px' }}
+                      height: 28, 
+                      marginRight: '1px' 
+                    }}
                   >
                     <CheckCircleIcon />
                   </IconButton>
                   <IconButton
-                    //onClick={() =>{ handleClearValue("name"); fieldValues.name ="";}}
                     onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
-                    sx={{  opacity: 0.7 ,marginTop: '5px',
+                    sx={{  
+                      opacity: 0.7,
+                      marginTop: '5px',
                       width: 28,
-                      height: 28,marginRight: '1px'}}
+                      height: 28,
+                      marginRight: '1px'
+                    }}
                   >
                     <CloseIcon />
                   </IconButton>
                 </>
               )}
-              {!allFieldsEditable && (  <>
-              <EditIconButton
-                onClick={() => setAllFieldsEditable(!allFieldsEditable)}
-                edge="end"
-                sx={{ marginLeft: allFieldsEditable ? "4px" : "0px" }}
-              ></EditIconButton>
-              </> )}
-              
+              {!allFieldsEditable && (
+                <>
+                  <EditIconButton
+                    onClick={() => setAllFieldsEditable(!allFieldsEditable)}
+                    edge="end"
+                    sx={{ marginLeft: allFieldsEditable ? "4px" : "0px" }}
+                  />
+                </> 
+              )}
             </InputAdornment>
           ),
         }}
@@ -658,262 +690,278 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
     </Grid>
 
           <Grid item xs={6}>
-            <TextField
-              label="Phone *"
-              variant="outlined"
-              fullWidth
-              value={fieldValues.phone}
-              onChange={(e) => handleFieldChange('phone', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
-              
-                sx: { 
-                  '& .MuiOutlinedInput-root': {
-                    '&:hover fieldset': {
-                      borderColor: '#1976d2', // blue color on hover
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: '#1976d2', // blue color when focused
-                    },
-                  },
-                  color: allFieldsEditable ? '#1976d2' : 'inherit',
-                  ...(allFieldsEditable && {
-                    backgroundColor: 'white',
-                    
-                  })
-                } 
-              }}
-             InputProps={{
-               shrink: allFieldsEditable,
-            
-                sx: { fontSize: '12px' },
-                
-                endAdornment: (
-               <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
-                    '&.Mui-disabled': {
-                      color: '#1976d2',
-                    }
-                   }}>     
-                    {allFieldsEditable && (
+          <TextField
+        label="Phone*"
+        variant={!allFieldsEditable ? "standard" : "outlined"}
+        fullWidth
+        value={fieldValues.phone}
+        onChange={(e) => handleFieldChange('phone', e.target.value)}
+        disabled={!allFieldsEditable}
+        sx={{
+          '& .MuiInputBase-root': {
+            height: '36px',
+          },
+          // Remove extra spacing between label and input for standard variant
+          '& .MuiInput-root': {
+            marginTop: '3px',
+          },
+          // Adjust label position for standard variant
+          '& .MuiInputLabel-root.MuiInputLabel-standard': {
+            transform: 'translate(0, -1.5px) scale(0.75)',
+            transformOrigin: 'top left'
+          }
+        }}
+        InputLabelProps={{
+          sx: {
+            color: allFieldsEditable ? "#1976d2" : "inherit",
+            ...(allFieldsEditable && {
+              backgroundColor: "white",
+            }),
+          },
+          shrink: true // Keep label shrunk
+        }}
+        InputProps={{
+          sx: { 
+            fontSize: "12px",
+            ...(allFieldsEditable && {
+              '&:after': {
+                borderBottom: '2px solid #1976d2',
+              },
+              '&:before': {
+                borderBottom: '1px solid rgba(0, 0, 0, 0.42)',
+              },
+              '&:hover:before': {
+                borderBottom: '2px solid #1976d2',
+              }
+            })
+          },
+          endAdornment: (
+            <InputAdornment position="end" sx={{ 
+              position: 'relative', 
+              marginRight: '4px', 
+              marginBottom: "5px",
+              '&.Mui-disabled': {
+                color: '#1976d2',
+              }
+             }}>
+              {allFieldsEditable && (
                 <>
                   <IconButton
-                  
-                    onClick={() => {handleSaveValue("phone"); setAllFieldsEditable(!allFieldsEditable)}}
+                    onClick={() =>{ handleSaveValue("phone"); setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
-                    sx={{  opacity: 0.7,marginTop: '5px',
+                    sx={{  
+                      opacity: 0.7,
+                      marginTop: '5px',
                       width: 28,
-                      height: 28, marginRight: '1px' }}
+                      height: 28, 
+                      marginRight: '1px' 
+                    }}
                   >
                     <CheckCircleIcon />
                   </IconButton>
                   <IconButton
-                    //onClick={() => {handleClearValue("phone"); fieldValues.phone = "";}}
                     onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
                     edge="end"
-                    sx={{  opacity: 0.7 ,marginTop: '5px',
+                    sx={{  
+                      opacity: 0.7,
+                      marginTop: '5px',
                       width: 28,
-                      height: 28,marginRight: '1px'}}
+                      height: 28,
+                      marginRight: '1px'
+                    }}
                   >
                     <CloseIcon />
                   </IconButton>
                 </>
               )}
-               {!allFieldsEditable && (  <>
-                    <EditIconButton onClick={() => {handleEdit('phone'); setAllFieldsEditable(!allFieldsEditable);
-                    }} />
-                    </> )}
-                  </InputAdornment>
-                ),
-              }}
-            />
+              {!allFieldsEditable && (
+                <>
+                  <EditIconButton
+                    onClick={() => setAllFieldsEditable(!allFieldsEditable)}
+                    edge="end"
+                    sx={{ marginLeft: allFieldsEditable ? "4px" : "0px" }}
+                  />
+                </> 
+              )}
+            </InputAdornment>
+          ),
+        }}
+      />
           </Grid>
           
           <Grid item xs={6}>
-            <TextField
-              label="State *"
-              variant="outlined"
-              fullWidth
-              select
-              value={fieldValues.state}
-              onChange={(e) => handleFieldChange('state',)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
-              
-                sx: { 
-                
-                  color: allFieldsEditable ? '#1976d2' : 'inherit',
-                  ...(allFieldsEditable && {
-                    backgroundColor: 'white',
-                    '& .MuiOutlinedInput-root': {
-                      '&:hover fieldset': {
-                        borderColor: '#1976d2', // blue color on hover
-                      },
-                      '&.Mui-focused fieldset': {
-                        borderColor: '#1976d2', // blue color when focused
-                      },
-                    }
-                  })
-                } 
-              }}
-             InputProps={{
-               shrink: allFieldsEditable,
-            
-                sx: { fontSize: '12px' },
-                
-              }}
-              
-            >
-            {US_STATES.map((state) => (
-                <MenuItem key={state} value={state}>
-                  {state}
-                </MenuItem>
-              ))}
+    <TextField
+      label="State *"
+      variant={!allFieldsEditable ? "standard" : "outlined"}
+      fullWidth
+      select
+      value={fieldValues.state}
+      onChange={(e) => handleFieldChange('state', e.target.value)}
+      disabled={!allFieldsEditable}
+      size="small"
+      sx={{
+        '& .MuiInputBase-root': { height: '36px' },
+        '& .MuiInput-root': { marginTop: '3px' },
+        '& .MuiInputLabel-root.MuiInputLabel-standard': {
+          transform: 'translate(0, -1.5px) scale(0.75)',
+          transformOrigin: 'top left'
+        }
+      }}
+      InputLabelProps={{
+        sx: {
+          color: allFieldsEditable ? "#1976d2" : "inherit",
+          ...(allFieldsEditable && { backgroundColor: "white" }),
+        },
+        shrink: true
+      }}
+      InputProps={{
+        sx: {
+          fontSize: "12px",
+          ...(allFieldsEditable && {
+            '&:after': { borderBottom: '2px solid #1976d2' },
+            '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
+            '&:hover:before': { borderBottom: '2px solid #1976d2' }
+          })
+        }
+      }}
+    >
+      {US_STATES.map((state) => (
+        <MenuItem key={state} value={state}>
+          {state}
+        </MenuItem>
+      ))}
     </TextField>
-          </Grid>
+  </Grid>
+        
+  <Grid item xs={6}>
+    <TextField
+      label="Zip Code*"
+      variant={!allFieldsEditable ? "standard" : "outlined"}
+      fullWidth
+      value={fieldValues.zipcode}
+      onChange={(e) => handleFieldChange('zipcode', e.target.value)}
+      disabled={!allFieldsEditable}
+      size="small"
+      sx={{
+        '& .MuiInputBase-root': { height: 'auto' },
+        '& .MuiInput-root': { marginTop: '10px' },
+        '& .MuiInputLabel-root.MuiInputLabel-standard': {
+          transform: 'translate(0, -1.5px) scale(0.75)',
+          transformOrigin: 'top left'
+        }
+      }}
+      InputLabelProps={{
+        sx: {
+          color: allFieldsEditable ? "#1976d2" : "inherit",
+          ...(allFieldsEditable && { backgroundColor: "white" }),
+        },
+        shrink: true
+      }}
+      InputProps={{
+        sx: {
+          fontSize: "12px",
+          ...(allFieldsEditable && {
+            '&:after': { borderBottom: '2px solid #1976d2' },
+            '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
+            '&:hover:before': { borderBottom: '2px solid #1976d2' }
+          })
+        },
+        endAdornment: (
+          <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom: "5px", '&.Mui-disabled': { color: '#1976d2' } }}>
+            {allFieldsEditable && (
+              <>
+                <IconButton
+                  onClick={() => { handleSaveValue("zipcode"); setAllFieldsEditable(!allFieldsEditable) }}
+                  edge="end"
+                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
+                >
+                  <CheckCircleIcon />
+                </IconButton>
+                <IconButton
+                  onClick={() => setAllFieldsEditable(!allFieldsEditable)}
+                  edge="end"
+                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </>
+            )}
+            {!allFieldsEditable && <EditIconButton onClick={() => { handleEdit('zipcode'); setAllFieldsEditable(!allFieldsEditable) }} />}
+          </InputAdornment>
+        ),
+      }}
+    />
+  </Grid>
           
-          <Grid item xs={6}>
-            <TextField
-              label="Zip Code*"
-              id="outlined-multiline-static"
-              variant="outlined"
-              fullWidth
-              rows="2"
-              value={fieldValues.zipcode}
-              onChange={(e) => handleFieldChange('zipcode', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
-                
-                //               
-                sx: { 
-                
-                  color: allFieldsEditable ? '#1976d2' : 'inherit',
-                  ...(allFieldsEditable && {
-                    backgroundColor: 'white',
-                    
-                  })
-                } 
-              }}
-             InputProps={{
-               shrink: allFieldsEditable,
-            
-                sx: { fontSize: '12px' },
-                
-                endAdornment: (
-               <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
-                    '&.Mui-disabled': {
-                      color: '#1976d2',
-                    }
-                   }}>      
-                    {allFieldsEditable && (
-                <>
-                  <IconButton
-                  
-                    onClick={() =>{ handleSaveValue("zipcode"); setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    sx={{  opacity: 0.7,marginTop: '5px',
-                      width: 28,
-                      height: 28, marginRight: '1px' }}
-                  >
-                    <CheckCircleIcon />
-                  </IconButton>
-                  <IconButton
-                    //onClick={() => {handleClearValue("zipcode"); fieldValues.zipcode=""}}
-                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    sx={{  opacity: 0.7 ,marginTop: '5px',
-                      width: 28,
-                      height: 28,marginRight: '1px'}}
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                </>
-
-              )}{!allFieldsEditable && (  <>
-              <EditIconButton onClick={() => {handleEdit('zipcode'); setAllFieldsEditable(!allFieldsEditable);
-                    }} /></> )}
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          
-          <Grid item xs={12}>
-            <TextField
-              label="Bio*"
-              variant="outlined"
-              fullWidth
-              rows={4}
-              multiline
-              
-              value={fieldValues.bio}
-              onChange={(e) => handleFieldChange('bio', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
-                
-                //               
-                sx: { 
-                
-                  color: allFieldsEditable ? '#1976d2' : 'inherit',
-                  ...(allFieldsEditable && {
-                    backgroundColor: 'white',
-                    
-                  })
-                } 
-              }}
-             InputProps={{
-               shrink: allFieldsEditable,
-            
-                sx: { fontSize: '12px' },
-                
-                endAdornment: (
-               <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
-                    '&.Mui-disabled': {
-                      color: '#1976d2',
-                    }
-                   }}>    
-                    {allFieldsEditable && (
-                <>
-                  <IconButton
-                  
-                    onClick={() =>{ handleSaveValue("bio"); setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    sx={{  opacity: 0.7,marginTop: '5px',
-                      width: 28,
-                      height: 28, marginRight: '1px' }}
-                  >
-                    <CheckCircleIcon />
-                  </IconButton>
-                  <IconButton
-                    //onClick={() => {handleClearValue("bio"); fieldValues.bio=""; }}
-                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    sx={{  opacity: 0.7 ,marginTop: '5px',
-                      width: 28,
-                      height: 28,marginRight: '1px'}}
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                </>
-              )}  {!allFieldsEditable && (  <>
-                   <EditIconButton onClick={() => {handleEdit('bio'); setAllFieldsEditable(!allFieldsEditable);
-                    }} /></> )}
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
+  <Grid item xs={12}>
+    <TextField
+      label="Bio*"
+      variant={!allFieldsEditable ? "standard" : "outlined"}
+      fullWidth
+      multiline
+      rows={3}
+      value={fieldValues.bio}
+      onChange={(e) => handleFieldChange('bio', e.target.value)}
+      disabled={!allFieldsEditable}
+      size="small"
+      sx={{
+        '& .MuiInputBase-root': { height: 'auto' },
+        '& .MuiInput-root': { marginTop: '10px' },
+        '& .MuiInputLabel-root.MuiInputLabel-standard': {
+          transform: 'translate(0, -1.5px) scale(0.75)',
+          transformOrigin: 'top left'
+        }
+      }}
+      InputLabelProps={{
+        sx: {
+          color: allFieldsEditable ? "#1976d2" : "inherit",
+          ...(allFieldsEditable && { backgroundColor: "white" }),
+        },
+        shrink: true
+      }}
+      InputProps={{
+        sx: {
+          fontSize: "12px",
+          ...(allFieldsEditable && {
+            '&:after': { borderBottom: '2px solid #1976d2' },
+            '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
+            '&:hover:before': { borderBottom: '2px solid #1976d2' }
+          })
+        },
+        endAdornment: (
+          <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom: "0px", '&.Mui-disabled': { color: '#1976d2' } }}>
+            {allFieldsEditable && (
+              <>
+                <IconButton
+                  onClick={() => { handleSaveValue("bio"); setAllFieldsEditable(!allFieldsEditable) }}
+                  edge="end"
+                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
+                >
+                  <CheckCircleIcon />
+                </IconButton>
+                <IconButton
+                  onClick={() => setAllFieldsEditable(!allFieldsEditable)}
+                  edge="end"
+                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </>
+            )}
+            {!allFieldsEditable && <EditIconButton onClick={() => { handleEdit('bio'); setAllFieldsEditable(!allFieldsEditable) }} />}
+          </InputAdornment>
+        ),
+      }}
+    />
+  </Grid>
         </Grid>
       </Box>
 
       <Box 
         sx={{ 
           backgroundColor: "white",
-          maxWidth: "calc(100% - 4px)",
-          width: "calc(100% - 4px)",
+          maxWidth: "100%",
+          width: "100%",
         
           borderRadius: '4px',
           //boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
@@ -926,310 +974,250 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         <Typography variant="h6" padding="0 0 16px 0" sx={{marginBottom:"10px"}}>Typography</Typography>
         <Grid container spacing={2.4}>
         <Grid item xs={12}>
-            <TextField
-              label="Card Number*"
-              id="outlined-multiline-static"
-              variant="outlined"
-              fullWidth
-              rows="2"
-              value={fieldValues.cardNumber}
-              onChange={(e) => handleFieldChange('cardNumber', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
-                
-                //               
-                sx: { 
-                
-                  color: allFieldsEditable ? '#1976d2' : 'inherit',
-                  ...(allFieldsEditable && {
-                    backgroundColor: 'white',
-                    
-                  })
-                } 
-              }}
-             InputProps={{
-                
-               shrink: allFieldsEditable,
-            
-                sx: { fontSize: '12px' },
-        startAdornment: (
-          <InputAdornment position="start" >
-          <CreditCardIcon color="action" />
-        </InputAdornment>
-        ),
+    <TextField
+      label="Card Number*"
+      variant={!allFieldsEditable ? "standard" : "outlined"}
+      fullWidth
+      value={fieldValues.cardNumber}
+      onChange={(e) => handleFieldChange('cardNumber', e.target.value)}
+      disabled={!allFieldsEditable}
+      size="small"
+      sx={{
+        '& .MuiInputBase-root': { height: '40px' },
+        '& .MuiInput-root': { marginTop: '3px' },
+       // '& .MuiInput-root': { marginBottom: '0px' },
+        '& .MuiInputLabel-root.MuiInputLabel-standard': {
+          transform: 'translate(0, -1.5px) scale(0.75)',
+          transformOrigin: 'top left'
+        }
+      }}
+      InputLabelProps={{
         sx: {
-          fontSize: '0.75rem',
-          marginTop: '0',
-          '& .MuiInputBase-input': {
-            paddingTop: '8px',
-            paddingBottom: '8px',
-          },
-          ...(allFieldsEditable && {
-            '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#1976d2',
-              borderWidth: '1px',
-            }
-          }),
-          '&.Mui-disabled': {
-            color: 'rgba(0, 0, 0, 0.87)', // Maintains text color when disabled
-            WebkitTextFillColor: 'rgba(0, 0, 0, 0.87)',
-          }
+          color: allFieldsEditable ? "#1976d2" : "inherit",
+          ...(allFieldsEditable && { backgroundColor: "white" }),
         },
+        shrink: true
+      }}
+      InputProps={{
+        sx: {
+          fontSize: "12px",
+          ...(allFieldsEditable && {
+            '&:after': { borderBottom: '2px solid #1976d2' },
+            '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
+            '&:hover:before': { borderBottom: '2px solid #1976d2' }
+          })
+        },
+        startAdornment: (
+          <InputAdornment position="start">
+            <CreditCardIcon color="action" />
+          </InputAdornment>
+        ),
         endAdornment: (
-          <InputAdornment 
-            position="end" 
-            sx={{ 
-              position: 'relative', 
-              marginLeft: '0px',
-              marginRight: '4px', 
-              marginBottom: "5px",
-              '&.Mui-disabled': {
-                color: '#1976d2',
-              }
-            }}
-          > {allFieldsEditable && (
-            <>
-              <IconButton
-              
-                onClick={() =>{handleSaveValue("cardnumber"); setAllFieldsEditable(!allFieldsEditable)}}
-                edge="end"
-                sx={{  opacity: 0.7,marginTop: '5px',
-                  width: 28,
-                  height: 28, marginRight: '1px' }}
-              >
-                <CheckCircleIcon />
-              </IconButton>
-              <IconButton
-                //onClick={() => {handleClearValue("cardNumber"); fieldValues.cardNumber="";}}
-                onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
-                edge="end"
-                sx={{  opacity: 0.7 ,marginTop: '5px',
-                  width: 28,
-                  height: 28,marginRight: '1px'}}
-              >
-                <CloseIcon />
-              </IconButton>
-            </>
-          )}
-          {!allFieldsEditable && (  <>
-            <EditIconButton 
-              onClick={() => {
-                handleEdit('cardNumber');
-                setAllFieldsEditable(!allFieldsEditable);
-              }}
-            />  </> )}
+          <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom: "5px", '&.Mui-disabled': { color: '#1976d2' } }}>
+            {allFieldsEditable && (
+              <>
+                <IconButton
+                  onClick={() => { handleSaveValue("cardNumber"); setAllFieldsEditable(!allFieldsEditable) }}
+                  edge="end"
+                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
+                >
+                  <CheckCircleIcon />
+                </IconButton>
+                <IconButton
+                  onClick={() => setAllFieldsEditable(!allFieldsEditable)}
+                  edge="end"
+                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </>
+            )}
+            {!allFieldsEditable && <EditIconButton onClick={() => { handleEdit('cardNumber'); setAllFieldsEditable(!allFieldsEditable) }} />}
           </InputAdornment>
         ),
       }}
+    />
+  </Grid>
+
+  <Grid item xs={12}>
+    <TextField
+      label="Card Holder Name*"
+      variant={!allFieldsEditable ? "standard" : "outlined"}
+      fullWidth
+      value={fieldValues.cardHolder}
+      onChange={(e) => handleFieldChange('cardHolder', e.target.value)}
+      disabled={!allFieldsEditable}
+      size="small"
       sx={{
-      
-        '& .MuiInputBase-root': {
-          paddingTop: '0',
-          paddingBottom: '0',
+        '& .MuiInputBase-root': { height: '36px' },
+        '& .MuiInput-root': { marginTop: '3px' },
+        '& .MuiInputLabel-root.MuiInputLabel-standard': {
+          transform: 'translate(0, -1.5px) scale(0.75)',
+          transformOrigin: 'top left'
         }
       }}
+      InputLabelProps={{
+        sx: {
+          color: allFieldsEditable ? "#1976d2" : "inherit",
+          ...(allFieldsEditable && { backgroundColor: "white" }),
+        },
+        shrink: true
+      }}
+      InputProps={{
+        sx: {
+          fontSize: "12px",
+          ...(allFieldsEditable && {
+            '&:after': { borderBottom: '2px solid #1976d2' },
+            '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
+            '&:hover:before': { borderBottom: '2px solid #1976d2' }
+          })
+        },
+        endAdornment: (
+          <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom: "5px", '&.Mui-disabled': { color: '#1976d2' } }}>
+            {allFieldsEditable && (
+              <>
+                <IconButton
+                  onClick={() => { handleSaveValue("cardHolder"); setAllFieldsEditable(!allFieldsEditable) }}
+                  edge="end"
+                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
+                >
+                  <CheckCircleIcon />
+                </IconButton>
+                <IconButton
+                  onClick={() => setAllFieldsEditable(!allFieldsEditable)}
+                  edge="end"
+                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </>
+            )}
+            {!allFieldsEditable && <EditIconButton onClick={() => { handleEdit('cardHolder'); setAllFieldsEditable(!allFieldsEditable) }} />}
+          </InputAdornment>
+        ),
+      }}
     />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label="Card Holder Name*"
-              id="outlined-multiline-static"
-              variant="outlined"
-              fullWidth
-              rows="2"
-              value={fieldValues.cardHolder}
-              onChange={(e) => handleFieldChange('cardHolder', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
-                
-                //               
-                sx: { 
-                
-                  color: allFieldsEditable ? '#1976d2' : 'inherit',
-                  ...(allFieldsEditable && {
-                    backgroundColor: 'white',
-                    
-                  })
-                } 
-              }}
-             InputProps={{
-               shrink: allFieldsEditable,
-            
-                sx: { fontSize: '12px' },
-                
-                endAdornment: (
-               <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
-                    '&.Mui-disabled': {
-                      color: '#1976d2',
-                    }
-                   }}>     
-                    {allFieldsEditable && (
-                <>
-                  <IconButton
-                  
-                    onClick={() =>{ handleSaveValue("cardHolder"); setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    sx={{  opacity: 0.7,marginTop: '5px',
-                      width: 28,
-                      height: 28, marginRight: '1px' }}
-                  >
-                    <CheckCircleIcon />
-                  </IconButton>
-                  <IconButton
-                    //onClick={() =>{ handleClearValue("cardHolder"); fieldValues.cardHolder="";}}
-                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    sx={{  opacity: 0.7 ,marginTop: '5px',
-                      width: 28,
-                      height: 28,marginRight: '1px'}}
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                </>
-              )}{!allFieldsEditable && (  <>
-                    <EditIconButton onClick={() => {handleEdit('cardholder'); setAllFieldsEditable(!allFieldsEditable);
-                    }} />  </> )}
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              label="Expiry*"
-              id="outlined-multiline-static"
-              variant="outlined"
-              fullWidth
-              rows="2"
-              value={fieldValues.expiry}
-              onChange={(e) => handleFieldChange('expiry', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
-                
-                //               
-                sx: { 
-                
-                  color: allFieldsEditable ? '#1976d2' : 'inherit',
-                  ...(allFieldsEditable && {
-                    backgroundColor: 'white',
-                    
-                  })
-                } 
-              }}
-             InputProps={{
-               shrink: allFieldsEditable,
-            
-                sx: { fontSize: '12px' },
-                
-                endAdornment: (
-               <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
-                    '&.Mui-disabled': {
-                      color: '#1976d2',
-                    }
-                   }}>      
-                    {allFieldsEditable && (
-                <>
-                  <IconButton
-                  
-                    onClick={() =>{handleSaveValue("expiry"); setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    sx={{  opacity: 0.7,marginTop: '5px',
-                      width: 28,
-                      height: 28, marginRight: '1px' }}
-                  >
-                    <CheckCircleIcon />
-                  </IconButton>
-                  <IconButton
-                    //onClick={() => {handleClearValue("expiry"); fieldValues.expiry="";}}
-                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    sx={{  opacity: 0.7 ,marginTop: '5px',
-                      width: 28,
-                      height: 28,marginRight: '1px'}}
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                </>
+  </Grid>
 
-              )}
-              {!allFieldsEditable && (  <><EditIconButton onClick={() => {handleEdit('expiry'); setAllFieldsEditable(!allFieldsEditable);
-                    }} /></> )}
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
           <Grid item xs={6}>
-            <TextField
-              label="CVC/CV2*"
-              id="outlined-multiline-static"
-              variant="outlined"
-              fullWidth
-              rows="2"
-              value={fieldValues.cvc}
-              onChange={(e) => handleFieldChange('cvc', e.target.value)}
-                disabled={!allFieldsEditable}             
-              size="small"
-               InputLabelProps={{ 
-                
-                //               
-                sx: { 
-                
-                  color: allFieldsEditable ? '#1976d2' : 'inherit',
-                  ...(allFieldsEditable && {
-                    backgroundColor: 'white',
-                    
-                  })
-                } 
-              }}
-             InputProps={{
-               shrink: allFieldsEditable,
-            
-                sx: { fontSize: '12px' },
-                
-                endAdornment: (
-               <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom:"5px",
-                    '&.Mui-disabled': {
-                      color: '#1976d2',
-                    }
-                   }}>     
-                    {allFieldsEditable && (
-                <>
-                  <IconButton
-                  
-                    onClick={() =>{ handleSaveValue("cv2"); setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    sx={{  opacity: 0.7,marginTop: '5px',
-                      width: 28,
-                      height: 28, marginRight: '1px' }}
-                  >
-                    <CheckCircleIcon />
-                  </IconButton>
-                  <IconButton
-                    //onClick={() => {handleClearValue("cv2"); fieldValues.cvc="";}}
-                    
-                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    
-                    sx={{  opacity: 0.7 ,marginTop: '5px',//borderRadius: "50%",
-                      width: 28,
-                      height: 28,marginRight: '1px'}}
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                </>
-              )}{!allFieldsEditable && (  <>
-                    <EditIconButton onClick={() => {handleEdit('cv2'); setAllFieldsEditable(!allFieldsEditable);
-                    }} /> </> )}
-                  </InputAdornment>
+    <TextField
+      label="Expiry*"
+      variant={!allFieldsEditable ? "standard" : "outlined"}
+      fullWidth
+      value={fieldValues.expiry}
+      onChange={(e) => handleFieldChange('expiry', e.target.value)}
+      disabled={!allFieldsEditable}
+      size="small"
+      sx={{
+        '& .MuiInputBase-root': { height: '36px' },
+        '& .MuiInput-root': { marginTop: '3px' },
+        '& .MuiInputLabel-root.MuiInputLabel-standard': {
+          transform: 'translate(0, -1.5px) scale(0.75)',
+          transformOrigin: 'top left'
+        }
+      }}
+      InputLabelProps={{
+        sx: {
+          color: allFieldsEditable ? "#1976d2" : "inherit",
+          ...(allFieldsEditable && { backgroundColor: "white" }),
+        },
+        shrink: true
+      }}
+      InputProps={{
+        sx: {
+          fontSize: "12px",
+          ...(allFieldsEditable && {
+            '&:after': { borderBottom: '2px solid #1976d2' },
+            '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
+            '&:hover:before': { borderBottom: '2px solid #1976d2' }
+          })
+        },
+        endAdornment: (
+          <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom: "5px", '&.Mui-disabled': { color: '#1976d2' } }}>
+            {allFieldsEditable && (
+              <>
+                <IconButton
+                  onClick={() => { handleSaveValue("expiry"); setAllFieldsEditable(!allFieldsEditable) }}
+                  edge="end"
+                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
+                >
+                  <CheckCircleIcon />
+                </IconButton>
+                <IconButton
+                  onClick={() => setAllFieldsEditable(!allFieldsEditable)}
+                  edge="end"
+                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </>
+            )}
+            {!allFieldsEditable && <EditIconButton onClick={() => { handleEdit('expiry'); setAllFieldsEditable(!allFieldsEditable) }} />}
+          </InputAdornment>
+        ),
+      }}
+    />
+  </Grid>
 
-                ),
-              }}
-            />
-          </Grid>
+  <Grid item xs={6}>
+    <TextField
+      label="CVC/CV2*"
+      variant={!allFieldsEditable ? "standard" : "outlined"}
+      fullWidth
+      value={fieldValues.cvc}
+      onChange={(e) => handleFieldChange('cvc', e.target.value)}
+      disabled={!allFieldsEditable}
+      size="small"
+      sx={{
+        '& .MuiInputBase-root': { height: '36px' },
+        '& .MuiInput-root': { marginTop: '3px' },
+        '& .MuiInputLabel-root.MuiInputLabel-standard': {
+          transform: 'translate(0, -1.5px) scale(0.75)',
+          transformOrigin: 'top left'
+        }
+      }}
+      InputLabelProps={{
+        sx: {
+          color: allFieldsEditable ? "#1976d2" : "inherit",
+          ...(allFieldsEditable && { backgroundColor: "white" }),
+        },
+        shrink: true
+      }}
+      InputProps={{
+        sx: {
+          fontSize: "12px",
+          ...(allFieldsEditable && {
+            '&:after': { borderBottom: '2px solid #1976d2' },
+            '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
+            '&:hover:before': { borderBottom: '2px solid #1976d2' }
+          })
+        },
+        endAdornment: (
+          <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom: "5px", '&.Mui-disabled': { color: '#1976d2' } }}>
+            {allFieldsEditable && (
+              <>
+                <IconButton
+                  onClick={() => { handleSaveValue("cvc"); setAllFieldsEditable(!allFieldsEditable) }}
+                  edge="end"
+                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
+                >
+                  <CheckCircleIcon />
+                </IconButton>
+                <IconButton
+                  onClick={() => setAllFieldsEditable(!allFieldsEditable)}
+                  edge="end"
+                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </>
+            )}
+            {!allFieldsEditable && <EditIconButton onClick={() => { handleEdit('cvc'); setAllFieldsEditable(!allFieldsEditable) }} />}
+          </InputAdornment>
+        ),
+      }}
+    />
+  </Grid>
         </Grid>
     </Box>
               </Grid>
@@ -1298,7 +1286,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
             <Box sx={{ mt: 'auto', display: 'flex', justifyContent: 'center' }}>
               <Chip 
                 label={showMoreOverdue ? "View Less" : "View More"} 
-                variant="outlined"
+                variant={!allFieldsEditable ? "standard" : "outlined"}
                 onClick={() => setShowMoreOverdue(!showMoreOverdue)}
                 sx={{ cursor: 'pointer' }}
               />
@@ -1332,7 +1320,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
             <Box sx={{ mt: 1, display: 'flex', justifyContent: 'center' }}>
               <Chip 
                 label={showMoreCompleted ? "View Less" : "View More"} 
-                variant="outlined"
+                variant={!allFieldsEditable ? "standard" : "outlined"}
                 onClick={() => setShowMoreCompleted(!showMoreCompleted)}
                 sx={{ cursor: 'pointer' }}
              />
