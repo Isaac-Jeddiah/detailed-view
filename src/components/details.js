@@ -1266,11 +1266,11 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
 }}/> }
             sx={summaryStyle}
           >
-            <Box display="flex" alignItems="center" mb={1} sx={{ position: "relative", zIndex: 2 }}>
-            <Typography variant="body2" >Upcoming & Overdue</Typography>
-              <Divider sx={{ flexGrow: 1, ml: 2, borderBottomWidth: 2, backgroundColor: "rgba(0, 0, 0, 0.2)" }} />
+           <Box display="flex" alignItems="center" mb={1} sx={{ position: "relative", zIndex: 2, pr: 2 }}>
+  <Typography variant="body2" sx={{ marginRight: "8px" }}>Upcoming & Overdue</Typography>
+  <Divider sx={{ flexGrow: 1, ml: 2, borderBottomWidth: 2, backgroundColor: "rgba(0, 0, 0, 0.2)" }} />
+</Box>
 
-            </Box>
            
           </AccordionSummary>
           <AccordionDetails sx={{  display:'flex' ,flexDirection: 'column',
@@ -1305,8 +1305,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
             expandIcon={<ExpandMore sx={{color:"#1976D2"}}/> }
             sx={summaryStyle}
           >
-            <Typography variant="body2">Completed</Typography>
-          </AccordionSummary>
+          <Typography variant="body2" sx={{ marginRight: "8px" }}>Completed</Typography></AccordionSummary>
           <AccordionDetails sx={{ p: 1, display: 'flex', flexDirection: 'column',
              backgroundColor: 'white',
              borderBottomLeftRadius: '8px',
