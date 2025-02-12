@@ -550,6 +550,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       </AppBar>
 
       <TabPanel value={activeTab} index={0}>
+      <Grid item xs={12} md={7} lg={7}> 
         <Grid container spacing={2.4}>
         
     <Grid item xs={7} >
@@ -557,8 +558,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         sx={{ 
           height:"240px", 
           backgroundColor: "white",
-          maxWidth: "calc(100% - 4px) !important",
-          width: "calc(100% - 4px) !important",
+          width:"100%",
+          //maxWidth: "calc(100% - 4px) !important",
+          //width: "calc(100% - 4px) !important",
           borderRadius: '4px',
           gap:"0px",
           p: 2.4,
@@ -1226,14 +1228,13 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
     </Box>
     </Grid>
     
-    <Grid item xs={4.5}>
+    <Grid item xs={5}>
       <Box 
         sx={{ 
           borderRadius:"4px",
           backgroundColor: "white",
-          maxWidth:"100%",
-          minWidth: "300px",
-          width:"auto",
+          
+          width:"100%",
           height:"auto",
           width: "409px !important",
          // height: "650px !important",
@@ -1333,6 +1334,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         </Accordion>
       </Box>
     </Grid>
+        </Grid>
         </Grid>
       </TabPanel>
     </Box>
