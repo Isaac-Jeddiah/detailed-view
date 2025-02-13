@@ -109,28 +109,53 @@ export default function DetailsTable() {
     setFieldValues({ ...fieldValues, [key]: tempValue });
     setAllFieldsEditable(false);
   };
+  // const EditIconButton = ({ onClick }) => (
+  //   <IconButton 
+  //     size="small" 
+  //     onClick={onClick}
+  //     sx={{
+  //       marginTop: '5px',
+  //       width: 28,
+  //       height: 28,
+  //       color:"primary",
+       
+  //       borderRadius: "50%", 
+       
+  //     }}
+  //   >
+  //     <EditIcon 
+  //       fontSize="small" 
+  //       sx={{
+  //         color: "transparent",
+  //         stroke: "#90A4AE",
+  //         strokeWidth: 2, 
+  //       }} 
+  //     />
+  //   </IconButton>
+  // );
+
   const EditIconButton = ({ onClick }) => (
     <IconButton 
       size="small" 
       onClick={onClick}
       sx={{
-        marginTop: '5px',
+        mt: "5px",
         width: 28,
         height: 28,
-        color:"primary",
-       
+        color: "grey", // Default grey color
         borderRadius: "50%", 
-       
+        position: "relative" // Allows placing extra parts
       }}
     >
+      {/* Main Pencil Icon */}
       <EditIcon 
         fontSize="small" 
         sx={{
-          color: "transparent",
-          stroke: "#90A4AE",
-          strokeWidth: 2, 
+          color: "grey", // Entire pencil is default grey
         }} 
       />
+  
+     
     </IconButton>
   );
 
@@ -575,18 +600,27 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
           flexWrap: "wrap",
         }}
       >
-        <Box display="flex" alignItems="center" mb={1}>
-          <Typography variant="h6" padding="0 0 16px 0" >
-            Section Heading
-          </Typography>
-          {/* <IconButton 
-            size="small" 
-            onClick={() => setAllFieldsEditable(!allFieldsEditable)}
-            sx={{ ml: 1 }}
-          >
-            <EditIcon fontSize="small" />
-          </IconButton> */}
-        </Box>
+    <Box 
+  sx={{ 
+    display: "flex", 
+    alignItems: "center", 
+    
+    bgcolor: "rgb(243, 243, 243)", 
+    px: 2, 
+    py: 1.5, // Adjusted to balance spacing
+    borderRadius: 1 
+  }}
+  mb={2.4}
+>
+  <Typography 
+    variant="h6" 
+    sx={{ lineHeight: 1 }} // Ensures equal spacing above & below text
+  >
+    Section Heading
+  </Typography>
+</Box>
+
+
         
         <Grid container spacing={2.4}>
         <Grid item xs={6}>
@@ -601,6 +635,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
           '& .MuiInputBase-root': {
             height: '36px',
           },
+      
           // Remove extra spacing between label and input for standard variant
           '& .MuiInput-root': {
             marginTop: '3px',
@@ -622,7 +657,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         }}
         InputProps={{
           sx: { 
-            fontSize: "12px",
+             fontSize: "12px",
+            
+            ...(allFieldsEditable ? {} : { paddingTop: "5px" }), 
             ...(allFieldsEditable && {
               '&:after': {
                 borderBottom: '2px solid #1976d2',
@@ -722,7 +759,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         }}
         InputProps={{
           sx: { 
-            fontSize: "12px",
+             fontSize: "12px",
+            ...(allFieldsEditable ? {} : { paddingTop: "5px" }), 
+            
             ...(allFieldsEditable && {
               '&:after': {
                 borderBottom: '2px solid #1976d2',
@@ -816,7 +855,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       }}
       InputProps={{
         sx: {
-          fontSize: "12px",
+           fontSize: "12px",
+            ...(allFieldsEditable ? {} : { paddingTop: "5px" }), 
+            
           ...(allFieldsEditable && {
             '&:after': { borderBottom: '2px solid #1976d2' },
             '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
@@ -843,8 +884,8 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       disabled={!allFieldsEditable}
       size="small"
       sx={{
-        '& .MuiInputBase-root': { height: 'auto' },
-        '& .MuiInput-root': { marginTop: '10px' },
+        '& .MuiInputBase-root': { height: '36px' },
+        '& .MuiInput-root': { marginTop: '3px' },
         '& .MuiInputLabel-root.MuiInputLabel-standard': {
           transform: 'translate(0, -1.5px) scale(0.75)',
           transformOrigin: 'top left'
@@ -859,7 +900,8 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       }}
       InputProps={{
         sx: {
-          fontSize: "12px",
+           fontSize: "12px",
+            ...(allFieldsEditable ? {} : { paddingTop: "5px" }),
           ...(allFieldsEditable && {
             '&:after': { borderBottom: '2px solid #1976d2' },
             '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
@@ -921,7 +963,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       }}
       InputProps={{
         sx: {
-          fontSize: "12px",
+           fontSize: "12px",
+            ...(allFieldsEditable ? {} : { paddingTop: "5px" }), 
+            
           ...(allFieldsEditable && {
             '&:after': { borderBottom: '2px solid #1976d2' },
             '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
@@ -971,7 +1015,27 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
           p: 2.4
         }}
       >
-        <Typography variant="h6" padding="0 0 16px 0" sx={{marginBottom:"10px"}}>Typography</Typography>
+       
+              <Box 
+          sx={{ 
+            display: "flex", 
+            alignItems: "center", 
+            
+            bgcolor: "rgb(243, 243, 243)", 
+            px: 2, 
+            py: 1.5, // Adjusted to balance spacing
+            borderRadius: 1 
+          }}
+          mb={2.4}
+        >
+          <Typography 
+            variant="h6" 
+            sx={{ lineHeight: 1 }} // Ensures equal spacing above & below text
+          >
+            Typography
+          </Typography>
+        </Box>
+              
         <Grid container spacing={2.4}>
         <Grid item xs={12}>
     <TextField
@@ -1000,7 +1064,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       }}
       InputProps={{
         sx: {
-          fontSize: "12px",
+           fontSize: "12px",
+            ...(allFieldsEditable ? {} : { paddingTop: "5px" }), 
+            
           ...(allFieldsEditable && {
             '&:after': { borderBottom: '2px solid #1976d2' },
             '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
@@ -1065,7 +1131,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       }}
       InputProps={{
         sx: {
-          fontSize: "12px",
+           fontSize: "12px",
+            ...(allFieldsEditable ? {} : { paddingTop: "5px" }), 
+            
           ...(allFieldsEditable && {
             '&:after': { borderBottom: '2px solid #1976d2' },
             '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
@@ -1125,7 +1193,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       }}
       InputProps={{
         sx: {
-          fontSize: "12px",
+           fontSize: "12px",
+            ...(allFieldsEditable ? {} : { paddingTop: "5px" }), 
+            
           ...(allFieldsEditable && {
             '&:after': { borderBottom: '2px solid #1976d2' },
             '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
@@ -1185,7 +1255,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       }}
       InputProps={{
         sx: {
-          fontSize: "12px",
+           fontSize: "12px",
+            ...(allFieldsEditable ? {} : { paddingTop: "5px" }), 
+            
           ...(allFieldsEditable && {
             '&:after': { borderBottom: '2px solid #1976d2' },
             '&:before': { borderBottom: '1px solid rgba(0, 0, 0, 0.42)' },
@@ -1248,31 +1320,30 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         }}
       >
 
-        <Box display="flex" alignItems="center" mb={1} 
+        <Box display="flex" alignItems="center" justifyContent="space-between" mb={0.5} mt={1.2}
  >
         <Typography variant="h6" padding="0 0 8px!important 0" >Timeline</Typography>
-        <Divider/>
-        
+      
         </Box>
-       
+        <Divider sx={{ flexGrow: 1,mb:1.9}} />
         <Accordion defaultExpanded sx={accordionStyle}>
           <AccordionSummary 
             expandIcon={<ExpandMore sx={{color:"#1976D2"
 }}/> }
             sx={summaryStyle}
           >
-           <Box display="flex" alignItems="center" mb={1} sx={{ position: "relative", zIndex: 2, pr: 2 }}>
-  <Typography variant="body2" sx={{ marginLeft: "-8px" }}>Upcoming & Overdue</Typography>
-  <Divider sx={{ flexGrow: 1, ml: 2, borderBottomWidth: 2, backgroundColor: "rgba(0, 0, 0, 0.2)" }} />
-</Box>
+  <Typography variant="body" sx={{ marginLeft: "-8px",fontSize:"16px" }}>Upcoming & Overdue</Typography>
+
 
            
           </AccordionSummary>
-          <AccordionDetails sx={{  display:'flex' ,flexDirection: 'column',
+          <AccordionDetails sx={{ p:1, display:'flex' ,flexDirection: 'column',
             backgroundColor: 'white',
          
           }}>
             <Timeline sx={{ 
+              width: '100%',
+              padding: '0 ',margin: '0',
               [`& .${timelineItemClasses.root}:before`]: { flex: 0, padding: 0 },
               '& .MuiTimelineDot-root': { 
                 width: 2, 
@@ -1300,11 +1371,11 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
             expandIcon={<ExpandMore sx={{color:"#1976D2"}}/> }
             sx={summaryStyle}
           >
-          <Typography variant="body2" sx={{ marginLeft: "-8px" }}>Completed</Typography></AccordionSummary>
+          <Typography variant="body" sx={{ marginLeft: "-8px", fontSize:"16px" }}>Completed</Typography></AccordionSummary>
           <AccordionDetails sx={{ p: 1, display: 'flex', flexDirection: 'column',
              backgroundColor: 'white',
-             borderBottomLeftRadius: '8px',
-             borderBottomRightRadius: '8px',
+            //  borderBottomLeftRadius: '8px',
+            //  borderBottomRightRadius: '8px',
             // border: '1px solid rgba(0,0,0,0.1)',
              borderTop: 'none'
            }}>
