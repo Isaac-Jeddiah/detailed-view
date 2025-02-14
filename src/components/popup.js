@@ -97,27 +97,51 @@ const Popup = ({ closePopup }) => {
       size="small" 
       onClick={onClick}
       sx={{
-        marginTop: '5px',
+        mt: "5px",
         width: 28,
         height: 28,
-        color:"primary",
-        //backgroundColor: "rgba(25, 118, 210, 0.3)", // 30% opacity of #1976D2
-        borderRadius: "50%", // Ensuring circular shape
-        "&:hover": {
-         // backgroundColor: "rgba(25, 118, 210, 0.4)", // Slightly darker on hover
-        },
+        color: "grey", // Default grey color
+        borderRadius: "50%", 
+        position: "relative" // Allows placing extra parts
       }}
     >
+      {/* Main Pencil Icon */}
       <EditIcon 
         fontSize="small" 
         sx={{
-          color: "transparent", // No fill
-          stroke: "#90A4AE", // Outline color
-          strokeWidth: 2, // Adjusting stroke thickness
+          color: "grey", // Entire pencil is default grey
         }} 
       />
+  
+     
     </IconButton>
   );
+  // const EditIconButton = ({ onClick }) => (
+  //   <IconButton 
+  //     size="small" 
+  //     onClick={onClick}
+  //     sx={{
+  //       marginTop: '5px',
+  //       width: 28,
+  //       height: 28,
+  //       color:"primary",
+  //       //backgroundColor: "rgba(25, 118, 210, 0.3)", // 30% opacity of #1976D2
+  //       borderRadius: "50%", // Ensuring circular shape
+  //       "&:hover": {
+  //        // backgroundColor: "rgba(25, 118, 210, 0.4)", // Slightly darker on hover
+  //       },
+  //     }}
+  //   >
+  //     <EditIcon 
+  //       fontSize="small" 
+  //       sx={{
+  //         color: "transparent", // No fill
+  //         stroke: "#90A4AE", // Outline color
+  //         strokeWidth: 2, // Adjusting stroke thickness
+  //       }} 
+  //     />
+  //   </IconButton>
+  // );
   return (
     <Box
       sx={{
