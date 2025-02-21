@@ -632,6 +632,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         onChange={(e) => handleFieldChange('name', e.target.value)}
         disabled={!allFieldsEditable}
         sx={{
+          '& .MuiInput-underline:before': {
+            borderBottomStyle: "solid",// Increase thickness
+          },
           '& .MuiInputBase-root': {
             height: '36px',
           },
@@ -735,6 +738,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         onChange={(e) => handleFieldChange('phone', e.target.value)}
         disabled={!allFieldsEditable}
         sx={{
+          '& .MuiInput-underline:before': {
+            borderBottomStyle: "solid",// Increase thickness
+          },
           '& .MuiInputBase-root': {
             height: '36px',
           },
@@ -839,6 +845,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       disabled={!allFieldsEditable}
       size="small"
       sx={{
+        '& .MuiInput-underline:before': {
+          borderBottomStyle: "solid",// Increase thickness
+        },
         '& .MuiInputBase-root': { height: '36px' },
         '& .MuiInput-root': { marginTop: '3px' },
         '& .MuiInputLabel-root.MuiInputLabel-standard': {
@@ -884,6 +893,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       disabled={!allFieldsEditable}
       size="small"
       sx={{
+        '& .MuiInput-underline:before': {
+            borderBottomStyle: "solid",// Increase thickness
+          },
         '& .MuiInputBase-root': { height: '36px' },
         '& .MuiInput-root': { marginTop: '3px' },
         '& .MuiInputLabel-root.MuiInputLabel-standard': {
@@ -947,6 +959,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       disabled={!allFieldsEditable}
       size="small"
       sx={{
+        '& .MuiInput-underline:before': {
+            borderBottomStyle: "solid",// Increase thickness
+          },
         '& .MuiInputBase-root': { height: 'auto' },
         '& .MuiInput-root': { marginTop: '10px' },
         '& .MuiInputLabel-root.MuiInputLabel-standard': {
@@ -1047,6 +1062,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       disabled={!allFieldsEditable}
       size="small"
       sx={{
+        '& .MuiInput-underline:before': {
+            borderBottomStyle: "solid",// Increase thickness
+          },
         '& .MuiInputBase-root': { height: '40px' },
         '& .MuiInput-root': { marginTop: '3px' },
        // '& .MuiInput-root': { marginBottom: '0px' },
@@ -1115,6 +1133,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       disabled={!allFieldsEditable}
       size="small"
       sx={{
+        '& .MuiInput-underline:before': {
+            borderBottomStyle: "solid",// Increase thickness
+          },
         '& .MuiInputBase-root': { height: '36px' },
         '& .MuiInput-root': { marginTop: '3px' },
         '& .MuiInputLabel-root.MuiInputLabel-standard': {
@@ -1177,6 +1198,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       disabled={!allFieldsEditable}
       size="small"
       sx={{
+        '& .MuiInput-underline:before': {
+            borderBottomStyle: "solid",// Increase thickness
+          },
         '& .MuiInputBase-root': { height: '36px' },
         '& .MuiInput-root': { marginTop: '3px' },
         '& .MuiInputLabel-root.MuiInputLabel-standard': {
@@ -1239,6 +1263,9 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       disabled={!allFieldsEditable}
       size="small"
       sx={{
+        '& .MuiInput-underline:before': {
+            borderBottomStyle: "solid",// Increase thickness
+          },
         '& .MuiInputBase-root': { height: '36px' },
         '& .MuiInput-root': { marginTop: '3px' },
         '& .MuiInputLabel-root.MuiInputLabel-standard': {
