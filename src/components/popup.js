@@ -1,21 +1,3 @@
-// InputProps={{
-//   endAdornment: (
-//     <InputAdornment position="end">
-//       <IconButton
-//         onClick={() => handleBackspace('email1')}
-//         edge="end"
-//         sx={{ 
-//           color: 'red',
-//           bgcolor: 'white',
-          
-//           '&:hover': { bgcolor: 'white' }
-//         }}
-//       >
-//         <BackspaceIcon />
-//       </IconButton>
-//     </InputAdornment>
-//   ),
-// }}
 
 import { InputAdornment, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
@@ -23,7 +5,7 @@ import BackspaceIcon from '@mui/icons-material/Backspace';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'; 
 import DeleteIcon from '@mui/icons-material/Delete'; 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { 
   Box, 
   Button, 
@@ -43,12 +25,7 @@ const states = [
   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
   'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa',
   'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
-  'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri',
-  'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
-  'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
-  'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
-  'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+  'Massachusetts', 'Michigan'
 ];
 
 const handleBackspace = (field) => {
@@ -91,6 +68,16 @@ const Popup = ({ closePopup }) => {
       ...prev,
       [field]: ''
     }));
+  };
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem('formValues'));
+    if (savedData) {
+      setFormValues(savedData);
+    }
+  }, []);
+  const handleSave = () => {
+    localStorage.setItem('formValues', JSON.stringify(formValues));
+    
   };
   const EditIconButton = ({ onClick }) => (
       <IconButton
@@ -182,7 +169,8 @@ const Popup = ({ closePopup }) => {
           //focused={true}}
           size='small'
           fullWidth
-          
+          value={formValues.phone}
+          onChange={(e) => handleTextChange('phone', )}
           color="rgba(25, 118, 210, 0.12)"
           sx={{
             '& .MuiOutlinedInput-root': {
@@ -226,6 +214,7 @@ const Popup = ({ closePopup }) => {
                 </Select>
               </FormControl>
             </Grid>
+
             <Grid item xs={12} md={6}>
               <TextField
                 label="Zipcode*"
@@ -464,7 +453,7 @@ const Popup = ({ closePopup }) => {
             CANCEL
           </Button>
           <Button
-          onClick={closePopup}
+          onClick={()=>{handleSave(); closePopup(); }}
             type="submit"
             variant="contained"
             sx={{ 

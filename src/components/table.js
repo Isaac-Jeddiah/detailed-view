@@ -1,332 +1,183 @@
-import * as React from 'react';
-import { useState } from "react";
-import Box from "@mui/material/Box";
-import AppBar from "@mui/material/AppBar";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Grid from '@mui/material/Grid';
-import TextField from "@mui/material/TextField";
-import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineDot, TimelineContent } from '@mui/lab';
-import EditIcon from '@mui/icons-material/Edit';
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
-import { ExpandMore, MarginTwoTone } from '@mui/icons-material';
-import { timelineItemClasses } from '@mui/lab/TimelineItem';
+import React from 'react';
+import Box from '@mui/material/Box';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Checkbox from '@mui/material/Checkbox';
+import { LocationOnSharp } from '@mui/icons-material';
 
-function TabPanel({ children, value, index }) {
-  return (
-    <Typography component="div" role="tabpanel" hidden={value !== index}>
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </Typography>
-  );
+function createData(id, user, email, location, accountStatus, accountId) {
+    return { id, user, email, location, accountStatus, accountId };
 }
 
+const rows = [
+    createData(1, 'Cupcake', 'mail@mail.com', "Chennai", "Active", 40),
+    createData(2, 'Donut', 'mail@mail.com', "Chennai", "Active", 40),
+    createData(3, 'Eclair', 'mail@mail.com', "Chennai", "Active", 60),
+    createData(4, 'Frozen yoghurt', 'mail@mail.com', "Chennai", "Suspended", 40),
+    createData(5, 'Gingerbread', 'mail@mail.com', "Chennai", "Active", 30),
+    createData(6, 'Gingerbread', 'mail@mail.com', "Chennai", "Active", 30),
+    createData(7, 'Gingerbread', 'mail@mail.com', "Chennai", "Active", 30),
+];
+
 export default function DataTable() {
-  const [activeTab, setActiveTab] = useState(0);
+    const [selected, setSelected] = React.useState([]);
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const [emailEdit, setEmailEdit] = useState(true);
-  const [phoneEdit, setPhoneEdit] = useState(true);
-  const [stateEdit, setStateEdit] = useState(true);
-  const [zipEdit, setZipEdit] = useState(true);
-  const [bioEdit, setBioEdit] = useState(true);
+    const handleSelectAllClick = (event) => {
+        if (event.target.checked) {
+            const newSelected = rows.map((n) => n.id);
+            setSelected(newSelected);
+            return;
+        }
+        setSelected([]);
+    };
 
-  const handleChange = (event, newValue) => {
-    setActiveTab(newValue);
-  };
+    const handleClick = (event, id) => {
+        const selectedIndex = selected.indexOf(id);
+        let newSelected = [];
 
-  return (
-    <Box sx={{ width: "100%", height: "150vh",pt:1 }}>
-      <AppBar position="static" color="default" elevation={0}>
-        <Tabs value={activeTab} onChange={handleChange} indicatorColor="primary" textColor="primary">
-          <Tab label="Overview" />
-          <Tab label="Related" />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={activeTab} index={0}>
-        <Grid container spacing={2}>
-          <Grid item xs={8}>
-            <Box sx={{ backgroundColor: "white", width: "93%", height: "300px",p:3}}>
-              <Typography variant="h5" sx={{ mb: 2 }}>Section Heading</Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
-                  <TextField
-                    disabled={emailEdit}
-                    label="Email*"
-                    placeholder="value@gmail.com"
-                    variant="standard"
-                    fullWidth
-                    sx={{ width: "35ch" }}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton edge="end" onClick={() => setEmailEdit(!emailEdit)}>
-                            <EditIcon />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    onBlur={() => setEmailEdit(true)}
-                  />
-                </Grid>
-                <Grid item xs={6} >
-                  <TextField
-                    disabled={phoneEdit}
-                    label="Phone Number*"
-                    placeholder="414 414 414"
-                    variant="standard"
-                    fullWidth
-                    sx={{ width: "35ch" }}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton edge="end" onClick={() => setPhoneEdit(!phoneEdit)}>
-                            <EditIcon />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    onBlur={() => setPhoneEdit(true)}
-                  />
-                </Grid>
-              </Grid>
-              <Grid container spacing={2} sx={{ mt: 0 }} >
-                <Grid item xs={6}>
-                  <TextField
-                    disabled={emailEdit}
-                    label="State*"
-                    placeholder="TamilNadu"
-                    variant="standard"
-                    fullWidth
-                    sx={{ width: "35ch" }}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton edge="end" onClick={() => setEmailEdit(!emailEdit)}>
-                            <EditIcon />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    onBlur={() => setEmailEdit(true)}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField
-                    disabled={phoneEdit}
-                    label="Zipcode*"
-                    placeholder="414 414 414"
-                    variant="standard"
-                    fullWidth
-                    sx={{ width: "35ch" }}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton edge="end" onClick={() => setPhoneEdit(!phoneEdit)}>
-                            <EditIcon />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    onBlur={() => setPhoneEdit(true)}
-                  />
-                </Grid>
-              </Grid>
-              <Grid container sx={{mt:5}} >
-                <Grid item xs={6}>
-                <TextField
-                    disabled={phoneEdit}
-                    label="Bio*"
-                    placeholder="414 414 414"
-                    variant="standard"
-                    fullWidth
-                    sx={{ width: "76ch" }}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton edge="end" onClick={() => setPhoneEdit(!phoneEdit)}>
-                            <EditIcon />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    onBlur={() => setPhoneEdit(true)}
-                  />
-                </Grid>
-                
-              </Grid>
-            </Box>
+        if (selectedIndex === -1) {
+            newSelected = newSelected.concat(selected, id);
+        } else if (selectedIndex === 0) {
+            newSelected = newSelected.concat(selected.slice(1));
+        } else if (selectedIndex === selected.length - 1) {
+            newSelected = newSelected.concat(selected.slice(0, -1));
+        } else if (selectedIndex > 0) {
+            newSelected = newSelected.concat(
+                selected.slice(0, selectedIndex),
+                selected.slice(selectedIndex + 1)
+            );
+        }
 
-            <Box sx={{ backgroundColor: "white", width: "93%", height: "250px", p: 3,mt:3 }}>
-              <Typography variant="h5" sx={{ mb: 2 }}>Typography</Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    disabled={emailEdit}
-                    label="Cardnumber*"
-                    placeholder="value@gmail.com"
-                    variant="standard"
-                    fullWidth
-                    sx={{ width: "75ch" }}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton edge="end" onClick={() => setEmailEdit(!emailEdit)}>
-                            <EditIcon />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    onBlur={() => setEmailEdit(true)}
-                  />
-                </Grid>
-                
-              </Grid>
-              <Grid container spacing={2} sx={{ mt: 0 }} >
-                <Grid item xs={12}>
-                  <TextField
-                    disabled={emailEdit}
-                    label="Cardholdername*"
-                    placeholder="TamilNadu"
-                    variant="standard"
-                    fullWidth
-                    sx={{ width: "75ch" }}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton edge="end" onClick={() => setEmailEdit(!emailEdit)}>
-                            <EditIcon />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    onBlur={() => setEmailEdit(true)}
-                  />
-                </Grid>
-                
-              </Grid>
-              <Grid container sx={{mt:2}} >
-                <Grid item xs={6}>
-                <TextField
-                    disabled={phoneEdit}
-                    label="MM/YY*"
-                    placeholder="414 414 414"
-                    variant="standard"
-                    fullWidth
-                    sx={{ width: "35ch" }}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton edge="end" onClick={() => setPhoneEdit(!phoneEdit)}>
-                            <EditIcon />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    onBlur={() => setPhoneEdit(true)}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                <TextField
-                    disabled={phoneEdit}
-                    label="CVC/CV2*"
-                    placeholder="414 414 414"
-                    variant="standard"
-                    fullWidth
-                    sx={{ width: "35ch" }}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton edge="end" onClick={() => setPhoneEdit(!phoneEdit)}>
-                            <EditIcon />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    onBlur={() => setPhoneEdit(true)}
-                  />
-                </Grid>
-              </Grid>
-            </Box>
-               </Grid>
+        setSelected(newSelected);
+    };
 
-          <Grid item xs={4} >
-            <Box sx={{ backgroundColor: "white", width: "100%", height: "450px" }}>
-              <Typography variant='h5' sx={{ padding: "20px" }}>Timeline</Typography>
-              <hr style={{ border: "1px solid black", margin: "0 20px" }} />
-              <Accordion defaultExpanded sx={{marginTop:"20px",marginLeft:"30px",marginRight:"20px"}}>
-                <AccordionSummary expandIcon={<ExpandMore sx={{ color: '#fff' }} />} sx={{ color: '#fff', backgroundColor: '#1976D2' }}>
-                  <Typography component="span">Upcoming & Overdue</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Timeline sx={{ [`& .${timelineItemClasses.root}:before`]: { flex: 0, padding: 0 } }}>
-                    <TimelineItem>
-                      <TimelineSeparator>
-                        <TimelineDot sx={{ bgcolor: '#1976D2' }} />
-                        <TimelineConnector sx={{ bgcolor: '#1976D2' }} />
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <Box display="flex" justifyContent="space-between">
-                          <Typography>Follow Up</Typography>
-                          <Typography variant="caption" color='primary'>16:30:42, 4 Feb 2022</Typography>
-                        </Box>
-                        <Typography variant="body2" color="text.secondary">
-                          Meghana P has an upcoming task about OVUM Hospitals- India.
-                        </Typography>
-                      </TimelineContent>
-                    </TimelineItem>
-                  </Timeline>
-                  <Timeline sx={{ [`& .${timelineItemClasses.root}:before`]: { flex: 0, padding: 0 } }}>
-                    <TimelineItem>
-                      <TimelineSeparator>
-                        <TimelineDot sx={{ bgcolor: '#1976D2' }} />
-                        <TimelineConnector sx={{ bgcolor: '#1976D2' }} />
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <Box display="flex" justifyContent="space-between">
-                          <Typography>Follow Up</Typography>
-                          <Typography variant="caption" color='primary'>16:30:42, 4 Feb 2022</Typography>
-                        </Box>
-                        <Typography variant="body2" color="text.secondary">
-                          Meghana P has an upcoming task about OVUM Hospitals- India.
-                        </Typography>
-                      </TimelineContent>
-                    </TimelineItem>
-                  </Timeline>
-                </AccordionDetails>
-              </Accordion>
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
 
-              <Accordion defaultExpanded sx={{marginTop:"20px",marginLeft:"30px",marginRight:"20px"}}>
-                <AccordionSummary expandIcon={<ExpandMore sx={{ color: '#fff' }} />} sx={{ color: '#fff', backgroundColor: '#1976D2' }}>
-                  <Typography component="span">Completed</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Timeline sx={{ [`& .${timelineItemClasses.root}:before`]: { flex: 0, padding: 0 } }}>
-                    <TimelineItem>
-                      <TimelineSeparator>
-                        <TimelineDot sx={{ bgcolor: '#1976D2' }} />
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <Box display="flex" justifyContent="space-between">
-                          <Typography>Follow Up</Typography>
-                          <Typography variant="caption" color='primary'>16:30:42, 4 Feb 2022</Typography>
-                        </Box>
-                        <Typography variant="body2" color="text.secondary">
-                          Meghana P has an upcoming task about OVUM Hospitals- India.
-                        </Typography>
-                      </TimelineContent>
-                    </TimelineItem>
-                  </Timeline>
-                </AccordionDetails>
-              </Accordion>
-            </Box>
-          </Grid>
-        </Grid>
-      </TabPanel>
-      <TabPanel value={activeTab} index={1}>
-        {/* Content for the "Related" tab */}
-      </TabPanel>
-    </Box>
-  );
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
+    const isSelected = (id) => selected.indexOf(id) !== -1;
+
+    const emptyRows =
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
+    return (
+        <Box sx={{ width: '100%', mt: 2 }}>
+            <Paper sx={{ width: '100%', mb: 2 }}>
+                <TableContainer>
+                    <Table
+                        sx={{ minWidth: 750 }}
+                        aria-labelledby="tableTitle"
+                        size="small"
+                    >
+                        <TableHead>
+                            <TableRow>
+                                <TableCell padding="checkbox">
+                                    <Checkbox
+                                        color="primary"
+                                        indeterminate={
+                                            selected.length > 0 && selected.length < rows.length
+                                        }
+                                        checked={rows.length > 0 && selected.length === rows.length}
+                                        onChange={handleSelectAllClick}
+                                    />
+                                </TableCell>
+                                <TableCell>user</TableCell>
+                                <TableCell>Email</TableCell>
+                                <TableCell>Location</TableCell>
+                                <TableCell>Account Status</TableCell>
+                                <TableCell>ID</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {rows
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((row) => {
+                                    const isItemSelected = isSelected(row.id);
+                                    const labelId = `enhanced-table-checkbox-${row.id}`;
+
+                                    return (
+                                        <TableRow
+                                            hover
+                                            onClick={(event) => handleClick(event, row.id)}
+                                            role="checkbox"
+                                            aria-checked={isItemSelected}
+                                            tabIndex={-1}
+                                            key={row.id}
+                                            selected={isItemSelected}
+                                            sx={{
+                                                height: "48px", // Reduced height for row
+                                            }}
+                                        >
+                                            <TableCell padding="checkbox">
+                                                <Checkbox
+                                                    color="primary"
+                                                    checked={isItemSelected}
+                                                    inputProps={{
+                                                        'aria-labelledby': labelId,
+                                                    }}
+                                                />
+                                            </TableCell>
+                                            <TableCell component="th" id={labelId} scope="row" sx={{ padding: "8px" }}>
+                                                {row.user}
+                                            </TableCell>
+                                            <TableCell sx={{ padding: "8px" }}>{row.email}</TableCell>
+                                            <TableCell sx={{ padding: "8px" }}>
+                                                <Box display="flex" alignContent="center">
+                                                    <LocationOnSharp sx={{ fontSize: "18px", color:"#707070" }} />
+                                                    {row.location}
+                                                </Box>
+                                            </TableCell>
+                                            <TableCell sx={{ padding: "8px" }}>
+                                                <Box sx={{
+                                                    backgroundColor: row.accountStatus === 'Active' ? "#ebebeb" : "#ef6c00",
+                                                    color: row.accountStatus === 'Active' ? "#000" : "#fff",
+                                                    borderRadius: "15px",
+                                                    padding: "5px 10px",
+                                                    width: "min-content",
+                                                    fontSize: "12px"
+                                                }}>
+                                                    {row.accountStatus}
+                                                </Box>
+                                            </TableCell>
+                                            <TableCell sx={{ padding: "8px" }}>{row.accountId}</TableCell>
+                                        </TableRow>
+                                    );
+                                })}
+                            {emptyRows > 0 && (
+                                <TableRow
+                                    style={{
+                                        height: 53 * emptyRows,
+                                    }}
+                                >
+                                    <TableCell colSpan={6} />
+                                </TableRow>
+                            )}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 25]}
+                    component="div"
+                    count={rows.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+            </Paper>
+        </Box>
+    );
 }

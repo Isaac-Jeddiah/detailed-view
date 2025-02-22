@@ -43,6 +43,7 @@ const Filterbar = () => {
         marginLeft: `calc(2px + 4px)`,
         marginRight: "20px",
         padding: "16px 24px 16px 24px",
+        marginBottom: "-20px",
       }}
     >
       {/* Profile Image with Editable Overlay */}
@@ -108,8 +109,10 @@ const Filterbar = () => {
         <ButtonGroup
           variant="contained"
           sx={{
-            border: "1px solid blue",
-            
+            border: "1px solid #c9c9c9",
+            "& .MuiButtonGroup-grouped:not(:last-of-type)": {
+              borderColor: "#c9c9c9", // Match the border color
+            },
             boxShadow: "none", // Remove shadow
             "& button": {
               boxShadow: "none",
