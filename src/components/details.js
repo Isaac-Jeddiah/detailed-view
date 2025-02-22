@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from "react";
+import { useState,useEffect,useRef } from "react";
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
@@ -42,6 +42,7 @@ function TabPanel({ children, value, index }) {
 
 
 export default function DetailsTable() {
+
   const [activeTab, setActiveTab] = useState(0);
   const [formData, setFormData] = useState({
     name: { value: 'name', edit: true },
@@ -54,15 +55,16 @@ export default function DetailsTable() {
     expiry: { value: '', edit: false },
     cvc: { value: '', edit: false }
   });
+
   const [allFieldsEditable, setAllFieldsEditable] = useState(false);
 
   const handleChange = (event, newValue) => setActiveTab(newValue);
-  const handleEdit = (field) => {
-    setEditableStates(prev => ({
-      ...prev,
-      [field]: !prev[field]
-    }));
-  };
+  // const handleEdit = (field) => {
+  //   setEditableStates(prev => ({
+  //     ...prev,
+  //     [field]: !prev[field]
+  //   }));
+  // };
 
   const [editingFields, setEditingFields] = useState({});
   const [editableStates, setEditableStates] = useState({
@@ -91,42 +93,71 @@ export default function DetailsTable() {
     expiry: '06/28',
     cvc: '5252'
   });
-  const [tempValue, setTempValue] = useState(fieldValues.name); 
+  // const [tempValue, setTempValue] = useState(fieldValues); 
 
 
 
-  const handleFieldChange = (key, value) => {
-    setTempValue(value);
+  // const handleFieldChange = (key, value) => {
+  //   setTempValue(value);
+  // };
+
+  // const handleSaveValue = (key) => {
+  //   setFieldValues({ ...fieldValues, [key]: tempValue });
+  //   setAllFieldsEditable();
+  // };
+ 
+
+const [editableFields, setEditableFields] = useState({
+  name: false,
+  phone: false,
+  state: false,
+  zipcode: false,
+  bio: false,
+  cardNumber: false,
+  cardHolder: false,
+  expiry: false,
+  cvc: false
+});
+
+const [tempValues, setTempValues] = useState({
+  name: 'abc',
+  phone: 'def',
+  state: 'ghi',
+  zipcode: 'jkl',
+  bio: 'mno',
+  cardNumber: 'pqr',
+  cardHolder: 'stu',
+  expiry: 'vwx',
+  cvc: 'yza'
+});
+
+const handleFieldChange = (key, value) => {
+  setTempValues({ ...tempValues, [key]: value });
+};
+
+const handleSaveValue = (key) => {
+  setFieldValues({ ...fieldValues, [key]: tempValues[key] });
+  setEditableFields({ ...editableFields, [key]: false });
+};
+
+const handleEdit = (key) => {
+  setEditableFields({ ...editableFields, [key]: true });
+  setTempValues({ ...tempValues, [key]: fieldValues[key] });
+};
+const textFieldsContainerRef = React.useRef();
+
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (textFieldsContainerRef.current && !textFieldsContainerRef.current.contains(event.target)) {
+      setAllFieldsEditable(false);
+    }
   };
 
-  const handleSaveValue = (key) => {
-    setFieldValues({ ...fieldValues, [key]: tempValue });
-    setAllFieldsEditable(false);
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
   };
-  // const EditIconButton = ({ onClick }) => (
-  //   <IconButton 
-  //     size="small" 
-  //     onClick={onClick}
-  //     sx={{
-  //       marginTop: '5px',
-  //       width: 28,
-  //       height: 28,
-  //       color:"primary",
-       
-  //       borderRadius: "50%", 
-       
-  //     }}
-  //   >
-  //     <EditIcon 
-  //       fontSize="small" 
-  //       sx={{
-  //         color: "transparent",
-  //         stroke: "#90A4AE",
-  //         strokeWidth: 2, 
-  //       }} 
-  //     />
-  //   </IconButton>
-  // );
+}, [textFieldsContainerRef]);
 
   const EditIconButton = ({ onClick }) => (
     <IconButton
@@ -152,10 +183,10 @@ export default function DetailsTable() {
     </IconButton>
   );
   
+
+
   const [showMoreOverdue, setShowMoreOverdue] = useState(false);
   const [showMoreCompleted, setShowMoreCompleted] = useState(false);
-
-  
 
   const completedItems = [
     {
@@ -264,10 +295,7 @@ export default function DetailsTable() {
   }
   ];
   
- const [text , setText] = useState("")
 
-  const clearTextField = () => setText("")
-  
 const overdueItems = [
   {
     title: "Follow Up",
@@ -349,12 +377,7 @@ const overdueItems = [
     }
   }
 ];
-const handleClearValue = (field) => {
-  setFormData(prev => ({
-    ...prev,
-    [field]: ''
-  }));
-};
+
 // Modified renderTimelineItems function
 const renderTimelineItems = (items, showMore, maxItems = 2) => {
   const displayItems = showMore ? items : items.slice(0, maxItems);
@@ -455,6 +478,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
     width: '100%',
     maxWidth: '100%',
     boxShadow: 'none',
+    borderTop: 'none',
     marginTop: '0px !important', // Prevents unwanted movement
     '& .MuiAccordion-region': {
       height: '250px',
@@ -462,31 +486,51 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       '&::-webkit-scrollbar': {
         width: '0px'
       }
+    },
+    '&:before': {
+    display: 'none', // This removes the default divider
+  },
+  '& .MuiAccordionSummary-root': {
+    borderTop: 'none',
+    '&:before': {
+      display: 'none',
     }
+  }
   };
   
 
   const summaryStyle = {
     position: 'relative',
-    bgcolor: '#1976D21F',
+    borderTop: 'none',
+    // bgcolor: '#1976D21F',
     color: '#1976D2',
     width: '100%',
     maxWidth: '100%',
     height: '40px !important',
     minHeight: '40px !important',
     paddingRight: '16px !important',
-    borderRadius: '4px',
+    borderRadius: '0px',
     display: 'flex', // Ensures the text stays centered
     alignItems: 'center', // Centers text vertically
     '& .MuiAccordionSummary-content': {
       margin: '0 !important', // Remove margin changes
       alignItems: 'center', // Keep text centered
+      borderTop: 'none',
     },
     '&.Mui-expanded': {
       height: '40px !important',
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
     },
+    '&:before': {
+    display: 'none', // This removes the default divider
+  },
+  '& .MuiAccordionSummary-root': {
+    borderTop: 'none',
+    '&:before': {
+      display: 'none',
+    }
+  }
   };
   
 
@@ -551,147 +595,110 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
           flexWrap: "wrap",
         }}
       >
-    <Box 
-  sx={{ 
-    display: "flex", 
-    alignItems: "center", 
-    
-    bgcolor: "rgba(243,243,243,255)", 
-    px: 2, 
-    py: 1.5, // Adjusted to balance spacing
-    borderRadius: 1 
-  }}
-  mb={2.4}
->
-  <Typography 
-    variant="h6" 
-    sx={{ lineHeight: 1 }} // Ensures equal spacing above & below text
-  >
-    Section Heading
-  </Typography>
-</Box>
+ 
 
-
+<Box display="flex" alignItems="center" justifyContent="space-between" mb={0.5} mt={1.2}
+ >
+        <Typography variant="h6" padding="0 0 8px!important 0" >Section Heading</Typography>
+      
+        </Box>
+        <Divider sx={{ flexGrow: 1,mb:1.9}} />
         
         <Grid container spacing={2.4}>
+        
         <Grid item xs={6}>
         <TextField
-        label="Name*"
-        variant={!allFieldsEditable ? "standard" : "outlined"}
-        fullWidth
-        value={fieldValues.name}
-        onChange={(e) => handleFieldChange('name', e.target.value)}
-        disabled={!allFieldsEditable}
-        sx={{
-        
-          '& .MuiInput-underline': {
-            borderBottomWidth: "1px",borderBottomStyle: "solid",// Increase thickness
-          },
-          '& .MuiInput-underline:before': {
-            borderBottomWidth: "0px",borderBottomStyle: "solid",// Increase thickness
-          },
-          '& .MuiInputBase-root': {
-            height: '36px',
-          },
-      
-          // Remove extra spacing between label and input for standard variant
-          '& .MuiInput-root': {
-            marginTop: '3px',
-          },
-          // Adjust label position for standard variant
-          '& .MuiInputLabel-root.MuiInputLabel-standard': {
-            transform: 'translate(0, -1.5px) scale(0.75)',
-            transformOrigin: 'top left'
-          }
-        }}
-        InputLabelProps={{
-          sx: {
-            color: allFieldsEditable ? "#1976d2" : "inherit",
-            ...(allFieldsEditable && {
-              backgroundColor: "white",
-            }),
-          },
-          shrink: true // Keep label shrunk
-        }}
-        InputProps={{
-          sx: { 
-             fontSize: "12px",
-            
-            ...(allFieldsEditable ? {} : { paddingTop: "5px" }), 
-            ...(allFieldsEditable && {
-              '&:after': {
-                borderBottom: '2px solid #1976d2',
-              },
-              '&:before': {
-                borderBottom: '1px solid rgba(0, 0, 0, 0.42)',
-              },
-              '&:hover:before': {
-                borderBottom: '2px solid #1976d2',
-              }
-            })
-          },
-          endAdornment: (
-            <InputAdornment position="end" sx={{ 
-              position: 'relative', 
-              marginRight: '4px', 
-              marginBottom: "5px",
-              '&.Mui-disabled': {
-                color: '#1976d2',
-              }
-             }}>
-              {allFieldsEditable && (
-                <>
-                  <IconButton
-                    onClick={() =>{ handleSaveValue("name"); setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    sx={{  
-                      opacity: 0.7,
-                      marginTop: '5px',
-                      width: 28,
-                      height: 28, 
-                      marginRight: '1px' 
-                    }}
-                  >
-                    <CheckCircleIcon />
-                  </IconButton>
-                  <IconButton
-                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    sx={{  
-                      opacity: 0.7,
-                      marginTop: '5px',
-                      width: 28,
-                      height: 28,
-                      marginRight: '1px'
-                    }}
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                </>
-              )}
-              {!allFieldsEditable && (
-                <>
-                  <EditIconButton
-                    onClick={() => setAllFieldsEditable(!allFieldsEditable)}
-                    edge="end"
-                    sx={{ marginLeft: allFieldsEditable ? "4px" : "0px" }}
-                  />
-                </> 
-              )}
-            </InputAdornment>
-          ),
-        }}
-      />
+          
+          label="Name*"
+          variant={!allFieldsEditable ? 'standard' : 'outlined'}
+          fullWidth
+          value={editableFields.name ? tempValues.name : fieldValues.name}
+          onFocus={() => handleEdit('name')}
+          onBlur={() => {handleSaveValue('name'); setAllFieldsEditable()}}
+          onChange={(e) => handleFieldChange('name', e.target.value)}
+          disabled={!allFieldsEditable}
+  sx={{
+    '& .MuiInput-underline': {
+      borderBottomWidth: "1px", borderBottomStyle: "solid", // Increase thickness
+    },
+    '& .MuiInput-underline:before': {
+      borderBottomWidth: "0px", borderBottomStyle: "solid", // Increase thickness
+    },
+    '& .MuiInputBase-root': {
+      height: '36px',
+    },
+    // Remove extra spacing between label and input for standard variant
+    '& .MuiInput-root': {
+      marginTop: '3px',
+    },
+    // Adjust label position for standard variant
+    '& .MuiInputLabel-root.MuiInputLabel-standard': {
+      transform: 'translate(0, -1.5px) scale(0.75)',
+      transformOrigin: 'top left'
+    }
+  }}
+  InputLabelProps={{
+    sx: {
+      color: allFieldsEditable ? "#1976d2" : "inherit",
+      ...(allFieldsEditable && {
+        backgroundColor: "white",
+      }),
+    },
+    shrink: true // Keep label shrunk
+  }}
+  InputProps={{
+    sx: {
+      fontSize: "12px",
+      ...(allFieldsEditable ? {} : { paddingTop: "5px" }),
+      ...(allFieldsEditable && {
+        '&:after': {
+          borderBottom: '2px solid #1976d2',
+        },
+        '&:before': {
+          borderBottom: '1px solid rgba(0, 0, 0, 0.42)',
+        },
+        '&:hover:before': {
+          borderBottom: '2px solid #1976d2',
+        }
+      })
+    },
+    endAdornment: (
+      <InputAdornment position="end" sx={{
+        position: 'relative',
+        marginRight: '4px',
+        marginBottom: "5px",
+        '&.Mui-disabled': {
+          color: '#1976d2',
+        }
+      }}>
+        {!allFieldsEditable && (
+          <>
+            <EditIconButton
+              onClick={() => setAllFieldsEditable(!allFieldsEditable)}
+              edge="end"
+              sx={{ marginLeft: allFieldsEditable ? "4px" : "0px" }}
+            />
+          </>
+        )}
+      </InputAdornment>
+    ),
+  }}
+/>
+
     </Grid>
 
           <Grid item xs={6}>
           <TextField
+          
         label="Phone*"
         variant={!allFieldsEditable ? "standard" : "outlined"}
         fullWidth
-        value={fieldValues.phone}
+        value={editableFields.phone ? tempValues.phone : fieldValues.phone}
+        onFocus={() => handleEdit('phone')}
+        onBlur={() => {handleSaveValue('phone'); setAllFieldsEditable()}}
         onChange={(e) => handleFieldChange('phone', e.target.value)}
-        disabled={!allFieldsEditable}
+       
+       disabled={!allFieldsEditable}
         sx={{
           '& .MuiInput-underline:before': {
             borderBottomWidth: "1px",borderBottomStyle: "solid",// Increase thickness
@@ -744,36 +751,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
                 color: '#1976d2',
               }
              }}>
-              {allFieldsEditable && (
-                <>
-                  <IconButton
-                    onClick={() =>{ handleSaveValue("phone"); setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    sx={{  
-                      opacity: 0.7,
-                      marginTop: '5px',
-                      width: 28,
-                      height: 28, 
-                      marginRight: '1px' 
-                    }}
-                  >
-                    <CheckCircleIcon />
-                  </IconButton>
-                  <IconButton
-                    onClick={() => {setAllFieldsEditable(!allFieldsEditable)}}
-                    edge="end"
-                    sx={{  
-                      opacity: 0.7,
-                      marginTop: '5px',
-                      width: 28,
-                      height: 28,
-                      marginRight: '1px'
-                    }}
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                </>
-              )}
+             
               {!allFieldsEditable && (
                 <>
                   <EditIconButton
@@ -791,11 +769,14 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
           
           <Grid item xs={6}>
     <TextField
+    
       label="State *"
       variant={!allFieldsEditable ? "standard" : "outlined"}
       fullWidth
       select
-      value={fieldValues.state}
+      value={editableFields.state ? tempValues.state : fieldValues.state}
+      onFocus={() => handleEdit('state')}
+      onBlur={() => {handleSaveValue('state'); setAllFieldsEditable()}}
       onChange={(e) => handleFieldChange('state', e.target.value)}
       disabled={!allFieldsEditable}
       size="small"
@@ -843,8 +824,11 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       label="Zip Code*"
       variant={!allFieldsEditable ? "standard" : "outlined"}
       fullWidth
-      value={fieldValues.zipcode}
+      value={editableFields.zipcode ? tempValues.zipcode : fieldValues.zipcode}
+      onFocus={() => handleEdit('zipcode')}
+      onBlur={() => {handleSaveValue('zipcode'); setAllFieldsEditable()}}
       onChange={(e) => handleFieldChange('zipcode', e.target.value)}
+     
       disabled={!allFieldsEditable}
       size="small"
       sx={{
@@ -877,24 +861,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         },
         endAdornment: (
           <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom: "5px", '&.Mui-disabled': { color: '#1976d2' } }}>
-            {allFieldsEditable && (
-              <>
-                <IconButton
-                  onClick={() => { handleSaveValue("zipcode"); setAllFieldsEditable(!allFieldsEditable) }}
-                  edge="end"
-                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
-                >
-                  <CheckCircleIcon />
-                </IconButton>
-                <IconButton
-                  onClick={() => setAllFieldsEditable(!allFieldsEditable)}
-                  edge="end"
-                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
-                >
-                  <CloseIcon />
-                </IconButton>
-              </>
-            )}
+           
             {!allFieldsEditable && <EditIconButton onClick={() => { handleEdit('zipcode'); setAllFieldsEditable(!allFieldsEditable) }} />}
           </InputAdornment>
         ),
@@ -909,8 +876,11 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       fullWidth
       multiline
       rows={3}
-      value={fieldValues.bio}
+      value={editableFields.bio ? tempValues.bio : fieldValues.bio}
+      onFocus={() => handleEdit('bio')}
+      onBlur={() => {handleSaveValue('bio'); setAllFieldsEditable()}}
       onChange={(e) => handleFieldChange('bio', e.target.value)}
+     
       disabled={!allFieldsEditable}
       size="small"
       sx={{
@@ -948,30 +918,14 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         },
         endAdornment: (
           <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom: "0px", '&.Mui-disabled': { color: '#1976d2' } }}>
-            {allFieldsEditable && (
-              <>
-                <IconButton
-                  onClick={() => { handleSaveValue("bio"); setAllFieldsEditable(!allFieldsEditable) }}
-                  edge="end"
-                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
-                >
-                  <CheckCircleIcon />
-                </IconButton>
-                <IconButton
-                  onClick={() => setAllFieldsEditable(!allFieldsEditable)}
-                  edge="end"
-                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
-                >
-                  <CloseIcon />
-                </IconButton>
-              </>
-            )}
+          
             {!allFieldsEditable && <EditIconButton onClick={() => { handleEdit('bio'); setAllFieldsEditable(!allFieldsEditable) }} />}
           </InputAdornment>
         ),
       }}
     />
   </Grid>
+        
         </Grid>
       </Box>
 
@@ -990,25 +944,13 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         }}
       >
        
-              <Box 
-          sx={{ 
-            display: "flex", 
-            alignItems: "center", 
-            
-            bgcolor: "rgba(243,243,243,255)", 
-            px: 2, 
-            py: 1.5, // Adjusted to balance spacing
-            borderRadius: 1 
-          }}
-          mb={2.4}
-        >
-          <Typography 
-            variant="h6" 
-            sx={{ lineHeight: 1 }} // Ensures equal spacing above & below text
-          >
-            Typography
-          </Typography>
+       <Box display="flex" alignItems="center" justifyContent="space-between" mb={0.5} mt={1.2}
+ >
+        <Typography variant="h6" padding="0 0 8px!important 0" >Typography</Typography>
+      
         </Box>
+        <Divider sx={{ flexGrow: 1,mb:1.9}} />
+        
               
         <Grid container spacing={2.4}>
         <Grid item xs={12}>
@@ -1016,8 +958,11 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       label="Card Number*"
       variant={!allFieldsEditable ? "standard" : "outlined"}
       fullWidth
-      value={fieldValues.cardNumber}
+      value={editableFields.cardNumber ? tempValues.cardNumber : fieldValues.cardNumber}
+      onFocus={() => handleEdit('cardNumber')}
+      onBlur={() => {handleSaveValue('cardNumber'); setAllFieldsEditable()}}
       onChange={(e) => handleFieldChange('cardNumber', e.target.value)}
+     
       disabled={!allFieldsEditable}
       size="small"
       sx={{
@@ -1057,24 +1002,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         ),
         endAdornment: (
           <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom: "5px", '&.Mui-disabled': { color: '#1976d2' } }}>
-            {allFieldsEditable && (
-              <>
-                <IconButton
-                  onClick={() => { handleSaveValue("cardNumber"); setAllFieldsEditable(!allFieldsEditable) }}
-                  edge="end"
-                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
-                >
-                  <CheckCircleIcon />
-                </IconButton>
-                <IconButton
-                  onClick={() => setAllFieldsEditable(!allFieldsEditable)}
-                  edge="end"
-                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
-                >
-                  <CloseIcon />
-                </IconButton>
-              </>
-            )}
+           
             {!allFieldsEditable && <EditIconButton onClick={() => { handleEdit('cardNumber'); setAllFieldsEditable(!allFieldsEditable) }} />}
           </InputAdornment>
         ),
@@ -1087,8 +1015,11 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       label="Card Holder Name*"
       variant={!allFieldsEditable ? "standard" : "outlined"}
       fullWidth
-      value={fieldValues.cardHolder}
+      value={editableFields.cardHolder ? tempValues.cardHolder : fieldValues.cardHolder}
+      onFocus={() => handleEdit('cardHolder')}
+      onBlur={() => {handleSaveValue('cardHolder'); setAllFieldsEditable()}}
       onChange={(e) => handleFieldChange('cardHolder', e.target.value)}
+     
       disabled={!allFieldsEditable}
       size="small"
       sx={{
@@ -1122,24 +1053,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         },
         endAdornment: (
           <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom: "5px", '&.Mui-disabled': { color: '#1976d2' } }}>
-            {allFieldsEditable && (
-              <>
-                <IconButton
-                  onClick={() => { handleSaveValue("cardHolder"); setAllFieldsEditable(!allFieldsEditable) }}
-                  edge="end"
-                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
-                >
-                  <CheckCircleIcon />
-                </IconButton>
-                <IconButton
-                  onClick={() => setAllFieldsEditable(!allFieldsEditable)}
-                  edge="end"
-                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
-                >
-                  <CloseIcon />
-                </IconButton>
-              </>
-            )}
+           
             {!allFieldsEditable && <EditIconButton onClick={() => { handleEdit('cardHolder'); setAllFieldsEditable(!allFieldsEditable) }} />}
           </InputAdornment>
         ),
@@ -1152,8 +1066,11 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       label="Expiry*"
       variant={!allFieldsEditable ? "standard" : "outlined"}
       fullWidth
-      value={fieldValues.expiry}
+      value={editableFields.expiry ? tempValues.expiry : fieldValues.expiry}
+      onFocus={() => handleEdit('expiry')}
+      onBlur={() => {handleSaveValue('expiry'); setAllFieldsEditable()}}
       onChange={(e) => handleFieldChange('expiry', e.target.value)}
+     
       disabled={!allFieldsEditable}
       size="small"
       sx={{
@@ -1187,24 +1104,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         },
         endAdornment: (
           <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom: "5px", '&.Mui-disabled': { color: '#1976d2' } }}>
-            {allFieldsEditable && (
-              <>
-                <IconButton
-                  onClick={() => { handleSaveValue("expiry"); setAllFieldsEditable(!allFieldsEditable) }}
-                  edge="end"
-                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
-                >
-                  <CheckCircleIcon />
-                </IconButton>
-                <IconButton
-                  onClick={() => setAllFieldsEditable(!allFieldsEditable)}
-                  edge="end"
-                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
-                >
-                  <CloseIcon />
-                </IconButton>
-              </>
-            )}
+           
             {!allFieldsEditable && <EditIconButton onClick={() => { handleEdit('expiry'); setAllFieldsEditable(!allFieldsEditable) }} />}
           </InputAdornment>
         ),
@@ -1217,9 +1117,12 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       label="CVC/CV2*"
       variant={!allFieldsEditable ? "standard" : "outlined"}
       fullWidth
-      value={fieldValues.cvc}
+      value={editableFields.cvc ? tempValues.cvc : fieldValues.cvc}
+      onFocus={() => handleEdit('cvc')}
+      onBlur={() => {handleSaveValue('cvc'); setAllFieldsEditable()}}
       onChange={(e) => handleFieldChange('cvc', e.target.value)}
-      disabled={!allFieldsEditable}
+     
+        disabled={!allFieldsEditable}
       size="small"
       sx={{
         '& .MuiInput-underline:before': {
@@ -1252,24 +1155,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         },
         endAdornment: (
           <InputAdornment position="end" sx={{ position: 'relative', marginRight: '4px', marginBottom: "5px", '&.Mui-disabled': { color: '#1976d2' } }}>
-            {allFieldsEditable && (
-              <>
-                <IconButton
-                  onClick={() => { handleSaveValue("cvc"); setAllFieldsEditable(!allFieldsEditable) }}
-                  edge="end"
-                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
-                >
-                  <CheckCircleIcon />
-                </IconButton>
-                <IconButton
-                  onClick={() => setAllFieldsEditable(!allFieldsEditable)}
-                  edge="end"
-                  sx={{ opacity: 0.7, marginTop: '5px', width: 28, height: 28, marginRight: '1px' }}
-                >
-                  <CloseIcon />
-                </IconButton>
-              </>
-            )}
+           
             {!allFieldsEditable && <EditIconButton onClick={() => { handleEdit('cvc'); setAllFieldsEditable(!allFieldsEditable) }} />}
           </InputAdornment>
         ),

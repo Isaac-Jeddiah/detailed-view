@@ -93,55 +93,28 @@ const Popup = ({ closePopup }) => {
     }));
   };
   const EditIconButton = ({ onClick }) => (
-    <IconButton 
-      size="small" 
-      onClick={onClick}
-      sx={{
-        mt: "5px",
-        width: 28,
-        height: 28,
-        color: "grey", // Default grey color
-        borderRadius: "50%", 
-        position: "relative" // Allows placing extra parts
-      }}
-    >
-      {/* Main Pencil Icon */}
-      <EditIcon 
-        fontSize="small" 
+      <IconButton
+        size="small"
+        onClick={onClick}
         sx={{
-          color: "grey", // Entire pencil is default grey
-        }} 
-      />
-  
-     
-    </IconButton>
-  );
-  // const EditIconButton = ({ onClick }) => (
-  //   <IconButton 
-  //     size="small" 
-  //     onClick={onClick}
-  //     sx={{
-  //       marginTop: '5px',
-  //       width: 28,
-  //       height: 28,
-  //       color:"primary",
-  //       //backgroundColor: "rgba(25, 118, 210, 0.3)", // 30% opacity of #1976D2
-  //       borderRadius: "50%", // Ensuring circular shape
-  //       "&:hover": {
-  //        // backgroundColor: "rgba(25, 118, 210, 0.4)", // Slightly darker on hover
-  //       },
-  //     }}
-  //   >
-  //     <EditIcon 
-  //       fontSize="small" 
-  //       sx={{
-  //         color: "transparent", // No fill
-  //         stroke: "#90A4AE", // Outline color
-  //         strokeWidth: 2, // Adjusting stroke thickness
-  //       }} 
-  //     />
-  //   </IconButton>
-  // );
+          mt: "5px",
+          width: 28,
+          height: 28,
+          borderRadius: "50%",
+          position: "relative",
+          p: 0, 
+        }}
+      >
+        {/* Use Cloudinary Image URL */}
+        <img 
+          src="https://res.cloudinary.com/dpnmd6o7d/image/upload/e_colorize:100,co_rgb:808080/v1740197151/draw_h2elwl.png"
+           alt="Edit"
+          width="20"
+          height="20"
+          style={{ objectFit: "contain" }} 
+        />
+      </IconButton>
+    );
   return (
     <Box
       sx={{
