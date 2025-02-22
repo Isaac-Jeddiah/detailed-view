@@ -23,6 +23,12 @@ import Link from '@mui/material/Link';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'; 
 import DataTable from './table';
 import { Close } from '@mui/icons-material';
+import {
+
+  ButtonGroup,
+ 
+  
+} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 const US_STATES = [
   'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
@@ -1205,10 +1211,12 @@ const summaryStyle = {
       }}
         />
       </Grid>
-        {/* Save Button */}
-  
+       
         </Grid>
     </Box>
+     {/* Save Button */}
+        {allFieldsEditable && (
+          <>
     <Box sx={{
       backgroundColor: "white",
       maxWidth: "100%",
@@ -1223,27 +1231,45 @@ const summaryStyle = {
       
     }}>
     <Grid item xs={12} container justifyContent="flex-end" >
-    <Button
-      variant="contained"
-      color="primary"
-      sx={{
-        marginBottom: 1,
-        marginTop: -1,
-        paddingX: 3,
-        paddingY: 1,
-        width:"70px",
-        height:"40px !important",
-        backgroundColor: "#1976d2",
-        "&:hover": { backgroundColor: "#1565c0" },
-      }}
-      onClick={handleSave}
-    >
-      Save
-    </Button>
+    <ButtonGroup
+          variant="contained"
+          sx={{
+            border: "1px solid #c9c9c9",
+            "& .MuiButtonGroup-grouped:not(:last-of-type)": {
+              borderColor: "#c9c9c9", // Match the border color
+            },
+            boxShadow: "none", // Remove shadow
+            "& button": {
+              boxShadow: "none",
+              
+            },
+          }}
+        >
+          <Button sx={{backgroundColor: "white", boxShadow: "none", // Remove shadow
+            "& button": {
+              boxShadow: "none",
+              
+            },"&:hover": {
+                //backgroundColor: "#f0f0f0",
+                boxShadow: "none",
+              },
+              color: "#283356",}}>Cancel</Button>
+          <Button
+                      onClick={handleSave}
+                     sx={{backgroundColor: "#1976D2",
+                      color: "white",}}
+                    >
+                      Save
+                    </Button>
+        
+        </ButtonGroup>
+
   </Grid>
   </Box>
+  </> 
+              )}
               </Grid>
-      
+             
     
           <Grid item xs={4}>
     <Grid container sx={{ width: '100%', flexWrap: 'wrap' }}>
