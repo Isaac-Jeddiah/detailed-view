@@ -25,6 +25,7 @@ const Dashboard1 = () => {
             top: 0,
             left: 0
         }}>
+            
           <Sidebar selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
             <Box
                 sx={{
@@ -74,6 +75,7 @@ const Dashboard1 = () => {
                         backgroundColor: "#f4f5fa",
                         padding: "20px",
                         marginTop: "-20px", 
+                       
                     }}
                 >
                     <Filterbar />

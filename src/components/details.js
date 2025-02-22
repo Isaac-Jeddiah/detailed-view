@@ -492,16 +492,24 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
 
 
   return (
+    <Box sx={{
+      position: "relative",
+
+      
+      padding: "0px 0px 0px 8px",
+   
+    }}>
     <Box sx={{ 
     
       all: "unset", // **Prevents inheritance from parent styles**
-     
+      color: "initial", // Resets text color to browser default (usually black)
+      fontStyle: "initial", // Resets font style to normal
+      backgroundColor: "initial",
       position: 'relative',
       width: "100%", 
       height: "calc(100vh)", 
       overflow: "hidden",
-      ml: 1 ,
-      
+      ml: -2.4 ,
     }}>
       <AppBar position="static" color="default" elevation={0}>
         <Tabs 
@@ -1384,6 +1392,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       </Grid>
         
       </TabPanel>
+    </Box>
     </Box>
   );
 }

@@ -32,6 +32,9 @@ const Filterbar = () => {
       justifyContent="space-between"
       alignItems="center"
       sx={{
+        color: "initial", // Resets text color to browser default (usually black)
+        fontStyle: "initial", // Resets font style to normal
+        backgroundColor: "initial",
         backgroundColor: "white",
         height: "auto",
         minHeight: "52px",
