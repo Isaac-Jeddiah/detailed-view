@@ -1214,6 +1214,8 @@ const summaryStyle = {
         marginTop: 2,
         paddingX: 3,
         paddingY: 1,
+        width:"70px",
+        height:"40px !important",
         backgroundColor: "#1976d2",
         "&:hover": { backgroundColor: "#1565c0" },
       }}
@@ -1289,7 +1291,7 @@ const summaryStyle = {
    '& .MuiTimelineDot-root': { 
   width: 8,  // Adjust this value to change size
   height: 8, // Keep same as width for symmetry
-  backgroundColor: 'rgba(80, 80, 80, 0.4)',
+  backgroundColor: 'rgba(80, 80, 80,0.7)',
   clipPath: 'polygon(0 0, 100% 50%, 0 100%)',
   transform: 'translateX(2px)', // Fine-tune positioning if needed
   padding: 0,
@@ -1330,7 +1332,7 @@ const summaryStyle = {
               '& .MuiTimelineDot-root': { 
                 width: 8,  // Adjust this value to change size
                 height: 8, // Keep same as width for symmetry
-                backgroundColor: 'rgba(80, 80, 80, 0.4)',
+                backgroundColor: 'rgba(80, 80, 80, 0.7)',
                 clipPath: 'polygon(0 0, 100% 50%, 0 100%)',
                 transform: 'translateX(2px)', // Fine-tune positioning if needed
                 padding: 0,
