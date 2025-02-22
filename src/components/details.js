@@ -632,8 +632,12 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         onChange={(e) => handleFieldChange('name', e.target.value)}
         disabled={!allFieldsEditable}
         sx={{
-          '& .MuiInput-underline:after': {
-            borderBottomWidth: "2px",borderBottomStyle: "solid",// Increase thickness
+        
+          '& .MuiInput-underline': {
+            borderBottomWidth: "1px",borderBottomStyle: "solid",// Increase thickness
+          },
+          '& .MuiInput-underline:before': {
+            borderBottomWidth: "0px",borderBottomStyle: "solid",// Increase thickness
           },
           '& .MuiInputBase-root': {
             height: '36px',
@@ -739,7 +743,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
         disabled={!allFieldsEditable}
         sx={{
           '& .MuiInput-underline:before': {
-            borderBottomWidth: "2px",borderBottomStyle: "solid",// Increase thickness
+            borderBottomWidth: "1px",borderBottomStyle: "solid",// Increase thickness
           },
           '& .MuiInputBase-root': {
             height: '36px',
@@ -846,7 +850,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       size="small"
       sx={{
         '& .MuiInput-underline:before': {
-          borderBottomWidth: "2px",borderBottomStyle: "solid",// Increase thickness
+          borderBottomWidth: "1px",borderBottomStyle: "solid",// Increase thickness
         },
         '& .MuiInputBase-root': { height: '36px' },
         '& .MuiInput-root': { marginTop: '3px' },
@@ -894,7 +898,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       size="small"
       sx={{
         '& .MuiInput-underline:before': {
-            borderBottomWidth: "2px",borderBottomStyle: "solid",// Increase thickness
+            borderBottomWidth: "1px",borderBottomStyle: "solid",// Increase thickness
           },
         '& .MuiInputBase-root': { height: '36px' },
         '& .MuiInput-root': { marginTop: '3px' },
@@ -959,8 +963,12 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       disabled={!allFieldsEditable}
       size="small"
       sx={{
-        '& .MuiInput-underline:before': {
-            borderBottomWidth: "2px",borderBottomStyle: "solid",// Increase thickness
+        
+          '& .MuiInput-underline': {
+            borderBottomWidth: "1px",borderBottomStyle: "solid",// Increase thickness
+          },
+          '& .MuiInput-underline:before': {
+            borderBottomWidth: "0px",borderBottomStyle: "solid",// Increase thickness
           },
         '& .MuiInputBase-root': { height: 'auto' },
         '& .MuiInput-root': { marginTop: '10px' },
@@ -1063,7 +1071,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       size="small"
       sx={{
         '& .MuiInput-underline:before': {
-            borderBottomWidth: "2px",borderBottomStyle: "solid",// Increase thickness
+            borderBottomWidth: "1px",borderBottomStyle: "solid",// Increase thickness
           },
         '& .MuiInputBase-root': { height: '40px' },
         '& .MuiInput-root': { marginTop: '3px' },
@@ -1134,7 +1142,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       size="small"
       sx={{
         '& .MuiInput-underline:before': {
-            borderBottomWidth: "2px",borderBottomStyle: "solid",// Increase thickness
+            borderBottomWidth: "1px",borderBottomStyle: "solid",// Increase thickness
           },
         '& .MuiInputBase-root': { height: '36px' },
         '& .MuiInput-root': { marginTop: '3px' },
@@ -1199,7 +1207,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       size="small"
       sx={{
         '& .MuiInput-underline:before': {
-            borderBottomWidth: "2px",borderBottomStyle: "solid",// Increase thickness
+            borderBottomWidth: "1px",borderBottomStyle: "solid",// Increase thickness
           },
         '& .MuiInputBase-root': { height: '36px' },
         '& .MuiInput-root': { marginTop: '3px' },
@@ -1264,7 +1272,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
       size="small"
       sx={{
         '& .MuiInput-underline:before': {
-            borderBottomWidth: "2px",borderBottomStyle: "solid",// Increase thickness
+            borderBottomWidth: "1px",borderBottomStyle: "solid",// Increase thickness
           },
         '& .MuiInputBase-root': { height: '36px' },
         '& .MuiInput-root': { marginTop: '3px' },
