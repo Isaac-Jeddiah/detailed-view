@@ -75,8 +75,7 @@ const Filterbar = () => {
               opacity: 0,
               transition: "opacity 0.3s ease-in-out",
             }}
-            onClick={() => document.getElementById("imageUpload").click()}
-          >
+         >
             <Edit sx={{ color: "white", fontSize: 24 }} />
           </Box>
         </Box>

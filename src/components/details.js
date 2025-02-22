@@ -129,52 +129,33 @@ export default function DetailsTable() {
   // );
 
   const EditIconButton = ({ onClick }) => (
-    <IconButton 
-      size="small" 
+    <IconButton
+      size="small"
       onClick={onClick}
       sx={{
         mt: "5px",
         width: 28,
         height: 28,
-        color: "grey", // Default grey color
-        borderRadius: "50%", 
-        position: "relative" // Allows placing extra parts
+        borderRadius: "50%",
+        position: "relative",
+        p: 0, // Remove padding for a better fit
       }}
     >
-      {/* Main Pencil Icon */}
-      <EditIcon 
-        fontSize="small" 
-        sx={{
-          color: "grey", // Entire pencil is default grey
-        }} 
+      {/* Use Cloudinary Image URL */}
+      <img 
+        src="https://res.cloudinary.com/dpnmd6o7d/image/upload/e_colorize:100,co_rgb:808080/v1740197151/draw_h2elwl.png"
+         alt="Edit"
+        width="20"
+        height="20"
+        style={{ objectFit: "contain" }} // Ensures it fits properly
       />
-  
-     
     </IconButton>
   );
-
+  
   const [showMoreOverdue, setShowMoreOverdue] = useState(false);
   const [showMoreCompleted, setShowMoreCompleted] = useState(false);
 
-  // const overdueItems = [
-  //   {
-  //     title: "Follow Up",
-  //     date: "16:30:42, 4 Feb 2022",
-  //     description: "Meghana P has an upcoming task about a meeting at OVUM Hospitals- India."
-  //   },
-    
-  //   {
-  //     title: "Follow Up",
-  //     date: "16:30:42, 4 Feb 2022",
-  //     description: "Meghana P has an upcoming task about a meeting at OVUM Hospitals- India."
-  //   },
-  //   {
-  //     title: "Follow Up",
-  //     date: "16:30:42, 4 Feb 2022",
-  //     description: "Meghana P has an upcoming task about a meeting at OVUM Hospitals- India."
-  //   },
-    
-  // ];
+  
 
   const completedItems = [
     {
@@ -513,7 +494,8 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
   return (
     <Box sx={{ 
     
-  
+      all: "unset", // **Prevents inheritance from parent styles**
+     
       position: 'relative',
       width: "100%", 
       height: "calc(100vh)", 
@@ -566,7 +548,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
     display: "flex", 
     alignItems: "center", 
     
-    bgcolor: "rgb(243, 243, 243)", 
+    bgcolor: "rgba(243,243,243,255)", 
     px: 2, 
     py: 1.5, // Adjusted to balance spacing
     borderRadius: 1 
@@ -1005,7 +987,7 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
             display: "flex", 
             alignItems: "center", 
             
-            bgcolor: "rgb(243, 243, 243)", 
+            bgcolor: "rgba(243,243,243,255)", 
             px: 2, 
             py: 1.5, // Adjusted to balance spacing
             borderRadius: 1 
