@@ -10,21 +10,20 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import { LocationOnSharp } from '@mui/icons-material';
-
-function createData(id, user, email, location, accountStatus, accountId) {
-    return { id, user, email, location, accountStatus, accountId };
+import Avatar from '@mui/material/Avatar'
+function createData(id, user, amount, stage, probability, closingdate, avatar) {
+    return { id, user, amount, stage, probability, closingdate, avatar };
 }
 
 const rows = [
-    createData(1, 'Cupcake', 'mail@mail.com', "Chennai", "Active", 40),
-    createData(2, 'Donut', 'mail@mail.com', "Chennai", "Active", 40),
-    createData(3, 'Eclair', 'mail@mail.com', "Chennai", "Active", 60),
-    createData(4, 'Frozen yoghurt', 'mail@mail.com', "Chennai", "Suspended", 40),
-    createData(5, 'Gingerbread', 'mail@mail.com', "Chennai", "Active", 30),
-    createData(6, 'Gingerbread', 'mail@mail.com', "Chennai", "Active", 30),
-    createData(7, 'Gingerbread', 'mail@mail.com', "Chennai", "Active", 30),
+    createData(1, 'Prabodhan', '60000', "Chennai", "Active", '1/4/2025', 'https://sp.yimg.com/ib/th?id=OIP.Q6R49EFCR62g4QtakGPRFAHaHZ&pid=Api&w=148&h=148&c=7&dpr=2&rs=1'),
+    createData(2, 'Donut', '20000', "Chennai", "Active", '4/10/2025', 'https://sp.yimg.com/ib/th?id=OIP.cMBe2hLXU2CkJwrCafA6yAHaHa&pid=Api&w=148&h=148&c=7&dpr=2&rs=1'),
+    createData(3, 'Eclair', '45000', "Chennai", "Active", '6/12/2025', 'https://sp.yimg.com/ib/th?id=OIP.Q6R49EFCR62g4QtakGPRFAHaHZ&pid=Api&w=148&h=148&c=7&dpr=2&rs=1'),
+    createData(4, 'Frozen yoghurt', '12345', "Chennai", "Suspended", '7/9/2024', 'https://example.com/avatar4.png'),
+    createData(5, 'Gingerbread', '90000', "Chennai", "Active", '9/7/2025', 'https://sp.yimg.com/ib/th?id=OIP.ZiVXgF-nhh4u0E3otEgSkAHaHa&pid=Api&w=148&h=148&c=7&dpr=2&rs=1'),
+    createData(6, 'Gingerbread', '67000', "Chennai", "Active", '7/8/2025', 'https://example.com/avatar6.png'),
+    createData(7, 'Gingerbread', '9867', "Chennai", "Active", '8/6/2025', 'https://sp.yimg.com/ib/th?id=OIP.Q6R49EFCR62g4QtakGPRFAHaHZ&pid=Api&w=148&h=148&c=7&dpr=2&rs=1'),
 ];
-
 export default function DataTable() {
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
@@ -84,7 +83,7 @@ export default function DataTable() {
                     >
                         <TableHead>
                             <TableRow>
-                                <TableCell padding="checkbox">
+                                <TableCell padding="checkbox" align="left">
                                     <Checkbox
                                         color="primary"
                                         indeterminate={
@@ -94,11 +93,11 @@ export default function DataTable() {
                                         onChange={handleSelectAllClick}
                                     />
                                 </TableCell>
-                                <TableCell>user</TableCell>
-                                <TableCell>Email</TableCell>
-                                <TableCell>Location</TableCell>
-                                <TableCell>Account Status</TableCell>
-                                <TableCell>ID</TableCell>
+                                <TableCell align="left">Deal Name</TableCell>
+                                <TableCell align="left">Amount</TableCell>
+                                <TableCell align="left">Location</TableCell>
+                                <TableCell align="left">Account Status</TableCell>
+                                <TableCell align="left">ID</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -118,10 +117,10 @@ export default function DataTable() {
                                             key={row.id}
                                             selected={isItemSelected}
                                             sx={{
-                                                height: "48px", // Reduced height for row
+                                                height: "48px",
                                             }}
                                         >
-                                            <TableCell padding="checkbox">
+                                            <TableCell padding="checkbox" align="left">
                                                 <Checkbox
                                                     color="primary"
                                                     checked={isItemSelected}
@@ -130,29 +129,32 @@ export default function DataTable() {
                                                     }}
                                                 />
                                             </TableCell>
-                                            <TableCell component="th" id={labelId} scope="row" sx={{ padding: "8px" }}>
-                                                {row.user}
-                                            </TableCell>
-                                            <TableCell sx={{ padding: "8px" }}>{row.email}</TableCell>
-                                            <TableCell sx={{ padding: "8px" }}>
-                                                <Box display="flex" alignContent="center">
-                                                    <LocationOnSharp sx={{ fontSize: "18px", color:"#707070" }} />
-                                                    {row.location}
+                                            <TableCell component="th" id={labelId} scope="row" sx={{ padding: "8px" }} align="left">
+                                                <Box display="flex" alignItems="center">
+                                                    <Avatar src={row.avatar} sx={{ width: 24, height: 24, mr: 1 }} />
+                                                    {row.user}
                                                 </Box>
                                             </TableCell>
-                                            <TableCell sx={{ padding: "8px" }}>
+                                            <TableCell sx={{ padding: "8px" }} align="left">{row.amount}</TableCell>
+                                            <TableCell sx={{ padding: "8px" }} align="left">
+                                                <Box display="flex" alignContent="center">
+                                                    <LocationOnSharp sx={{ fontSize: "18px", color:"#707070" }} />
+                                                    {row.stage}
+                                                </Box>
+                                            </TableCell>
+                                            <TableCell sx={{ padding: "8px" }} align="left">
                                                 <Box sx={{
-                                                    backgroundColor: row.accountStatus === 'Active' ? "#ebebeb" : "#ef6c00",
-                                                    color: row.accountStatus === 'Active' ? "#000" : "#fff",
+                                                    backgroundColor: row.probability === 'Active' ? "#ebebeb" : "#ef6c00",
+                                                    color: row.probability === 'Active' ? "#000" : "#fff",
                                                     borderRadius: "15px",
                                                     padding: "5px 10px",
                                                     width: "min-content",
                                                     fontSize: "12px"
                                                 }}>
-                                                    {row.accountStatus}
+                                                    {row.probability}
                                                 </Box>
                                             </TableCell>
-                                            <TableCell sx={{ padding: "8px" }}>{row.accountId}</TableCell>
+                                            <TableCell sx={{ padding: "8px" }} align="left">{row.closingdate}</TableCell>
                                         </TableRow>
                                     );
                                 })}

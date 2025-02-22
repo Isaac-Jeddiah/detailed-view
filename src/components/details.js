@@ -1206,12 +1206,29 @@ const summaryStyle = {
         />
       </Grid>
         {/* Save Button */}
-  <Grid item xs={12} container justifyContent="flex-end">
+  
+        </Grid>
+    </Box>
+    <Box sx={{
+      backgroundColor: "white",
+      maxWidth: "100%",
+      width: "100%",
+    
+      borderRadius: '4px',
+      height:"30px",
+      margin: '0 auto',
+      ml:-2.2,
+      mt: 2.4,
+      p: 2.4,
+      
+    }}>
+    <Grid item xs={12} container justifyContent="flex-end" >
     <Button
       variant="contained"
       color="primary"
       sx={{
-        marginTop: 2,
+        marginBottom: 1,
+        marginTop: -1,
         paddingX: 3,
         paddingY: 1,
         width:"70px",
@@ -1224,9 +1241,9 @@ const summaryStyle = {
       Save
     </Button>
   </Grid>
-        </Grid>
-    </Box>
+  </Box>
               </Grid>
+      
     
           <Grid item xs={4}>
     <Grid container sx={{ width: '100%', flexWrap: 'wrap' }}>
@@ -1360,7 +1377,24 @@ const summaryStyle = {
         
       </TabPanel>
       <TabPanel value={activeTab} index={1}>
+      <Box sx={{
+      backgroundColor: "white",
+      maxWidth: "100%",
+      width: "100%",
+    
+      borderRadius: '4px',
+      height:"auto",
+      margin: '0 auto',
+      ml:-2.2,
+      p: 2.4,
+      borderTop: '1px solid #747474',
+      
+    }}>
+      <Typography variant="h6" padding="0 0 8px!important 0" sx={{mb:"30px"}}>
+        Deals
+        </Typography>
         <DataTable />
+        </Box>
       </TabPanel>
     </Box>
     </Box>
