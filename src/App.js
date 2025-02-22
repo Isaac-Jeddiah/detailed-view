@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard1 from './pages/dashboard1';
 import Gridlayout from './pages/gridBox';
-//
+import DetailsTable from './components/details';
 function App() {
   return (
     <Router>

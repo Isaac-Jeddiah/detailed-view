@@ -76,13 +76,7 @@ export default function DetailsTable() {
       [fieldName]: !prev[fieldName]
     }));
   };
-  // const handleFieldChange = (field, value) => {
-  //   setFieldValues(prev => ({
-  //     ...prev,
-  //     [field]: value
-  //   }));
-  // };
-  
+ 
 
 
   const [fieldValues, setFieldValues] = useState({
@@ -472,39 +466,6 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
     </TimelineItem>
   ));
 };
-  // const renderTimelineItems = (items, showMore, maxItems = 2) => {
-  //   const displayItems = showMore ? items : items.slice(0, maxItems);
-    
-  //   return displayItems.map((item, index) => (
-  //     <TimelineItem key={index}
-  //     sx={{
-  //       '&:not(:last-child)': {
-  //         '& .MuiTimelineContent-root': {
-  //          paddingBottom: '16px',
-  //           marginBottom: '16px'
-  //         }
-  //       }
-  //     }}
-
-  //     >
-  //       <TimelineSeparator>
-  //         <TimelineDot sx={{ bgcolor: '#1976D2' }} />
-  //         {index !== displayItems.length - 1 && <TimelineConnector sx={{ bgcolor: '#1976D2' }} />}
-  //       </TimelineSeparator>
-  //       <TimelineContent>
-  //         <Box display="flex" justifyContent="space-between">
-  //           <Typography variant="small" sx={{ fontSize: '1rem' }}>{item.title}</Typography>
-  //           <Typography variant="caption" color="primary" sx={{ fontSize: '0.7rem' }}>
-  //             {item.date}
-  //           </Typography>
-  //         </Box>
-  //         <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
-  //           {item.description}
-  //         </Typography>
-  //       </TimelineContent>
-  //     </TimelineItem>
-  //   ));
-  // };
 
   const accordionStyle = {
     minHeight: '60px',
@@ -551,11 +512,11 @@ const renderTimelineItems = (items, showMore, maxItems = 2) => {
 
   return (
     <Box sx={{ 
-      //display: 'flex',
-      //height:"100vh",
+    
+  
       position: 'relative',
       width: "100%", 
-      height: "calc(100vh - 120px)", 
+      height: "calc(100vh)", 
       overflow: "hidden",
       ml: 1 ,
       
