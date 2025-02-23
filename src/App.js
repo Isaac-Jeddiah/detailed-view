@@ -5,7 +5,7 @@ import Dashboard1 from './pages/dashboard1';
 import Gridlayout from './pages/gridBox';
 import DetailsTable from './components/details';
 import ScrollableLayout from './components/ScrollableLayout';
-
+import './App.css';
 function App() {
   return (
     <Router>

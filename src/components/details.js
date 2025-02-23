@@ -399,9 +399,9 @@ export default function DetailsTable() {
               {item.title}
             </Typography>
             <Typography
-              variant="caption"
+              
               color="primary"
-              sx={{ fontSize: "0.7rem" }}
+              sx={{ fontSize: "14px" }}
             >
               {item.date}
             </Typography>
@@ -425,7 +425,7 @@ export default function DetailsTable() {
                 key={i}
                 style={{
                   fontFamily: "var(--fontFamily)",
-                  fontSize: "12px",
+                  fontSize: "14px",
                   fontWeight: 400,
                   lineHeight: "24px",
                   letterSpacing: "0.15px",
@@ -600,7 +600,7 @@ export default function DetailsTable() {
               backgroundColor: "#f4f5fa",
               //ml: '304px',
               "& .MuiTab-root": {
-                fontSize: "1rem",
+                fontSize: "14px",
                 minHeight: "4px",
               },
             }}
@@ -663,7 +663,7 @@ export default function DetailsTable() {
                           <TextField
                             label="Name*"
                             variant={
-                              !allFieldsEditable ? "standard" : "outlined"
+                              !allFieldsEditable ? "standard" : "standard"
                             }
                             fullWidth
                             value={
@@ -693,7 +693,7 @@ export default function DetailsTable() {
                               "& .MuiInput-underline:before": {
                                 borderBottomWidth: "1px",
                                 borderBottomStyle: "solid",
-                                borderBottomColor: "#c9c9c9 !important",
+                                borderBottomColor: "#d2d2d2 !important",
                               },
                               "& .MuiInputBase-root": { height: "36px" },
                               "& .MuiInput-root": { marginTop: "3px" },
@@ -710,14 +710,18 @@ export default function DetailsTable() {
                               },
                               "& .MuiInput-underline:hover:before": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                               "& .MuiInput-underline:hover:after": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                             }}
                             InputLabelProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#444444' : '#444444'
+                              },
                               color: "red",
                               sx: {
                                 color: allFieldsEditable
@@ -730,10 +734,14 @@ export default function DetailsTable() {
                               shrink: true, // Keep label shrunk
                             }}
                             InputProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#181818' : '#181818'
+                              },
                               color: "red !important",
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "12px",
+                                fontSize: "14px",
                                 color: "red !important",
                                 ...(allFieldsEditable
                                   ? {}
@@ -790,7 +798,7 @@ export default function DetailsTable() {
                           <TextField
                             label="Phone*"
                             variant={
-                              !allFieldsEditable ? "standard" : "outlined"
+                              !allFieldsEditable ? "standard" : "standard"
                             }
                             fullWidth
                             value={
@@ -810,7 +818,7 @@ export default function DetailsTable() {
                               "& .MuiInput-underline:before": {
                                 borderBottomWidth: "1px",
                                 borderBottomStyle: "solid",
-                                borderBottomColor: "#c9c9c9 !important",
+                                borderBottomColor: "#d2d2d2 !important",
                               },
                               "& .MuiInputBase-root": { height: "36px" },
                               "& .MuiInput-root": { marginTop: "3px" },
@@ -827,14 +835,18 @@ export default function DetailsTable() {
                               },
                               "& .MuiInput-underline:hover:before": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                               "& .MuiInput-underline:hover:after": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                             }}
                             InputLabelProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#444444' : '#444444'
+                              },
                               sx: {
                                 color: allFieldsEditable
                                   ? "#1976d2"
@@ -846,9 +858,13 @@ export default function DetailsTable() {
                               shrink: true, // Keep label shrunk
                             }}
                             InputProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#181818' : '#181818'
+                              },
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "12px",
+                                fontSize: "14px",
                                 color: "#181818",
                                 ...(allFieldsEditable
                                   ? {}
@@ -906,7 +922,7 @@ export default function DetailsTable() {
                           <TextField
                             label="State *"
                             variant={
-                              !allFieldsEditable ? "standard" : "outlined"
+                              !allFieldsEditable ? "standard" : "standard"
                             }
                             fullWidth
                             select
@@ -926,7 +942,7 @@ export default function DetailsTable() {
                               "& .MuiInput-underline:before": {
                                 borderBottomWidth: "1px",
                                 borderBottomStyle: "solid",
-                                borderBottomColor: "#c9c9c9 !important",
+                                borderBottomColor: "#d2d2d2 !important",
                               },
                               "& .MuiInputBase-root": { height: "36px" },
                               "& .MuiInput-root": { marginTop: "3px" },
@@ -943,14 +959,18 @@ export default function DetailsTable() {
                               },
                               "& .MuiInput-underline:hover:before": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                               "& .MuiInput-underline:hover:after": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                             }}
                             InputLabelProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#444444' : '#444444'
+                              },
                               sx: {
                                 color: allFieldsEditable
                                   ? "#1976d2"
@@ -962,9 +982,13 @@ export default function DetailsTable() {
                               shrink: true,
                             }}
                             InputProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#181818' : '#181818'
+                              },
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "12px",
+                                fontSize: "14px",
                                 ...(allFieldsEditable
                                   ? {}
                                   : { paddingTop: "5px" }),
@@ -996,7 +1020,7 @@ export default function DetailsTable() {
                           <TextField
                             label="Zip Code*"
                             variant={
-                              !allFieldsEditable ? "standard" : "outlined"
+                              !allFieldsEditable ? "standard" : "standard"
                             }
                             fullWidth
                             value={
@@ -1017,7 +1041,7 @@ export default function DetailsTable() {
                               "& .MuiInput-underline:before": {
                                 borderBottomWidth: "1px",
                                 borderBottomStyle: "solid",
-                                borderBottomColor: "#c9c9c9 !important",
+                                borderBottomColor: "#d2d2d2 !important",
                               },
                               "& .MuiInputBase-root": { height: "36px" },
                               "& .MuiInput-root": { marginTop: "3px" },
@@ -1034,14 +1058,18 @@ export default function DetailsTable() {
                               },
                               "& .MuiInput-underline:hover:before": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                               "& .MuiInput-underline:hover:after": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                             }}
                             InputLabelProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#444444' : '#444444'
+                              },
                               sx: {
                                 color: allFieldsEditable
                                   ? "#1976d2"
@@ -1053,9 +1081,13 @@ export default function DetailsTable() {
                               shrink: true,
                             }}
                             InputProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#181818' : '#181818'
+                              },
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "12px",
+                                fontSize: "14px",
                                 ...(allFieldsEditable
                                   ? {}
                                   : { paddingTop: "5px" }),
@@ -1102,7 +1134,7 @@ export default function DetailsTable() {
                           <TextField
                             label="Bio*"
                             variant={
-                              !allFieldsEditable ? "standard" : "outlined"
+                              !allFieldsEditable ? "standard" : "standard"
                             }
                             fullWidth
                             multiline
@@ -1125,7 +1157,7 @@ export default function DetailsTable() {
                               "& .MuiInput-underline": {
                                 borderBottomWidth: "1px",
                                 borderBottomStyle: "solid",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                               "& .MuiInput-underline:before": {
                                 borderBottomWidth: "0px",
@@ -1150,11 +1182,11 @@ export default function DetailsTable() {
                               },
                               "& .MuiInput-underline:hover:before": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                               "& .MuiInput-underline:hover:after": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                               "& .MuiInputBase-input.MuiInput-input.Mui-readOnly":
                                 {
@@ -1163,6 +1195,10 @@ export default function DetailsTable() {
                                 },
                             }}
                             InputLabelProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#444444' : '#444444'
+                              },
                               sx: {
                                 color: allFieldsEditable
                                   ? "#1976d2"
@@ -1174,10 +1210,14 @@ export default function DetailsTable() {
                               shrink: true,
                             }}
                             InputProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#181818' : '#181818'
+                              },
                               readOnly: !allFieldsEditable,
                               color: "#181818 !important",
                               sx: {
-                                fontSize: "12px",
+                                fontSize: "14px",
 
                                 color: "#181818",
                                 ...(allFieldsEditable
@@ -1256,7 +1296,7 @@ export default function DetailsTable() {
                           <TextField
                             label="Card Number*"
                             variant={
-                              !allFieldsEditable ? "standard" : "outlined"
+                              !allFieldsEditable ? "standard" : "standard"
                             }
                             fullWidth
                             value={
@@ -1277,7 +1317,7 @@ export default function DetailsTable() {
                               "& .MuiInput-underline:before": {
                                 borderBottomWidth: "1px",
                                 borderBottomStyle: "solid",
-                                borderBottomColor: "#c9c9c9 !important",
+                                borderBottomColor: "#d2d2d2 !important",
                               },
                               "& .MuiInputBase-root": { height: "36px" },
                               "& .MuiInput-root": { marginTop: "3px" },
@@ -1294,14 +1334,18 @@ export default function DetailsTable() {
                               },
                               "& .MuiInput-underline:hover:before": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                               "& .MuiInput-underline:hover:after": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                             }}
                             InputLabelProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#444444' : '#444444'
+                              },
                               sx: {
                                 color: allFieldsEditable
                                   ? "#1976d2"
@@ -1313,9 +1357,13 @@ export default function DetailsTable() {
                               shrink: true,
                             }}
                             InputProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#181818' : '#181818'
+                              },
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "12px",
+                                fontSize: "14px",
                                 ...(allFieldsEditable
                                   ? {}
                                   : { paddingTop: "5px" }),
@@ -1368,7 +1416,7 @@ export default function DetailsTable() {
                           <TextField
                             label="Card Holder Name*"
                             variant={
-                              !allFieldsEditable ? "standard" : "outlined"
+                              !allFieldsEditable ? "standard" : "standard"
                             }
                             fullWidth
                             value={
@@ -1389,7 +1437,7 @@ export default function DetailsTable() {
                               "& .MuiInput-underline:before": {
                                 borderBottomWidth: "1px",
                                 borderBottomStyle: "solid",
-                                borderBottomColor: "#c9c9c9 !important",
+                                borderBottomColor: "#d2d2d2 !important",
                               },
                               "& .MuiInputBase-root": { height: "36px" },
                               "& .MuiInput-root": { marginTop: "3px" },
@@ -1406,14 +1454,18 @@ export default function DetailsTable() {
                               },
                               "& .MuiInput-underline:hover:before": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                               "& .MuiInput-underline:hover:after": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                             }}
                             InputLabelProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#444444' : '#444444'
+                              },
                               sx: {
                                 color: allFieldsEditable
                                   ? "#1976d2"
@@ -1425,9 +1477,13 @@ export default function DetailsTable() {
                               shrink: true,
                             }}
                             InputProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#181818' : '#181818'
+                              },
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "12px",
+                                fontSize: "14px",
                                 ...(allFieldsEditable
                                   ? {}
                                   : { paddingTop: "5px" }),
@@ -1472,10 +1528,10 @@ export default function DetailsTable() {
                         </Grid>
 
                         <Grid item xs={6}>
-                          <TextField
+ <TextField
                             label="Expiry*"
                             variant={
-                              !allFieldsEditable ? "standard" : "outlined"
+                              !allFieldsEditable ? "standard" : "standard"
                             }
                             fullWidth
                             value={
@@ -1496,7 +1552,7 @@ export default function DetailsTable() {
                               "& .MuiInput-underline:before": {
                                 borderBottomWidth: "1px",
                                 borderBottomStyle: "solid",
-                                borderBottomColor: "#c9c9c9 !important",
+                                borderBottomColor: "#d2d2d2 !important",
                               },
                               "& .MuiInputBase-root": { height: "36px" },
                               "& .MuiInput-root": { marginTop: "3px" },
@@ -1513,14 +1569,19 @@ export default function DetailsTable() {
                               },
                               "& .MuiInput-underline:hover:before": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                               "& .MuiInput-underline:hover:after": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                             }}
                             InputLabelProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? 'red' : 'red'
+                              },
+                              
                               sx: {
                                 color: allFieldsEditable
                                   ? "#1976d2"
@@ -1532,9 +1593,14 @@ export default function DetailsTable() {
                               shrink: true,
                             }}
                             InputProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#181818' : '#181818'
+                              },
+                              
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "12px",
+                                fontSize: "14px",
                                 ...(allFieldsEditable
                                   ? {}
                                   : { paddingTop: "5px" }),
@@ -1575,13 +1641,14 @@ export default function DetailsTable() {
                                 </InputAdornment>
                               ),
                             }}
-                          />
+                          /> 
+                          
                         </Grid>
                         <Grid item xs={6}>
                           <TextField
                             label="CVC/CV2*"
                             variant={
-                              !allFieldsEditable ? "standard" : "outlined"
+                              !allFieldsEditable ? "standard" : "standard"
                             }
                             fullWidth
                             value={
@@ -1605,7 +1672,7 @@ export default function DetailsTable() {
                               "& .MuiInput-underline:before": {
                                 borderBottomWidth: "1px",
                                 borderBottomStyle: "solid",
-                                borderBottomColor: "#c9c9c9 !important",
+                                borderBottomColor: "#d2d2d2 !important",
                               },
                               "& .MuiInputBase-root": { height: "36px" },
                               "& .MuiInput-root": { marginTop: "3px" },
@@ -1622,17 +1689,21 @@ export default function DetailsTable() {
                               },
                               "& .MuiInput-underline:hover:before": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                               "& .MuiInput-underline:hover:after": {
                                 borderBottomWidth: "1px",
-                                borderBottomColor: "#c9c9c9",
+                                borderBottomColor: "#d2d2d2",
                               },
                             }}
                             InputProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#181818' : '#181818'
+                              },
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "12px",
+                                fontSize: "14px",
                                 ...(allFieldsEditable
                                   ? {}
                                   : { paddingTop: "5px" }),
@@ -1671,6 +1742,10 @@ export default function DetailsTable() {
                               ),
                             }}
                             InputLabelProps={{
+                              style: { 
+                                
+                                color: allFieldsEditable ? '#444444' : '#444444'
+                              },
                               shrink: true,
                               sx: {
                                 color: "#444444",
@@ -1711,10 +1786,10 @@ export default function DetailsTable() {
                             <ButtonGroup
                               variant="contained"
                               sx={{
-                                border: "1px solid #c9c9c9",
+                                border: "1px solid #d2d2d2",
                                 "& .MuiButtonGroup-grouped:not(:last-of-type)":
                                   {
-                                    borderColor: "#c9c9c9", // Match the border color
+                                    borderColor: "#d2d2d2", // Match the border color
                                   },
                                 boxShadow: "none", // Remove shadow
                                 "& button": {
