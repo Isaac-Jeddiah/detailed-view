@@ -58,7 +58,7 @@ const Dashboard1 = () => {
                     {open ? <ArrowBackIos sx={{ fontSize: "14px", transform: "translateX(3px)" }} /> : <ArrowForwardIos sx={{ fontSize: "14px", transform: "translateX(1px)" }} />}
                 </IconButton>
             </Box>
-
+            
             <List
                 sx={{
                     display: "flex",
@@ -66,15 +66,25 @@ const Dashboard1 = () => {
                     height: "100%",
                     width: "100%",
                     padding: 0,
+                    backgroundColor: "#f4f5fa",
                 }}
             >
                 <Navbar />
+                <Box ml={2.4} mr={2.4} sx={{
+                            flexGrow: 1,
+                            backgroundColor: "#f4f5fa",
+                            
+                            overflow: "auto",
+                            overflowX: "hidden",
+                            '&::-webkit-scrollbar': {
+              display: 'none'
+            },
+                }}>
                 <Box
                     sx={{
                         flexGrow: 1,
                         backgroundColor: "#f4f5fa",
-                        padding: "20px",
-                        marginTop: "-20px", 
+                        
                         overflow: "auto",
                         overflowX: "hidden",
                         '&::-webkit-scrollbar': {
@@ -84,6 +94,7 @@ const Dashboard1 = () => {
                 >
                     <Filterbar />
                     <DetailsTable />
+                </Box>
                 </Box>
             </List>
         </Box>

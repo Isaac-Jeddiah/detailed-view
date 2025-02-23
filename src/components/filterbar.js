@@ -31,19 +31,21 @@ const Filterbar = () => {
       display="flex"
       justifyContent="space-between"
       alignItems="center"
+      
       sx={{
         color: "initial", // Resets text color to browser default (usually black)
         fontStyle: "initial", // Resets font style to normal
         backgroundColor: "initial",
         backgroundColor: "white",
         height: "auto",
-        minHeight: "52px",
-        width: `calc(100% - 20px)`,
+        minHeight: "52px !important",
+        width: "100%-20px",
         position: "relative",
-        marginLeft: `calc(2px + 4px)`,
-        marginRight: "20px",
-        padding: "16px 24px 16px 24px",
-        marginBottom: "-20px",
+        
+        padding: "16px 16px 16px 16px",
+        gap: "16px",
+        
+        
       }}
     >
       {/* Profile Image with Editable Overlay */}

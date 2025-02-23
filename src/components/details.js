@@ -567,7 +567,7 @@ export default function DetailsTable() {
       sx={{
         position: "relative",
 
-        padding: "0px 0px 0px 8px",
+        padding: "0px 0px 0px 0px",
       }}
     >
       <Box
@@ -580,7 +580,7 @@ export default function DetailsTable() {
           width: "100%",
           height: "calc(100vh)",
           overflow: "hidden",
-          ml: -2.4,
+          
         }}
       >
         <AppBar
@@ -599,6 +599,7 @@ export default function DetailsTable() {
               minWidth: "444px",
               height: "4px",
               marginBottom: "0px",
+              backgroundColor: "#f4f5fa",
               //ml: '304px',
               "& .MuiTab-root": {
                 fontSize: "1rem",
@@ -611,7 +612,7 @@ export default function DetailsTable() {
           </Tabs>
         </AppBar>
         
-            <Grid item xs={12} md={7} lg={7} mr={1.4}>
+            <Grid item xs={12} md={7} lg={7} >
               <Grid container spacing={0}>
                 <Grid item xs={8}>
                   <Grid container sx={{ width: "100%", flexWrap: "wrap" }}>
