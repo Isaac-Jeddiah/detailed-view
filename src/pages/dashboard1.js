@@ -75,7 +75,11 @@ const Dashboard1 = () => {
                         backgroundColor: "#f4f5fa",
                         padding: "20px",
                         marginTop: "-20px", 
-                       
+                        overflow: "auto",
+                        overflowX: "hidden",
+                        '&::-webkit-scrollbar': {
+          display: 'none'
+        },
                     }}
                 >
                     <Filterbar />
