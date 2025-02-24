@@ -1,0 +1,31 @@
+/* Sidebar container */
+.sidebar-list {
+    height: 100vh;
+    width: 100%;
+    max-width: 64px;
+    background-color: #283356;
+    padding: 0;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+/* Individual list items */
+.sidebar-listItem {
+    margin: 12px;
+    padding: 0;
+}
+
+/* Icon buttons */
+.sidebar-iconButton {
+    padding: 10px 0;
+}
+
+/* Star icons */
+.sidebar-starIcon {
+    color: white;
+}
+
+/* Selected star icon */
+.sidebar-starIcon-selected {
+    color: blue;
+}

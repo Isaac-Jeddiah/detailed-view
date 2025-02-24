@@ -1,0 +1,34 @@
+.textfield {
+    & .MuiOutlinedInput-root {
+        &:hover fieldset {
+            border-color: #1976d2; /* blue color on hover */
+        }
+        &.Mui-focused fieldset {
+            border-color: #1976d2; /* blue color when focused */
+        }
+    }
+}
+
+.inputAdornment {
+    position: relative;
+    margin-right: 0px;
+    margin-bottom: 5px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 1px; /* 32px gap between buttons */
+}
+
+.cancelButton {
+    text-transform: none;
+    border-color: grey.300;
+}
+
+.submitButton {
+    text-transform: none;
+    background-color: #1976d2;
+}
+

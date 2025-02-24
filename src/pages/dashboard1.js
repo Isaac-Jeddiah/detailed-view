@@ -23,9 +23,24 @@ const Dashboard1 = () => {
             <Sidebar selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
             <Box className={`secondarySidebar ${open ? "open" : "closed"}`}>
                 <SecondarySidebar selectedIndex={selectedIndex} open={open} />
-                <IconButton size='small' edge='start' className="toggleButton" onClick={() => setOpen((prev) => !prev)}>
-                    {open ? <ArrowBackIos className="toggleIcon" /> : <ArrowForwardIos className="toggleIcon" />}
-                </IconButton>
+                 <IconButton size='small' edge='start'
+                                    sx={{
+                                        position: "absolute",
+                                        bottom: 16,
+                                        right: -12,
+                                        zIndex: 1,
+                                        backgroundColor: '#007bff',
+                                        color: '#fff',
+                                        padding: "5px",
+                                        margin: "0",
+                                        ":hover": {
+                                            backgroundColor: "#0275f0"
+                                        }
+                                    }}
+                                    onClick={() => setOpen((prev) => !prev)}
+                                >
+                                    {open ? <ArrowBackIos sx={{ fontSize: "14px", transform: "translateX(3px)" }} /> : <ArrowForwardIos sx={{ fontSize: "14px", transform: "translateX(1px)" }} />}
+                                </IconButton>
             </Box>
             <List className="mainContent">
                 <Navbar />
