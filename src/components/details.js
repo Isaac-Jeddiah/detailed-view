@@ -10,6 +10,7 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
+import { useFormState } from '../context/Formcontext';
 
 import {
   Timeline,
@@ -37,12 +38,30 @@ import DataTable from "./table";
 import { ButtonGroup } from "@mui/material";
 
 const US_STATES = [
-  "Alabama",
-  "Alaska",
-  "Arizona",
-  "Arkansas",
-  "California",
-  // ...add more states as needed
+  
+    "Alabama",
+    "Alaska",
+    "Arizona",
+    "Arkansas",
+    "California",
+    "Colorado",
+    "Connecticut",
+    "Delaware",
+    "Florida",
+    "Georgia",
+    "Hawaii",
+    "Idaho",
+    "Illinois",
+    "Indiana",
+    "Iowa",
+    "Kansas",
+    "Kentucky",
+    "Louisiana",
+    "Maine",
+    "Maryland",
+    "Massachusetts",
+    "Michigan",
+  
 ];
 
 function TabPanel({ children, value, index }) {
@@ -54,19 +73,19 @@ function TabPanel({ children, value, index }) {
 }
 
 export default function DetailsTable() {
-  const [activeTab, setActiveTab] = useState(0);
-  const [formData, setFormData] = useState({
-    name: { value: "name", edit: true },
-    phone: { value: "12345", edit: true },
-    state: { value: "State", edit: true },
-    zipcode: { value: "56", edit: true },
-    bio: { value: "I am ...", edit: false },
-    cardNumber: { value: "", edit: false },
-    cardHolder: { value: "", edit: false },
-    expiry: { value: "", edit: false },
-    cvc: { value: "", edit: false },
-  });
+  
+  
 
+  const formContext = useFormState();
+  console.log('Form Context:', formContext);
+  
+  const { formState, updateField } = formContext;
+  console.log('Form State:', formState.name);
+  
+  // Rest of your code...
+
+  const [activeTab, setActiveTab] = useState(0);
+ 
   const [allFieldsEditable, setAllFieldsEditable] = useState(false);
 
   const handleChange = (event, newValue) => setActiveTab(newValue);
@@ -84,57 +103,75 @@ export default function DetailsTable() {
     }));
   };
 
-  const [fieldValues, setFieldValues] = useState({
-    name: "John Doe",
-    email: "xyz@abcmail.com",
-    phone: "987654321",
-    state: "Alabama",
-    zipcode: "534768",
-    bio: "I am an employee of abc company and i am a full time employee. I am good at ...",
-    cardNumber: "4123 **** **** ****",
-    cardHolder: "John Doe",
-    expiry: "06/28",
-    cvc: "5252",
-  });
 
+  
+  const [state, setState] = useState("Alabama");
   const [editableFields, setEditableFields] = useState({
     name: false,
+    email: false,
     phone: false,
     state: false,
     zipcode: false,
-    bio: false,
-    cardNumber: false,
-    cardHolder: false,
-    expiry: false,
-    cvc: false,
+    bio: false
   });
-  const [state, setState] = useState("Alabama");
-  const [tempValues, setTempValues] = useState({
-    name: "John Doe",
-    email: "xyz@abcmail.com",
-    phone: "987654321",
-    state: "Alabama",
-    zipcode: "534768",
-    bio: "I am an employee of abc company and i am a full time employee. I am good at ...",
-    cardNumber: "4123 **** **** ****",
-    cardHolder: "John Doe",
-    expiry: "06/28",
-    cvc: "5252",
-  });
-
-  const handleFieldChange = (key, value) => {
-    setTempValues({ ...tempValues, [key]: value });
+  
+  // Store temporary values while editing
+  const [tempValues, setTempValues] = useState({});
+  
+  // Initialize temp values from form state when component mounts
+  useEffect(() => {
+    setTempValues({ ...formState });
+  }, [formState]);
+  
+  // Handle text field changes (updates temp values only)
+  const handleFieldChange = (field) => (event) => {
+    updateField(field, event.target.value);
+    setTempValues({
+      ...tempValues,
+      [field]: event.target.value
+    });
   };
-
-  const handleSaveValue = (key) => {
-    setFieldValues({ ...fieldValues, [key]: tempValues[key] });
-    setEditableFields({ ...editableFields, [key]: false });
+  
+  // Enable edit mode for a field
+  const handleEdit = (field) => {
+    setEditableFields({
+      ...editableFields,
+      [field]: true
+    });
+    // Ensure temp value is synchronized with current form state
+    setTempValues({
+      ...tempValues,
+      [field]: formState[field]
+    });
   };
-
-  const handleEdit = (key) => {
-    setEditableFields({ ...editableFields, [key]: true });
-    setTempValues({ ...tempValues, [key]: fieldValues[key] });
+  
+  // Save changes to a field
+  const handleSave = (field) => {
+    // Update the global form state
+    localStorage.setItem("formState", JSON.stringify(formState));
+  
+    updateField(field, tempValues[field]);
+    // Exit edit mode
+    setEditableFields({
+      ...editableFields,
+      [field]: false
+    });
   };
+  
+  // Cancel editing a field
+  const handleCancel = (field) => {
+    // Revert temp value to current form state
+    setTempValues({
+      ...tempValues,
+      [field]: formState[field]
+    });
+    // Exit edit mode
+    setEditableFields({
+      ...editableFields,
+      [field]: false
+    });
+  };
+  
   const textFieldsContainerRef = React.useRef();
 
   useEffect(() => {
@@ -481,16 +518,16 @@ export default function DetailsTable() {
   };
  
 
-  const handleSave = () => {
-    // Save the form values
-    setFieldValues({ ...fieldValues, ...tempValues });
+  // const handleSave = () => {
+  //   // Save the form values
+  //   updateField({ ...formState, ...tempValues });
 
-    // Optionally, persist to database or backend
-    console.log("Saved values:", tempValues);
+  //   // Optionally, persist to database or backend
+  //   console.log("Saved values:", tempValues);
 
-    // Reset edit mode
-    setAllFieldsEditable(false);
-  };
+  //   // Reset edit mode
+  //   setAllFieldsEditable(false);
+  // };
 
   const accordionStyle = {
     minHeight: "60px",
@@ -565,9 +602,10 @@ export default function DetailsTable() {
   };
  
   //
-  const fieldSpacing = "16px"; // Adjust field spacing here (16px = 2 * 8px)
+  const fieldSpacing = "16px"; // Adjust field spacing here 
   const dividerSpacing = "16px"; // Adjust heading-divider spacing here
-  const dividerabovespacing = "8px"; //
+  const dividerabovespacing = "8px"; //Adjust divider-below spacing her
+  const Overviewbottomspacing = "8px"; //Adjust Overview bottom
   return (
     <Box
       sx={{
@@ -602,7 +640,7 @@ export default function DetailsTable() {
             sx={{
               minWidth: "444px",
               height: "4px",
-              marginBottom: "0px",
+              marginBottom: Overviewbottomspacing,
               backgroundColor: "#f4f5fa",
               //ml: '304px',
               "& .MuiTab-root": {
@@ -639,12 +677,11 @@ export default function DetailsTable() {
                         height: "auto",
                         backgroundColor: "white",
                         width: "100%",
-                        //maxWidth: "calc(100% - 4px) !important",
-                        //width: "calc(100% - 4px) !important",
+                        
                         borderRadius: "4px",
-                        borderTop: "1px solid #747474",
+                        // borderTop: "1px solid #747474",
                         gap: "0px",
-                        p: 2.4,
+                        p: "20px 20px 20px 20px",
                         
                         borderRadius: "4px",
                         overflow: "hidden",
@@ -675,15 +712,15 @@ export default function DetailsTable() {
                             value={
                               editableFields.name
                                 ? tempValues.name
-                                : fieldValues.name
+                                : formState.name
                             }
                             color="red"
                             onFocus={() => handleEdit("name")}
                             onBlur={() => {
                               //handleSaveValue("name");
                             }}
-                            onChange={(e) =>
-                              handleFieldChange("name", e.target.value)
+                            onChange={
+                              handleFieldChange("name")
                             }
                             //                                disabled={!allFieldsEditable}
                             sx={{
@@ -810,14 +847,14 @@ export default function DetailsTable() {
                             value={
                               editableFields.phone
                                 ? tempValues.phone
-                                : fieldValues.phone
+                                : formState.phone
                             }
                             onFocus={() => handleEdit("phone")}
                             onBlur={() => {
                               //handleSaveValue("phone");
                             }}
-                            onChange={(e) =>
-                              handleFieldChange("phone", e.target.value)
+                            onChange={
+                              handleFieldChange("phone")
                             }
                             //                                disabled={!allFieldsEditable}
                             sx={{
@@ -932,15 +969,17 @@ export default function DetailsTable() {
                             }
                             fullWidth
                             select
-                            value={state}
+                            value={formState.state}
                             onFocus={() => handleEdit("state")}
                             onBlur={(e) => {
                               //handleSaveValue("state");
                               setState(e.target.value);
                             }}
                             onChange={(e) => {
+                              updateField("state", e.target.value);
                               setState(e.target.value);
                               handleFieldChange("state", e.target.value);
+                              console.log("hello"+'\n'+formState.state);
                             }}
                             //                                disabled={!allFieldsEditable}
                             size="small"
@@ -1032,14 +1071,14 @@ export default function DetailsTable() {
                             value={
                               editableFields.zipcode
                                 ? tempValues.zipcode
-                                : fieldValues.zipcode
+                                : formState.zipcode
                             }
                             onFocus={() => handleEdit("zipcode")}
                             onBlur={() => {
                               //handleSaveValue("zipcode");
                             }}
-                            onChange={(e) =>
-                              handleFieldChange("zipcode", e.target.value)
+                            onChange={
+                              handleFieldChange("zipcode")
                             }
                             //                                disabled={!allFieldsEditable}
                             size="small"
@@ -1148,14 +1187,14 @@ export default function DetailsTable() {
                             value={
                               editableFields.bio
                                 ? tempValues.bio
-                                : fieldValues.bio
+                                : formState.bio
                             }
                             onFocus={() => handleEdit("bio")}
                             onBlur={() => {
                               ///handleSaveValue("bio");
                             }}
-                            onChange={(e) =>
-                              handleFieldChange("bio", e.target.value)
+                            onChange={
+                              handleFieldChange("bio")
                             }
                             //                                disabled={!allFieldsEditable}
                             size="small"
@@ -1308,14 +1347,14 @@ export default function DetailsTable() {
                             value={
                               editableFields.cardNumber
                                 ? tempValues.cardNumber
-                                : fieldValues.cardNumber
+                                : formState.cardNumber
                             }
                             onFocus={() => handleEdit("cardNumber")}
                             onBlur={() => {
                               //handleSaveValue("cardNumber");
                             }}
-                            onChange={(e) =>
-                              handleFieldChange("cardNumber", e.target.value)
+                            onChange={
+                              handleFieldChange("cardNumber")
                             }
                             //                                disabled={!allFieldsEditable}
                             size="small"
@@ -1428,14 +1467,14 @@ export default function DetailsTable() {
                             value={
                               editableFields.cardHolder
                                 ? tempValues.cardHolder
-                                : fieldValues.cardHolder
+                                : formState.cardHolder
                             }
                             onFocus={() => handleEdit("cardHolder")}
                             onBlur={() => {
                               //handleSaveValue("cardHolder");
                             }}
-                            onChange={(e) =>
-                              handleFieldChange("cardHolder", e.target.value)
+                            onChange={
+                              handleFieldChange("cardHolder")
                             }
                             //                                disabled={!allFieldsEditable}
                             size="small"
@@ -1543,14 +1582,14 @@ export default function DetailsTable() {
                             value={
                               editableFields.expiry
                                 ? tempValues.expiry
-                                : fieldValues.expiry
+                                : formState.expiry
                             }
                             onFocus={() => handleEdit("expiry")}
                             onBlur={() => {
                               //handleSaveValue("expiry");
                             }}
-                            onChange={(e) =>
-                              handleFieldChange("expiry", e.target.value)
+                            onChange={
+                              handleFieldChange("expiry")
                             }
                             //                                disabled={!allFieldsEditable}
                             size="small"
@@ -1660,7 +1699,7 @@ export default function DetailsTable() {
                             value={
                               editableFields.cvc
                                 ? tempValues.cvc
-                                : fieldValues.cvc
+                                : formState.cvc
                             }
                             onFocus={() => {
                               if (!allFieldsEditable) {
@@ -1670,8 +1709,8 @@ export default function DetailsTable() {
                             onBlur={() => {
                               //handleSaveValue("cvc");
                             }}
-                            onChange={(e) =>
-                              handleFieldChange("cvc", e.target.value)
+                            onChange={
+                              handleFieldChange("cvc")
                             }
                             // Using readOnly instead of disabled
                             sx={{
@@ -1806,7 +1845,18 @@ export default function DetailsTable() {
             CANCEL
           </Button>
           <Button
-             onClick={()=>{handleSave(); setAllFieldsEditable(!allFieldsEditable)}}
+             onClick={()=>{handleSave('name');
+              handleSave('email');
+              handleSave('phone');
+              handleSave('expiry');
+              handleSave('cvc');
+              handleSave('cardNumber');
+              handleSave('state');
+              handleSave('zipcode');
+              handleSave('bio');
+              handleSave('cardHolder');
+
+               setAllFieldsEditable(!allFieldsEditable)}}
             type="submit"
             variant="contained"
             sx={{

@@ -1,6 +1,7 @@
 import { InputAdornment, IconButton } from "@mui/material";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import React, { useState, useEffect } from "react";
+import { useFormState } from "../context/Formcontext";
 import {
   Box,
   Button,
@@ -40,46 +41,50 @@ const states = [
 ];
 
 const Popup = ({ closePopup }) => {
+  const formContext = useFormState();
+    console.log('Form Context:', formContext);
+    
+    const { formState, updateField,resetform } = formContext;
+    console.log('Form State:', formState.name);
+    
   const [state, setState] = useState("Alabama");
   const [fieldValue, setFieldValue] = useState("Value"); // State for field value
   const [phoneValue, setPhoneValue] = useState("414 141 414"); // State for phone value
 
   
-  const [formValues, setFormValues] = useState({
-    name: "John Doe",
-    phone: "987654321",
-    zipcode: "534768",
-    bio: "I am an employee of abc company and i am a full time employee. I am good at ...",
-    cardNumber: "4123 **** **** ****",
-    cardHolder: "John Doe",
-    expiry: "06/28",
-    cvc: "5252",
-  });
-
+  
+console.log(formState)
   // Handler for text field changes
-  const handleTextChange = (field, value) => {
-    setFormValues((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem("formState"));
+    if (savedData) {
+      // Use updateMultipleFields instead of updateField for bulk updates
+      // if (typeof updateMultipleFields === 'function') {
+      //   updateMultipleFields(savedData);
+      // } else {
+        // Fallback if updateMultipleFields isn't available
+        Object.entries(savedData).forEach(([field, value]) => {
+          updateField(field, value);
+        });
+      // }
+    }
+  }, []);
+  
+  // Handle text field changes
+  const handleTextChange = (field) => (event) => {
+    updateField(field, event.target.value);
   };
 
   // Handler for clearing individual fields
   const handleClearValue = (field) => {
-    setFormValues((prev) => ({
-      ...prev,
-      [field]: "",
-    }));
+    updateField(field, "");
   };
-  useEffect(() => {
-    const savedData = JSON.parse(localStorage.getItem("formValues"));
-    if (savedData) {
-      setFormValues(savedData);
-    }
-  }, []);
+  
+  // Save form state to localStorage
   const handleSave = () => {
-    localStorage.setItem("formValues", JSON.stringify(formValues));
+    localStorage.setItem("formState", JSON.stringify(formState));
   };
+  
    const EditIconButton = ({ onClick }) => (
       <IconButton
         size="small"
@@ -103,7 +108,41 @@ const Popup = ({ closePopup }) => {
         />
       </IconButton>
     );
-  
+    const renderTextField = (field, label) => {
+      return (
+        <Grid item xs={12} md={6}>
+              <TextField
+                label={label}
+                //defaultValue="Value"
+                size="small"
+                fullWidth
+                value={formState[field]}
+                onChange={handleTextChange(field)}
+                //focused={true}}
+                color="rgba(25, 118, 210, 0.12)"
+                
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment
+                      position="end"
+                      sx={{
+                        position: "relative",
+                        marginRight: "0px",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      {" "}
+                      <EditIconButton //onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
+                      />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Grid>
+            
+      );
+    };
+  const namefield="name";
   return (
     <Box
       sx={{
@@ -139,14 +178,14 @@ const Popup = ({ closePopup }) => {
           </Typography>
 
           <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
+            {/* <Grid item xs={12} md={6}>
               <TextField
                 label="Name*"
                 //defaultValue="Value"
                 size="small"
                 fullWidth
-                value={formValues.name}
-                onChange={(e) => handleTextChange("email")}
+                value={formState[namefield]}
+                onChange={handleTextChange(namefield)}
                 //focused={true}}
                 color="rgba(25, 118, 210, 0.12)"
                 sx={{
@@ -177,14 +216,16 @@ const Popup = ({ closePopup }) => {
                 }}
               />
             </Grid>
+             */}
+             {renderTextField('name', "Name*")}
             <Grid item xs={12} md={6}>
               <TextField
                 label="Phone*"
                 //focused={true}}
                 size="small"
                 fullWidth
-                value={formValues.phone}
-                onChange={(e) => handleTextChange("phone")}
+                value={formState.phone}
+                onChange={handleTextChange("phone")}
                 color="rgba(25, 118, 210, 0.12)"
                 sx={{
                   "& .MuiOutlinedInput-root": {
@@ -223,10 +264,10 @@ const Popup = ({ closePopup }) => {
 
                 <Select
                   labelId="state-label"
-                  value={state}
+                  value={formState.state}
                   //focused={true}}
                   label="State*"
-                  onChange={(e) => setState(e.target.value)}
+                  onChange={(e)=>{handleTextChange("state"); updateField("state",e.target.value); console.log(formState.state)}}
                 >
                   {states.map((state) => (
                     <MenuItem key={state} value={state}>
@@ -244,8 +285,8 @@ const Popup = ({ closePopup }) => {
                 //focused={true}}
                 size="small"
                 fullWidth
-                value={formValues.zipcode}
-                onChange={(e) => handleTextChange("zipcode")}
+                value={formState.zipcode}
+                onChange={handleTextChange("zipcode")}
                 color="rgba(25, 118, 210, 0.12)"
                 sx={{
                   "& .MuiOutlinedInput-root": {
@@ -304,8 +345,8 @@ const Popup = ({ closePopup }) => {
               defaultValue="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
               size="small"
               fullWidth
-              value={formValues.bio}
-              onChange={(e) => handleTextChange("bio")}
+              value={formState.bio}
+              onChange={handleTextChange("bio")}
               color="rgba(25, 118, 210, 0.12)"
               multiline
               rows={4}
@@ -352,8 +393,8 @@ const Popup = ({ closePopup }) => {
               defaultValue="4242 ** ** **"
               size="small"
               fullWidth
-              value={formValues.cardNumber}
-              onChange={(e) => handleTextChange("cardNumber")}
+              value={formState.cardNumber}
+              onChange={handleTextChange("cardNumber")}
               color="rgba(25, 118, 210, 0.12)"
               sx={{
                 "& .MuiOutlinedInput-root": {
@@ -396,8 +437,8 @@ const Popup = ({ closePopup }) => {
               defaultValue="John Doe"
               size="small"
               fullWidth
-              value={formValues.cardHolder}
-              onChange={(e) => handleTextChange("cardHolder")}
+              value={formState.cardHolder}
+              onChange={handleTextChange("cardHolder")}
               color="rgba(25, 118, 210, 0.12)"
               sx={{
                 "& .MuiOutlinedInput-root": {
@@ -436,8 +477,8 @@ const Popup = ({ closePopup }) => {
                 defaultValue="MM / YY"
                 size="small"
                 fullWidth
-                value={formValues.expiry}
-                onChange={(e) => handleTextChange("expiry")}
+                value={formState.expiry}
+                onChange={handleTextChange("expiry")}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     "&:hover fieldset": {
@@ -474,8 +515,8 @@ const Popup = ({ closePopup }) => {
                 defaultValue="*"
                 size="small"
                 fullWidth
-                value={formValues.cvc}
-                onChange={(e) => handleTextChange("cvc")}
+                value={formState.cvc}
+                onChange={handleTextChange("cvc")}
                 color="rgba(25, 118, 210, 0.12)"
                 sx={{
                   "& .MuiOutlinedInput-root": {
@@ -511,7 +552,16 @@ const Popup = ({ closePopup }) => {
         {/* Buttons */}
         <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
           <Button
-            onClick={closePopup}
+            onClick={()=>{closePopup(); 
+              const savedData = JSON.parse(localStorage.getItem("formState"));
+    
+              if (savedData) {
+               Object.entries(savedData).forEach(([field, value]) => {
+                    updateField(field, value);
+                  });
+                
+              }
+            }}
             variant="outlined"
             color="inherit"
             sx={{

@@ -1,13 +1,18 @@
 // App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Form } from 'react-router-dom';
 import Dashboard1 from './pages/dashboard1';
 import Gridlayout from './pages/gridBox';
 import DetailsTable from './components/details';
-import ScrollableLayout from './components/ScrollableLayout';
+
 import './App.css';
+import { FormProvider } from './context/Formcontext';
 function App() {
   return (
+    <>
+    <FormProvider>
+
+    
     <Router>
       
         <Routes>
@@ -16,6 +21,8 @@ function App() {
         </Routes>
       
     </Router>
+    </FormProvider>
+    </>
   );
 }
 

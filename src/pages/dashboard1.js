@@ -7,6 +7,7 @@ import DataTable from '../components/table';
 import Filterbar from '../components/filterbar';
 import DetailsTable from '../components/details';
 import Sidebar from '../components/sidebar';
+import { FormProvider } from '../context/Formcontext';
 const Dashboard1 = () => {
     const [selectedIndex, setSelectedIndex] = useState(1);
     const [open, setOpen] = useState(true);
@@ -74,6 +75,7 @@ const Dashboard1 = () => {
                             flexGrow: 1,
                             backgroundColor: "#f4f5fa",
                             mt:"34px",
+                            
                             overflow: "auto",
                             overflowX: "hidden",
                             '&::-webkit-scrollbar': {
@@ -84,16 +86,18 @@ const Dashboard1 = () => {
                     sx={{
                         flexGrow: 1,
                         backgroundColor: "#f4f5fa",
-                        
+                        mb:"24px",
                         overflow: "auto",
                         overflowX: "hidden",
                         '&::-webkit-scrollbar': {
           display: 'none'
         },
                     }}
-                >
+                >    
+                <FormProvider>
                     <Filterbar />
                     <DetailsTable />
+                    </FormProvider>
                 </Box>
                 </Box>
             </List>
