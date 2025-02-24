@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { Settings, Edit } from "@mui/icons-material";
 import Popup from "./popup";
-
+import './filterbar.css'
 const Filterbar = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
@@ -27,60 +27,24 @@ const Filterbar = () => {
   };
 
   return (
-    <Box
-      display="flex"
-      justifyContent="space-between"
-      alignItems="center"
-      
-      sx={{
-        color: "initial", // Resets text color to browser default (usually black)
-        fontStyle: "initial", // Resets font style to normal
-        backgroundColor: "initial",
-        backgroundColor: "white",
-        height: "auto",
-        minHeight: "52px !important",
-        width: "100%-20px",
-        position: "relative",
-        
-        padding: "16px 16px 16px 16px",
-        gap: "16px",
-        
-        
-      }}
+    <Box className="filterbar-container"
     >
       {/* Profile Image with Editable Overlay */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-        <Box
+        <Box className="filterbar-profileImage"
           sx={{
-            position: "relative",
-            width: "48px",
-            height: "48px",
-            borderRadius: "50%",
-            overflow: "hidden",
-            cursor: "pointer",
             "&:hover .edit-overlay": { opacity: 1 },
           }}
           onClick={() => document.getElementById("imageUpload").click()}
         >
           <Avatar
             src={profileImage || "https://via.placeholder.com/48"}
+       className="filterbar-avatar"     
             sx={{ width: 48, height: 48 }}
           />
           <Box
             className="edit-overlay"
-            sx={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundColor: "rgba(0, 0, 0, 0.4)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              opacity: 0,
-              transition: "opacity 0.3s ease-in-out",
-            }}
+           
          >
             <Edit sx={{ color: "white", fontSize: 24 }} />
           </Box>
@@ -110,6 +74,7 @@ const Filterbar = () => {
         {/* Button Group */}
         <ButtonGroup
           variant="contained"
+          className="filterbar-buttonGroup"
           sx={{
             border: "1px solid #c9c9c9",
             "& .MuiButtonGroup-grouped:not(:last-of-type)": {
@@ -152,11 +117,8 @@ const Filterbar = () => {
 
         {/* Settings Icon */}
         <IconButton
-          sx={{
-            color: "grey",
-            borderRadius: "50%",
-            padding: "8px",
-          }}
+        className="filterbar-settings"
+          
         >
           <Settings />
         </IconButton>

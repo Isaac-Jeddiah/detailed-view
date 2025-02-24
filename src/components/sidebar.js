@@ -2,17 +2,32 @@ import { IconButton, List, ListItem, } from '@mui/material'
 import React from 'react'
 import StarIcon from '@mui/icons-material/Star';
 import AppIcon from '../assets/appIcon';
-
+import './Sidebar.css'
 const Sidebar = ({ selectedIndex, setSelectedIndex }) => {
 
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
     };
-    return (
-        <List
-            sx={{ height: "100vh", width: '100%', maxWidth: 64, bgcolor: '#283356', padding: "0", overflow: "scroll", scrollbarWidth: "none" }}
-            aria-label="contacts"
+
+
+const listItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
+    <ListItem className="sidebar-listItem" key={index}>
+        <IconButton
+            className="sidebar-iconButton"
+            selected={selectedIndex === index}
+            onClick={(event) => handleListItemClick(event, index)}
         >
+            <StarIcon
+                className={`sidebar-starIcon ${
+                    selectedIndex === index ? 'sidebar-starIcon-selected' : ''
+                }`}
+            />
+        </IconButton>
+    </ListItem>
+));
+    return (
+        <List className="sidebar-list" aria-label="contacts">
+            
             <ListItem sx={{ margin: "12px", padding: "0" }} >
                 <IconButton>
                     <AppIcon />
@@ -24,7 +39,7 @@ const Sidebar = ({ selectedIndex, setSelectedIndex }) => {
                     <StarIcon sx={{ color: "white" }} />
                 </IconButton>
             </ListItem>
-
+            
 
             <ListItem sx={{ margin: "12px", padding: "0" }}>
                 <IconButton selected={selectedIndex === 1}
@@ -119,21 +134,7 @@ const Sidebar = ({ selectedIndex, setSelectedIndex }) => {
                 </IconButton>
             </ListItem>
 
-            <ListItem sx={{ margin: "12px", padding: "0" }}>
-                <IconButton selected={selectedIndex === 5}
-                    onClick={(event) => handleListItemClick(event, 5)}>
-                    <StarIcon sx={{ color: selectedIndex === 5 ? "blue" : "white" }} />
-                </IconButton>
-            </ListItem>
-
-            <ListItem sx={{ margin: "12px", padding: "0" }}>
-                <IconButton selected={selectedIndex === 5}
-                    onClick={(event) => handleListItemClick(event, 5)}>
-                    <StarIcon sx={{ color: selectedIndex === 5 ? "blue" : "white" }} />
-                </IconButton>
-            </ListItem>
-
-
+         
         </List>
     )
 }
