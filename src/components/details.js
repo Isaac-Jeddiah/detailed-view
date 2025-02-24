@@ -1832,9 +1832,26 @@ export default function DetailsTable() {
                           >
                            <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
           <Button
-            onClick={() =>
-              setAllFieldsEditable(!allFieldsEditable)
-            }
+            onClick={() =>{
+              const savedData = JSON.parse(localStorage.getItem("formState"));
+    
+              if (savedData) {
+               Object.entries(savedData).forEach(([field, value]) => {
+                    updateField(field, value);
+                  });
+              }
+              setAllFieldsEditable(!allFieldsEditable);
+              handleCancel('email');
+              handleCancel('phone');
+              handleCancel('expiry');
+              handleCancel('cvc');
+              handleCancel('name');
+              handleCancel('state');
+              handleCancel('zip');
+              handleCancel('bio');
+              handleCancel('cardNumber');
+              handleCancel('cardHolder');
+            }}
             variant="outlined"
             color="inherit"
             sx={{
