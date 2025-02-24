@@ -388,8 +388,8 @@ export default function DetailsTable() {
         <TimelineSeparator>
   <TimelineDot
     sx={{
-      width: 24, // Adjust this value as needed
-      height: 24, // Keep same as width for symmetry
+      width: 48, // Adjust this value as needed
+      height: 48, // Keep same as width for symmetry
       backgroundColor: "transparent", // Make background transparent
       display: "flex",
       justifyContent: "center",
@@ -563,15 +563,7 @@ export default function DetailsTable() {
       },
     },
   };
-  const StyledTextField = styled(TextField)(({ theme, disabled }) => ({
-    // Override disabled text color
-    "& .MuiInputBase-input.MuiInput-input.Mui-readOnly": {
-      WebkitTextFillColor: "#444444",
-      color: "#444444",
-      cursor: "default",
-    },
-    // Style for label when field is outlined
-  }));
+ 
   //
   const fieldSpacing = "16px"; // Adjust field spacing here (16px = 2 * 8px)
   const dividerSpacing = "16px"; // Adjust heading-divider spacing here
@@ -625,7 +617,7 @@ export default function DetailsTable() {
         </AppBar>
 
         <Grid item xs={12} md={7} lg={7} ml={-4.4}>
-          <Grid container columnSpacing={1.6}>
+          <Grid container columnSpacing={"16px"}>
             <Grid item xs={8}>
               <Grid container sx={{ width: "100%", flexWrap: "wrap" }}>
                 <Box
@@ -677,7 +669,7 @@ export default function DetailsTable() {
                           <TextField
                             label="Name*"
                             variant={
-                              !allFieldsEditable ? "standard" : "standard"
+                              !allFieldsEditable ? "standard" : "outlined"
                             }
                             fullWidth
                             value={
@@ -812,7 +804,7 @@ export default function DetailsTable() {
                           <TextField
                             label="Phone*"
                             variant={
-                              !allFieldsEditable ? "standard" : "standard"
+                              !allFieldsEditable ? "standard" : "outlined"
                             }
                             fullWidth
                             value={
@@ -936,7 +928,7 @@ export default function DetailsTable() {
                           <TextField
                             label="State *"
                             variant={
-                              !allFieldsEditable ? "standard" : "standard"
+                              !allFieldsEditable ? "standard" : "outlined"
                             }
                             fullWidth
                             select
@@ -1034,7 +1026,7 @@ export default function DetailsTable() {
                           <TextField
                             label="Zip Code*"
                             variant={
-                              !allFieldsEditable ? "standard" : "standard"
+                              !allFieldsEditable ? "standard" : "outlined"
                             }
                             fullWidth
                             value={
@@ -1148,7 +1140,7 @@ export default function DetailsTable() {
                           <TextField
                             label="Bio*"
                             variant={
-                              !allFieldsEditable ? "standard" : "standard"
+                              !allFieldsEditable ? "standard" : "outlined"
                             }
                             fullWidth
                             multiline
@@ -1310,7 +1302,7 @@ export default function DetailsTable() {
                           <TextField
                             label="Card Number*"
                             variant={
-                              !allFieldsEditable ? "standard" : "standard"
+                              !allFieldsEditable ? "standard" : "outlined"
                             }
                             fullWidth
                             value={
@@ -1430,7 +1422,7 @@ export default function DetailsTable() {
                           <TextField
                             label="Card Holder Name*"
                             variant={
-                              !allFieldsEditable ? "standard" : "standard"
+                              !allFieldsEditable ? "standard" : "outlined"
                             }
                             fullWidth
                             value={
@@ -1545,7 +1537,7 @@ export default function DetailsTable() {
  <TextField
                             label="Expiry*"
                             variant={
-                              !allFieldsEditable ? "standard" : "standard"
+                              !allFieldsEditable ? "standard" : "outlined"
                             }
                             fullWidth
                             value={
@@ -1662,7 +1654,7 @@ export default function DetailsTable() {
                           <TextField
                             label="CVC/CV2*"
                             variant={
-                              !allFieldsEditable ? "standard" : "standard"
+                              !allFieldsEditable ? "standard" : "outlined"
                             }
                             fullWidth
                             value={
@@ -1773,6 +1765,8 @@ export default function DetailsTable() {
                       </Grid>
                     </Box>
                    {/* save cancel buton*/}
+                   {/* Buttons */}
+        
                     <Box>
                     {/* Save Button */}
                     {allFieldsEditable && (
@@ -1797,49 +1791,32 @@ export default function DetailsTable() {
                             container
                             justifyContent="flex-end"
                           >
-                            <ButtonGroup
-                              variant="contained"
-                              sx={{
-                                border: "1px solid #d2d2d2",
-                                "& .MuiButtonGroup-grouped:not(:last-of-type)":
-                                  {
-                                    borderColor: "#d2d2d2", // Match the border color
-                                  },
-                                boxShadow: "none", // Remove shadow
-                                "& button": {
-                                  boxShadow: "none",
-                                },
-                              }}
-                            >
-                              <Button
-                                onClick={() =>
-                                  setAllFieldsEditable(!allFieldsEditable)
-                                }
-                                sx={{
-                                  backgroundColor: "white",
-                                  boxShadow: "none", // Remove shadow
-                                  "& button": {
-                                    boxShadow: "none",
-                                  },
-                                  "&:hover": {
-                                    //backgroundColor: "#f0f0f0",
-                                    boxShadow: "none",
-                                  },
-                                  color: "#283356",
-                                }}
-                              >
-                                Cancel
-                              </Button>
-                              <Button
-                                onClick={handleSave}
-                                sx={{
-                                  backgroundColor: "#1976D2",
-                                  color: "white",
-                                }}
-                              >
-                                Submit
-                              </Button>
-                            </ButtonGroup>
+                           <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
+          <Button
+            onClick={() =>
+              setAllFieldsEditable(!allFieldsEditable)
+            }
+            variant="outlined"
+            color="inherit"
+            sx={{
+              textTransform: "none",
+              borderColor: "grey.300",
+            }}
+          >
+            CANCEL
+          </Button>
+          <Button
+             onClick={()=>{handleSave(); setAllFieldsEditable(!allFieldsEditable)}}
+            type="submit"
+            variant="contained"
+            sx={{
+              textTransform: "none",
+              bgcolor: "#1976d2",
+            }}
+          >
+            SUBMIT
+          </Button>
+        </Box>
                           </Grid>
                         </Box>
                       </>

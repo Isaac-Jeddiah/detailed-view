@@ -70,10 +70,10 @@ const Dashboard1 = () => {
                 }}
             >
                 <Navbar />
-                <Box ml={2.4} mr={2.4} sx={{
+                <Box ml={"24px"} mr={"24px"}  sx={{
                             flexGrow: 1,
                             backgroundColor: "#f4f5fa",
-                            
+                            mt:"34px",
                             overflow: "auto",
                             overflowX: "hidden",
                             '&::-webkit-scrollbar': {
