@@ -416,8 +416,8 @@ export default function DetailsTable() {
         <TimelineSeparator>
           <TimelineDot
             sx={{
-              width: 100, // Adjust this value as needed
-              height: 100, // Keep same as width for symmetry
+              width: 48, // Adjust this value as needed
+              height: 48, // Keep same as width for symmetry
               backgroundColor: "transparent", // Make background transparent
               display: "flex",
               justifyContent: "center",
@@ -2004,8 +2004,8 @@ export default function DetailsTable() {
 
                           "& .MuiTimelineDot-root": {
                             // Keep same as width for symmetry
-                            width: "48px",
-                            height: "48px",
+                            width: "16px",
+                            height: "16px",
                             backgroundColor: "transparent", // Make background transparent
                             display: "flex",
                             justifyContent: "center",
@@ -2070,8 +2070,8 @@ export default function DetailsTable() {
 
                           "& .MuiTimelineDot-root": {
                             // Keep same as width for symmetry
-                            width: "48px",
-                            height: "48px",
+                            width: "16px",
+                            height: "16px",
                             backgroundColor: "transparent", // Make background transparent
                             display: "flex",
                             justifyContent: "center",
