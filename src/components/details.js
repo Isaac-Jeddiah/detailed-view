@@ -1889,7 +1889,7 @@ export default function DetailsTable() {
                         margin: "0 auto",
                         
                         p: 2.4,
-                        borderTop: "1px solid #747474",
+                        
                       }}
                     >
                       <Typography
