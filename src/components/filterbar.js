@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTheme } from '@mui/material/styles'
 import {
   Box,
   ButtonGroup,
@@ -14,7 +15,7 @@ import './filterbar.css'
 const Filterbar = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
-
+  const theme = useTheme();
   const openPopup = () => setShowPopup(true);
   const closePopup = () => setShowPopup(false);
 
@@ -56,7 +57,7 @@ const Filterbar = () => {
           hidden
           onChange={handleImageUpload}
         />
-        <Typography variant="h5">Senior Manager</Typography>
+        <Typography  sx={{fontSize:theme.typography.fontSizes.headingSize}}>Senior Manager</Typography>
       </Box>
 
       {/* Action Label Edit & Settings Icon */}

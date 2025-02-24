@@ -3,14 +3,15 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Form } from 'react-router-dom';
 import Dashboard1 from './pages/dashboard1';
 import Gridlayout from './pages/gridBox';
+import { ThemeProvider } from '@mui/material/styles';
 import DetailsTable from './components/details';
-
+import theme from './theme';
 import './App.css';
 import { FormProvider } from './context/Formcontext';
 function App() {
   return (
     <>
-   
+   <ThemeProvider theme={theme}>
     <Router>
       
         <Routes>
@@ -19,7 +20,7 @@ function App() {
         </Routes>
       
     </Router>
-   
+    </ThemeProvider>
     </>
   );
 }

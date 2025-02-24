@@ -11,7 +11,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import { useFormState } from '../context/Formcontext';
-
+import { useTheme } from '@mui/material/styles'
 import {
   Timeline,
   TimelineItem,
@@ -74,7 +74,7 @@ function TabPanel({ children, value, index }) {
 
 export default function DetailsTable() {
   
-  
+  const theme = useTheme();
 
   const formContext = useFormState();
   
@@ -447,7 +447,7 @@ export default function DetailsTable() {
             <Typography
               
               color="primary"
-              sx={{ fontSize: "14px" }}
+              sx={{ fontSize: theme.typography.fontSizes.contentSize  }}
             >
               {item.date}
             </Typography>
@@ -471,7 +471,7 @@ export default function DetailsTable() {
                 key={i}
                 style={{
                   fontFamily: "var(--fontFamily)",
-                  fontSize: "14px",
+                  fontSize: theme.typography.fontSizes.contentSize ,
                   fontWeight: 400,
                   lineHeight: "24px",
                   letterSpacing: "0.15px",
@@ -588,10 +588,10 @@ export default function DetailsTable() {
   };
  
   //
-  const fieldSpacing = "16px"; // Adjust field spacing here 
-  const dividerSpacing = "16px"; // Adjust heading-divider spacing here
-  const dividerabovespacing = "8px"; //Adjust divider-below spacing her
-  const Overviewbottomspacing = "8px"; //Adjust Overview bottom
+  const fieldSpacing = theme.typography.spaces.fieldSpacing; // Adjust field spacing here 
+  const dividerSpacing = theme.typography.spaces.dividerSpacing; // Adjust heading-divider spacing here
+  const dividerabovespacing = theme.typography.spaces.dividerabovespacing; //Adjust divider-below spacing her
+  const Overviewbottomspacing = theme.typography.spaces.Overviewbottomspacing; //Adjust Overview bottom
   return (
     <Box
       sx={{
@@ -630,7 +630,7 @@ export default function DetailsTable() {
               backgroundColor: "#f4f5fa",
               //ml: '304px',
               "& .MuiTab-root": {
-                fontSize: "14px",
+                fontSize: theme.typography.fontSizes.contentSize ,
                 minHeight: "4px",
               },
             }}
@@ -681,7 +681,7 @@ export default function DetailsTable() {
                         mb={dividerabovespacing}
                         mt={0}
                       >
-                        <Typography variant="h6" padding="0 0 8px!important 0">
+                        <Typography sx={{fontSize:theme.typography.fontSizes.subheadingSize,fontWeight:"bold"}} padding="0 0 8px!important 0">
                           Section Heading
                         </Typography>
                       </Box>
@@ -770,7 +770,7 @@ export default function DetailsTable() {
                               color: "red !important",
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "14px",
+                                fontSize: theme.typography.fontSizes.contentSize ,
                                 color: "red !important",
                                 ...(allFieldsEditable
                                   ? {}
@@ -893,7 +893,7 @@ export default function DetailsTable() {
                               },
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "14px",
+                                fontSize: theme.typography.fontSizes.contentSize ,
                                 color: "#181818",
                                 ...(allFieldsEditable
                                   ? {}
@@ -1018,7 +1018,7 @@ export default function DetailsTable() {
                               },
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "14px",
+                                fontSize: theme.typography.fontSizes.contentSize ,
                                 ...(allFieldsEditable
                                   ? {}
                                   : { paddingTop: "5px" }),
@@ -1117,7 +1117,7 @@ export default function DetailsTable() {
                               },
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "14px",
+                                fontSize: theme.typography.fontSizes.contentSize ,
                                 ...(allFieldsEditable
                                   ? {}
                                   : { paddingTop: "5px" }),
@@ -1187,11 +1187,13 @@ export default function DetailsTable() {
                               "& .MuiInput-underline": {
                                 borderBottomWidth: "1px",
                                 borderBottomStyle: "solid",
-                                borderBottomColor: "#d2d2d2",
+                                borderBottomColor: "#d2d2d2 !important",
                               },
                               "& .MuiInput-underline:before": {
                                 borderBottomWidth: "0px",
-                                borderBottomStyle: "solid", // Increase thickness
+                                borderBottomStyle: "solid",
+                                borderBottomColor: "#d2d2d2 !important",
+                                // Increase thickness
                               },
                               "& .MuiInputBase-input": {
                                 color: "#181818",
@@ -1247,7 +1249,7 @@ export default function DetailsTable() {
                               readOnly: !allFieldsEditable,
                               color: "#181818 !important",
                               sx: {
-                                fontSize: "14px",
+                                fontSize: theme.typography.fontSizes.contentSize ,
 
                                 color: "#181818",
                                 ...(allFieldsEditable
@@ -1315,7 +1317,7 @@ export default function DetailsTable() {
                         mb={dividerabovespacing}
                         mt={0}
                       >
-                        <Typography variant="h6" padding="0 0 8px!important 0">
+                        <Typography sx={{fontSize:theme.typography.fontSizes.subheadingSize,fontWeight:"bold"}} padding="0 0 8px!important 0">
                           Typography
                         </Typography>
                       </Box>
@@ -1393,10 +1395,10 @@ export default function DetailsTable() {
                               },
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "14px",
+                                fontSize: theme.typography.fontSizes.contentSize ,
                                 ...(allFieldsEditable
                                   ? {}
-                                  : { paddingTop: "5px" }),
+                                  : { paddingTop: "8px" }),
 
                                 ...(allFieldsEditable && {
                                   "&:after": {
@@ -1513,7 +1515,7 @@ export default function DetailsTable() {
                               },
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "14px",
+                                fontSize: theme.typography.fontSizes.contentSize ,
                                 ...(allFieldsEditable
                                   ? {}
                                   : { paddingTop: "5px" }),
@@ -1630,7 +1632,7 @@ export default function DetailsTable() {
                               
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "14px",
+                                fontSize: theme.typography.fontSizes.contentSize ,
                                 ...(allFieldsEditable
                                   ? {}
                                   : { paddingTop: "5px" }),
@@ -1733,7 +1735,7 @@ export default function DetailsTable() {
                               },
                               readOnly: !allFieldsEditable,
                               sx: {
-                                fontSize: "14px",
+                                fontSize: theme.typography.fontSizes.contentSize ,
                                 ...(allFieldsEditable
                                   ? {}
                                   : { paddingTop: "5px" }),
@@ -1940,7 +1942,7 @@ export default function DetailsTable() {
                       sx={summaryStyle}
                     >
                       <Typography
-                        variant="body"
+                        
                         sx={{ marginLeft: "-8px", fontSize: "16px" }}
                       >
                         Upcoming & Overdue
@@ -2008,7 +2010,7 @@ export default function DetailsTable() {
                       sx={summaryStyle}
                     >
                       <Typography
-                        variant="body"
+                        
                         sx={{ marginLeft: "-8px", fontSize: "16px" }}
                       >
                         Completed
