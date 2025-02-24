@@ -1226,11 +1226,11 @@ export default function DetailsTable() {
                                 },
                               },
                               "& .MuiInput-underline:hover:before": {
-                                borderBottomWidth: "1px",
+                                borderBottomWidth: "0px",
                                 borderBottomColor: "#d2d2d2",
                               },
                               "& .MuiInput-underline:hover:after": {
-                                borderBottomWidth: "1px",
+                                borderBottomWidth: "0px",
                                 borderBottomColor: "#d2d2d2",
                               },
                               "& .MuiInputBase-input.MuiInput-input.Mui-readOnly":
