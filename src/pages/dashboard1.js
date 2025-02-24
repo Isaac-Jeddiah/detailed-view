@@ -8,6 +8,8 @@ import Filterbar from '../components/filterbar';
 import DetailsTable from '../components/details';
 import Sidebar from '../components/sidebar';
 import { FormProvider } from '../context/Formcontext';
+import './dashboard1.css';
+
 const Dashboard1 = () => {
     const [selectedIndex, setSelectedIndex] = useState(1);
     const [open, setOpen] = useState(true);
@@ -17,88 +19,23 @@ const Dashboard1 = () => {
     }, [selectedIndex]);
 
     return (
-        <Box display="flex" 
-        sx={{
-            height: '100vh',
-            width: '100vw',
-            overflow: 'hidden',
-            position: 'fixed',
-            top: 0,
-            left: 0
-        }}>
-            
-          <Sidebar selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
-            <Box
-                sx={{
-                    position: 'relative',
-                    height: "100%",
-                    width: open ? "290px" : 2,
-                    backgroundColor: '#f4f5fa',
-                    borderRight: '1px solid #ddd',
-                    // flexShrink: 0,
-                }}
-            >
+        <Box className="dashboardContainer">
+            <Sidebar selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
+            <Box className={`secondarySidebar ${open ? "open" : "closed"}`}>
                 <SecondarySidebar selectedIndex={selectedIndex} open={open} />
-
-                <IconButton size='small' edge='start'
-                    sx={{
-                        position: "absolute",
-                        bottom: 16,
-                        right: -12,
-                        zIndex: 1,
-                        backgroundColor: '#007bff',
-                        color: '#fff',
-                        padding: "5px",
-                        margin: "0",
-                        ":hover": {
-                            backgroundColor: "#0275f0"
-                        }
-                    }}
-                    onClick={() => setOpen((prev) => !prev)}
-                >
-                    {open ? <ArrowBackIos sx={{ fontSize: "14px", transform: "translateX(3px)" }} /> : <ArrowForwardIos sx={{ fontSize: "14px", transform: "translateX(1px)" }} />}
+                <IconButton size='small' edge='start' className="toggleButton" onClick={() => setOpen((prev) => !prev)}>
+                    {open ? <ArrowBackIos className="toggleIcon" /> : <ArrowForwardIos className="toggleIcon" />}
                 </IconButton>
             </Box>
-            
-            <List
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "100%",
-                    width: "100%",
-                    padding: 0,
-                    backgroundColor: "#f4f5fa",
-                }}
-            >
+            <List className="mainContent">
                 <Navbar />
-                <Box ml={"24px"} mr={"24px"}  sx={{
-                            flexGrow: 1,
-                            backgroundColor: "#f4f5fa",
-                            mt:"34px",
-                            
-                            overflow: "auto",
-                            overflowX: "hidden",
-                            '&::-webkit-scrollbar': {
-              display: 'none'
-            },
-                }}>
-                <Box
-                    sx={{
-                        flexGrow: 1,
-                        backgroundColor: "#f4f5fa",
-                        mb:"24px",
-                        overflow: "auto",
-                        overflowX: "hidden",
-                        '&::-webkit-scrollbar': {
-          display: 'none'
-        },
-                    }}
-                >    
-                <FormProvider>
-                    <Filterbar />
-                    <DetailsTable />
-                    </FormProvider>
-                </Box>
+                <Box className="contentBox">
+                    <Box className="formProviderBox">
+                        <FormProvider>
+                            <Filterbar />
+                            <DetailsTable />
+                        </FormProvider>
+                    </Box>
                 </Box>
             </List>
         </Box>

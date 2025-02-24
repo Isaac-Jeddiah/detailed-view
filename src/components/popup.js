@@ -42,10 +42,8 @@ const states = [
 
 const Popup = ({ closePopup }) => {
   const formContext = useFormState();
-    console.log('Form Context:', formContext);
-    
+   
     const { formState, updateField,resetform } = formContext;
-    console.log('Form State:', formState.name);
     
   const [state, setState] = useState("Alabama");
   const [fieldValue, setFieldValue] = useState("Value"); // State for field value
@@ -53,8 +51,7 @@ const Popup = ({ closePopup }) => {
 
   
   
-console.log(formState)
-  // Handler for text field changes
+// Handler for text field changes
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem("formState"));
     if (savedData) {
@@ -178,45 +175,6 @@ console.log(formState)
           </Typography>
 
           <Grid container spacing={2}>
-            {/* <Grid item xs={12} md={6}>
-              <TextField
-                label="Name*"
-                //defaultValue="Value"
-                size="small"
-                fullWidth
-                value={formState[namefield]}
-                onChange={handleTextChange(namefield)}
-                //focused={true}}
-                color="rgba(25, 118, 210, 0.12)"
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    "&:hover fieldset": {
-                      borderColor: "#1976d2", // blue color on hover
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "#1976d2", // blue color when focused
-                    },
-                  },
-                }}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment
-                      position="end"
-                      sx={{
-                        position: "relative",
-                        marginRight: "0px",
-                        marginBottom: "5px",
-                      }}
-                    >
-                      {" "}
-                      <EditIconButton //onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
-                      />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Grid>
-             */}
              {renderTextField('name', "Name*")}
             <Grid item xs={12} md={6}>
               <TextField
@@ -314,26 +272,7 @@ console.log(formState)
                     </InputAdornment>
                   ),
                 }}
-                // InputProps={{
-                //   endAdornment: (
-                //     <InputAdornment position="end">
-                //       <IconButton
-                //         //onClick={() => handleSaveValue('zipcode')}
-                //         edge="end"
-                //         sx={{ color: 'green' }}
-                //       >
-                //         <CheckCircleIcon />
-                //       </IconButton>
-                //       <IconButton
-                //         //onClick={() => handleClearValue('zipcode')}
-                //         edge="end"
-                //         sx={{ color: 'red' }}
-                //       >
-                //         <DeleteIcon />
-                //       </IconButton>
-                //     </InputAdornment>
-                //   ),
-                // }}
+               
               />
             </Grid>
           </Grid>

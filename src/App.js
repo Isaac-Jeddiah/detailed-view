@@ -10,9 +10,7 @@ import { FormProvider } from './context/Formcontext';
 function App() {
   return (
     <>
-    <FormProvider>
-
-    
+   
     <Router>
       
         <Routes>
@@ -21,7 +19,7 @@ function App() {
         </Routes>
       
     </Router>
-    </FormProvider>
+   
     </>
   );
 }

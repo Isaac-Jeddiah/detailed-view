@@ -77,13 +77,10 @@ export default function DetailsTable() {
   
 
   const formContext = useFormState();
-  console.log('Form Context:', formContext);
   
   const { formState, updateField } = formContext;
-  console.log('Form State:', formState.name);
   
-  // Rest of your code...
-
+  
   const [activeTab, setActiveTab] = useState(0);
  
   const [allFieldsEditable, setAllFieldsEditable] = useState(false);
@@ -517,17 +514,6 @@ export default function DetailsTable() {
     ));
   };
  
-
-  // const handleSave = () => {
-  //   // Save the form values
-  //   updateField({ ...formState, ...tempValues });
-
-  //   // Optionally, persist to database or backend
-  //   console.log("Saved values:", tempValues);
-
-  //   // Reset edit mode
-  //   setAllFieldsEditable(false);
-  // };
 
   const accordionStyle = {
     minHeight: "60px",
@@ -979,8 +965,7 @@ export default function DetailsTable() {
                               updateField("state", e.target.value);
                               setState(e.target.value);
                               handleFieldChange("state", e.target.value);
-                              console.log("hello"+'\n'+formState.state);
-                            }}
+                          }}
                             //                                disabled={!allFieldsEditable}
                             size="small"
                             sx={{

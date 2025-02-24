@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import { LocationOnSharp } from '@mui/icons-material';
 import Avatar from '@mui/material/Avatar';
 import { styled } from '@mui/material/styles';
-
+import './table.css';
 function createData(id, user, amount, stage, probability, closingdate, avatar) {
   return { id, user, amount, stage, probability, closingdate, avatar };
 }
@@ -96,16 +96,16 @@ export default function DataTable() {
   return (
     <Box sx={{ width: '100%', mt: 2, typography: 'body1', fontSize: 14, fontFamily: 'Roboto' }}>
       <Paper sx={{ width: '100%', mb: 2, boxShadow: 'none' }}>
-        <StyledTableContainer>
+      <TableContainer className="styled-table-container">
           <Table aria-labelledby="tableTitle" size="small">
             <TableHead>
               <TableRow>
-                <StyledHeaderCell align="left">Deal Name</StyledHeaderCell>
-                <StyledTableCell align="left">Amount</StyledTableCell>
-                <StyledTableCell align="left">Location</StyledTableCell>
-                <StyledTableCell align="left">Account Status</StyledTableCell>
-                <StyledTableCell align="left">Due Date</StyledTableCell>
-              </TableRow>
+              <TableCell className="table-header">Deal Name</TableCell>
+                <TableCell className="table-header">Amount</TableCell>
+                <TableCell className="table-header">Location</TableCell>
+                <TableCell className="table-header">Account Status</TableCell>
+                <TableCell className="table-header">Closing Date</TableCell>
+               </TableRow>
             </TableHead>
             <TableBody>
               {rows
@@ -124,20 +124,20 @@ export default function DataTable() {
                       key={row.id}
                       selected={isItemSelected}
                     >
-                      <StyledTableCell component="th" id={labelId} scope="row" align="left">
-                        <Box display="flex" alignItems="center">
-                          <Avatar src={row.avatar} sx={{ width: 24, height: 24, mr: 1 }} />
-                          {row.user}
-                        </Box>
-                      </StyledTableCell>
-                      <StyledTableCell align="left">${row.amount}</StyledTableCell>
-                      <StyledTableCell align="left">
-                        <Box display="flex" alignItems="center">
-                          <LocationOnSharp sx={{ fontSize: "18px", color: "#707070" }} />
-                          {row.stage}
-                        </Box>
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
+                      <TableCell className="styled-cell">
+                    <Box className="user-info">
+                      <Avatar src={row.avatar} className="avatar" />
+                      {row.user}
+                    </Box>
+                  </TableCell>
+                  <TableCell className="styled-cell">${row.amount}</TableCell>
+                  <TableCell className="styled-cell">
+                    <Box className="location-info">
+                      <LocationOnSharp className="location-icon" />
+                      {row.stage}
+                    </Box>
+                  </TableCell>
+                      <StyledTableCell align="center">
                         <Box sx={{
                           backgroundColor: row.probability === 'Active' ? "#ebebeb" : "#ef6c00",
                           color: row.probability === 'Active' ? "#000" : "#fff",
@@ -149,7 +149,7 @@ export default function DataTable() {
                           {row.probability}
                         </Box>
                       </StyledTableCell>
-                      <StyledTableCell align="left">{row.closingdate}</StyledTableCell>
+                      <TableCell className="styled-cell">{row.closingdate}</TableCell>
                     </StyledTableRow>
                   );
                 })}
@@ -164,7 +164,7 @@ export default function DataTable() {
               )}
             </TableBody>
           </Table>
-        </StyledTableContainer>
+        </TableContainer>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"

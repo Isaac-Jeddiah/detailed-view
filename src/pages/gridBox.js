@@ -38,6 +38,7 @@ const windowHeight = window.innerHeight;
 const BOX_HEIGHT = boxSizes.smallBoxWidth || 50; // Default if not yet calculated
 const rows = Math.max(1, Math.floor((windowHeight-56 ) / (BOX_HEIGHT )));
 console.log("rows",rows);
+
 const renderPair = (index) => {
   const isOdd = index % 2 !== 0;
   return (
