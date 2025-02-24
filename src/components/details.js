@@ -369,7 +369,7 @@ export default function DetailsTable() {
     },
   ];
 
-  // Modified renderTimelineItems function
+  //Modified renderTimelineItems function
   const renderTimelineItems = (items, showMore, maxItems = 2) => {
     const displayItems = showMore ? items : items.slice(0, maxItems);
 
@@ -386,13 +386,25 @@ export default function DetailsTable() {
         }}
       >
         <TimelineSeparator>
-          <TimelineDot sx={{ bgcolor: "#1976D2", boxShadow: "none" }} />
-          {index !== displayItems.length - 1 && (
-            <TimelineConnector
-              sx={{ bgcolor: " rgba(25, 118, 210, 0.12)", boxShadow: "none" }}
-            />
-          )}
-        </TimelineSeparator>
+  <TimelineDot
+    sx={{
+      width: 24, // Adjust this value as needed
+      height: 24, // Keep same as width for symmetry
+      backgroundColor: "transparent", // Make background transparent
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    <ExpandMore sx={{ color: "#1976D2" }} />
+  </TimelineDot>
+  {index !== displayItems.length - 1 && (
+    <TimelineConnector
+      sx={{ bgcolor: "rgba(25, 118, 210, 0.12)", boxShadow: "none" }}
+    />
+  )}
+</TimelineSeparator>
+
         <TimelineContent>
           <Box display="flex" justifyContent="space-between">
             <Typography variant="body2" sx={{ fontWeight: "bold" }}>
@@ -467,6 +479,8 @@ export default function DetailsTable() {
       </TimelineItem>
     ));
   };
+ 
+
   const handleSave = () => {
     // Save the form values
     setFieldValues({ ...fieldValues, ...tempValues });
@@ -1914,23 +1928,28 @@ export default function DetailsTable() {
                       <Timeline
                         sx={{
                           width: "100%",
-                          padding: "0 ",
-                          margin: "0",
+                          margin: "0 ",
+                          padding: "0",
                           [`& .${timelineItemClasses.root}:before`]: {
                             flex: 0,
                             padding: 0,
                           },
 
                           "& .MuiTimelineDot-root": {
-                            width: 8, // Adjust this value to change size
-                            height: 8, // Keep same as width for symmetry
-                            backgroundColor: "rgba(80, 80, 80,0.7)",
-                            clipPath: "polygon(0 0, 100% 50%, 0 100%)",
-                            transform: "translateX(2px)", // Fine-tune positioning if needed
-                            padding: 0,
-                            margin: "11.5px 0", // Maintain MUI Timeline spacing
-                            borderRadius: 0,
-                          },
+   // Keep same as width for symmetry
+   width: "16px",
+   height: "16px",
+  backgroundColor: "transparent", // Make background transparent
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: 0,
+  boxShadow: "none",
+  margin: "11.5px 0", // Maintain MUI Timeline spacing
+  "& .MuiSvgIcon-root": {
+    color: "#1976D2",
+    fontSize: "inherit", // Inherit the size from the parent
+  },},
 
                           mb: 1,
                         }}
@@ -1954,7 +1973,7 @@ export default function DetailsTable() {
                     </AccordionDetails>
                   </Accordion>
 
-                  <Accordion sx={accordionStyle}>
+                  <Accordion defaultExpanded sx={accordionStyle}>
                     <AccordionSummary
                       expandIcon={<ExpandMore sx={{ color: "#1976D2" }} />}
                       sx={summaryStyle}
@@ -1972,32 +1991,42 @@ export default function DetailsTable() {
                         display: "flex",
                         flexDirection: "column",
                         backgroundColor: "white",
-                        borderTop: "none",
                       }}
                     >
                       <Timeline
                         sx={{
+                          width: "100%",
+                          margin: "0 ",
+                          padding: "0",
                           [`& .${timelineItemClasses.root}:before`]: {
                             flex: 0,
                             padding: 0,
                           },
+
+                         
                           "& .MuiTimelineDot-root": {
-                            width: 8, // Adjust this value to change size
-                            height: 8, // Keep same as width for symmetry
-                            backgroundColor: "rgba(80, 80, 80, 0.7)",
-                            clipPath: "polygon(0 0, 100% 50%, 0 100%)",
-                            transform: "translateX(2px)", // Fine-tune positioning if needed
-                            padding: 0,
-                            margin: "11.5px 0", // Maintain MUI Timeline spacing
-                            borderRadius: 0,
-                          },
+                            // Keep same as width for symmetry
+                            width: "16px",
+                            height: "16px",
+                           backgroundColor: "transparent", // Make background transparent
+                           display: "flex",
+                           justifyContent: "center",
+                           alignItems: "center",
+                           padding: 0,
+                           boxShadow: "none",
+                           margin: "11.5px 0", // Maintain MUI Timeline spacing
+                           "& .MuiSvgIcon-root": {
+                             color: "#1976D2",
+                             fontSize: "inherit", // Inherit the size from the parent
+                           },},
+                          mb: 1,
                         }}
                       >
                         {renderTimelineItems(completedItems, showMoreCompleted)}
                       </Timeline>
                       <Box
                         sx={{
-                          mt: 1,
+                          mt: "auto",
                           display: "flex",
                           justifyContent: "center",
                         }}
@@ -2005,14 +2034,13 @@ export default function DetailsTable() {
                         <Chip
                           label={showMoreCompleted ? "View Less" : "View More"}
                           variant={"outlined"}
-                          onClick={() =>
-                            setShowMoreCompleted(!showMoreCompleted)
-                          }
+                          onClick={() => setShowMoreCompleted(!showMoreCompleted)}
                           sx={{ cursor: "pointer" }}
                         />
                       </Box>
                     </AccordionDetails>
                   </Accordion>
+
                 </Box>
               </Grid>
             </Grid>
