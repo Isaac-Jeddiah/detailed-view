@@ -1,0 +1,82 @@
+/* src/global.css */
+.buttonContainer {
+    display: flex;
+    justify-content: space-between; /* Space out the buttons */
+    margin: 20px 0; /* Add some margin for spacing */
+  }
+  
+  .cancelButton {
+    background-color: transparent;
+    color: #3f51b5; /* Customize your color */
+    border: 1px solid #3f51b5; /* Customize your border color */
+    font-size: 1rem; /* Customize your font size */
+    font-family: 'Roboto', Arial, sans-serif; /* Use Roboto font */
+    padding: 10px 20px; /* Add some padding */
+    text-transform: none; /* Prevent uppercase transformation */
+  }
+  
+  .cancelButton:hover {
+    background-color: rgba(63, 81, 181, 0.1); /* Customize hover color */
+  }
+  
+  .submitButton {
+    background-color: #3f51b5; /* Customize your background color */
+    color: #fff; /* Customize your text color */
+    font-size: 1rem; /* Customize your font size */
+    font-family: 'Roboto', Arial, sans-serif; /* Use Roboto font */
+    padding: 10px 20px; /* Add some padding */
+    text-transform: none; /* Prevent uppercase transformation */
+  }
+  
+  .submitButton:hover {
+    background-color: #303f9f; /* Customize hover background color */
+  }
+
+  /*button group */
+.filterbar-buttonGroup {
+    border: 1px solid #c9c9c9;
+    box-shadow: none; /* Remove shadow */
+  }
+  
+  .filterbar-buttonGroup .MuiButtonGroup-grouped:not(:last-of-type) {
+    border-color: #c9c9c9; /* Match the border color */
+  }
+  
+  .filterbar-buttonGroup button {
+    box-shadow: none; /* Remove shadow */
+    font-family: 'Roboto', Arial, sans-serif; /* Use Roboto font */
+  }
+  
+  .actionButton, .labelButton, .editButton {
+    box-shadow: none; /* Remove shadow */
+    font-family: 'Roboto', Arial, sans-serif; /* Use Roboto font */
+  }
+  
+  .actionButton {
+    background-color: white;
+    color: #283356;
+  }
+  
+  .actionButton:hover {
+    box-shadow: none; /* Remove shadow */
+  }
+  
+  .labelButton {
+    background-color: white;
+    color: #283356;
+  }
+  
+  .labelButton:hover {
+    box-shadow: none; /* Remove shadow */
+  }
+  
+  .editButton {
+    background-color: #1976D2;
+    color: white;
+  }
+  
+  .editButton:hover {
+    box-shadow: none; /* Remove shadow */
+  }
+  
+  

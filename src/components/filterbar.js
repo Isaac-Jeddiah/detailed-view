@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTheme } from '@mui/material/styles'
+import '../global.css';
 import {
   Box,
   ButtonGroup,
@@ -115,7 +116,24 @@ const Filterbar = () => {
             Edit
           </Button>
         </ButtonGroup>
-
+{/* 
+    <ButtonGroup
+      variant="contained"
+      className="filterbar-buttonGroup"
+    >
+      <Button className="actionButton">
+        Action
+      </Button>
+      <Button className="labelButton">
+        Label
+      </Button>
+      <Button
+        onClick={openPopup}
+        className="editButton"
+      >
+        Edit
+      </Button>
+    </ButtonGroup> */}
         {/* Settings Icon */}
         <IconButton
         className="filterbar-settings"

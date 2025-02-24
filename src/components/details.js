@@ -10,8 +10,8 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
-import { useFormState } from '../context/Formcontext';
-import { useTheme } from '@mui/material/styles'
+import { useFormState } from "../context/Formcontext";
+import { useTheme } from "@mui/material/styles";
 import {
   Timeline,
   TimelineItem,
@@ -38,30 +38,28 @@ import DataTable from "./table";
 import { ButtonGroup } from "@mui/material";
 
 const US_STATES = [
-  
-    "Alabama",
-    "Alaska",
-    "Arizona",
-    "Arkansas",
-    "California",
-    "Colorado",
-    "Connecticut",
-    "Delaware",
-    "Florida",
-    "Georgia",
-    "Hawaii",
-    "Idaho",
-    "Illinois",
-    "Indiana",
-    "Iowa",
-    "Kansas",
-    "Kentucky",
-    "Louisiana",
-    "Maine",
-    "Maryland",
-    "Massachusetts",
-    "Michigan",
-  
+  "Alabama",
+  "Alaska",
+  "Arizona",
+  "Arkansas",
+  "California",
+  "Colorado",
+  "Connecticut",
+  "Delaware",
+  "Florida",
+  "Georgia",
+  "Hawaii",
+  "Idaho",
+  "Illinois",
+  "Indiana",
+  "Iowa",
+  "Kansas",
+  "Kentucky",
+  "Louisiana",
+  "Maine",
+  "Maryland",
+  "Massachusetts",
+  "Michigan",
 ];
 
 function TabPanel({ children, value, index }) {
@@ -73,16 +71,14 @@ function TabPanel({ children, value, index }) {
 }
 
 export default function DetailsTable() {
-  
   const theme = useTheme();
 
   const formContext = useFormState();
-  
+
   const { formState, updateField } = formContext;
-  
-  
+
   const [activeTab, setActiveTab] = useState(0);
- 
+
   const [allFieldsEditable, setAllFieldsEditable] = useState(false);
 
   const handleChange = (event, newValue) => setActiveTab(newValue);
@@ -100,8 +96,6 @@ export default function DetailsTable() {
     }));
   };
 
-
-  
   const [state, setState] = useState("Alabama");
   const [editableFields, setEditableFields] = useState({
     name: false,
@@ -109,66 +103,66 @@ export default function DetailsTable() {
     phone: false,
     state: false,
     zipcode: false,
-    bio: false
+    bio: false,
   });
-  
+
   // Store temporary values while editing
   const [tempValues, setTempValues] = useState({});
-  
+
   // Initialize temp values from form state when component mounts
   useEffect(() => {
     setTempValues({ ...formState });
   }, [formState]);
-  
+
   // Handle text field changes (updates temp values only)
   const handleFieldChange = (field) => (event) => {
     updateField(field, event.target.value);
     setTempValues({
       ...tempValues,
-      [field]: event.target.value
+      [field]: event.target.value,
     });
   };
-  
+
   // Enable edit mode for a field
   const handleEdit = (field) => {
     setEditableFields({
       ...editableFields,
-      [field]: true
+      [field]: true,
     });
     // Ensure temp value is synchronized with current form state
     setTempValues({
       ...tempValues,
-      [field]: formState[field]
+      [field]: formState[field],
     });
   };
-  
+
   // Save changes to a field
   const handleSave = (field) => {
     // Update the global form state
     localStorage.setItem("formState", JSON.stringify(formState));
-  
+
     updateField(field, tempValues[field]);
     // Exit edit mode
     setEditableFields({
       ...editableFields,
-      [field]: false
+      [field]: false,
     });
   };
-  
+
   // Cancel editing a field
   const handleCancel = (field) => {
     // Revert temp value to current form state
     setTempValues({
       ...tempValues,
-      [field]: formState[field]
+      [field]: formState[field],
     });
     // Exit edit mode
     setEditableFields({
       ...editableFields,
-      [field]: false
+      [field]: false,
     });
   };
-  
+
   const textFieldsContainerRef = React.useRef();
 
   useEffect(() => {
@@ -420,24 +414,24 @@ export default function DetailsTable() {
         }}
       >
         <TimelineSeparator>
-  <TimelineDot
-    sx={{
-      width: 48, // Adjust this value as needed
-      height: 48, // Keep same as width for symmetry
-      backgroundColor: "transparent", // Make background transparent
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    }}
-  >
-    <ExpandMore sx={{ color: "#1976D2" }} />
-  </TimelineDot>
-  {index !== displayItems.length - 1 && (
-    <TimelineConnector
-      sx={{ bgcolor: "rgba(25, 118, 210, 0.12)", boxShadow: "none" }}
-    />
-  )}
-</TimelineSeparator>
+          <TimelineDot
+            sx={{
+              width: 100, // Adjust this value as needed
+              height: 100, // Keep same as width for symmetry
+              backgroundColor: "transparent", // Make background transparent
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <ExpandMore sx={{ color: "#1976D2" }} />
+          </TimelineDot>
+          {index !== displayItems.length - 1 && (
+            <TimelineConnector
+              sx={{ bgcolor: "rgba(25, 118, 210, 0.12)", boxShadow: "none" }}
+            />
+          )}
+        </TimelineSeparator>
 
         <TimelineContent>
           <Box display="flex" justifyContent="space-between">
@@ -445,9 +439,8 @@ export default function DetailsTable() {
               {item.title}
             </Typography>
             <Typography
-              
               color="primary"
-              sx={{ fontSize: theme.typography.fontSizes.contentSize  }}
+              sx={{ fontSize: theme.typography.fontSizes.contentSize }}
             >
               {item.date}
             </Typography>
@@ -471,7 +464,7 @@ export default function DetailsTable() {
                 key={i}
                 style={{
                   fontFamily: "var(--fontFamily)",
-                  fontSize: theme.typography.fontSizes.contentSize ,
+                  fontSize: theme.typography.fontSizes.contentSize,
                   fontWeight: 400,
                   lineHeight: "24px",
                   letterSpacing: "0.15px",
@@ -513,7 +506,6 @@ export default function DetailsTable() {
       </TimelineItem>
     ));
   };
- 
 
   const accordionStyle = {
     minHeight: "60px",
@@ -586,9 +578,9 @@ export default function DetailsTable() {
       },
     },
   };
- 
+
   //
-  const fieldSpacing = theme.typography.spaces.fieldSpacing; // Adjust field spacing here 
+  const fieldSpacing = theme.typography.spaces.fieldSpacing; // Adjust field spacing here
   const dividerSpacing = theme.typography.spaces.dividerSpacing; // Adjust heading-divider spacing here
   const dividerabovespacing = theme.typography.spaces.dividerabovespacing; //Adjust divider-below spacing her
   const Overviewbottomspacing = theme.typography.spaces.Overviewbottomspacing; //Adjust Overview bottom
@@ -630,7 +622,7 @@ export default function DetailsTable() {
               backgroundColor: "#f4f5fa",
               //ml: '304px',
               "& .MuiTab-root": {
-                fontSize: theme.typography.fontSizes.contentSize ,
+                fontSize: theme.typography.fontSizes.contentSize,
                 minHeight: "4px",
               },
             }}
@@ -648,7 +640,7 @@ export default function DetailsTable() {
                   sx={{
                     width: "100%",
                     p: 2.4,
-                    
+
                     mt: -2.4,
                     borderRadius: "4px",
                     overflow: "hidden",
@@ -656,1226 +648,1278 @@ export default function DetailsTable() {
                   }}
                 >
                   <TabPanel value={activeTab} index={0}>
-                  <Grid >
-                    {/*Section heading */}
-                    <Box
-                      sx={{
-                        height: "auto",
-                        backgroundColor: "white",
-                        width: "100%",
-                        
-                        borderRadius: "4px",
-                        // borderTop: "1px solid #747474",
-                        gap: "0px",
-                        p: "20px 20px 20px 20px",
-                        
-                        borderRadius: "4px",
-                        overflow: "hidden",
-                        flexWrap: "wrap",
-                      }}
-                    >
+                    <Grid>
+                      {/*Section heading */}
                       <Box
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="space-between"
-                        mb={dividerabovespacing}
-                        mt={0}
+                        sx={{
+                          height: "auto",
+                          backgroundColor: "white",
+                          width: "100%",
+
+                          borderRadius: "4px",
+                          // borderTop: "1px solid #747474",
+                          gap: "0px",
+                          p: "20px 20px 20px 20px",
+
+                          borderRadius: "4px",
+                          overflow: "hidden",
+                          flexWrap: "wrap",
+                        }}
                       >
-                        <Typography sx={{fontSize:theme.typography.fontSizes.subheadingSize,fontWeight:"bold"}} padding="0 0 8px!important 0">
-                          Section Heading
-                        </Typography>
-                      </Box>
-                      <Divider sx={{ flexGrow: 1, mb: dividerSpacing }} />
-
-                      <Grid container spacing={fieldSpacing}>
-                        <Grid item xs={6}>
-                          <TextField
-                            label="Name*"
-                            variant={
-                              !allFieldsEditable ? "standard" : "outlined"
-                            }
-                            fullWidth
-                            value={
-                              editableFields.name
-                                ? tempValues.name
-                                : formState.name
-                            }
-                            color="red"
-                            onFocus={() => handleEdit("name")}
-                            onBlur={() => {
-                              //handleSaveValue("name");
-                            }}
-                            onChange={
-                              handleFieldChange("name")
-                            }
-                            //                                disabled={!allFieldsEditable}
-                            sx={{
-                              "& .MuiInputBase-input": {
-                                color: "#181818",
-                                WebkitTextFillColor: "#181818",
-                              },
-                              "& .MuiInputBase-input.MuiInput-input.Mui-readOnly":
-                                {
-                                  WebkitTextFillColor: "#181818",
-                                  color: "#181818",
-                                },
-                              "& .MuiInput-underline:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomStyle: "solid",
-                                borderBottomColor: "#d2d2d2 !important",
-                              },
-                              "& .MuiInputBase-root": { height: "36px" },
-                              "& .MuiInput-root": { marginTop: "3px" },
-                              "& .MuiInputLabel-root.MuiInputLabel-standard": {
-                                transform: "translate(0, -1.5px) scale(0.75)",
-                                transformOrigin: "top left",
-                                color: "#444444 !important",
-                              },
-                              "& .MuiInputLabel-root": {
-                                color: "#181818 !important",
-                                "&.Mui-focused": {
-                                  color: "#181818 !important",
-                                },
-                              },
-                              "& .MuiInput-underline:hover:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                              "& .MuiInput-underline:hover:after": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                            }}
-                            InputLabelProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#444444' : '#444444'
-                              },
-                              color: "red",
-                              sx: {
-                                color: allFieldsEditable
-                                  ? "#1976d2"
-                                  : "#181818",
-                                ...(allFieldsEditable && {
-                                  backgroundColor: "white",
-                                }),
-                              },
-                              shrink: true, // Keep label shrunk
-                            }}
-                            InputProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#181818' : '#181818'
-                              },
-                              color: "red !important",
-                              readOnly: !allFieldsEditable,
-                              sx: {
-                                fontSize: theme.typography.fontSizes.contentSize ,
-                                color: "red !important",
-                                ...(allFieldsEditable
-                                  ? {}
-                                  : { paddingTop: "5px" }),
-                                ...(allFieldsEditable && {
-                                  "&:after": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                  "&:before": {
-                                    borderBottom:
-                                      "1px solid rgba(0, 0, 0, 0.42)",
-                                  },
-                                  "&:hover:before": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                }),
-                              },
-                              endAdornment: (
-                                <InputAdornment
-                                  position="end"
-                                  sx={{
-                                    position: "relative",
-                                    marginRight: "4px",
-                                    marginBottom: "5px",
-                                    "&.Mui-disabled": {
-                                      color: "#1976d2",
-                                    },
-                                  }}
-                                >
-                                  {!allFieldsEditable && (
-                                    <>
-                                      <EditIconButton
-                                        onClick={() =>
-                                          setAllFieldsEditable(
-                                            !allFieldsEditable
-                                          )
-                                        }
-                                        edge="end"
-                                        sx={{
-                                          marginLeft: allFieldsEditable
-                                            ? "4px"
-                                            : "0px",
-                                        }}
-                                      />
-                                    </>
-                                  )}
-                                </InputAdornment>
-                              ),
-                            }}
-                          />
-                        </Grid>
-
-                        <Grid item xs={6}>
-                          <TextField
-                            label="Phone*"
-                            variant={
-                              !allFieldsEditable ? "standard" : "outlined"
-                            }
-                            fullWidth
-                            value={
-                              editableFields.phone
-                                ? tempValues.phone
-                                : formState.phone
-                            }
-                            onFocus={() => handleEdit("phone")}
-                            onBlur={() => {
-                              //handleSaveValue("phone");
-                            }}
-                            onChange={
-                              handleFieldChange("phone")
-                            }
-                            //                                disabled={!allFieldsEditable}
-                            sx={{
-                              "& .MuiInput-underline:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomStyle: "solid",
-                                borderBottomColor: "#d2d2d2 !important",
-                              },
-                              "& .MuiInputBase-root": { height: "36px" },
-                              "& .MuiInput-root": { marginTop: "3px" },
-                              "& .MuiInputLabel-root.MuiInputLabel-standard": {
-                                transform: "translate(0, -1.5px) scale(0.75)",
-                                transformOrigin: "top left",
-                                color: "#444444 !important",
-                              },
-                              "& .MuiInputLabel-root": {
-                                color: "#444444 !important",
-                                "&.Mui-focused": {
-                                  color: "#444444 !important",
-                                },
-                              },
-                              "& .MuiInput-underline:hover:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                              "& .MuiInput-underline:hover:after": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                            }}
-                            InputLabelProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#444444' : '#444444'
-                              },
-                              sx: {
-                                color: allFieldsEditable
-                                  ? "#1976d2"
-                                  : "#444444",
-                                ...(allFieldsEditable && {
-                                  backgroundColor: "white",
-                                }),
-                              },
-                              shrink: true, // Keep label shrunk
-                            }}
-                            InputProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#181818' : '#181818'
-                              },
-                              readOnly: !allFieldsEditable,
-                              sx: {
-                                fontSize: theme.typography.fontSizes.contentSize ,
-                                color: "#181818",
-                                ...(allFieldsEditable
-                                  ? {}
-                                  : { paddingTop: "5px" }),
-
-                                ...(allFieldsEditable && {
-                                  "&:after": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                  "&:before": {
-                                    borderBottom:
-                                      "1px solid rgba(0, 0, 0, 0.42)",
-                                  },
-                                  "&:hover:before": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                }),
-                              },
-                              endAdornment: (
-                                <InputAdornment
-                                  position="end"
-                                  sx={{
-                                    position: "relative",
-                                    marginRight: "4px",
-                                    marginBottom: "5px",
-                                    "&.Mui-disabled": {
-                                      color: "#1976d2",
-                                    },
-                                  }}
-                                >
-                                  {!allFieldsEditable && (
-                                    <>
-                                      <EditIconButton
-                                        onClick={() =>
-                                          setAllFieldsEditable(
-                                            !allFieldsEditable
-                                          )
-                                        }
-                                        edge="end"
-                                        sx={{
-                                          marginLeft: allFieldsEditable
-                                            ? "4px"
-                                            : "0px",
-                                        }}
-                                      />
-                                    </>
-                                  )}
-                                </InputAdornment>
-                              ),
-                            }}
-                          />
-                        </Grid>
-
-                        <Grid item xs={6}>
-                          <TextField
-                            label="State *"
-                            variant={
-                              !allFieldsEditable ? "standard" : "outlined"
-                            }
-                            fullWidth
-                            select
-                            value={formState.state}
-                            onFocus={() => handleEdit("state")}
-                            onBlur={(e) => {
-                              //handleSaveValue("state");
-                              setState(e.target.value);
-                            }}
-                            onChange={(e) => {
-                              updateField("state", e.target.value);
-                              setState(e.target.value);
-                              handleFieldChange("state", e.target.value);
-                          }}
-                            //                                disabled={!allFieldsEditable}
-                            size="small"
-                            sx={{
-                              "& .MuiInput-underline:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomStyle: "solid",
-                                borderBottomColor: "#d2d2d2 !important",
-                              },
-                              "& .MuiInputBase-root": { height: "36px" },
-                              "& .MuiInput-root": { marginTop: "3px" },
-                              "& .MuiInputLabel-root.MuiInputLabel-standard": {
-                                transform: "translate(0, -1.5px) scale(0.75)",
-                                transformOrigin: "top left",
-                                color: "#444444 !important",
-                              },
-                              "& .MuiInputLabel-root": {
-                                color: "#444444 !important",
-                                "&.Mui-focused": {
-                                  color: "#444444 !important",
-                                },
-                              },
-                              "& .MuiInput-underline:hover:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                              "& .MuiInput-underline:hover:after": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                            }}
-                            InputLabelProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#444444' : '#444444'
-                              },
-                              sx: {
-                                color: allFieldsEditable
-                                  ? "#1976d2"
-                                  : "inherit",
-                                ...(allFieldsEditable && {
-                                  backgroundColor: "white",
-                                }),
-                              },
-                              shrink: true,
-                            }}
-                            InputProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#181818' : '#181818'
-                              },
-                              readOnly: !allFieldsEditable,
-                              sx: {
-                                fontSize: theme.typography.fontSizes.contentSize ,
-                                ...(allFieldsEditable
-                                  ? {}
-                                  : { paddingTop: "5px" }),
-
-                                ...(allFieldsEditable && {
-                                  "&:after": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                  "&:before": {
-                                    borderBottom:
-                                      "1px solid rgba(0, 0, 0, 0.42)",
-                                  },
-                                  "&:hover:before": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                }),
-                              },
-                            }}
-                          >
-                            {US_STATES.map((state) => (
-                              <MenuItem key={state} value={state}>
-                                {state}
-                              </MenuItem>
-                            ))}
-                          </TextField>
-                        </Grid>
-
-                        <Grid item xs={6}>
-                          <TextField
-                            label="Zip Code*"
-                            variant={
-                              !allFieldsEditable ? "standard" : "outlined"
-                            }
-                            fullWidth
-                            value={
-                              editableFields.zipcode
-                                ? tempValues.zipcode
-                                : formState.zipcode
-                            }
-                            onFocus={() => handleEdit("zipcode")}
-                            onBlur={() => {
-                              //handleSaveValue("zipcode");
-                            }}
-                            onChange={
-                              handleFieldChange("zipcode")
-                            }
-                            //                                disabled={!allFieldsEditable}
-                            size="small"
-                            sx={{
-                              "& .MuiInput-underline:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomStyle: "solid",
-                                borderBottomColor: "#d2d2d2 !important",
-                              },
-                              "& .MuiInputBase-root": { height: "36px" },
-                              "& .MuiInput-root": { marginTop: "3px" },
-                              "& .MuiInputLabel-root.MuiInputLabel-standard": {
-                                transform: "translate(0, -1.5px) scale(0.75)",
-                                transformOrigin: "top left",
-                                color: "#444444 !important",
-                              },
-                              "& .MuiInputLabel-root": {
-                                color: "#444444 !important",
-                                "&.Mui-focused": {
-                                  color: "#444444 !important",
-                                },
-                              },
-                              "& .MuiInput-underline:hover:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                              "& .MuiInput-underline:hover:after": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                            }}
-                            InputLabelProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#444444' : '#444444'
-                              },
-                              sx: {
-                                color: allFieldsEditable
-                                  ? "#1976d2"
-                                  : "inherit",
-                                ...(allFieldsEditable && {
-                                  backgroundColor: "white",
-                                }),
-                              },
-                              shrink: true,
-                            }}
-                            InputProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#181818' : '#181818'
-                              },
-                              readOnly: !allFieldsEditable,
-                              sx: {
-                                fontSize: theme.typography.fontSizes.contentSize ,
-                                ...(allFieldsEditable
-                                  ? {}
-                                  : { paddingTop: "5px" }),
-                                ...(allFieldsEditable && {
-                                  "&:after": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                  "&:before": {
-                                    borderBottom:
-                                      "1px solid rgba(0, 0, 0, 0.42)",
-                                  },
-                                  "&:hover:before": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                }),
-                              },
-                              endAdornment: (
-                                <InputAdornment
-                                  position="end"
-                                  sx={{
-                                    position: "relative",
-                                    marginRight: "4px",
-                                    marginBottom: "5px",
-                                    "&.Mui-disabled": { color: "#1976d2" },
-                                  }}
-                                >
-                                  {!allFieldsEditable && (
-                                    <EditIconButton
-                                      onClick={() => {
-                                        handleEdit("zipcode");
-                                        setAllFieldsEditable(
-                                          !allFieldsEditable
-                                        );
-                                      }}
-                                    />
-                                  )}
-                                </InputAdornment>
-                              ),
-                            }}
-                          />
-                        </Grid>
-
-                        <Grid item xs={12}>
-                          <TextField
-                            label="Bio*"
-                            variant={
-                              !allFieldsEditable ? "standard" : "outlined"
-                            }
-                            fullWidth
-                            multiline
-                            rows={3}
-                            value={
-                              editableFields.bio
-                                ? tempValues.bio
-                                : formState.bio
-                            }
-                            onFocus={() => handleEdit("bio")}
-                            onBlur={() => {
-                              ///handleSaveValue("bio");
-                            }}
-                            onChange={
-                              handleFieldChange("bio")
-                            }
-                            //                                disabled={!allFieldsEditable}
-                            size="small"
-                            sx={{
-                              "& .MuiInput-underline": {
-                                borderBottomWidth: "1px",
-                                borderBottomStyle: "solid",
-                                borderBottomColor: "#d2d2d2 !important",
-                              },
-                              "& .MuiInput-underline:before": {
-                                borderBottomWidth: "0px",
-                                borderBottomStyle: "solid",
-                                borderBottomColor: "#d2d2d2 !important",
-                                // Increase thickness
-                              },
-                              "& .MuiInputBase-input": {
-                                color: "#181818",
-                                WebkitTextFillColor: "#181818",
-                              },
-                              "& .MuiInputBase-root": { height: "auto" },
-                              "& .MuiInput-root": { marginTop: "10px" },
-                              "& .MuiInputLabel-root.MuiInputLabel-standard": {
-                                transform: "translate(0, -1.5px) scale(0.75)",
-                                transformOrigin: "top left",
-                                color: "#444444 !important",
-                              },
-                              "& .MuiInputLabel-root": {
-                                color: "#444444 !important",
-                                "&.Mui-focused": {
-                                  color: "#444444 !important",
-                                },
-                              },
-                              "& .MuiInput-underline:hover:before": {
-                                borderBottomWidth: "0px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                              "& .MuiInput-underline:hover:after": {
-                                borderBottomWidth: "0px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                              "& .MuiInputBase-input.MuiInput-input.Mui-readOnly":
-                                {
-                                  WebkitTextFillColor: "#181818",
-                                  color: "#181818",
-                                },
-                            }}
-                            InputLabelProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#444444' : '#444444'
-                              },
-                              sx: {
-                                color: allFieldsEditable
-                                  ? "#1976d2"
-                                  : "inherit",
-                                ...(allFieldsEditable && {
-                                  backgroundColor: "white",
-                                }),
-                              },
-                              shrink: true,
-                            }}
-                            InputProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#181818' : '#181818'
-                              },
-                              readOnly: !allFieldsEditable,
-                              color: "#181818 !important",
-                              sx: {
-                                fontSize: theme.typography.fontSizes.contentSize ,
-
-                                color: "#181818",
-                                ...(allFieldsEditable
-                                  ? {}
-                                  : { paddingTop: "5px" }),
-
-                                ...(allFieldsEditable && {
-                                  "&:after": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                  "&:before": {
-                                    borderBottom:
-                                      "1px solid rgba(0, 0, 0, 0.42)",
-                                  },
-                                  "&:hover:before": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                }),
-                              },
-                              endAdornment: (
-                                <InputAdornment
-                                  position="end"
-                                  sx={{
-                                    position: "relative",
-                                    marginRight: "4px",
-                                    marginBottom: "0px",
-                                    "&.Mui-disabled": { color: "#1976d2" },
-                                  }}
-                                >
-                                  {!allFieldsEditable && (
-                                    <EditIconButton
-                                      onClick={() => {
-                                        handleEdit("bio");
-                                        setAllFieldsEditable(
-                                          !allFieldsEditable
-                                        );
-                                      }}
-                                    />
-                                  )}
-                                </InputAdornment>
-                              ),
-                            }}
-                          />
-                        </Grid>
-                      </Grid>
-                    </Box>
-                   {/*Typograpgy */}
-                    <Box
-                      sx={{
-                        backgroundColor: "white",
-                        maxWidth: "100%",
-                        width: "100%",
-
-                        borderRadius: "4px",
-                        //boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
-                        
-                        mt: 2.4,
-                        p: 2.4,
-                      }}
-                    >
-                      <Box
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="space-between"
-                        mb={dividerabovespacing}
-                        mt={0}
-                      >
-                        <Typography sx={{fontSize:theme.typography.fontSizes.subheadingSize,fontWeight:"bold"}} padding="0 0 8px!important 0">
-                          Typography
-                        </Typography>
-                      </Box>
-                      <Divider sx={{ flexGrow: 1, mb: dividerSpacing }} />
-
-                      <Grid container spacing={fieldSpacing}>
-                        <Grid item xs={12}>
-                          <TextField
-                            label="Card Number*"
-                            variant={
-                              !allFieldsEditable ? "standard" : "outlined"
-                            }
-                            fullWidth
-                            value={
-                              editableFields.cardNumber
-                                ? tempValues.cardNumber
-                                : formState.cardNumber
-                            }
-                            onFocus={() => handleEdit("cardNumber")}
-                            onBlur={() => {
-                              //handleSaveValue("cardNumber");
-                            }}
-                            onChange={
-                              handleFieldChange("cardNumber")
-                            }
-                            //                                disabled={!allFieldsEditable}
-                            size="small"
-                            sx={{
-                              "& .MuiInput-underline:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomStyle: "solid",
-                                borderBottomColor: "#d2d2d2 !important",
-                              },
-                              "& .MuiInputBase-root": { height: "36px" },
-                              "& .MuiInput-root": { marginTop: "3px" },
-                              "& .MuiInputLabel-root.MuiInputLabel-standard": {
-                                transform: "translate(0, -1.5px) scale(0.75)",
-                                transformOrigin: "top left",
-                                color: "#444444 !important",
-                              },
-                              "& .MuiInputLabel-root": {
-                                color: "#444444 !important",
-                                "&.Mui-focused": {
-                                  color: "#444444 !important",
-                                },
-                              },
-                              "& .MuiInput-underline:hover:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                              "& .MuiInput-underline:hover:after": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                            }}
-                            InputLabelProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#444444' : '#444444'
-                              },
-                              sx: {
-                                color: allFieldsEditable
-                                  ? "#1976d2"
-                                  : "inherit",
-                                ...(allFieldsEditable && {
-                                  backgroundColor: "white",
-                                }),
-                              },
-                              shrink: true,
-                            }}
-                            InputProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#181818' : '#181818'
-                              },
-                              readOnly: !allFieldsEditable,
-                              sx: {
-                                fontSize: theme.typography.fontSizes.contentSize ,
-                                ...(allFieldsEditable
-                                  ? {}
-                                  : { paddingTop: "8px" }),
-
-                                ...(allFieldsEditable && {
-                                  "&:after": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                  "&:before": {
-                                    borderBottom:
-                                      "1px solid rgba(0, 0, 0, 0.42)",
-                                  },
-                                  "&:hover:before": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                }),
-                              },
-                              startAdornment: (
-                                <InputAdornment position="start">
-                                  <CreditCardIcon color="action" />
-                                </InputAdornment>
-                              ),
-                              endAdornment: (
-                                <InputAdornment
-                                  position="end"
-                                  sx={{
-                                    position: "relative",
-                                    marginRight: "4px",
-                                    marginBottom: "5px",
-                                    "&.Mui-disabled": { color: "#1976d2" },
-                                  }}
-                                >
-                                  {!allFieldsEditable && (
-                                    <EditIconButton
-                                      onClick={() => {
-                                        handleEdit("cardNumber");
-                                        setAllFieldsEditable(
-                                          !allFieldsEditable
-                                        );
-                                      }}
-                                    />
-                                  )}
-                                </InputAdornment>
-                              ),
-                            }}
-                          />
-                        </Grid>
-
-                        <Grid item xs={12}>
-                          <TextField
-                            label="Card Holder Name*"
-                            variant={
-                              !allFieldsEditable ? "standard" : "outlined"
-                            }
-                            fullWidth
-                            value={
-                              editableFields.cardHolder
-                                ? tempValues.cardHolder
-                                : formState.cardHolder
-                            }
-                            onFocus={() => handleEdit("cardHolder")}
-                            onBlur={() => {
-                              //handleSaveValue("cardHolder");
-                            }}
-                            onChange={
-                              handleFieldChange("cardHolder")
-                            }
-                            //                                disabled={!allFieldsEditable}
-                            size="small"
-                            sx={{
-                              "& .MuiInput-underline:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomStyle: "solid",
-                                borderBottomColor: "#d2d2d2 !important",
-                              },
-                              "& .MuiInputBase-root": { height: "36px" },
-                              "& .MuiInput-root": { marginTop: "3px" },
-                              "& .MuiInputLabel-root.MuiInputLabel-standard": {
-                                transform: "translate(0, -1.5px) scale(0.75)",
-                                transformOrigin: "top left",
-                                color: "#444444 !important",
-                              },
-                              "& .MuiInputLabel-root": {
-                                color: "#444444 !important",
-                                "&.Mui-focused": {
-                                  color: "#444444 !important",
-                                },
-                              },
-                              "& .MuiInput-underline:hover:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                              "& .MuiInput-underline:hover:after": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                            }}
-                            InputLabelProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#444444' : '#444444'
-                              },
-                              sx: {
-                                color: allFieldsEditable
-                                  ? "#1976d2"
-                                  : "inherit",
-                                ...(allFieldsEditable && {
-                                  backgroundColor: "white",
-                                }),
-                              },
-                              shrink: true,
-                            }}
-                            InputProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#181818' : '#181818'
-                              },
-                              readOnly: !allFieldsEditable,
-                              sx: {
-                                fontSize: theme.typography.fontSizes.contentSize ,
-                                ...(allFieldsEditable
-                                  ? {}
-                                  : { paddingTop: "5px" }),
-
-                                ...(allFieldsEditable && {
-                                  "&:after": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                  "&:before": {
-                                    borderBottom:
-                                      "1px solid rgba(0, 0, 0, 0.42)",
-                                  },
-                                  "&:hover:before": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                }),
-                              },
-                              endAdornment: (
-                                <InputAdornment
-                                  position="end"
-                                  sx={{
-                                    position: "relative",
-                                    marginRight: "4px",
-                                    marginBottom: "5px",
-                                    "&.Mui-disabled": { color: "#1976d2" },
-                                  }}
-                                >
-                                  {!allFieldsEditable && (
-                                    <EditIconButton
-                                      onClick={() => {
-                                        handleEdit("cardHolder");
-                                        setAllFieldsEditable(
-                                          !allFieldsEditable
-                                        );
-                                      }}
-                                    />
-                                  )}
-                                </InputAdornment>
-                              ),
-                            }}
-                          />
-                        </Grid>
-
-                        <Grid item xs={6}>
- <TextField
-                            label="Expiry*"
-                            variant={
-                              !allFieldsEditable ? "standard" : "outlined"
-                            }
-                            fullWidth
-                            value={
-                              editableFields.expiry
-                                ? tempValues.expiry
-                                : formState.expiry
-                            }
-                            onFocus={() => handleEdit("expiry")}
-                            onBlur={() => {
-                              //handleSaveValue("expiry");
-                            }}
-                            onChange={
-                              handleFieldChange("expiry")
-                            }
-                            //                                disabled={!allFieldsEditable}
-                            size="small"
-                            sx={{
-                              "& .MuiInput-underline:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomStyle: "solid",
-                                borderBottomColor: "#d2d2d2 !important",
-                              },
-                              "& .MuiInputBase-root": { height: "36px" },
-                              "& .MuiInput-root": { marginTop: "3px" },
-                              "& .MuiInputLabel-root.MuiInputLabel-standard": {
-                                transform: "translate(0, -1.5px) scale(0.75)",
-                                transformOrigin: "top left",
-                                color: "#444444 !important",
-                              },
-                              "& .MuiInputLabel-root": {
-                                color: "#444444 !important",
-                                "&.Mui-focused": {
-                                  color: "#444444 !important",
-                                },
-                              },
-                              "& .MuiInput-underline:hover:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                              "& .MuiInput-underline:hover:after": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                            }}
-                            InputLabelProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? 'red' : 'red'
-                              },
-                              
-                              sx: {
-                                color: allFieldsEditable
-                                  ? "#1976d2"
-                                  : "inherit",
-                                ...(allFieldsEditable && {
-                                  backgroundColor: "white",
-                                }),
-                              },
-                              shrink: true,
-                            }}
-                            InputProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#181818' : '#181818'
-                              },
-                              
-                              readOnly: !allFieldsEditable,
-                              sx: {
-                                fontSize: theme.typography.fontSizes.contentSize ,
-                                ...(allFieldsEditable
-                                  ? {}
-                                  : { paddingTop: "5px" }),
-
-                                ...(allFieldsEditable && {
-                                  "&:after": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                  "&:before": {
-                                    borderBottom:
-                                      "1px solid rgba(0, 0, 0, 0.42)",
-                                  },
-                                  "&:hover:before": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                }),
-                              },
-                              endAdornment: (
-                                <InputAdornment
-                                  position="end"
-                                  sx={{
-                                    position: "relative",
-                                    marginRight: "4px",
-                                    marginBottom: "5px",
-                                    "&.Mui-disabled": { color: "#1976d2" },
-                                  }}
-                                >
-                                  {!allFieldsEditable && (
-                                    <EditIconButton
-                                      onClick={() => {
-                                        handleEdit("expiry");
-                                        setAllFieldsEditable(
-                                          !allFieldsEditable
-                                        );
-                                      }}
-                                    />
-                                  )}
-                                </InputAdornment>
-                              ),
-                            }}
-                          /> 
-                          
-                        </Grid>
-                        <Grid item xs={6}>
-                          <TextField
-                            label="CVC/CV2*"
-                            variant={
-                              !allFieldsEditable ? "standard" : "outlined"
-                            }
-                            fullWidth
-                            value={
-                              editableFields.cvc
-                                ? tempValues.cvc
-                                : formState.cvc
-                            }
-                            onFocus={() => {
-                              if (!allFieldsEditable) {
-                                handleEdit("cvc");
-                              }
-                            }}
-                            onBlur={() => {
-                              //handleSaveValue("cvc");
-                            }}
-                            onChange={
-                              handleFieldChange("cvc")
-                            }
-                            // Using readOnly instead of disabled
-                            sx={{
-                              "& .MuiInput-underline:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomStyle: "solid",
-                                borderBottomColor: "#d2d2d2 !important",
-                              },
-                              "& .MuiInputBase-root": { height: "36px" },
-                              "& .MuiInput-root": { marginTop: "3px" },
-                              "& .MuiInputLabel-root.MuiInputLabel-standard": {
-                                transform: "translate(0, -1.5px) scale(0.75)",
-                                transformOrigin: "top left",
-                                color: "#444444 !important",
-                              },
-                              "& .MuiInputLabel-root": {
-                                color: "#444444 !important",
-                                "&.Mui-focused": {
-                                  color: "#444444 !important",
-                                },
-                              },
-                              "& .MuiInput-underline:hover:before": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                              "& .MuiInput-underline:hover:after": {
-                                borderBottomWidth: "1px",
-                                borderBottomColor: "#d2d2d2",
-                              },
-                            }}
-                            InputProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#181818' : '#181818'
-                              },
-                              readOnly: !allFieldsEditable,
-                              sx: {
-                                fontSize: theme.typography.fontSizes.contentSize ,
-                                ...(allFieldsEditable
-                                  ? {}
-                                  : { paddingTop: "5px" }),
-                                ...(allFieldsEditable && {
-                                  "&:after": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                  "&:before": {
-                                    borderBottom:
-                                      "1px solid rgba(0, 0, 0, 0.42)",
-                                  },
-                                  "&:hover:before": {
-                                    borderBottom: "2px solid #1976d2",
-                                  },
-                                }),
-                              },
-                              endAdornment: (
-                                <InputAdornment
-                                  position="end"
-                                  sx={{
-                                    position: "relative",
-                                    marginRight: "4px",
-                                    marginBottom: "5px",
-                                    "&.Mui-disabled": { color: "#444444" },
-                                  }}
-                                >
-                                  {!allFieldsEditable && (
-                                    <EditIconButton
-                                      onClick={() => {
-                                        handleEdit("cvc");
-                                        setAllFieldsEditable(true);
-                                      }}
-                                    />
-                                  )}
-                                </InputAdornment>
-                              ),
-                            }}
-                            InputLabelProps={{
-                              style: { 
-                                
-                                color: allFieldsEditable ? '#444444' : '#444444'
-                              },
-                              shrink: true,
-                              sx: {
-                                color: "#444444",
-                                ...(allFieldsEditable && {
-                                  backgroundColor: "white",
-                                }),
-                              },
-                            }}
-                          />
-                        </Grid>
-                      </Grid>
-                    </Box>
-                   {/* save cancel buton*/}
-                   {/* Buttons */}
-        
-                    <Box>
-                    {/* Save Button */}
-                    {allFieldsEditable && (
-                      <>
                         <Box
-                          sx={{
-                            backgroundColor: "white",
-                            maxWidth: "100%",
-                            width: "100%",
-
-                            borderRadius: "4px",
-                            height: "30px",
-                            margin: "0 auto",
-                            
-                            mt: 2.4,
-                            p: 2.4,
-                          }}
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="space-between"
+                          mb={dividerabovespacing}
+                          mt={0}
                         >
-                          <Grid
-                            item
-                            xs={12}
-                            container
-                            justifyContent="flex-end"
+                          <Typography
+                            sx={{
+                              fontSize:
+                                theme.typography.fontSizes.subheadingSize,
+                              fontWeight: "bold",
+                            }}
+                            padding="0 0 8px!important 0"
                           >
-                           <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
-          <Button
-            onClick={() =>{
-              const savedData = JSON.parse(localStorage.getItem("formState"));
-    
-              if (savedData) {
-               Object.entries(savedData).forEach(([field, value]) => {
-                    updateField(field, value);
-                  });
-              }
-              setAllFieldsEditable(!allFieldsEditable);
-              handleCancel('email');
-              handleCancel('phone');
-              handleCancel('expiry');
-              handleCancel('cvc');
-              handleCancel('name');
-              handleCancel('state');
-              handleCancel('zip');
-              handleCancel('bio');
-              handleCancel('cardNumber');
-              handleCancel('cardHolder');
-            }}
-            variant="outlined"
-            color="inherit"
-            sx={{
-              textTransform: "none",
-              borderColor: "grey.300",
-            }}
-          >
-            CANCEL
-          </Button>
-          <Button
-             onClick={()=>{handleSave('name');
-              handleSave('email');
-              handleSave('phone');
-              handleSave('expiry');
-              handleSave('cvc');
-              handleSave('cardNumber');
-              handleSave('state');
-              handleSave('zipcode');
-              handleSave('bio');
-              handleSave('cardHolder');
-
-               setAllFieldsEditable(!allFieldsEditable)}}
-            type="submit"
-            variant="contained"
-            sx={{
-              textTransform: "none",
-              bgcolor: "#1976d2",
-            }}
-          >
-            SUBMIT
-          </Button>
-        </Box>
-                          </Grid>
+                            Section Heading
+                          </Typography>
                         </Box>
-                      </>
-                    )}
-                    </Box>
+                        <Divider sx={{ flexGrow: 1, mb: dividerSpacing }} />
+
+                        <Grid container spacing={fieldSpacing}>
+                          <Grid item xs={6}>
+                            <TextField
+                              label="Name*"
+                              variant={
+                                !allFieldsEditable ? "standard" : "outlined"
+                              }
+                              fullWidth
+                              value={
+                                editableFields.name
+                                  ? tempValues.name
+                                  : formState.name
+                              }
+                              color="red"
+                              onFocus={() => handleEdit("name")}
+                              onBlur={() => {
+                                //handleSaveValue("name");
+                              }}
+                              onChange={handleFieldChange("name")}
+                              //                                disabled={!allFieldsEditable}
+                              sx={{
+                                "& .MuiInputBase-input": {
+                                  color: "#181818",
+                                  WebkitTextFillColor: "#181818",
+                                },
+                                "& .MuiInputBase-input.MuiInput-input.Mui-readOnly":
+                                  {
+                                    WebkitTextFillColor: "#181818",
+                                    color: "#181818",
+                                  },
+                                "& .MuiInput-underline:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomStyle: "solid",
+                                  borderBottomColor: "#d2d2d2 !important",
+                                },
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                                "& .MuiInputLabel-root.MuiInputLabel-standard":
+                                  {
+                                    transform:
+                                      "translate(0, -1.5px) scale(0.75)",
+                                    transformOrigin: "top left",
+                                    color: "#444444 !important",
+                                  },
+                                "& .MuiInputLabel-root": {
+                                  color: "#181818 !important",
+                                  "&.Mui-focused": {
+                                    color: "#181818 !important",
+                                  },
+                                },
+                                "& .MuiInput-underline:hover:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                                "& .MuiInput-underline:hover:after": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                              }}
+                              InputLabelProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#444444"
+                                    : "#444444",
+                                },
+                                color: "red",
+                                sx: {
+                                  color: allFieldsEditable
+                                    ? "#1976d2"
+                                    : "#181818",
+                                  ...(allFieldsEditable && {
+                                    backgroundColor: "white",
+                                  }),
+                                },
+                                shrink: true, // Keep label shrunk
+                              }}
+                              InputProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#181818"
+                                    : "#181818",
+                                },
+                                color: "red !important",
+                                readOnly: !allFieldsEditable,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.contentSize,
+                                  color: "red !important",
+                                  ...(allFieldsEditable
+                                    ? {}
+                                    : { paddingTop: "5px" }),
+                                  ...(allFieldsEditable && {
+                                    "&:after": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                    "&:before": {
+                                      borderBottom:
+                                        "1px solid rgba(0, 0, 0, 0.42)",
+                                    },
+                                    "&:hover:before": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                  }),
+                                },
+                                endAdornment: (
+                                  <InputAdornment
+                                    position="end"
+                                    sx={{
+                                      position: "relative",
+                                      marginRight: "4px",
+                                      marginBottom: "5px",
+                                      "&.Mui-disabled": {
+                                        color: "#1976d2",
+                                      },
+                                    }}
+                                  >
+                                    {!allFieldsEditable && (
+                                      <>
+                                        <EditIconButton
+                                          onClick={() =>
+                                            setAllFieldsEditable(
+                                              !allFieldsEditable
+                                            )
+                                          }
+                                          edge="end"
+                                          sx={{
+                                            marginLeft: allFieldsEditable
+                                              ? "4px"
+                                              : "0px",
+                                          }}
+                                        />
+                                      </>
+                                    )}
+                                  </InputAdornment>
+                                ),
+                              }}
+                            />
+                          </Grid>
+
+                          <Grid item xs={6}>
+                            <TextField
+                              label="Phone*"
+                              variant={
+                                !allFieldsEditable ? "standard" : "outlined"
+                              }
+                              fullWidth
+                              value={
+                                editableFields.phone
+                                  ? tempValues.phone
+                                  : formState.phone
+                              }
+                              onFocus={() => handleEdit("phone")}
+                              onBlur={() => {
+                                //handleSaveValue("phone");
+                              }}
+                              onChange={handleFieldChange("phone")}
+                              //                                disabled={!allFieldsEditable}
+                              sx={{
+                                "& .MuiInput-underline:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomStyle: "solid",
+                                  borderBottomColor: "#d2d2d2 !important",
+                                },
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                                "& .MuiInputLabel-root.MuiInputLabel-standard":
+                                  {
+                                    transform:
+                                      "translate(0, -1.5px) scale(0.75)",
+                                    transformOrigin: "top left",
+                                    color: "#444444 !important",
+                                  },
+                                "& .MuiInputLabel-root": {
+                                  color: "#444444 !important",
+                                  "&.Mui-focused": {
+                                    color: "#444444 !important",
+                                  },
+                                },
+                                "& .MuiInput-underline:hover:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                                "& .MuiInput-underline:hover:after": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                              }}
+                              InputLabelProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#444444"
+                                    : "#444444",
+                                },
+                                sx: {
+                                  color: allFieldsEditable
+                                    ? "#1976d2"
+                                    : "#444444",
+                                  ...(allFieldsEditable && {
+                                    backgroundColor: "white",
+                                  }),
+                                },
+                                shrink: true, // Keep label shrunk
+                              }}
+                              InputProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#181818"
+                                    : "#181818",
+                                },
+                                readOnly: !allFieldsEditable,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.contentSize,
+                                  color: "#181818",
+                                  ...(allFieldsEditable
+                                    ? {}
+                                    : { paddingTop: "5px" }),
+
+                                  ...(allFieldsEditable && {
+                                    "&:after": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                    "&:before": {
+                                      borderBottom:
+                                        "1px solid rgba(0, 0, 0, 0.42)",
+                                    },
+                                    "&:hover:before": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                  }),
+                                },
+                                endAdornment: (
+                                  <InputAdornment
+                                    position="end"
+                                    sx={{
+                                      position: "relative",
+                                      marginRight: "4px",
+                                      marginBottom: "5px",
+                                      "&.Mui-disabled": {
+                                        color: "#1976d2",
+                                      },
+                                    }}
+                                  >
+                                    {!allFieldsEditable && (
+                                      <>
+                                        <EditIconButton
+                                          onClick={() =>
+                                            setAllFieldsEditable(
+                                              !allFieldsEditable
+                                            )
+                                          }
+                                          edge="end"
+                                          sx={{
+                                            marginLeft: allFieldsEditable
+                                              ? "4px"
+                                              : "0px",
+                                          }}
+                                        />
+                                      </>
+                                    )}
+                                  </InputAdornment>
+                                ),
+                              }}
+                            />
+                          </Grid>
+
+                          <Grid item xs={6}>
+                            <TextField
+                              label="State *"
+                              variant={
+                                !allFieldsEditable ? "standard" : "outlined"
+                              }
+                              fullWidth
+                              select
+                              value={formState.state}
+                              onFocus={() => handleEdit("state")}
+                              onBlur={(e) => {
+                                //handleSaveValue("state");
+                                setState(e.target.value);
+                              }}
+                              onChange={(e) => {
+                                updateField("state", e.target.value);
+                                setState(e.target.value);
+                                handleFieldChange("state", e.target.value);
+                              }}
+                              //                                disabled={!allFieldsEditable}
+                              size="small"
+                              sx={{
+                                "& .MuiInput-underline:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomStyle: "solid",
+                                  borderBottomColor: "#d2d2d2 !important",
+                                },
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                                "& .MuiInputLabel-root.MuiInputLabel-standard":
+                                  {
+                                    transform:
+                                      "translate(0, -1.5px) scale(0.75)",
+                                    transformOrigin: "top left",
+                                    color: "#444444 !important",
+                                  },
+                                "& .MuiInputLabel-root": {
+                                  color: "#444444 !important",
+                                  "&.Mui-focused": {
+                                    color: "#444444 !important",
+                                  },
+                                },
+                                "& .MuiInput-underline:hover:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                                "& .MuiInput-underline:hover:after": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                              }}
+                              InputLabelProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#444444"
+                                    : "#444444",
+                                },
+                                sx: {
+                                  color: allFieldsEditable
+                                    ? "#1976d2"
+                                    : "inherit",
+                                  ...(allFieldsEditable && {
+                                    backgroundColor: "white",
+                                  }),
+                                },
+                                shrink: true,
+                              }}
+                              InputProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#181818"
+                                    : "#181818",
+                                },
+                                readOnly: !allFieldsEditable,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.contentSize,
+                                  ...(allFieldsEditable
+                                    ? {}
+                                    : { paddingTop: "5px" }),
+
+                                  ...(allFieldsEditable && {
+                                    "&:after": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                    "&:before": {
+                                      borderBottom:
+                                        "1px solid rgba(0, 0, 0, 0.42)",
+                                    },
+                                    "&:hover:before": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                  }),
+                                },
+                              }}
+                            >
+                              {US_STATES.map((state) => (
+                                <MenuItem key={state} value={state}>
+                                  {state}
+                                </MenuItem>
+                              ))}
+                            </TextField>
+                          </Grid>
+
+                          <Grid item xs={6}>
+                            <TextField
+                              label="Zip Code*"
+                              variant={
+                                !allFieldsEditable ? "standard" : "outlined"
+                              }
+                              fullWidth
+                              value={
+                                editableFields.zipcode
+                                  ? tempValues.zipcode
+                                  : formState.zipcode
+                              }
+                              onFocus={() => handleEdit("zipcode")}
+                              onBlur={() => {
+                                //handleSaveValue("zipcode");
+                              }}
+                              onChange={handleFieldChange("zipcode")}
+                              //                                disabled={!allFieldsEditable}
+                              size="small"
+                              sx={{
+                                "& .MuiInput-underline:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomStyle: "solid",
+                                  borderBottomColor: "#d2d2d2 !important",
+                                },
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                                "& .MuiInputLabel-root.MuiInputLabel-standard":
+                                  {
+                                    transform:
+                                      "translate(0, -1.5px) scale(0.75)",
+                                    transformOrigin: "top left",
+                                    color: "#444444 !important",
+                                  },
+                                "& .MuiInputLabel-root": {
+                                  color: "#444444 !important",
+                                  "&.Mui-focused": {
+                                    color: "#444444 !important",
+                                  },
+                                },
+                                "& .MuiInput-underline:hover:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                                "& .MuiInput-underline:hover:after": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                              }}
+                              InputLabelProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#444444"
+                                    : "#444444",
+                                },
+                                sx: {
+                                  color: allFieldsEditable
+                                    ? "#1976d2"
+                                    : "inherit",
+                                  ...(allFieldsEditable && {
+                                    backgroundColor: "white",
+                                  }),
+                                },
+                                shrink: true,
+                              }}
+                              InputProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#181818"
+                                    : "#181818",
+                                },
+                                readOnly: !allFieldsEditable,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.contentSize,
+                                  ...(allFieldsEditable
+                                    ? {}
+                                    : { paddingTop: "5px" }),
+                                  ...(allFieldsEditable && {
+                                    "&:after": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                    "&:before": {
+                                      borderBottom:
+                                        "1px solid rgba(0, 0, 0, 0.42)",
+                                    },
+                                    "&:hover:before": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                  }),
+                                },
+                                endAdornment: (
+                                  <InputAdornment
+                                    position="end"
+                                    sx={{
+                                      position: "relative",
+                                      marginRight: "4px",
+                                      marginBottom: "5px",
+                                      "&.Mui-disabled": { color: "#1976d2" },
+                                    }}
+                                  >
+                                    {!allFieldsEditable && (
+                                      <EditIconButton
+                                        onClick={() => {
+                                          handleEdit("zipcode");
+                                          setAllFieldsEditable(
+                                            !allFieldsEditable
+                                          );
+                                        }}
+                                      />
+                                    )}
+                                  </InputAdornment>
+                                ),
+                              }}
+                            />
+                          </Grid>
+
+                          <Grid item xs={12}>
+                            <TextField
+                              label="Bio*"
+                              variant={
+                                !allFieldsEditable ? "standard" : "outlined"
+                              }
+                              fullWidth
+                              multiline
+                              rows={3}
+                              value={
+                                editableFields.bio
+                                  ? tempValues.bio
+                                  : formState.bio
+                              }
+                              onFocus={() => handleEdit("bio")}
+                              onBlur={() => {
+                                ///handleSaveValue("bio");
+                              }}
+                              onChange={handleFieldChange("bio")}
+                              //                                disabled={!allFieldsEditable}
+                              size="small"
+                              sx={{
+                                "& .MuiInput-underline": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomStyle: "solid",
+                                  borderBottomColor: "#d2d2d2 !important",
+                                },
+                                "& .MuiInput-underline:before": {
+                                  borderBottomWidth: "0px",
+                                  borderBottomStyle: "solid",
+                                  borderBottomColor: "#d2d2d2 !important",
+                                  // Increase thickness
+                                },
+                                "& .MuiInputBase-input": {
+                                  color: "#181818",
+                                  WebkitTextFillColor: "#181818",
+                                },
+                                "& .MuiInputBase-root": { height: "auto" },
+                                "& .MuiInput-root": { marginTop: "10px" },
+                                "& .MuiInputLabel-root.MuiInputLabel-standard":
+                                  {
+                                    transform:
+                                      "translate(0, -1.5px) scale(0.75)",
+                                    transformOrigin: "top left",
+                                    color: "#444444 !important",
+                                  },
+                                "& .MuiInputLabel-root": {
+                                  color: "#444444 !important",
+                                  "&.Mui-focused": {
+                                    color: "#444444 !important",
+                                  },
+                                },
+                                "& .MuiInput-underline:hover:before": {
+                                  borderBottomWidth: "0px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                                "& .MuiInput-underline:hover:after": {
+                                  borderBottomWidth: "0px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                                "& .MuiInputBase-input.MuiInput-input.Mui-readOnly":
+                                  {
+                                    WebkitTextFillColor: "#181818",
+                                    color: "#181818",
+                                  },
+                              }}
+                              InputLabelProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#444444"
+                                    : "#444444",
+                                },
+                                sx: {
+                                  color: allFieldsEditable
+                                    ? "#1976d2"
+                                    : "inherit",
+                                  ...(allFieldsEditable && {
+                                    backgroundColor: "white",
+                                  }),
+                                },
+                                shrink: true,
+                              }}
+                              InputProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#181818"
+                                    : "#181818",
+                                },
+                                readOnly: !allFieldsEditable,
+                                color: "#181818 !important",
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.contentSize,
+
+                                  color: "#181818",
+                                  ...(allFieldsEditable
+                                    ? {}
+                                    : { paddingTop: "5px" }),
+
+                                  ...(allFieldsEditable && {
+                                    "&:after": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                    "&:before": {
+                                      borderBottom:
+                                        "1px solid rgba(0, 0, 0, 0.42)",
+                                    },
+                                    "&:hover:before": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                  }),
+                                },
+                                endAdornment: (
+                                  <InputAdornment
+                                    position="end"
+                                    sx={{
+                                      position: "relative",
+                                      marginRight: "4px",
+                                      marginBottom: "0px",
+                                      "&.Mui-disabled": { color: "#1976d2" },
+                                    }}
+                                  >
+                                    {!allFieldsEditable && (
+                                      <EditIconButton
+                                        onClick={() => {
+                                          handleEdit("bio");
+                                          setAllFieldsEditable(
+                                            !allFieldsEditable
+                                          );
+                                        }}
+                                      />
+                                    )}
+                                  </InputAdornment>
+                                ),
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </Box>
+                      {/*Typograpgy */}
+                      <Box
+                        sx={{
+                          backgroundColor: "white",
+                          maxWidth: "100%",
+                          width: "100%",
+
+                          borderRadius: "4px",
+                          //boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
+
+                          mt: 2.4,
+                          p: 2.4,
+                        }}
+                      >
+                        <Box
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="space-between"
+                          mb={dividerabovespacing}
+                          mt={0}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize:
+                                theme.typography.fontSizes.subheadingSize,
+                              fontWeight: "bold",
+                            }}
+                            padding="0 0 8px!important 0"
+                          >
+                            Typography
+                          </Typography>
+                        </Box>
+                        <Divider sx={{ flexGrow: 1, mb: dividerSpacing }} />
+
+                        <Grid container spacing={fieldSpacing}>
+                          <Grid item xs={12}>
+                            <TextField
+                              label="Card Number*"
+                              variant={
+                                !allFieldsEditable ? "standard" : "outlined"
+                              }
+                              fullWidth
+                              value={
+                                editableFields.cardNumber
+                                  ? tempValues.cardNumber
+                                  : formState.cardNumber
+                              }
+                              onFocus={() => handleEdit("cardNumber")}
+                              onBlur={() => {
+                                //handleSaveValue("cardNumber");
+                              }}
+                              onChange={handleFieldChange("cardNumber")}
+                              //                                disabled={!allFieldsEditable}
+                              size="small"
+                              sx={{
+                                "& .MuiInput-underline:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomStyle: "solid",
+                                  borderBottomColor: "#d2d2d2 !important",
+                                },
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                                "& .MuiInputLabel-root.MuiInputLabel-standard":
+                                  {
+                                    transform:
+                                      "translate(0, -1.5px) scale(0.75)",
+                                    transformOrigin: "top left",
+                                    color: "#444444 !important",
+                                  },
+                                "& .MuiInputLabel-root": {
+                                  color: "#444444 !important",
+                                  "&.Mui-focused": {
+                                    color: "#444444 !important",
+                                  },
+                                },
+                                "& .MuiInput-underline:hover:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                                "& .MuiInput-underline:hover:after": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                              }}
+                              InputLabelProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#444444"
+                                    : "#444444",
+                                },
+                                sx: {
+                                  color: allFieldsEditable
+                                    ? "#1976d2"
+                                    : "inherit",
+                                  ...(allFieldsEditable && {
+                                    backgroundColor: "white",
+                                  }),
+                                },
+                                shrink: true,
+                              }}
+                              InputProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#181818"
+                                    : "#181818",
+                                },
+                                readOnly: !allFieldsEditable,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.contentSize,
+                                  ...(allFieldsEditable
+                                    ? {}
+                                    : { paddingTop: "8px" }),
+
+                                  ...(allFieldsEditable && {
+                                    "&:after": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                    "&:before": {
+                                      borderBottom:
+                                        "1px solid rgba(0, 0, 0, 0.42)",
+                                    },
+                                    "&:hover:before": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                  }),
+                                },
+                                startAdornment: (
+                                  <InputAdornment position="start">
+                                    <CreditCardIcon color="action" />
+                                  </InputAdornment>
+                                ),
+                                endAdornment: (
+                                  <InputAdornment
+                                    position="end"
+                                    sx={{
+                                      position: "relative",
+                                      marginRight: "4px",
+                                      marginBottom: "5px",
+                                      "&.Mui-disabled": { color: "#1976d2" },
+                                    }}
+                                  >
+                                    {!allFieldsEditable && (
+                                      <EditIconButton
+                                        onClick={() => {
+                                          handleEdit("cardNumber");
+                                          setAllFieldsEditable(
+                                            !allFieldsEditable
+                                          );
+                                        }}
+                                      />
+                                    )}
+                                  </InputAdornment>
+                                ),
+                              }}
+                            />
+                          </Grid>
+
+                          <Grid item xs={12}>
+                            <TextField
+                              label="Card Holder Name*"
+                              variant={
+                                !allFieldsEditable ? "standard" : "outlined"
+                              }
+                              fullWidth
+                              value={
+                                editableFields.cardHolder
+                                  ? tempValues.cardHolder
+                                  : formState.cardHolder
+                              }
+                              onFocus={() => handleEdit("cardHolder")}
+                              onBlur={() => {
+                                //handleSaveValue("cardHolder");
+                              }}
+                              onChange={handleFieldChange("cardHolder")}
+                              //                                disabled={!allFieldsEditable}
+                              size="small"
+                              sx={{
+                                "& .MuiInput-underline:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomStyle: "solid",
+                                  borderBottomColor: "#d2d2d2 !important",
+                                },
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                                "& .MuiInputLabel-root.MuiInputLabel-standard":
+                                  {
+                                    transform:
+                                      "translate(0, -1.5px) scale(0.75)",
+                                    transformOrigin: "top left",
+                                    color: "#444444 !important",
+                                  },
+                                "& .MuiInputLabel-root": {
+                                  color: "#444444 !important",
+                                  "&.Mui-focused": {
+                                    color: "#444444 !important",
+                                  },
+                                },
+                                "& .MuiInput-underline:hover:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                                "& .MuiInput-underline:hover:after": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                              }}
+                              InputLabelProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#444444"
+                                    : "#444444",
+                                },
+                                sx: {
+                                  color: allFieldsEditable
+                                    ? "#1976d2"
+                                    : "inherit",
+                                  ...(allFieldsEditable && {
+                                    backgroundColor: "white",
+                                  }),
+                                },
+                                shrink: true,
+                              }}
+                              InputProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#181818"
+                                    : "#181818",
+                                },
+                                readOnly: !allFieldsEditable,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.contentSize,
+                                  ...(allFieldsEditable
+                                    ? {}
+                                    : { paddingTop: "5px" }),
+
+                                  ...(allFieldsEditable && {
+                                    "&:after": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                    "&:before": {
+                                      borderBottom:
+                                        "1px solid rgba(0, 0, 0, 0.42)",
+                                    },
+                                    "&:hover:before": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                  }),
+                                },
+                                endAdornment: (
+                                  <InputAdornment
+                                    position="end"
+                                    sx={{
+                                      position: "relative",
+                                      marginRight: "4px",
+                                      marginBottom: "5px",
+                                      "&.Mui-disabled": { color: "#1976d2" },
+                                    }}
+                                  >
+                                    {!allFieldsEditable && (
+                                      <EditIconButton
+                                        onClick={() => {
+                                          handleEdit("cardHolder");
+                                          setAllFieldsEditable(
+                                            !allFieldsEditable
+                                          );
+                                        }}
+                                      />
+                                    )}
+                                  </InputAdornment>
+                                ),
+                              }}
+                            />
+                          </Grid>
+
+                          <Grid item xs={6}>
+                            <TextField
+                              label="Expiry*"
+                              variant={
+                                !allFieldsEditable ? "standard" : "outlined"
+                              }
+                              fullWidth
+                              value={
+                                editableFields.expiry
+                                  ? tempValues.expiry
+                                  : formState.expiry
+                              }
+                              onFocus={() => handleEdit("expiry")}
+                              onBlur={() => {
+                                //handleSaveValue("expiry");
+                              }}
+                              onChange={handleFieldChange("expiry")}
+                              //                                disabled={!allFieldsEditable}
+                              size="small"
+                              sx={{
+                                "& .MuiInput-underline:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomStyle: "solid",
+                                  borderBottomColor: "#d2d2d2 !important",
+                                },
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                                "& .MuiInputLabel-root.MuiInputLabel-standard":
+                                  {
+                                    transform:
+                                      "translate(0, -1.5px) scale(0.75)",
+                                    transformOrigin: "top left",
+                                    color: "#444444 !important",
+                                  },
+                                "& .MuiInputLabel-root": {
+                                  color: "#444444 !important",
+                                  "&.Mui-focused": {
+                                    color: "#444444 !important",
+                                  },
+                                },
+                                "& .MuiInput-underline:hover:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                                "& .MuiInput-underline:hover:after": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                              }}
+                              InputLabelProps={{
+                                style: {
+                                  color: allFieldsEditable ? "red" : "red",
+                                },
+
+                                sx: {
+                                  color: allFieldsEditable
+                                    ? "#1976d2"
+                                    : "inherit",
+                                  ...(allFieldsEditable && {
+                                    backgroundColor: "white",
+                                  }),
+                                },
+                                shrink: true,
+                              }}
+                              InputProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#181818"
+                                    : "#181818",
+                                },
+
+                                readOnly: !allFieldsEditable,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.contentSize,
+                                  ...(allFieldsEditable
+                                    ? {}
+                                    : { paddingTop: "5px" }),
+
+                                  ...(allFieldsEditable && {
+                                    "&:after": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                    "&:before": {
+                                      borderBottom:
+                                        "1px solid rgba(0, 0, 0, 0.42)",
+                                    },
+                                    "&:hover:before": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                  }),
+                                },
+                                endAdornment: (
+                                  <InputAdornment
+                                    position="end"
+                                    sx={{
+                                      position: "relative",
+                                      marginRight: "4px",
+                                      marginBottom: "5px",
+                                      "&.Mui-disabled": { color: "#1976d2" },
+                                    }}
+                                  >
+                                    {!allFieldsEditable && (
+                                      <EditIconButton
+                                        onClick={() => {
+                                          handleEdit("expiry");
+                                          setAllFieldsEditable(
+                                            !allFieldsEditable
+                                          );
+                                        }}
+                                      />
+                                    )}
+                                  </InputAdornment>
+                                ),
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6}>
+                            <TextField
+                              label="CVC/CV2*"
+                              variant={
+                                !allFieldsEditable ? "standard" : "outlined"
+                              }
+                              fullWidth
+                              value={
+                                editableFields.cvc
+                                  ? tempValues.cvc
+                                  : formState.cvc
+                              }
+                              onFocus={() => {
+                                if (!allFieldsEditable) {
+                                  handleEdit("cvc");
+                                }
+                              }}
+                              onBlur={() => {
+                                //handleSaveValue("cvc");
+                              }}
+                              onChange={handleFieldChange("cvc")}
+                              // Using readOnly instead of disabled
+                              sx={{
+                                "& .MuiInput-underline:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomStyle: "solid",
+                                  borderBottomColor: "#d2d2d2 !important",
+                                },
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                                "& .MuiInputLabel-root.MuiInputLabel-standard":
+                                  {
+                                    transform:
+                                      "translate(0, -1.5px) scale(0.75)",
+                                    transformOrigin: "top left",
+                                    color: "#444444 !important",
+                                  },
+                                "& .MuiInputLabel-root": {
+                                  color: "#444444 !important",
+                                  "&.Mui-focused": {
+                                    color: "#444444 !important",
+                                  },
+                                },
+                                "& .MuiInput-underline:hover:before": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                                "& .MuiInput-underline:hover:after": {
+                                  borderBottomWidth: "1px",
+                                  borderBottomColor: "#d2d2d2",
+                                },
+                              }}
+                              InputProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#181818"
+                                    : "#181818",
+                                },
+                                readOnly: !allFieldsEditable,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.contentSize,
+                                  ...(allFieldsEditable
+                                    ? {}
+                                    : { paddingTop: "5px" }),
+                                  ...(allFieldsEditable && {
+                                    "&:after": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                    "&:before": {
+                                      borderBottom:
+                                        "1px solid rgba(0, 0, 0, 0.42)",
+                                    },
+                                    "&:hover:before": {
+                                      borderBottom: "2px solid #1976d2",
+                                    },
+                                  }),
+                                },
+                                endAdornment: (
+                                  <InputAdornment
+                                    position="end"
+                                    sx={{
+                                      position: "relative",
+                                      marginRight: "4px",
+                                      marginBottom: "5px",
+                                      "&.Mui-disabled": { color: "#444444" },
+                                    }}
+                                  >
+                                    {!allFieldsEditable && (
+                                      <EditIconButton
+                                        onClick={() => {
+                                          handleEdit("cvc");
+                                          setAllFieldsEditable(true);
+                                        }}
+                                      />
+                                    )}
+                                  </InputAdornment>
+                                ),
+                              }}
+                              InputLabelProps={{
+                                style: {
+                                  color: allFieldsEditable
+                                    ? "#444444"
+                                    : "#444444",
+                                },
+                                shrink: true,
+                                sx: {
+                                  color: "#444444",
+                                  ...(allFieldsEditable && {
+                                    backgroundColor: "white",
+                                  }),
+                                },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </Box>
+                      {/* save cancel buton*/}
+                      {/* Buttons */}
+
+                      <Box>
+                        {/* Save Button */}
+                        {allFieldsEditable && (
+                          <>
+                            <Box
+                              sx={{
+                                backgroundColor: "white",
+                                maxWidth: "100%",
+                                width: "100%",
+
+                                borderRadius: "4px",
+                                height: "30px",
+                                margin: "0 auto",
+
+                                mt: 2.4,
+                                p: 2.4,
+                              }}
+                            >
+                              <Grid
+                                item
+                                xs={12}
+                                container
+                                justifyContent="flex-end"
+                              >
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    justifyContent: "flex-end",
+                                    gap: 2,
+                                  }}
+                                >
+                                  <Button
+                                    onClick={() => {
+                                      const savedData = JSON.parse(
+                                        localStorage.getItem("formState")
+                                      );
+
+                                      if (savedData) {
+                                        Object.entries(savedData).forEach(
+                                          ([field, value]) => {
+                                            updateField(field, value);
+                                          }
+                                        );
+                                      }
+                                      setAllFieldsEditable(!allFieldsEditable);
+                                      handleCancel("email");
+                                      handleCancel("phone");
+                                      handleCancel("expiry");
+                                      handleCancel("cvc");
+                                      handleCancel("name");
+                                      handleCancel("state");
+                                      handleCancel("zip");
+                                      handleCancel("bio");
+                                      handleCancel("cardNumber");
+                                      handleCancel("cardHolder");
+                                    }}
+                                    variant="outlined"
+                                    color="inherit"
+                                    sx={{
+                                      textTransform: "none",
+                                      borderColor: "grey.300",
+                                    }}
+                                  >
+                                    CANCEL
+                                  </Button>
+                                  <Button
+                                    onClick={() => {
+                                      handleSave("name");
+                                      handleSave("email");
+                                      handleSave("phone");
+                                      handleSave("expiry");
+                                      handleSave("cvc");
+                                      handleSave("cardNumber");
+                                      handleSave("state");
+                                      handleSave("zipcode");
+                                      handleSave("bio");
+                                      handleSave("cardHolder");
+
+                                      setAllFieldsEditable(!allFieldsEditable);
+                                    }}
+                                    type="submit"
+                                    variant="contained"
+                                    sx={{
+                                      textTransform: "none",
+                                      bgcolor: "#1976d2",
+                                    }}
+                                  >
+                                    SUBMIT
+                                  </Button>
+                                </Box>
+                              </Grid>
+                            </Box>
+                          </>
+                        )}
+                      </Box>
                     </Grid>
                   </TabPanel>
                   {/* Deals */}
@@ -1889,19 +1933,14 @@ export default function DetailsTable() {
                         borderRadius: "4px",
                         height: "auto",
                         margin: "0 auto",
-                        
+
                         p: 2.4,
-                        
                       }}
                     >
-                      <Typography
-                        variant="h6"
-                        mb={dividerabovespacing}
-                        
-                      >
+                      <Typography variant="h6" mb={dividerabovespacing}>
                         Deals
                       </Typography>
-                      <Divider mb={dividerSpacing}/>
+                      <Divider mb={dividerSpacing} />
                       <DataTable />
                     </Box>
                   </TabPanel>
@@ -1941,10 +1980,7 @@ export default function DetailsTable() {
                       expandIcon={<ExpandMore sx={{ color: "#1976D2" }} />}
                       sx={summaryStyle}
                     >
-                      <Typography
-                        
-                        sx={{ marginLeft: "-8px", fontSize: "16px" }}
-                      >
+                      <Typography sx={{ marginLeft: "-8px", fontSize: "16px" }}>
                         Upcoming & Overdue
                       </Typography>
                     </AccordionSummary>
@@ -1967,20 +2003,21 @@ export default function DetailsTable() {
                           },
 
                           "& .MuiTimelineDot-root": {
-   // Keep same as width for symmetry
-   width: "16px",
-   height: "16px",
-  backgroundColor: "transparent", // Make background transparent
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  padding: 0,
-  boxShadow: "none",
-  margin: "11.5px 0", // Maintain MUI Timeline spacing
-  "& .MuiSvgIcon-root": {
-    color: "#1976D2",
-    fontSize: "inherit", // Inherit the size from the parent
-  },},
+                            // Keep same as width for symmetry
+                            width: "48px",
+                            height: "48px",
+                            backgroundColor: "transparent", // Make background transparent
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            padding: 0,
+                            boxShadow: "none",
+                            margin: "11.5px 0", // Maintain MUI Timeline spacing
+                            "& .MuiSvgIcon-root": {
+                              color: "#1976D2",
+                              fontSize: "inherit", // Inherit the size from the parent
+                            },
+                          },
 
                           mb: 1,
                         }}
@@ -2009,10 +2046,7 @@ export default function DetailsTable() {
                       expandIcon={<ExpandMore sx={{ color: "#1976D2" }} />}
                       sx={summaryStyle}
                     >
-                      <Typography
-                        
-                        sx={{ marginLeft: "-8px", fontSize: "16px" }}
-                      >
+                      <Typography sx={{ marginLeft: "-8px", fontSize: "16px" }}>
                         Completed
                       </Typography>
                     </AccordionSummary>
@@ -2034,22 +2068,22 @@ export default function DetailsTable() {
                             padding: 0,
                           },
 
-                         
                           "& .MuiTimelineDot-root": {
                             // Keep same as width for symmetry
-                            width: "16px",
-                            height: "16px",
-                           backgroundColor: "transparent", // Make background transparent
-                           display: "flex",
-                           justifyContent: "center",
-                           alignItems: "center",
-                           padding: 0,
-                           boxShadow: "none",
-                           margin: "11.5px 0", // Maintain MUI Timeline spacing
-                           "& .MuiSvgIcon-root": {
-                             color: "#1976D2",
-                             fontSize: "inherit", // Inherit the size from the parent
-                           },},
+                            width: "48px",
+                            height: "48px",
+                            backgroundColor: "transparent", // Make background transparent
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            padding: 0,
+                            boxShadow: "none",
+                            margin: "11.5px 0", // Maintain MUI Timeline spacing
+                            "& .MuiSvgIcon-root": {
+                              color: "#1976D2",
+                              fontSize: "inherit", // Inherit the size from the parent
+                            },
+                          },
                           mb: 1,
                         }}
                       >
@@ -2065,13 +2099,14 @@ export default function DetailsTable() {
                         <Chip
                           label={showMoreCompleted ? "View Less" : "View More"}
                           variant={"outlined"}
-                          onClick={() => setShowMoreCompleted(!showMoreCompleted)}
+                          onClick={() =>
+                            setShowMoreCompleted(!showMoreCompleted)
+                          }
                           sx={{ cursor: "pointer" }}
                         />
                       </Box>
                     </AccordionDetails>
                   </Accordion>
-
                 </Box>
               </Grid>
             </Grid>
