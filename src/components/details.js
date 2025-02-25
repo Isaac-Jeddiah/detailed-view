@@ -594,7 +594,7 @@ export default function DetailsTable() {
     >
       <Box
         sx={{
-         color: "initial", // Resets text color to browser default (usually black)
+          color: "initial", // Resets text color to browser default (usually black)
           fontStyle: "initial", // Resets font style to normal
           backgroundColor: "initial",
           position: "relative",
@@ -671,11 +671,12 @@ export default function DetailsTable() {
                           justifyContent="space-between"
                           mb={dividerabovespacing}
                           mt={0}
-                         
                         >
-                          <Typography 
-                           fontSize={theme.typography.fontSizes.subheadingSize}
-                            fontWeight={theme.typography.fontWeight.subheadingWeight}
+                          <Typography
+                            fontSize={theme.typography.fontSizes.subheadingSize}
+                            fontWeight={
+                              theme.typography.fontWeight.subheadingWeight
+                            }
                             padding="0 0 8px!important 0"
                           >
                             Section Heading
@@ -696,7 +697,6 @@ export default function DetailsTable() {
                                   ? tempValues.name
                                   : formState.name
                               }
-                              
                               onFocus={() => handleEdit("name")}
                               onBlur={() => {
                                 //handleSaveValue("name");
@@ -704,12 +704,11 @@ export default function DetailsTable() {
                               onChange={handleFieldChange("name")}
                               //                                disabled={!allFieldsEditable}
                               sx={{
-                              
                                 "& .MuiInput-underline:before": {
                                   borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottom: "1px solid #d2d2d2 !important", 
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
                                 "& .MuiInput-underline:after": {
                                   borderBottom: "1px solid #d2d2d2 !important",
@@ -718,21 +717,21 @@ export default function DetailsTable() {
                                   borderBottom: "1px solid #d2d2d2 !important",
                                   transform: "none !important",
                                 },
-                                
+
                                 "& .MuiInputBase-root": { height: "36px" },
                                 "& .MuiInput-root": { marginTop: "3px" },
-                               
                               }}
                               InputLabelProps={{
-                                sx:{
-                                  fontSize:theme.typography.fontSizes.labelsize
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.labelsize,
                                 },
-                               
+
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
                                     : "#444444",
-                               
+
                                   ...(allFieldsEditable && {
                                     backgroundColor: "white",
                                   }),
@@ -745,12 +744,12 @@ export default function DetailsTable() {
                                     ? "#181818"
                                     : "#181818",
                                 },
-                                
+
                                 readOnly: !allFieldsEditable,
                                 sx: {
                                   fontSize:
                                     theme.typography.fontSizes.contentSize,
-                                  
+
                                   ...(allFieldsEditable
                                     ? {}
                                     : { paddingTop: "5px" }),
@@ -821,12 +820,11 @@ export default function DetailsTable() {
                               onChange={handleFieldChange("phone")}
                               //                                disabled={!allFieldsEditable}
                               sx={{
-                              
                                 "& .MuiInput-underline:before": {
                                   borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottom: "1px solid #d2d2d2 !important", 
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
                                 "& .MuiInput-underline:after": {
                                   borderBottom: "1px solid #d2d2d2 !important",
@@ -835,21 +833,19 @@ export default function DetailsTable() {
                                   borderBottom: "1px solid #d2d2d2 !important",
                                   transform: "none !important",
                                 },
-                                
+
                                 "& .MuiInputBase-root": { height: "36px" },
                                 "& .MuiInput-root": { marginTop: "3px" },
-                               
                               }}
                               InputLabelProps={{
-                                
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
                                     : "#444444",
                                 },
                                 sx: {
-                                  fontSize:theme.typography.fontSizes.labelsize
-                                ,
+                                  fontSize:
+                                    theme.typography.fontSizes.labelsize,
                                   color: allFieldsEditable
                                     ? "#1976d2"
                                     : "#444444",
@@ -873,8 +869,6 @@ export default function DetailsTable() {
                                   ...(allFieldsEditable
                                     ? {}
                                     : { paddingTop: "5px" }),
-
-                                 
                                 },
                                 endAdornment: (
                                   <InputAdornment
@@ -963,16 +957,14 @@ export default function DetailsTable() {
                                 },
                               }}
                               InputLabelProps={{
-                                
-                                
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
                                     : "#444444",
                                 },
                                 sx: {
-                                  fontSize:theme.typography.fontSizes.labelsize
-                                ,
+                                  fontSize:
+                                    theme.typography.fontSizes.labelsize,
                                   color: allFieldsEditable
                                     ? "#1976d2"
                                     : "inherit",
@@ -1039,7 +1031,6 @@ export default function DetailsTable() {
                               //                                disabled={!allFieldsEditable}
                               size="small"
                               sx={{
-                               
                                 "& .MuiInputBase-root": { height: "36px" },
                                 "& .MuiInput-root": { marginTop: "3px" },
                                 "& .MuiInputLabel-root.MuiInputLabel-standard":
@@ -1055,34 +1046,30 @@ export default function DetailsTable() {
                                     color: "#444444 !important",
                                   },
                                 },
-                                
-                              
-                                  "& .MuiInput-underline:before": {
-                                    borderBottom: "1px solid #d2d2d2",
-                                  },
-                                  "& .MuiInput-underline:hover:before": {
-                                    borderBottom: "1px solid #d2d2d2 !important", 
-                                  },
-                                  "& .MuiInput-underline:after": {
-                                    borderBottom: "1px solid #d2d2d2 !important",
-                                  },
-                                  "& .MuiInput-underline.Mui-focused:after": {
-                                    borderBottom: "1px solid #d2d2d2 !important",
-                                    transform: "none !important",
-                                  },
-                                  
-                                  
-                                
+
+                                "& .MuiInput-underline:before": {
+                                  borderBottom: "1px solid #d2d2d2",
+                                },
+                                "& .MuiInput-underline:hover:before": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
+                                },
+                                "& .MuiInput-underline:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
+                                },
+                                "& .MuiInput-underline.Mui-focused:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
+                                  transform: "none !important",
+                                },
                               }}
                               InputLabelProps={{
-                                
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
                                     : "#444444",
                                 },
-                                sx: { fontSize:theme.typography.fontSizes.labelsize
-                                  ,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.labelsize,
                                   color: allFieldsEditable
                                     ? "#1976d2"
                                     : "inherit",
@@ -1166,16 +1153,14 @@ export default function DetailsTable() {
                               //                                disabled={!allFieldsEditable}
                               size="small"
                               sx={{
-                              
-                                
                                 "& .MuiInputBase-root": { height: "auto" },
                                 "& .MuiInput-root": { marginTop: "10px" },
-                                
+
                                 "& .MuiInput-underline:before": {
                                   borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottom: "1px solid #d2d2d2 !important", 
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
                                 "& .MuiInput-underline:after": {
                                   borderBottom: "1px solid #d2d2d2 !important",
@@ -1184,17 +1169,16 @@ export default function DetailsTable() {
                                   borderBottom: "1px solid #d2d2d2 !important",
                                   transform: "none !important",
                                 },
-                               
                               }}
                               InputLabelProps={{
-                               
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
                                     : "#444444",
                                 },
-                                sx: { fontSize:theme.typography.fontSizes.labelsize
-                                  ,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.labelsize,
                                   color: allFieldsEditable
                                     ? "#1976d2"
                                     : "inherit",
@@ -1286,10 +1270,9 @@ export default function DetailsTable() {
                             sx={{
                               fontSize:
                                 theme.typography.fontSizes.subheadingSize,
-                                fontWeight:theme.typography.fontWeight.subheadingWeight
-                            
+                              fontWeight:
+                                theme.typography.fontWeight.subheadingWeight,
                             }}
-                            
                             padding="0 0 8px!important 0"
                           >
                             Typography
@@ -1318,12 +1301,11 @@ export default function DetailsTable() {
                               //                                disabled={!allFieldsEditable}
                               size="small"
                               sx={{
-                              
                                 "& .MuiInput-underline:before": {
                                   borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottom: "1px solid #d2d2d2 !important", 
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
                                 "& .MuiInput-underline:after": {
                                   borderBottom: "1px solid #d2d2d2 !important",
@@ -1332,10 +1314,9 @@ export default function DetailsTable() {
                                   borderBottom: "1px solid #d2d2d2 !important",
                                   transform: "none !important",
                                 },
-                                
+
                                 "& .MuiInputBase-root": { height: "36px" },
                                 "& .MuiInput-root": { marginTop: "3px" },
-                               
                               }}
                               InputLabelProps={{
                                 style: {
@@ -1343,8 +1324,9 @@ export default function DetailsTable() {
                                     ? "#444444"
                                     : "#444444",
                                 },
-                                sx: { fontSize:theme.typography.fontSizes.labelsize
-                                  ,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.labelsize,
                                   color: allFieldsEditable
                                     ? "#1976d2"
                                     : "inherit",
@@ -1432,12 +1414,11 @@ export default function DetailsTable() {
                               //                                disabled={!allFieldsEditable}
                               size="small"
                               sx={{
-                              
                                 "& .MuiInput-underline:before": {
                                   borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottom: "1px solid #d2d2d2 !important", 
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
                                 "& .MuiInput-underline:after": {
                                   borderBottom: "1px solid #d2d2d2 !important",
@@ -1446,10 +1427,9 @@ export default function DetailsTable() {
                                   borderBottom: "1px solid #d2d2d2 !important",
                                   transform: "none !important",
                                 },
-                                
+
                                 "& .MuiInputBase-root": { height: "36px" },
                                 "& .MuiInput-root": { marginTop: "3px" },
-                               
                               }}
                               InputLabelProps={{
                                 style: {
@@ -1457,8 +1437,9 @@ export default function DetailsTable() {
                                     ? "#444444"
                                     : "#444444",
                                 },
-                                sx: { fontSize:theme.typography.fontSizes.labelsize
-                                  ,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.labelsize,
                                   color: allFieldsEditable
                                     ? "#1976d2"
                                     : "inherit",
@@ -1542,12 +1523,11 @@ export default function DetailsTable() {
                               //                                disabled={!allFieldsEditable}
                               size="small"
                               sx={{
-                              
                                 "& .MuiInput-underline:before": {
                                   borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottom: "1px solid #d2d2d2 !important", 
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
                                 "& .MuiInput-underline:after": {
                                   borderBottom: "1px solid #d2d2d2 !important",
@@ -1556,20 +1536,20 @@ export default function DetailsTable() {
                                   borderBottom: "1px solid #d2d2d2 !important",
                                   transform: "none !important",
                                 },
-                                
+
                                 "& .MuiInputBase-root": { height: "36px" },
                                 "& .MuiInput-root": { marginTop: "3px" },
-                               
                               }}
                               InputLabelProps={{
-                               style: {
+                                style: {
                                   color: allFieldsEditable
                                     ? "#444444"
                                     : "#444444",
                                 },
 
-                                sx: { fontSize:theme.typography.fontSizes.labelsize
-                                  ,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.labelsize,
                                   color: allFieldsEditable
                                     ? "#1976d2"
                                     : "inherit",
@@ -1655,12 +1635,11 @@ export default function DetailsTable() {
                               onChange={handleFieldChange("cvc")}
                               // Using readOnly instead of disabled
                               sx={{
-                              
                                 "& .MuiInput-underline:before": {
                                   borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottom: "1px solid #d2d2d2 !important", 
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
                                 "& .MuiInput-underline:after": {
                                   borderBottom: "1px solid #d2d2d2 !important",
@@ -1669,10 +1648,9 @@ export default function DetailsTable() {
                                   borderBottom: "1px solid #d2d2d2 !important",
                                   transform: "none !important",
                                 },
-                                
+
                                 "& .MuiInputBase-root": { height: "36px" },
                                 "& .MuiInput-root": { marginTop: "3px" },
-                               
                               }}
                               InputProps={{
                                 style: {
@@ -1728,8 +1706,9 @@ export default function DetailsTable() {
                                     : "#444444",
                                 },
                                 shrink: true,
-                                sx: { fontSize:theme.typography.fontSizes.labelsize
-                                  ,
+                                sx: {
+                                  fontSize:
+                                    theme.typography.fontSizes.labelsize,
                                   color: "#444444",
                                   ...(allFieldsEditable && {
                                     backgroundColor: "white",
@@ -1842,86 +1821,90 @@ export default function DetailsTable() {
                   </TabPanel>
                   {/* Deals */}
                   <TabPanel value={activeTab} index={1}>
-                  
-    <Box
-      sx={{
-        height: "auto",
-        backgroundColor: "white",
-        width: "100%",
-        borderRadius: "4px",
-        gap: "0px",
-        p: "20px 20px 20px 20px",
-        overflow: "hidden",
-        flexWrap: "wrap",
-      }}
-    >
-      <Grid container alignItems="center" justifyContent="space-between" mb={theme.typography.spaces.dividerabovespacing}>
-        <Typography
-          sx={{
-            fontSize: theme.typography.fontSizes.subheadingSize,
-            fontWeight: theme.typography.fontWeight.subheadingWeight,
-            mb: theme.typography.spaces.dividerabovespacing,
-          }}
-        >
-          Deals
-        </Typography>
-        <Box>
-          <ButtonGroup
-            variant="contained"
-            className="filterbar-buttonGroup"
-            sx={{
-              mr:'10px',
-              border: "1px solid #c9c9c9",
-              "& .MuiButtonGroup-grouped:not(:last-of-type)": {
-                borderColor: "#c9c9c9", // Match the border color
-              },
-              boxShadow: "none", // Remove shadow
-              "& button": {
-                boxShadow: "none",
-              },
-            }}
-          >
-            <Button
-              sx={{
-                backgroundColor: "white",
-                boxShadow: "none", // Remove shadow
-                "&:hover": {
-                  // backgroundColor: "#f0f0f0",
-                  boxShadow: "none",
-                },
-                color: "#283356",
-              }}
-            >
-              Assign
-            </Button>
-            <Button
-              sx={{
-                backgroundColor: "white",
-                boxShadow: "none", // Remove shadow
-                "&:hover": {
-                  // backgroundColor: "#f0f0f0",
-                  boxShadow: "none",
-                },
-                color: "#283356",
-              }}
-            >
-              New Deal
-            </Button>
-            <Button
-              sx={{
-                backgroundColor: "#1976D2",
-                color: "white",
-              }}
-            >
-              Edit
-            </Button>
-          </ButtonGroup>
-        </Box>
-      </Grid>
-      <Divider mb={theme.typography.spaces.dividerSpacing} />
-      <DealsTable />
-    </Box>
-  
+                    <Box
+                      sx={{
+                        height: "auto",
+                        backgroundColor: "white",
+                        width: "100%",
+                        borderRadius: "4px",
+                        gap: "0px",
+                        p: "20px 20px 20px 20px",
+                        overflow: "hidden",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      <Grid
+                        container
+                        alignItems="center"
+                        justifyContent="space-between"
+                        mb={theme.typography.spaces.dividerabovespacing}
+                      >
+                        <Typography
+                          sx={{
+                            fontSize: theme.typography.fontSizes.subheadingSize,
+                            fontWeight:
+                              theme.typography.fontWeight.subheadingWeight,
+                            mb: theme.typography.spaces.dividerabovespacing,
+                          }}
+                        >
+                          Deals
+                        </Typography>
+                        <Box>
+                          <ButtonGroup
+                            variant="contained"
+                            className="filterbar-buttonGroup"
+                            sx={{
+                              mr: "10px",
+                              border: "1px solid #c9c9c9",
+                              "& .MuiButtonGroup-grouped:not(:last-of-type)": {
+                                borderColor: "#c9c9c9", // Match the border color
+                              },
+                              boxShadow: "none", // Remove shadow
+                              "& button": {
+                                boxShadow: "none",
+                              },
+                            }}
+                          >
+                            <Button
+                              sx={{
+                                backgroundColor: "white",
+                                boxShadow: "none", // Remove shadow
+                                "&:hover": {
+                                  // backgroundColor: "#f0f0f0",
+                                  boxShadow: "none",
+                                },
+                                color: "#283356",
+                              }}
+                            >
+                              Assign
+                            </Button>
+                            <Button
+                              sx={{
+                                backgroundColor: "white",
+                                boxShadow: "none", // Remove shadow
+                                "&:hover": {
+                                  // backgroundColor: "#f0f0f0",
+                                  boxShadow: "none",
+                                },
+                                color: "#283356",
+                              }}
+                            >
+                              New Deal
+                            </Button>
+                            <Button
+                              sx={{
+                                backgroundColor: "#1976D2",
+                                color: "white",
+                              }}
+                            >
+                              Edit
+                            </Button>
+                          </ButtonGroup>
+                        </Box>
+                      </Grid>
+                      <Divider mb={theme.typography.spaces.dividerSpacing} />
+                      <DealsTable />
+                    </Box>
                   </TabPanel>
                 </Box>
               </Grid>
@@ -1956,14 +1939,21 @@ export default function DetailsTable() {
                   {/* <Divider sx={{ flexGrow: 1, mb: 1.9 }} /> */}
                   <Accordion defaultExpanded sx={accordionStyle}>
                     <AccordionSummary
-                      expandIcon={<ExpandMore sx={{ color: theme.typography.color.timelineheading }} />}
+                      expandIcon={
+                        <ExpandMore
+                          sx={{ color: theme.typography.color.timelineheading }}
+                        />
+                      }
                       sx={summaryStyle}
                     >
-                      <Typography sx={{ marginLeft: "-8px", fontSize:
-                                theme.typography.fontSizes.subheadingSize,
-                                fontWeight:theme.typography.fontWeight.subheadingWeight
-                            
-                               }}>
+                      <Typography
+                        sx={{
+                          marginLeft: "-8px",
+                          fontSize: theme.typography.fontSizes.subheadingSize,
+                          fontWeight:
+                            theme.typography.fontWeight.subheadingWeight,
+                        }}
+                      >
                         Upcoming & Overdue
                       </Typography>
                     </AccordionSummary>
@@ -2026,14 +2016,21 @@ export default function DetailsTable() {
 
                   <Accordion defaultExpanded sx={accordionStyle}>
                     <AccordionSummary
-                      expandIcon={<ExpandMore sx={{ color: theme.typography.color.timelineheading }} />}
+                      expandIcon={
+                        <ExpandMore
+                          sx={{ color: theme.typography.color.timelineheading }}
+                        />
+                      }
                       sx={summaryStyle}
                     >
-                      <Typography sx={{ marginLeft: "-8px", fontSize:
-                                theme.typography.fontSizes.subheadingSize,
-                                fontWeight:theme.typography.fontWeight.subheadingWeight
-                            
-                               }}>
+                      <Typography
+                        sx={{
+                          marginLeft: "-8px",
+                          fontSize: theme.typography.fontSizes.subheadingSize,
+                          fontWeight:
+                            theme.typography.fontWeight.subheadingWeight,
+                        }}
+                      >
                         Completed
                       </Typography>
                     </AccordionSummary>

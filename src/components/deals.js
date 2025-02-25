@@ -40,7 +40,7 @@ const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
 }));
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  padding: '8px',
+  padding: '10px',
   fontFamily: 'Roboto',
   fontSize: theme.typography.fontSizes.contentSize,
 }));
