@@ -34,7 +34,7 @@ import Avatar from "@mui/material/Avatar";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import Chip from "@mui/material/Chip";
 import Link from "@mui/material/Link";
-import DataTable from "./table";
+import DealsTable from "./deals";
 import { ButtonGroup } from "@mui/material";
 
 const US_STATES = [
@@ -1842,33 +1842,86 @@ export default function DetailsTable() {
                   </TabPanel>
                   {/* Deals */}
                   <TabPanel value={activeTab} index={1}>
-                    <Box
-                      sx={{
-                        backgroundColor: "white",
-                        maxWidth: "100%",
-                        width: "100%",
-
-                        borderRadius: "4px",
-                        height: "auto",
-                        margin: "0 auto",
-
-                        p: 2.4,
-                      }}
-                    >
-                      <Typography
-                            sx={{
-                              fontSize:
-                                theme.typography.fontSizes.subheadingSize,
-                                fontWeight:theme.typography.fontWeight.subheadingWeight
-                            
-                            }}
-                            mb={dividerabovespacing}
-                          >
-                        Deals
-                      </Typography>
-                      <Divider mb={dividerSpacing} />
-                      <DataTable />
-                    </Box>
+                  
+    <Box
+      sx={{
+        height: "auto",
+        backgroundColor: "white",
+        width: "100%",
+        borderRadius: "4px",
+        gap: "0px",
+        p: "20px 20px 20px 20px",
+        overflow: "hidden",
+        flexWrap: "wrap",
+      }}
+    >
+      <Grid container alignItems="center" justifyContent="space-between" mb={dividerabovespacing}>
+        <Typography
+          sx={{
+            fontSize: theme.typography.fontSizes.subheadingSize,
+            fontWeight: theme.typography.fontWeight.subheadingWeight,
+            mb: dividerabovespacing,
+          }}
+        >
+          Deals
+        </Typography>
+        <Box>
+          <ButtonGroup
+            variant="contained"
+            className="filterbar-buttonGroup"
+            sx={{
+              mr:'10px',
+              border: "1px solid #c9c9c9",
+              "& .MuiButtonGroup-grouped:not(:last-of-type)": {
+                borderColor: "#c9c9c9", // Match the border color
+              },
+              boxShadow: "none", // Remove shadow
+              "& button": {
+                boxShadow: "none",
+              },
+            }}
+          >
+            <Button
+              sx={{
+                backgroundColor: "white",
+                boxShadow: "none", // Remove shadow
+                "&:hover": {
+                  // backgroundColor: "#f0f0f0",
+                  boxShadow: "none",
+                },
+                color: "#283356",
+              }}
+            >
+              Assign
+            </Button>
+            <Button
+              sx={{
+                backgroundColor: "white",
+                boxShadow: "none", // Remove shadow
+                "&:hover": {
+                  // backgroundColor: "#f0f0f0",
+                  boxShadow: "none",
+                },
+                color: "#283356",
+              }}
+            >
+              New Deal
+            </Button>
+            <Button
+              sx={{
+                backgroundColor: "#1976D2",
+                color: "white",
+              }}
+            >
+              Edit
+            </Button>
+          </ButtonGroup>
+        </Box>
+      </Grid>
+      <Divider mb={dividerSpacing} />
+      <DealsTable />
+    </Box>
+  
                   </TabPanel>
                 </Box>
               </Grid>

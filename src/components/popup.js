@@ -123,20 +123,7 @@ const Popup = ({ closePopup }) => {
                 
                 InputProps={{
                   sx:{ fontSize:theme.typography.fontSizes.contentSize,
-                  },endAdornment: (
-                    <InputAdornment
-                      position="end"
-                      sx={{
-                        position: "relative",
-                        marginRight: "0px",
-                        marginBottom: "5px",
-                      }}
-                    >
-                      {" "}
-                      <EditIconButton //onClick={() => {handleEdit('name'); setAllFieldsEditable(!allFieldsEditable);
-                      />
-                    </InputAdornment>
-                  ),
+                  }
                 }}
               />
             </Grid>

@@ -50,7 +50,7 @@ const StyledHeaderCell = styled(TableCell)(({ theme }) => ({
   fontWeight:theme.typography.fontWeight.contentWeight,
 }));
 
-export default function DataTable() {
+export default function DealsTable() {
   const theme = useTheme();
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);

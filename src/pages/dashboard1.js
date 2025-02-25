@@ -3,7 +3,7 @@ import SecondarySidebar from '../components/secondarySidebar';
 import { Box, IconButton, List } from '@mui/material';
 import Navbar from '../components/navbar';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
-import DataTable from '../components/table';
+import DataTable from '../components/deals';
 import Filterbar from '../components/filterbar';
 import DetailsTable from '../components/details';
 import Sidebar from '../components/sidebar';
