@@ -30,8 +30,13 @@ const rows = [
 
 const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
   maxHeight: 'none',
-  overflow: 'hidden', // Remove the scrollbar
+  overflow: 'auto', // Remove the scrollbar
   fontSize: theme.typography.fontSizes.contentSize,
+  '&::-webkit-scrollbar': {
+    display: 'none',
+  },
+  scrollbarWidth: 'none',
+  msOverflowStyle: 'none',
 }));
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
