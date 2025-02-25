@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import { LocationOnSharp } from '@mui/icons-material';
 import Avatar from '@mui/material/Avatar';
 import { styled } from '@mui/material/styles';
-import './table.css';
+import './deals.css';
 import { useTheme } from "@mui/material/styles";
 
 function createData(id, user, amount, stage, probability, closingdate, avatar) {
@@ -100,8 +100,8 @@ export default function DealsTable() {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <Box sx={{ width: '100%', mt: 2, typography: 'body1', fontFamily: 'Roboto' }}>
-      <Paper sx={{ width: '100%', mb: 2, boxShadow: 'none' }}>
+    <Box sx={{ width: '100%', mt: 2, typography: 'body1', fontFamily: 'Roboto',mb:"16px" }}>
+      <Paper sx={{ width: '100%',  boxShadow: 'none' }}>
         <StyledTableContainer className="styled-table-container">
           <Table aria-labelledby="tableTitle" size="small">
             <TableHead>
@@ -171,6 +171,9 @@ export default function DealsTable() {
           </Table>
         </StyledTableContainer>
         <TablePagination
+        sx={{
+          mb:'-32px'
+        }}
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
           count={rows.length}
@@ -181,5 +184,6 @@ export default function DealsTable() {
         />
       </Paper>
     </Box>
+
   );
 }

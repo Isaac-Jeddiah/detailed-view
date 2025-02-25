@@ -1855,12 +1855,12 @@ export default function DetailsTable() {
         flexWrap: "wrap",
       }}
     >
-      <Grid container alignItems="center" justifyContent="space-between" mb={dividerabovespacing}>
+      <Grid container alignItems="center" justifyContent="space-between" mb={theme.typography.spaces.dividerabovespacing}>
         <Typography
           sx={{
             fontSize: theme.typography.fontSizes.subheadingSize,
             fontWeight: theme.typography.fontWeight.subheadingWeight,
-            mb: dividerabovespacing,
+            mb: theme.typography.spaces.dividerabovespacing,
           }}
         >
           Deals
@@ -1918,7 +1918,7 @@ export default function DetailsTable() {
           </ButtonGroup>
         </Box>
       </Grid>
-      <Divider mb={dividerSpacing} />
+      <Divider mb={theme.typography.spaces.dividerSpacing} />
       <DealsTable />
     </Box>
   
