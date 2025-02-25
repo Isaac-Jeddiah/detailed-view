@@ -699,7 +699,7 @@ export default function DetailsTable() {
                                   ? tempValues.name
                                   : formState.name
                               }
-                              color="red"
+                              
                               onFocus={() => handleEdit("name")}
                               onBlur={() => {
                                 //handleSaveValue("name");
@@ -707,55 +707,31 @@ export default function DetailsTable() {
                               onChange={handleFieldChange("name")}
                               //                                disabled={!allFieldsEditable}
                               sx={{
-                                "& .MuiInputBase-input": {
-                                  color: "#181818",
-                                  WebkitTextFillColor: "#181818",
-                                },
-                                "& .MuiInputBase-input.MuiInput-input.Mui-readOnly":
-                                  {
-                                    WebkitTextFillColor: "#181818",
-                                    color: "#181818",
-                                  },
+                              
                                 "& .MuiInput-underline:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomStyle: "solid",
-                                  borderBottomColor: "#d2d2d2 !important",
-                                },
-                                "& .MuiInputBase-root": { height: "36px" },
-                                "& .MuiInput-root": { marginTop: "3px" },
-                                "& .MuiInputLabel-root.MuiInputLabel-standard":
-                                  {
-                                    transform:
-                                      "translate(0, -1.5px) scale(0.75)",
-                                    transformOrigin: "top left",
-                                    color: "#444444 !important",
-                                  },
-                                "& .MuiInputLabel-root": {
-                                  color: "#181818 !important",
-                                  "&.Mui-focused": {
-                                    color: "#181818 !important",
-                                  },
+                                  borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
+                                  borderBottom: "1px solid #d2d2d2 !important", 
                                 },
-                                "& .MuiInput-underline:hover:after": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
+                                "& .MuiInput-underline:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
+                                "& .MuiInput-underline.Mui-focused:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
+                                  transform: "none !important",
+                                },
+                                
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                               
                               }}
                               InputLabelProps={{
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
                                     : "#444444",
-                                },
-                                color: "red",
-                                sx: {
-                                  color: allFieldsEditable
-                                    ? "#1976d2"
-                                    : "#181818",
+                               
                                   ...(allFieldsEditable && {
                                     backgroundColor: "white",
                                   }),
@@ -768,12 +744,12 @@ export default function DetailsTable() {
                                     ? "#181818"
                                     : "#181818",
                                 },
-                                color: "red !important",
+                                
                                 readOnly: !allFieldsEditable,
                                 sx: {
                                   fontSize:
                                     theme.typography.fontSizes.contentSize,
-                                  color: "red !important",
+                                  
                                   ...(allFieldsEditable
                                     ? {}
                                     : { paddingTop: "5px" }),
@@ -844,34 +820,24 @@ export default function DetailsTable() {
                               onChange={handleFieldChange("phone")}
                               //                                disabled={!allFieldsEditable}
                               sx={{
+                              
                                 "& .MuiInput-underline:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomStyle: "solid",
-                                  borderBottomColor: "#d2d2d2 !important",
-                                },
-                                "& .MuiInputBase-root": { height: "36px" },
-                                "& .MuiInput-root": { marginTop: "3px" },
-                                "& .MuiInputLabel-root.MuiInputLabel-standard":
-                                  {
-                                    transform:
-                                      "translate(0, -1.5px) scale(0.75)",
-                                    transformOrigin: "top left",
-                                    color: "#444444 !important",
-                                  },
-                                "& .MuiInputLabel-root": {
-                                  color: "#444444 !important",
-                                  "&.Mui-focused": {
-                                    color: "#444444 !important",
-                                  },
+                                  borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
+                                  borderBottom: "1px solid #d2d2d2 !important", 
                                 },
-                                "& .MuiInput-underline:hover:after": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
+                                "& .MuiInput-underline:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
+                                "& .MuiInput-underline.Mui-focused:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
+                                  transform: "none !important",
+                                },
+                                
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                               
                               }}
                               InputLabelProps={{
                                 style: {
@@ -904,18 +870,7 @@ export default function DetailsTable() {
                                     ? {}
                                     : { paddingTop: "5px" }),
 
-                                  ...(allFieldsEditable && {
-                                    "&:after": {
-                                      borderBottom: "2px solid #1976d2",
-                                    },
-                                    "&:before": {
-                                      borderBottom:
-                                        "1px solid rgba(0, 0, 0, 0.42)",
-                                    },
-                                    "&:hover:before": {
-                                      borderBottom: "2px solid #1976d2",
-                                    },
-                                  }),
+                                 
                                 },
                                 endAdornment: (
                                   <InputAdornment
@@ -1076,11 +1031,7 @@ export default function DetailsTable() {
                               //                                disabled={!allFieldsEditable}
                               size="small"
                               sx={{
-                                "& .MuiInput-underline:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomStyle: "solid",
-                                  borderBottomColor: "#d2d2d2 !important",
-                                },
+                               
                                 "& .MuiInputBase-root": { height: "36px" },
                                 "& .MuiInput-root": { marginTop: "3px" },
                                 "& .MuiInputLabel-root.MuiInputLabel-standard":
@@ -1096,14 +1047,24 @@ export default function DetailsTable() {
                                     color: "#444444 !important",
                                   },
                                 },
-                                "& .MuiInput-underline:hover:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
-                                },
-                                "& .MuiInput-underline:hover:after": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
-                                },
+                                
+                              
+                                  "& .MuiInput-underline:before": {
+                                    borderBottom: "1px solid #d2d2d2",
+                                  },
+                                  "& .MuiInput-underline:hover:before": {
+                                    borderBottom: "1px solid #d2d2d2 !important", 
+                                  },
+                                  "& .MuiInput-underline:after": {
+                                    borderBottom: "1px solid #d2d2d2 !important",
+                                  },
+                                  "& .MuiInput-underline.Mui-focused:after": {
+                                    borderBottom: "1px solid #d2d2d2 !important",
+                                    transform: "none !important",
+                                  },
+                                  
+                                  
+                                
                               }}
                               InputLabelProps={{
                                 style: {
@@ -1367,34 +1328,24 @@ export default function DetailsTable() {
                               //                                disabled={!allFieldsEditable}
                               size="small"
                               sx={{
+                              
                                 "& .MuiInput-underline:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomStyle: "solid",
-                                  borderBottomColor: "#d2d2d2 !important",
-                                },
-                                "& .MuiInputBase-root": { height: "36px" },
-                                "& .MuiInput-root": { marginTop: "3px" },
-                                "& .MuiInputLabel-root.MuiInputLabel-standard":
-                                  {
-                                    transform:
-                                      "translate(0, -1.5px) scale(0.75)",
-                                    transformOrigin: "top left",
-                                    color: "#444444 !important",
-                                  },
-                                "& .MuiInputLabel-root": {
-                                  color: "#444444 !important",
-                                  "&.Mui-focused": {
-                                    color: "#444444 !important",
-                                  },
+                                  borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
+                                  borderBottom: "1px solid #d2d2d2 !important", 
                                 },
-                                "& .MuiInput-underline:hover:after": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
+                                "& .MuiInput-underline:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
+                                "& .MuiInput-underline.Mui-focused:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
+                                  transform: "none !important",
+                                },
+                                
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                               
                               }}
                               InputLabelProps={{
                                 style: {
@@ -1490,34 +1441,24 @@ export default function DetailsTable() {
                               //                                disabled={!allFieldsEditable}
                               size="small"
                               sx={{
+                              
                                 "& .MuiInput-underline:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomStyle: "solid",
-                                  borderBottomColor: "#d2d2d2 !important",
-                                },
-                                "& .MuiInputBase-root": { height: "36px" },
-                                "& .MuiInput-root": { marginTop: "3px" },
-                                "& .MuiInputLabel-root.MuiInputLabel-standard":
-                                  {
-                                    transform:
-                                      "translate(0, -1.5px) scale(0.75)",
-                                    transformOrigin: "top left",
-                                    color: "#444444 !important",
-                                  },
-                                "& .MuiInputLabel-root": {
-                                  color: "#444444 !important",
-                                  "&.Mui-focused": {
-                                    color: "#444444 !important",
-                                  },
+                                  borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
+                                  borderBottom: "1px solid #d2d2d2 !important", 
                                 },
-                                "& .MuiInput-underline:hover:after": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
+                                "& .MuiInput-underline:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
+                                "& .MuiInput-underline.Mui-focused:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
+                                  transform: "none !important",
+                                },
+                                
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                               
                               }}
                               InputLabelProps={{
                                 style: {
@@ -1608,38 +1549,30 @@ export default function DetailsTable() {
                               //                                disabled={!allFieldsEditable}
                               size="small"
                               sx={{
+                              
                                 "& .MuiInput-underline:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomStyle: "solid",
-                                  borderBottomColor: "#d2d2d2 !important",
-                                },
-                                "& .MuiInputBase-root": { height: "36px" },
-                                "& .MuiInput-root": { marginTop: "3px" },
-                                "& .MuiInputLabel-root.MuiInputLabel-standard":
-                                  {
-                                    transform:
-                                      "translate(0, -1.5px) scale(0.75)",
-                                    transformOrigin: "top left",
-                                    color: "#444444 !important",
-                                  },
-                                "& .MuiInputLabel-root": {
-                                  color: "#444444 !important",
-                                  "&.Mui-focused": {
-                                    color: "#444444 !important",
-                                  },
+                                  borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
+                                  borderBottom: "1px solid #d2d2d2 !important", 
                                 },
-                                "& .MuiInput-underline:hover:after": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
+                                "& .MuiInput-underline:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
+                                "& .MuiInput-underline.Mui-focused:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
+                                  transform: "none !important",
+                                },
+                                
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                               
                               }}
                               InputLabelProps={{
                                 style: {
-                                  color: allFieldsEditable ? "red" : "red",
+                                  color: allFieldsEditable
+                                    ? "#444444"
+                                    : "#444444",
                                 },
 
                                 sx: {
@@ -1728,34 +1661,24 @@ export default function DetailsTable() {
                               onChange={handleFieldChange("cvc")}
                               // Using readOnly instead of disabled
                               sx={{
+                              
                                 "& .MuiInput-underline:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomStyle: "solid",
-                                  borderBottomColor: "#d2d2d2 !important",
-                                },
-                                "& .MuiInputBase-root": { height: "36px" },
-                                "& .MuiInput-root": { marginTop: "3px" },
-                                "& .MuiInputLabel-root.MuiInputLabel-standard":
-                                  {
-                                    transform:
-                                      "translate(0, -1.5px) scale(0.75)",
-                                    transformOrigin: "top left",
-                                    color: "#444444 !important",
-                                  },
-                                "& .MuiInputLabel-root": {
-                                  color: "#444444 !important",
-                                  "&.Mui-focused": {
-                                    color: "#444444 !important",
-                                  },
+                                  borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
+                                  borderBottom: "1px solid #d2d2d2 !important", 
                                 },
-                                "& .MuiInput-underline:hover:after": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomColor: "#d2d2d2",
+                                "& .MuiInput-underline:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
+                                "& .MuiInput-underline.Mui-focused:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
+                                  transform: "none !important",
+                                },
+                                
+                                "& .MuiInputBase-root": { height: "36px" },
+                                "& .MuiInput-root": { marginTop: "3px" },
+                               
                               }}
                               InputProps={{
                                 style: {
@@ -1980,7 +1903,9 @@ export default function DetailsTable() {
                       expandIcon={<ExpandMore sx={{ color: "#1976D2" }} />}
                       sx={summaryStyle}
                     >
-                      <Typography sx={{ marginLeft: "-8px", fontSize: "16px" }}>
+                      <Typography sx={{ marginLeft: "-8px", fontSize:
+                                theme.typography.fontSizes.subheadingSize,
+                               }}>
                         Upcoming & Overdue
                       </Typography>
                     </AccordionSummary>
@@ -2046,7 +1971,9 @@ export default function DetailsTable() {
                       expandIcon={<ExpandMore sx={{ color: "#1976D2" }} />}
                       sx={summaryStyle}
                     >
-                      <Typography sx={{ marginLeft: "-8px", fontSize: "16px" }}>
+                      <Typography sx={{ marginLeft: "-8px", fontSize:
+                                theme.typography.fontSizes.subheadingSize,
+                               }}>
                         Completed
                       </Typography>
                     </AccordionSummary>

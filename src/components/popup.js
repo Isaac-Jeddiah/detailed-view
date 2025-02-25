@@ -15,6 +15,7 @@ import {
   Paper,
 } from "@mui/material";
 import './popup.css';
+import { useTheme } from "@mui/material/styles";
 const states = [
   "Alabama",
   "Alaska",
@@ -41,6 +42,8 @@ const states = [
 ];
 
 const Popup = ({ closePopup }) => {
+  const theme = useTheme();
+  
   const formContext = useFormState();
    
     const { formState, updateField,resetform } = formContext;
@@ -119,7 +122,8 @@ const Popup = ({ closePopup }) => {
                 color="rgba(25, 118, 210, 0.12)"
                 
                 InputProps={{
-                  endAdornment: (
+                  sx:{ fontSize:theme.typography.fontSizes.contentSize,
+                  },endAdornment: (
                     <InputAdornment
                       position="end"
                       sx={{
@@ -167,8 +171,18 @@ const Popup = ({ closePopup }) => {
         {/* Section 1 */}
       
     <Box sx={{ mb: 4 }}>
-        <Typography variant="h6" sx={{ mb: 2 }}>Edit</Typography>
-        <Typography variant="h6" sx={{ mb: 2 }}>Section heading</Typography>
+        <Typography sx={{
+                              fontSize:
+                                theme.typography.fontSizes.subheadingSize,
+                              fontWeight: "bold",
+                              mb:2
+                            }}>Edit</Typography>
+        <Typography  sx={{
+                              fontSize:
+                                theme.typography.fontSizes.subheadingSize,
+                              fontWeight: "bold",
+                              mb:2
+                            }}>Section heading</Typography>
         <Grid container spacing={2}>
             {renderTextField('name', "Name*")}
             <Grid item xs={12} md={6}>
@@ -181,6 +195,8 @@ const Popup = ({ closePopup }) => {
                     color="rgba(25, 118, 210, 0.12)"
                     className="textfield"
                     InputProps={{
+                      sx:{ fontSize:theme.typography.fontSizes.contentSize,
+                  },
                         endAdornment: (
                             <InputAdornment position="end" className="inputAdornment">
                                 <EditIconButton />
@@ -193,10 +209,13 @@ const Popup = ({ closePopup }) => {
         <Grid container spacing={2} sx={{ mt: 0 }}>
             <Grid item xs={12} md={6}>
                 <FormControl fullWidth size="small">
-                    <InputLabel id="state-label">State*</InputLabel>
+                    <InputLabel  fontSize={theme.typography.fontSizes.contentSize}
+                  id="state-label">State*</InputLabel>
                     <Select
                         labelId="state-label"
                         value={formState.state}
+                        fontSize={theme.typography.fontSizes.contentSize}
+                  
                         label="State*"
                         onChange={(e) => { handleTextChange("state"); updateField("state", e.target.value); console.log(formState.state) }}
                     >
@@ -218,6 +237,8 @@ const Popup = ({ closePopup }) => {
                     color="rgba(25, 118, 210, 0.12)"
                     className="textfield"
                     InputProps={{
+                      sx:{ fontSize:theme.typography.fontSizes.contentSize,
+                  },
                         endAdornment: (
                             <InputAdornment position="end" className="inputAdornment">
                                 <EditIconButton />
@@ -240,6 +261,8 @@ const Popup = ({ closePopup }) => {
                 rows={4}
                 className="textfield"
                 InputProps={{
+                  sx:{ fontSize:theme.typography.fontSizes.contentSize,
+                  },
                     endAdornment: (
                         <InputAdornment position="end" className="inputAdornment">
                             <EditIconButton />
@@ -251,7 +274,12 @@ const Popup = ({ closePopup }) => {
     </Box>
         {/* Section 2 */}
     <Box sx={{ mb: 4 }}>
-        <Typography variant="h6" sx={{ mb: 2 }}>Typography</Typography>
+        <Typography sx={{
+                              fontSize:
+                                theme.typography.fontSizes.subheadingSize,
+                              fontWeight: "bold",
+                              mb:2
+                            }}>Typography</Typography>
 
         <Box sx={{ mb: 2 }}>
             <TextField
@@ -264,6 +292,8 @@ const Popup = ({ closePopup }) => {
                 color="rgba(25, 118, 210, 0.12)"
                 className="textfield"
                 InputProps={{
+                  sx:{ fontSize:theme.typography.fontSizes.contentSize,
+                  },
                     startAdornment: (
                         <InputAdornment position="start">
                             <CreditCardIcon color="action" />
@@ -289,6 +319,8 @@ const Popup = ({ closePopup }) => {
                 color="rgba(25, 118, 210, 0.12)"
                 className="textfield"
                 InputProps={{
+                  sx:{ fontSize:theme.typography.fontSizes.contentSize,
+                  },
                     endAdornment: (
                         <InputAdornment position="end" className="inputAdornment">
                             <EditIconButton />
@@ -309,6 +341,8 @@ const Popup = ({ closePopup }) => {
                     onChange={handleTextChange("expiry")}
                     className="textfield"
                     InputProps={{
+                      sx:{ fontSize:theme.typography.fontSizes.contentSize,
+                  },
                         endAdornment: (
                             <InputAdornment position="end" className="inputAdornment">
                                 <EditIconButton />
@@ -329,6 +363,8 @@ const Popup = ({ closePopup }) => {
                     color="rgba(25, 118, 210, 0.12)"
                     className="textfield"
                     InputProps={{
+                      sx:{ fontSize:theme.typography.fontSizes.contentSize,
+                  },
                         endAdornment: (
                             <InputAdornment position="end" className="inputAdornment">
                                 <EditIconButton />
