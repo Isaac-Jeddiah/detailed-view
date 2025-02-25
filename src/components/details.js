@@ -724,6 +724,9 @@ export default function DetailsTable() {
                                
                               }}
                               InputLabelProps={{
+                                sx:{
+                                  fontSize:theme.typography.fontSizes.labelsize
+                                },
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
