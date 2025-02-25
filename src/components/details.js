@@ -1156,49 +1156,25 @@ export default function DetailsTable() {
                               //                                disabled={!allFieldsEditable}
                               size="small"
                               sx={{
-                                "& .MuiInput-underline": {
-                                  borderBottomWidth: "1px",
-                                  borderBottomStyle: "solid",
-                                  borderBottomColor: "#d2d2d2 !important",
-                                },
-                                "& .MuiInput-underline:before": {
-                                  borderBottomWidth: "0px",
-                                  borderBottomStyle: "solid",
-                                  borderBottomColor: "#d2d2d2 !important",
-                                  // Increase thickness
-                                },
-                                "& .MuiInputBase-input": {
-                                  color: "#181818",
-                                  WebkitTextFillColor: "#181818",
-                                },
+                              
+                                
                                 "& .MuiInputBase-root": { height: "auto" },
                                 "& .MuiInput-root": { marginTop: "10px" },
-                                "& .MuiInputLabel-root.MuiInputLabel-standard":
-                                  {
-                                    transform:
-                                      "translate(0, -1.5px) scale(0.75)",
-                                    transformOrigin: "top left",
-                                    color: "#444444 !important",
-                                  },
-                                "& .MuiInputLabel-root": {
-                                  color: "#444444 !important",
-                                  "&.Mui-focused": {
-                                    color: "#444444 !important",
-                                  },
+                                
+                                "& .MuiInput-underline:before": {
+                                  borderBottom: "1px solid #d2d2d2",
                                 },
                                 "& .MuiInput-underline:hover:before": {
-                                  borderBottomWidth: "0px",
-                                  borderBottomColor: "#d2d2d2",
+                                  borderBottom: "1px solid #d2d2d2 !important", 
                                 },
-                                "& .MuiInput-underline:hover:after": {
-                                  borderBottomWidth: "0px",
-                                  borderBottomColor: "#d2d2d2",
+                                "& .MuiInput-underline:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
                                 },
-                                "& .MuiInputBase-input.MuiInput-input.Mui-readOnly":
-                                  {
-                                    WebkitTextFillColor: "#181818",
-                                    color: "#181818",
-                                  },
+                                "& .MuiInput-underline.Mui-focused:after": {
+                                  borderBottom: "1px solid #d2d2d2 !important",
+                                  transform: "none !important",
+                                },
+                               
                               }}
                               InputLabelProps={{
                                 style: {
