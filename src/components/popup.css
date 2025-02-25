@@ -19,7 +19,7 @@
     display: flex;
     justify-content: flex-end;
     gap: 16px;
-    margin-top: 1px; /* 32px gap between buttons */
+    margin-top: 1px; 
 }
 
 .cancelButton {
