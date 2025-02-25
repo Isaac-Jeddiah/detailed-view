@@ -1861,7 +1861,14 @@ export default function DetailsTable() {
                         p: 2.4,
                       }}
                     >
-                      <Typography variant="h6" mb={dividerabovespacing}>
+                      <Typography
+                            sx={{
+                              fontSize:
+                                theme.typography.fontSizes.subheadingSize,
+                              fontWeight: "bold",
+                            }}
+                            mb={dividerabovespacing}
+                          >
                         Deals
                       </Typography>
                       <Divider mb={dividerSpacing} />

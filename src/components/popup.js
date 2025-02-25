@@ -197,11 +197,7 @@ const Popup = ({ closePopup }) => {
                     InputProps={{
                       sx:{ fontSize:theme.typography.fontSizes.contentSize,
                   },
-                        endAdornment: (
-                            <InputAdornment position="end" className="inputAdornment">
-                                <EditIconButton />
-                            </InputAdornment>
-                        ),
+                       
                     }}
                 />
             </Grid>
@@ -239,11 +235,7 @@ const Popup = ({ closePopup }) => {
                     InputProps={{
                       sx:{ fontSize:theme.typography.fontSizes.contentSize,
                   },
-                        endAdornment: (
-                            <InputAdornment position="end" className="inputAdornment">
-                                <EditIconButton />
-                            </InputAdornment>
-                        ),
+                       
                     }}
                 />
             </Grid>
@@ -263,11 +255,7 @@ const Popup = ({ closePopup }) => {
                 InputProps={{
                   sx:{ fontSize:theme.typography.fontSizes.contentSize,
                   },
-                    endAdornment: (
-                        <InputAdornment position="end" className="inputAdornment">
-                            <EditIconButton />
-                        </InputAdornment>
-                    ),
+                    
                 }}
             />
         </Box>
@@ -299,11 +287,7 @@ const Popup = ({ closePopup }) => {
                             <CreditCardIcon color="action" />
                         </InputAdornment>
                     ),
-                    endAdornment: (
-                        <InputAdornment position="end" className="inputAdornment">
-                            <EditIconButton />
-                        </InputAdornment>
-                    ),
+                    
                 }}
             />
         </Box>
@@ -321,11 +305,7 @@ const Popup = ({ closePopup }) => {
                 InputProps={{
                   sx:{ fontSize:theme.typography.fontSizes.contentSize,
                   },
-                    endAdornment: (
-                        <InputAdornment position="end" className="inputAdornment">
-                            <EditIconButton />
-                        </InputAdornment>
-                    ),
+                    
                 }}
             />
         </Box>
@@ -343,11 +323,7 @@ const Popup = ({ closePopup }) => {
                     InputProps={{
                       sx:{ fontSize:theme.typography.fontSizes.contentSize,
                   },
-                        endAdornment: (
-                            <InputAdornment position="end" className="inputAdornment">
-                                <EditIconButton />
-                            </InputAdornment>
-                        ),
+                       
                     }}
                     color="rgba(25, 118, 210, 0.12)"
                 />
@@ -365,11 +341,7 @@ const Popup = ({ closePopup }) => {
                     InputProps={{
                       sx:{ fontSize:theme.typography.fontSizes.contentSize,
                   },
-                        endAdornment: (
-                            <InputAdornment position="end" className="inputAdornment">
-                                <EditIconButton />
-                            </InputAdornment>
-                        ),
+                       
                     }}
                 />
             </Grid>
