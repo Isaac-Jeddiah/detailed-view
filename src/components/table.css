@@ -1,3 +1,4 @@
+
 .table-container {
     width: 100%;
     margin-top: 16px;
@@ -15,7 +16,7 @@
   }
   
   .table-header {
-    font-size: 14px;
+    
     font-weight: bold;
     padding-left: 0px;
   }
@@ -26,7 +27,7 @@
   
   .styled-cell {
     padding: 8px;
-    font-size: 14px;
+    
   }
   
   .user-info {
@@ -57,7 +58,7 @@
     border-radius: 15px;
     padding: 5px 10px;
     width: min-content;
-    font-size: 12px;
+    
   }
   
   .status-suspended {
@@ -66,6 +67,6 @@
     border-radius: 15px;
     padding: 5px 10px;
     width: min-content;
-    font-size: 12px;
+   
   }
   

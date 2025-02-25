@@ -12,6 +12,8 @@ import { LocationOnSharp } from '@mui/icons-material';
 import Avatar from '@mui/material/Avatar';
 import { styled } from '@mui/material/styles';
 import './table.css';
+import { useTheme } from "@mui/material/styles";
+
 function createData(id, user, amount, stage, probability, closingdate, avatar) {
   return { id, user, amount, stage, probability, closingdate, avatar };
 }
@@ -26,26 +28,30 @@ const rows = [
   createData(7, 'Gingerbread', '9867', "Chennai", "Active", '8/6/2025', 'https://sp.yimg.com/ib/th?id=OIP.Q6R49EFCR62g4QtakGPRFAHaHZ&pid=Api&w=148&h=148&c=7&dpr=2&rs=1'),
 ];
 
-const StyledTableContainer = styled(TableContainer)({
+const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
   maxHeight: 'none',
   overflow: 'hidden', // Remove the scrollbar
-});
+  fontSize: theme.typography.fontSizes.contentSize,
+}));
 
-const StyledTableCell = styled(TableCell)({
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
   padding: '8px',
   fontFamily: 'Roboto',
-  fontSize: '14px',
-});
+  fontSize: theme.typography.fontSizes.contentSize,
+}));
 
 const StyledTableRow = styled(TableRow)({
   height: '48px',
 });
 
-const StyledHeaderCell = styled(TableCell)({
+const StyledHeaderCell = styled(TableCell)(({ theme }) => ({
   paddingLeft: '10px',
-});
+  fontSize: theme.typography.fontSizes.contentSize,
+  fontWeight:theme.typography.fontWeight.contentWeight,
+}));
 
 export default function DataTable() {
+  const theme = useTheme();
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -94,25 +100,24 @@ export default function DataTable() {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <Box sx={{ width: '100%', mt: 2, typography: 'body1', fontSize: 14, fontFamily: 'Roboto' }}>
+    <Box sx={{ width: '100%', mt: 2, typography: 'body1', fontFamily: 'Roboto' }}>
       <Paper sx={{ width: '100%', mb: 2, boxShadow: 'none' }}>
-      <TableContainer className="styled-table-container">
+        <StyledTableContainer className="styled-table-container">
           <Table aria-labelledby="tableTitle" size="small">
             <TableHead>
               <TableRow>
-              <TableCell className="table-header">Deal Name</TableCell>
-                <TableCell className="table-header">Amount</TableCell>
-                <TableCell className="table-header">Location</TableCell>
-                <TableCell className="table-header">Account Status</TableCell>
-                <TableCell className="table-header">Closing Date</TableCell>
-               </TableRow>
+                <StyledHeaderCell className="table-header">Deal Name</StyledHeaderCell>
+                <StyledHeaderCell className="table-header">Amount</StyledHeaderCell>
+                <StyledHeaderCell className="table-header">Location</StyledHeaderCell>
+                <StyledHeaderCell className="table-header">Account Status</StyledHeaderCell>
+                <StyledHeaderCell className="table-header">Closing Date</StyledHeaderCell>
+              </TableRow>
             </TableHead>
             <TableBody>
               {rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   const isItemSelected = isSelected(row.id);
-                  const labelId = `enhanced-table-checkbox-${row.id}`;
 
                   return (
                     <StyledTableRow
@@ -124,19 +129,19 @@ export default function DataTable() {
                       key={row.id}
                       selected={isItemSelected}
                     >
-                      <TableCell className="styled-cell">
-                    <Box className="user-info">
-                      <Avatar src={row.avatar} className="avatar" />
-                      {row.user}
-                    </Box>
-                  </TableCell>
-                  <TableCell className="styled-cell">${row.amount}</TableCell>
-                  <TableCell className="styled-cell">
-                    <Box className="location-info">
-                      <LocationOnSharp className="location-icon" />
-                      {row.stage}
-                    </Box>
-                  </TableCell>
+                      <StyledTableCell className="styled-cell">
+                        <Box className="user-info">
+                          <Avatar src={row.avatar} className="avatar" />
+                          {row.user}
+                        </Box>
+                      </StyledTableCell>
+                      <StyledTableCell className="styled-cell">${row.amount}</StyledTableCell>
+                      <StyledTableCell className="styled-cell">
+                        <Box className="location-info">
+                          <LocationOnSharp className="location-icon" />
+                          {row.stage}
+                        </Box>
+                      </StyledTableCell>
                       <StyledTableCell align="center">
                         <Box sx={{
                           backgroundColor: row.probability === 'Active' ? "#ebebeb" : "#ef6c00",
@@ -149,7 +154,7 @@ export default function DataTable() {
                           {row.probability}
                         </Box>
                       </StyledTableCell>
-                      <TableCell className="styled-cell">{row.closingdate}</TableCell>
+                      <StyledTableCell className="styled-cell">{row.closingdate}</StyledTableCell>
                     </StyledTableRow>
                   );
                 })}
@@ -164,7 +169,7 @@ export default function DataTable() {
               )}
             </TableBody>
           </Table>
-        </TableContainer>
+        </StyledTableContainer>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"

@@ -549,7 +549,7 @@ export default function DetailsTable() {
   const summaryStyle = {
     position: "relative",
     borderTop: "none",
-    color: "#1976D2",
+    color: theme.typography.color.timelineheading,
     width: "100%",
     maxWidth: "100%",
     height: "40px !important",
@@ -1903,7 +1903,7 @@ export default function DetailsTable() {
                   {/* <Divider sx={{ flexGrow: 1, mb: 1.9 }} /> */}
                   <Accordion defaultExpanded sx={accordionStyle}>
                     <AccordionSummary
-                      expandIcon={<ExpandMore sx={{ color: "#1976D2" }} />}
+                      expandIcon={<ExpandMore sx={{ color: theme.typography.color.timelineheading }} />}
                       sx={summaryStyle}
                     >
                       <Typography sx={{ marginLeft: "-8px", fontSize:
@@ -1973,7 +1973,7 @@ export default function DetailsTable() {
 
                   <Accordion defaultExpanded sx={accordionStyle}>
                     <AccordionSummary
-                      expandIcon={<ExpandMore sx={{ color: "#1976D2" }} />}
+                      expandIcon={<ExpandMore sx={{ color: theme.typography.color.timelineheading }} />}
                       sx={summaryStyle}
                     >
                       <Typography sx={{ marginLeft: "-8px", fontSize:
