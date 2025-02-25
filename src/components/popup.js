@@ -1,4 +1,4 @@
-import { InputAdornment, IconButton } from "@mui/material";
+import { InputAdornment, IconButton, Divider } from "@mui/material";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import React, { useState, useEffect } from "react";
 import { useFormState } from "../context/Formcontext";
@@ -170,19 +170,43 @@ const Popup = ({ closePopup }) => {
       >
         {/* Section 1 */}
       
-    <Box sx={{ mb: 4 }}>
-        <Typography sx={{
-                              fontSize:
-                                theme.typography.fontSizes.subheadingSize,
-                              fontWeight: "bold",
-                              mb:2
-                            }}>Edit</Typography>
-        <Typography  sx={{
-                              fontSize:
-                                theme.typography.fontSizes.subheadingSize,
-                              fontWeight: "bold",
-                              mb:2
-                            }}>Section heading</Typography>
+    <Box
+                             display="flex"
+                             alignItems="center"
+                             justifyContent="space-between"
+                             mb={theme.typography.spaces.dividerabovespacing}
+                             mt={0}
+                            
+                           >
+                             <Typography 
+                              fontSize={theme.typography.fontSizes.subheadingSize}
+                               fontWeight={theme.typography.fontWeight.subheadingWeight}
+                               padding="0 0 8px!important 0"
+                             >
+                               Edit
+                             </Typography>
+                           </Box>
+                           <Divider sx={{ flexGrow: 1, mb: theme.typography.spaces.dividerSpacing }} />
+                           <Box
+                             display="flex"
+                             alignItems="center"
+                             justifyContent="space-between"
+                             mb={theme.typography.spaces.dividerabovespacing}
+                             mt={0}
+                            
+                           >
+                             <Typography 
+                              fontSize={theme.typography.fontSizes.subheadingSize}
+                               fontWeight={theme.typography.fontWeight.subheadingWeight}
+                               padding="0 0 8px!important 0"
+                             >
+                               Section Heading
+                             </Typography>
+                           </Box>
+                           <Divider sx={{ flexGrow: 1, mb: theme.typography.spaces.dividerSpacing }} />
+
+                
+      <Box mt={theme.typography.spaces.dividerbelow}>
         <Grid container spacing={2}>
             {renderTextField('name', "Name*")}
             <Grid item xs={12} md={6}>
@@ -260,14 +284,26 @@ const Popup = ({ closePopup }) => {
             />
         </Box>
     </Box>
+    
         {/* Section 2 */}
     <Box sx={{ mb: 4 }}>
-        <Typography sx={{
-                              fontSize:
-                                theme.typography.fontSizes.subheadingSize,
-                              fontWeight: "bold",
-                              mb:2
-                            }}>Typography</Typography>
+    <Box
+                             display="flex"
+                             alignItems="center"
+                             justifyContent="space-between"
+                             mb={theme.typography.spaces.dividerabovespacing}
+                             mt={theme.typography.spaces.topspacing}
+                            
+                           >
+                             <Typography 
+                              fontSize={theme.typography.fontSizes.subheadingSize}
+                               fontWeight={theme.typography.fontWeight.subheadingWeight}
+                               padding="0 0 8px!important 0"
+                             >
+                               Typography
+                             </Typography>
+                           </Box>
+                           <Divider sx={{ flexGrow: 1, mb: theme.typography.spaces.dividerSpacing }} />
 
         <Box sx={{ mb: 2 }}>
             <TextField

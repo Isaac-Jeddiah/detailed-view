@@ -594,8 +594,7 @@ export default function DetailsTable() {
     >
       <Box
         sx={{
-          all: "unset", // **Prevents inheritance from parent styles**
-          color: "initial", // Resets text color to browser default (usually black)
+         color: "initial", // Resets text color to browser default (usually black)
           fontStyle: "initial", // Resets font style to normal
           backgroundColor: "initial",
           position: "relative",
@@ -672,13 +671,11 @@ export default function DetailsTable() {
                           justifyContent="space-between"
                           mb={dividerabovespacing}
                           mt={0}
+                         
                         >
-                          <Typography
-                            sx={{
-                              fontSize:
-                                theme.typography.fontSizes.subheadingSize,
-                              fontWeight: "bold",
-                            }}
+                          <Typography 
+                           fontSize={theme.typography.fontSizes.subheadingSize}
+                            fontWeight={theme.typography.fontWeight.subheadingWeight}
                             padding="0 0 8px!important 0"
                           >
                             Section Heading
@@ -1274,8 +1271,10 @@ export default function DetailsTable() {
                             sx={{
                               fontSize:
                                 theme.typography.fontSizes.subheadingSize,
-                              fontWeight: "bold",
+                                fontWeight:theme.typography.fontWeight.subheadingWeight
+                            
                             }}
+                            
                             padding="0 0 8px!important 0"
                           >
                             Typography
@@ -1841,7 +1840,8 @@ export default function DetailsTable() {
                             sx={{
                               fontSize:
                                 theme.typography.fontSizes.subheadingSize,
-                              fontWeight: "bold",
+                                fontWeight:theme.typography.fontWeight.subheadingWeight
+                            
                             }}
                             mb={dividerabovespacing}
                           >
@@ -1889,6 +1889,8 @@ export default function DetailsTable() {
                     >
                       <Typography sx={{ marginLeft: "-8px", fontSize:
                                 theme.typography.fontSizes.subheadingSize,
+                                fontWeight:theme.typography.fontWeight.subheadingWeight
+                            
                                }}>
                         Upcoming & Overdue
                       </Typography>
@@ -1957,6 +1959,8 @@ export default function DetailsTable() {
                     >
                       <Typography sx={{ marginLeft: "-8px", fontSize:
                                 theme.typography.fontSizes.subheadingSize,
+                                fontWeight:theme.typography.fontWeight.subheadingWeight
+                            
                                }}>
                         Completed
                       </Typography>

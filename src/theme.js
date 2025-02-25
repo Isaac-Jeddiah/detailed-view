@@ -6,13 +6,31 @@ const theme = createTheme({
     fontSizes: {
       headingSize: '20px',//Adjust to variant h5
       subheadingSize: '18px',//adjust to variant h6
-      contentSize: '14px',//Adjust to variant normal
+      contentSize: '14px',
+      labelsize:'12px'//Adjust to variant normal
+    },
+    fontWeight:{
+      headingWeight: 500, //Adjust to variant h5
+      subheadingWeight: 500, //Adjust to variant h6
+      contentWeight: 300, //Adjust to variant normal
+    },
+    color:{
+      //  heading:"black",
+      //  subheading:"black",
+      //  content:"black",
+       timelineheading:'#444444',
+       value:'#181818',
+       label:'#444444',
+       fieldunderline:'#d2d2d2',
+       border:'#747474',
     },
     spaces:{
          fieldSpacing : "16px",// Adjust field spacing here 
-  dividerSpacing : "16px", // Adjust heading-divider spacing here
+  dividerSpacing : "16px",
+  dividerbelow:"16px", // Adjust heading-divider spacing here
   dividerabovespacing : "8px", //Adjust divider-below spacing her
   Overviewbottomspacing :"8px",
+  topspacing : "16px",
     },
     fontFamily: 'Roboto',
   },
