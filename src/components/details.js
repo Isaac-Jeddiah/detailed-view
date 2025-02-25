@@ -727,6 +727,9 @@ export default function DetailsTable() {
                                 sx:{
                                   fontSize:theme.typography.fontSizes.labelsize
                                 },
+                                sx:{
+                                  fontSize:theme.typography.fontSizes.labelsize
+                                },
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
@@ -840,6 +843,9 @@ export default function DetailsTable() {
                                
                               }}
                               InputLabelProps={{
+                                sx:{
+                                  fontSize:theme.typography.fontSizes.labelsize
+                                },
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
@@ -959,6 +965,9 @@ export default function DetailsTable() {
                                 },
                               }}
                               InputLabelProps={{
+                                sx:{
+                                  fontSize:theme.typography.fontSizes.labelsize
+                                },
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
@@ -1067,6 +1076,9 @@ export default function DetailsTable() {
                                 
                               }}
                               InputLabelProps={{
+                                sx:{
+                                  fontSize:theme.typography.fontSizes.labelsize
+                                },
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
@@ -1177,6 +1189,9 @@ export default function DetailsTable() {
                                
                               }}
                               InputLabelProps={{
+                                sx:{
+                                  fontSize:theme.typography.fontSizes.labelsize
+                                },
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
@@ -1326,6 +1341,9 @@ export default function DetailsTable() {
                                
                               }}
                               InputLabelProps={{
+                                sx:{
+                                  fontSize:theme.typography.fontSizes.labelsize
+                                },
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
@@ -1439,6 +1457,9 @@ export default function DetailsTable() {
                                
                               }}
                               InputLabelProps={{
+                                sx:{
+                                  fontSize:theme.typography.fontSizes.labelsize
+                                },
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
@@ -1548,6 +1569,9 @@ export default function DetailsTable() {
                                
                               }}
                               InputLabelProps={{
+                                sx:{
+                                  fontSize:theme.typography.fontSizes.labelsize
+                                },
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
@@ -1707,6 +1731,9 @@ export default function DetailsTable() {
                                 ),
                               }}
                               InputLabelProps={{
+                                sx:{
+                                  fontSize:theme.typography.fontSizes.labelsize
+                                },
                                 style: {
                                   color: allFieldsEditable
                                     ? "#444444"
