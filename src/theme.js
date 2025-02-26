@@ -1,6 +1,9 @@
 // src/theme.js
 import { createTheme } from '@mui/material/styles';
 
+
+//main content left right padding or margin available in dashboard1.css
+
 const theme = createTheme({
   typography: {
     fontSizes: {
