@@ -197,7 +197,24 @@ const ListTable = () => {
     alert('Exporting selected records to XLS...');
     setOptionsAnchorEl(null);
   };
+  const open = Boolean(anchorEl);
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const menuOptions = [
+    'Login',
+    'New List View',
+    'Clone List View',
+    'Rename List View',
+    'Select Fields To Display',
+    'Delete List View',
+  ];
   // Check if actions should be disabled
   const isActionDisabled = selectedRows.length != 0;
   return (
@@ -368,19 +385,65 @@ const ListTable = () => {
 </Menu>
 
 {/* Settings icon */}
-<IconButton 
-  sx={{ 
-    border: '1px solid #ccc', 
-    borderRadius: '4px', 
-    ml:'-6px', 
-    height: '40px',
-    width: '40px',
-    
-  }}
->
-  <Settings fontSize="small" />
-</IconButton>
-
+<div style={{ border: '1px solid #ccc',marginLeft:'-6px',borderRadius:'4px',position: 'relative', display: 'inline-flex', alignItems: 'center' }}>
+  <IconButton
+    sx={{
+     
+      borderRadius: '4px',
+      height: '40px',
+      width: '40px',
+    }}
+    aria-label="settings"
+    aria-controls="basic-menu"
+    aria-haspopup="true"
+    onClick={handleClick}
+  >
+    <Settings fontSize="small" />
+  </IconButton>
+  <IconButton
+    sx={{
+      
+      borderRadius: '4px',
+      borderLeft: 'none',
+      height: '40px',
+      width: '24px',
+      marginLeft: '-1px',
+    }}
+    aria-label="settings dropdown"
+    onClick={handleClick}
+  >
+    <ArrowDropDown fontSize="small" />
+  </IconButton>
+  <Menu
+  
+    id="basic-menu"
+    anchorEl={anchorEl}
+    open={open}
+    onClose={handleClose}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'right',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'right',
+    }}
+    MenuListProps={{
+      'aria-labelledby': 'basic-button',
+    }}
+    sx={{
+      '& .MuiMenuItem-root': {
+        fontSize: '14px'
+      }
+    }}
+  >
+    {menuOptions.map((option) => (
+      <MenuItem onClick={handleClose} key={option} sx={{ paddingLeft: '16px' }}>
+        {option}
+      </MenuItem>
+    ))}
+  </Menu>
+</div>
 {/* Filter icon */}
 <IconButton 
   sx={{ 
