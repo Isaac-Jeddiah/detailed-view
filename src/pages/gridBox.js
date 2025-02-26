@@ -7,7 +7,7 @@ import DataTable from "../components/deals";
 import Filterbar from "../components/filterbar";
 import DetailsTable from "../components/details";
 import Sidebar from "../components/sidebar";
-import useTheme from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import theme from "../theme";
 import { ThemeProvider } from "@mui/material/styles";
 const Gridlayout = () => {
