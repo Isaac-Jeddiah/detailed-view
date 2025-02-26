@@ -7,11 +7,22 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { ArrowForwardIos, Home, Menu, Star } from '@mui/icons-material';
 import { Link, List, ListItem, ListItemText } from '@mui/material';
-
+import { useLocation, useNavigate } from 'react-router-dom';
 export default function Navbar() {
     const [searchInput, setSearchInput] = useState('');
     const [searchResults, setSearchResults] = useState([]);
-
+    const location = useLocation();
+    const navigate = useNavigate();
+  
+    const breadcrumbs = [
+        { name: 'Home', path: '/', icon: <Home /> },
+        { name: 'List View', path: '/listview', icon: <Star /> },
+      ];
+    
+      if (location.pathname.startsWith('/detailview')) {
+        breadcrumbs.push({ name: 'Detail View', path: location.pathname, icon: <Star /> });
+      }
+    
     // Update search results based on the input
     const handleSearchChange = (e) => {
         const value = e.target.value;
@@ -29,22 +40,24 @@ export default function Navbar() {
         <Box>
             <AppBar position="sticky" sx={{ backgroundColor: "#f4f5fa", boxShadow: "none" }}>
                 <Toolbar sx={{ display: "flex", justifyContent: "space-between", padding: "12px 16px" }}>
-                    <Box sx={{ flex: 1 }}>
-                        <List sx={{ color: "black", fontSize: "14px" }}>
-                            <ListItem>
-                                <Box display="flex" alignItems="center">
-                                    <Home sx={{ color: "#6b6c6e", fontSize: "16px", mr: "4px" }} />
-                                    <Link underline="hover" color="black">Link</Link>
-                                    <ArrowForwardIos sx={{ color: "#6b6c6e", fontSize: "14px", mr: "4px", ml: "4px" }} />
-                                    <Star sx={{ color: "#6b6c6e", fontSize: "14px", mr: "4px" }} />
-                                    <Link underline="hover" color="black">Link</Link>
-                                    <ArrowForwardIos sx={{ color: "#6b6c6e", fontSize: "14px", mr: "4px", ml: "4px" }} />
-                                    <Star sx={{ fontSize: "14px", mr: "4px" }} />
-                                    <Link underline="hover" color="black">Link</Link>
-                                </Box>
-                            </ListItem>
-                        </List>
-                    </Box>
+                <Box sx={{ flex: 1 }}>
+      <List sx={{ color: 'black', fontSize: '14px' }}>
+        <ListItem>
+          <Box display="flex" alignItems="center">
+            {breadcrumbs.map((breadcrumb, index) => (
+              <React.Fragment key={breadcrumb.path}>
+                {index > 0 && <ArrowForwardIos sx={{ color: '#6b6c6e', fontSize: '14px', mx: '4px' }} />}
+                 {index === 0 ? <Home sx={{ color: '#6b6c6e', fontSize: '16px', mr: '4px'}} /> : <Star sx={{ color: '#6b6c6e', fontSize: '14px', mr: '4px'}} />}
+                 
+                <Link underline="hover" color="black" onClick={() => navigate(breadcrumb.path)} sx={{ cursor: 'pointer' }}>
+                  {breadcrumb.name}
+                </Link>
+              </React.Fragment>
+            ))}
+          </Box>
+        </ListItem>
+      </List>
+    </Box>
 
                     <Box
                         className="search-bar-container"

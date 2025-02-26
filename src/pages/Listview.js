@@ -5,12 +5,13 @@ import Navbar from "../components/navbar";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import DataTable from "../components/deals";
 import Filterbar from "../components/filterbar";
-import ListTable from "../components/List";
+import DetailsTable from "../components/details";
 import Sidebar from "../components/sidebar";
 import { FormProvider } from "../context/Formcontext";
 import "./dashboard1.css";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from '../theme';
+import ListTable from "../components/List";
 const Dashboard2 = () => {
   const [selectedIndex, setSelectedIndex] = useState(1);
   const [open, setOpen] = useState(true);
@@ -57,17 +58,18 @@ const Dashboard2 = () => {
             )}
           </IconButton>
         </Box>
+        
         <List className="mainContent">
           <Navbar />
           <Box className="contentBox">
             <Box className="formProviderBox">
               <FormProvider>
-                
-                <ListTable />
+               <ListTable></ListTable>
               </FormProvider>
             </Box>
           </Box>
         </List>
+        
       </Box>
     </ThemeProvider>
   );

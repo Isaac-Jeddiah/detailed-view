@@ -131,7 +131,14 @@ const renderPair = (index) => {
                         backgroundColor: "#f4f5fa",
                         marginTop: "-20px",
                         paddingBottom: "16px",marginBottom: "16px",
-                        
+                        overflowY: "auto",
+                        // Hide scrollbar for Chrome, Safari and Opera
+                        '&::-webkit-scrollbar': {
+                          display: 'none'
+                        },
+                        // Hide scrollbar for IE, Edge and Firefox
+                        msOverflowStyle: 'none',  // IE and Edge
+                        scrollbarWidth: 'none', 
     minHeight: "calc(100vh - 16px)", // Ensure space from the bottom
     
                     }}

@@ -2,15 +2,15 @@ import { IconButton, List, ListItem, } from '@mui/material'
 import React from 'react'
 import StarIcon from '@mui/icons-material/Star';
 import AppIcon from '../assets/appIcon';
-
+import { useTheme } from "@mui/material/styles";
 const Sidebar = ({ selectedIndex, setSelectedIndex }) => {
+const theme = useTheme();
 
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
     };
     return (
-        <List
-            sx={{ height: "100vh", width: '100%', maxWidth: 64, bgcolor: '#283356', padding: "0", overflow: "scroll", scrollbarWidth: "none" }}
+        <List sx={{fontSize:theme.typography.fontSizes.subheadingsize, height: "100vh", width: '100%', maxWidth: 64, bgcolor: '#283356', padding: "0", overflow: "scroll", scrollbarWidth: "none" }}
             aria-label="contacts"
         >
             <ListItem sx={{ margin: "12px", padding: "0" }} >

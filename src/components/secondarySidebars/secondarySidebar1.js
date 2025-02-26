@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import AppIcon from '../../assets/appIcon';
 import { Archive, ExpandLess, ExpandMore, Home, Mail, Favorite, Settings } from '@mui/icons-material';
-
+import { useTheme } from "@mui/material/styles";
 const SecondarySidebar1 = ({ open }) => {
     const [openStates, setOpenStates] = React.useState({});
 
@@ -22,7 +22,7 @@ const SecondarySidebar1 = ({ open }) => {
             [index]: !prevState[index],
         }));
     };
-
+const theme= useTheme();
     return (
         <List
             sx={{
@@ -36,6 +36,7 @@ const SecondarySidebar1 = ({ open }) => {
                 overflow: 'hidden',
                 display: open ? 'flex' : 'none',
                 flexDirection: 'column',
+                fontSize:theme.typography.fontSizes.contentSize
             }}
             aria-label="contacts"
         >

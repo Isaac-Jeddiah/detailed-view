@@ -450,7 +450,7 @@ export default function DetailsTable() {
             color="text.secondary"
             sx={{
               fontFamily: "var(--fontFamily)",
-              fontSize: "var(--fontSize1rem)",
+              fontSize: theme.typography.fontSizes.subheadingSize,
               fontWeight: 400,
               lineHeight: "24px",
               letterSpacing: "0.15px",
