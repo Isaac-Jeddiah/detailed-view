@@ -5,7 +5,7 @@ import Navbar from "../components/navbar";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import DataTable from "../components/deals";
 import Filterbar from "../components/filterbar";
-import ListTable from "../components/list";
+import ListTable from "../components/List";
 import Sidebar from "../components/sidebar";
 import { FormProvider } from "../context/Formcontext";
 import "./dashboard1.css";
