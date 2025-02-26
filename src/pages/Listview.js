@@ -59,7 +59,7 @@ const Dashboard2 = () => {
           </IconButton>
         </Box>
         
-        <List className="mainContent">
+        <List className="mainContent" sx={{marginTop:theme.typography.spaces.filterbarabove}}>
           <Navbar />
           <Box className="contentBox">
             <Box className="formProviderBox">

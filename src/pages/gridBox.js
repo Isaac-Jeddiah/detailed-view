@@ -7,8 +7,10 @@ import DataTable from "../components/deals";
 import Filterbar from "../components/filterbar";
 import DetailsTable from "../components/details";
 import Sidebar from "../components/sidebar";
-
+import useTheme from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 const Gridlayout = () => {
+  
   const [selectedIndex, setSelectedIndex] = useState(1);
   const [open, setOpen] = useState(true);
   const NAVBAR_HEIGHT = 56;
@@ -40,9 +42,10 @@ const Gridlayout = () => {
   const renderPair = (index) => {
     const isOdd = index % 2 !== 0;
     return (
+      
       <Box
         key={index}
-        sx={{ marginX: "8px", paddingY: "0px", marginY: "-16px" }}
+        sx={{ marginX: "8px", paddingY: "0px", marginY: "-16px",marginTop:theme.typography.spaces.filterbarabove }}
       >
         <Box sx={{ padding: 2 }}>
           <Grid container spacing={2} justifyContent="center">
