@@ -73,4 +73,4 @@ const Dashboard2 = () => {
   );
 };
 
-export default Dashboard1;
+export default Dashboard2;
