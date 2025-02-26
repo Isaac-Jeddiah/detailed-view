@@ -11,7 +11,7 @@ const theme = createTheme({
     },
     fontWeight:{
       headingWeight: 500, //Adjust to variant h5
-      subheadingWeight: 500, //Adjust to variant h6
+      subheadingWeight: 400, //Adjust to variant h6
       contentWeight: 500, //Adjust to variant normal
     },
     color:{
