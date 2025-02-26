@@ -32,6 +32,13 @@ const theme = createTheme({
   Overviewbottomspacing :"8px",
   topspacing : "16px",
     },
+    padding:{
+      fieldpadding : "8px",// Adjust field padding here
+      fieldpaddingbottom : "8px",
+      fieldpaddingtop : "8px",
+      normalpadding : "20px",
+
+    },
     fontFamily: 'Roboto',
   },
 });
