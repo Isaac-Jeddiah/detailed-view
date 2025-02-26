@@ -463,22 +463,7 @@ const ListTable = () => {
       hideFooter={false}
       hideFooterSelectedRowCount={false}
       
-      components={{
-        ColumnSeparator: () => (
-          <div
-            style={{
-              width: '1px',
-              height: '20px',
-              margin: '0',
-              backgroundColor: '#e0e0e0',
-              position: 'absolute',
-              right: 0,
-              top: 'calc(50% - 10px)',
-              zIndex: 100,
-            }}
-          />
-        ),
-      }}
+     
       
       sx={{
         height: '100%',
@@ -492,26 +477,7 @@ const ListTable = () => {
           overflow: 'auto !important',
           backgroundColor: 'white',
         },
-        '& .MuiDataGrid-columnHeaders': {
-          backgroundColor: 'white',
-          position: 'sticky',
-          top: 0,
-          zIndex: 1,
-          borderBottom: '1px solid #e0e0e0',
-          '& .MuiDataGrid-columnHeaderTitle': {
-            textAlign: 'left',
-            fontSize: theme.typography.fontSizes.contentSize,
-            fontWeight: theme.typography.fontWeight.contentweight,
-          },
-          '& .MuiDataGrid-columnHeader': {
-            position: 'relative',
-          },
-          '& .MuiDataGrid-columnSeparator': {
-            display: 'block',
-            opacity: 1,  // Always show separators
-          },
-          cursor: 'default'
-        },
+       
         '& .MuiDataGrid-row': {
           backgroundColor: 'white',
           fontSize: theme.typography.fontSizes.contentSize,
@@ -531,8 +497,8 @@ const ListTable = () => {
         },
         // Custom scrollbar styling
         '& ::-webkit-scrollbar': {
-          height: '8px',
-          width: '8px',
+          height: '0px',
+          width: '0px',
         },
         '& ::-webkit-scrollbar-track': {
           background: '#f1f1f1',
@@ -548,6 +514,7 @@ const ListTable = () => {
     />
   </Box>
 </Box>
+
       <Dialog
         open={openDialog}
         onClose={handleDialogClose}
