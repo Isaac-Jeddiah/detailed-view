@@ -1,4 +1,4 @@
-
+import './List.css'
 
 import {
   Box,
@@ -24,7 +24,7 @@ import {
   import { DataGrid } from '@mui/x-data-grid';
   import { useNavigate } from 'react-router-dom';
   import { useTheme } from "@mui/material/styles";
-  import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+  import { Dialog,Grid,Typography,Divider, DialogTitle, DialogContent, DialogActions } from '@mui/material';
   import { 
  ArrowDropDown, 
     Add, Edit, GetApp, Delete, ViewKanban, ViewModule, ViewStream
@@ -396,71 +396,413 @@ const ListTable = () => {
 </IconButton>
 </Box>     
       {/* New Record Dialog */}
-      <Dialog open={openNewDialog} onClose={() => setOpenNewDialog(false)} maxWidth="sm" fullWidth>
-        <DialogTitle>New Account</DialogTitle>
-        <DialogContent>
+      {/* New Account Dialog */}
+      <Dialog
+  open={openNewDialog}
+  onClose={() => setOpenNewDialog(false)}
+  maxWidth="sm"
+  fullWidth
+  PaperProps={{
+    sx: {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      maxHeight: "90vh",
+      overflowY: "auto",
+      padding: "20px",
+    },
+  }}
+>
+  <DialogTitle
+    sx={{
+      fontSize: theme.typography.fontSizes.subheadingSize,
+      fontWeight: theme.typography.fontWeight.subheadingWeight,
+      padding: "0",
+      marginBottom: "16px",
+    }}
+  >
+    New Account
+  </DialogTitle>
+  <DialogContent
+    sx={{
+      padding: "0",
+    }}
+  >
+    <Box>
+      <Grid container spacing={0.5}>
+        <Grid item xs={12}>
           <TextField
             label="Account Name"
             fullWidth
-            margin="normal"
+            size="small"
+            margin="dense"
+            InputProps={{
+              sx: { fontSize: theme.typography.fontSizes.contentSize },
+            }}
+            InputLabelProps={{
+              sx: {
+                fontSize: theme.typography.fontSizes.contentSize,
+                shrink: true,
+              },
+            }}
           />
+        </Grid>
+        <Grid item xs={12}>
           <TextField
             label="Owner"
             fullWidth
-            margin="normal"
+            size="small"
+            margin="dense"
+            InputProps={{
+              sx: { fontSize: theme.typography.fontSizes.contentSize },
+            }}
+            InputLabelProps={{
+              sx: {
+                fontSize: theme.typography.fontSizes.contentSize,
+                shrink: true,
+              },
+            }}
           />
+        </Grid>
+        <Grid item xs={12}>
           <TextField
             label="Type"
             fullWidth
-            margin="normal"
+            size="small"
+            margin="dense"
+            InputProps={{
+              sx: { fontSize: theme.typography.fontSizes.contentSize },
+            }}
+            InputLabelProps={{
+              sx: {
+                fontSize: theme.typography.fontSizes.contentSize,
+                shrink: true,
+              },
+            }}
           />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenNewDialog(false)}>Cancel</Button>
-          <Button onClick={() => setOpenNewDialog(false)} variant="contained">Submit</Button>
-        </DialogActions>
-      </Dialog>
+        </Grid>
+      </Grid>
+    </Box>
+  </DialogContent>
+  <DialogActions
+    sx={{
+      padding: "0",
+      marginTop: "24px",
+      justifyContent: "flex-end",
+    }}
+  >
+    <Box className="buttonContainer">
+      <Button
+        onClick={() => {
+          setOpenNewDialog(false);
+        }}
+        variant="outlined"
+        className="cancelButton"
+        sx={{ marginRight: "10px" }}
+      >
+        CANCEL
+      </Button>
+      <Button
+        onClick={() => {
+          setOpenNewDialog(false);
+        }}
+        type="submit"
+        variant="contained"
+        className="submitButton"
+      >
+        SUBMIT
+      </Button>
+    </Box>
+  </DialogActions>
+</Dialog>
 
-      {/* Edit Record Dialog */}
-      <Dialog sx={{fontSize:theme.typography.fontSizes.subheadingsize}} open={openEditDialog} onClose={() => setOpenEditDialog(false)} maxWidth="sm" fullWidth>
-        <DialogTitle>Edit Account</DialogTitle>
-        <DialogContent sx={{fontSize:theme.typography.fontSizes.contentSize}}>
+{/* Edit Record Dialog */}
+<Dialog
+  open={openEditDialog}
+  onClose={() => setOpenEditDialog(false)}
+  maxWidth="sm"
+  fullWidth
+  PaperProps={{
+    sx: {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      maxHeight: "90vh",
+      overflowY: "auto",
+      padding: "20px",
+    },
+  }}
+>
+  <DialogTitle
+    sx={{
+      fontSize: theme.typography.fontSizes.subheadingSize,
+      fontWeight: theme.typography.fontWeight.subheadingWeight,
+      padding: "0",
+      marginBottom: "16px",
+    }}
+  >
+    Edit Account
+  </DialogTitle>
+  <DialogContent
+    sx={{
+      padding: "0",
+    }}
+  >
+    <Box>
+      <Grid container spacing={0.5}>
+        <Grid item xs={12}>
           <TextField
             label="Account Name"
             fullWidth
-            margin="normal"
-            defaultValue={selectedRows.length === 1 ? accounts.find(a => a.id === selectedRows[0])?.name : ''}
+            size="small"
+            margin="dense"
+            defaultValue={
+              selectedRows.length === 1
+                ? accounts.find((a) => a.id === selectedRows[0])?.name
+                : ""
+            }
+            InputProps={{
+              sx: { fontSize: theme.typography.fontSizes.contentSize },
+            }}
+            InputLabelProps={{
+              sx: {
+                fontSize: theme.typography.fontSizes.contentSize,
+                shrink: true,
+              },
+            }}
           />
+        </Grid>
+        <Grid item xs={12}>
           <TextField
             label="Owner"
             fullWidth
-            margin="normal"
-            defaultValue={selectedRows.length === 1 ? accounts.find(a => a.id === selectedRows[0])?.owner : ''}
+            size="small"
+            margin="dense"
+            defaultValue={
+              selectedRows.length === 1
+                ? accounts.find((a) => a.id === selectedRows[0])?.owner
+                : ""
+            }
+            InputProps={{
+              sx: { fontSize: theme.typography.fontSizes.contentSize },
+            }}
+            InputLabelProps={{
+              sx: {
+                fontSize: theme.typography.fontSizes.contentSize,
+                shrink: true,
+              },
+            }}
           />
+        </Grid>
+        <Grid item xs={12}>
           <TextField
             label="Type"
             fullWidth
-            margin="normal"
-            defaultValue={selectedRows.length === 1 ? accounts.find(a => a.id === selectedRows[0])?.type : ''}
+            size="small"
+            margin="dense"
+            defaultValue={
+              selectedRows.length === 1
+                ? accounts.find((a) => a.id === selectedRows[0])?.type
+                : ""
+            }
+            InputProps={{
+              sx: { fontSize: theme.typography.fontSizes.contentSize },
+            }}
+            InputLabelProps={{
+              sx: {
+                fontSize: theme.typography.fontSizes.contentSize,
+                shrink: true,
+              },
+            }}
           />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenEditDialog(false)}>Cancel</Button>
-          <Button onClick={() => setOpenEditDialog(false)} variant="contained">Submit</Button>
-        </DialogActions>
-      </Dialog>
+        </Grid>
+      </Grid>
+    </Box>
+  </DialogContent>
+  <DialogActions
+    sx={{
+      padding: "0",
+      marginTop: "24px",
+      justifyContent: "flex-end",
+    }}
+  >
+    <Box className="buttonContainer">
+      <Button
+        onClick={() => {
+          setOpenEditDialog(false);
+        }}
+        variant="outlined"
+        className="cancelButton"
+      >
+        CANCEL
+      </Button>
+      <Button
+        onClick={() => {
+          setOpenEditDialog(false);
+        }}
+        type="submit"
+        variant="contained"
+        className="submitButton"
+      >
+        SUBMIT
+      </Button>
+    </Box>
+  </DialogActions>
+</Dialog>
 
-      {/* Delete Confirmation Dialog */}
-      <Dialog sx={{fontSize:theme.typography.fontSizes.subheadingsize}} open={openDeleteDialog} onClose={() => setOpenDeleteDialog(false)}>
-        <DialogTitle>Confirm Delete</DialogTitle>
-        <DialogContent>
-          Do you want to delete permanently?
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenDeleteDialog(false)}>Cancel</Button>
-          <Button onClick={() => setOpenDeleteDialog(false)} variant="contained" color="error">Yes</Button>
-        </DialogActions>
-      </Dialog>
+{/* Delete Confirmation Dialog */}
+<Dialog
+  open={openDeleteDialog}
+  onClose={() => setOpenDeleteDialog(false)}
+  maxWidth="xs"
+  fullWidth
+  PaperProps={{
+    sx: {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      padding: "20px",
+    },
+  }}
+>
+  <DialogTitle
+    sx={{
+      fontSize: theme.typography.fontSizes.subheadingSize,
+      fontWeight: theme.typography.fontWeight.subheadingWeight,
+      padding: "0",
+      marginBottom: "16px",
+    }}
+  >
+    Confirm Delete
+  </DialogTitle>
+  <DialogContent
+    sx={{
+      padding: "0",
+    }}
+  >
+    <Typography sx={{ fontSize: theme.typography.fontSizes.contentSize }}>
+      If you delete these rows, all these rows will be permanently removed for
+      all users with access. Are you sure you want to delete these 1 rows?
+    </Typography>
+  </DialogContent>
+  <DialogActions
+    sx={{
+      padding: "0",
+      marginTop: "24px",
+      justifyContent: "flex-end",
+    }}
+  >
+    <Box className="buttonContainer">
+      <Button
+        onClick={() => {
+          setOpenDeleteDialog(false);
+        }}
+        variant="outlined"
+        className="cancelButton"
+      >
+        CANCEL
+      </Button>
+      <Button
+        onClick={() => {
+          setOpenDeleteDialog(false);
+        }}
+        type="submit"
+        variant="contained"
+        className="submitButton"
+      >
+        CANCEL
+      </Button>
+    </Box>
+  </DialogActions>
+</Dialog>
+
+{/* New Record Dialog */}
+<Dialog
+  open={openDialog}
+  onClose={handleDialogClose}
+  maxWidth="md"
+  fullWidth
+  PaperProps={{
+    sx: {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      maxHeight: "90vh",
+      overflowY: "auto",
+      padding: "20px",
+    },
+  }}
+>
+  <DialogTitle
+    align="center"
+    sx={{
+      fontSize: theme.typography.fontSizes.subheadingSize,
+      fontWeight: theme.typography.fontWeight.subheadingWeight,
+      padding: "0",
+      marginBottom: "16px",
+    }}
+  >
+    New Record
+  </DialogTitle>
+  <DialogContent
+    sx={{
+      padding: "0",
+    }}
+  >
+    <Box>
+      <Grid container spacing={0.5}>
+        <Grid item xs={12}>
+          <FormControl required sx={{ width: "100%" }}>
+            <TextField
+              autoFocus
+              placeholder="Enter name"
+              fullWidth
+              size="small"
+              margin="dense"
+              InputProps={{
+                sx: { fontSize: theme.typography.fontSizes.contentSize },
+              }}
+            />
+          </FormControl>
+        </Grid>
+      </Grid>
+    </Box>
+  </DialogContent>
+  <DialogActions
+    sx={{
+      padding: "0",
+      marginTop: "24px",
+      justifyContent: "flex-end",
+    }}
+  >
+    <Box className="buttonContainer">
+      <Button
+        onClick={() => {
+          handleDialogClose();
+        }}
+        variant="outlined"
+        className="cancelButton"
+      >
+        CANCEL
+      </Button>
+      <Button
+        onClick={() => {
+          handleDialogClose();
+        }}
+        type="submit"
+        variant="contained"
+        className="submitButton"
+      >
+        SUBMIT
+      </Button>
+    </Box>
+  </DialogActions>
+</Dialog>
+
     </Box>
  {/* Table */}
  <Box 
@@ -565,31 +907,7 @@ const ListTable = () => {
   </Box>
 </Box>
 
-      <Dialog
-        open={openDialog}
-        onClose={handleDialogClose}
-        maxWidth="md"
-        fullWidth
-        sx={{fontSize:theme.typography.fontSizes.subheadingsize}}
-      >
-        <DialogTitle align="center" sx={{fontSize:theme.typography.fontSizes.subheadingsize}}>
-          New Record
-        </DialogTitle>
-        <DialogContent sx={{fontSize:theme.typography.fontSizes.contentSize}}>
-          {/* Form fields here */}
-          <FormControl required sx={{ width: '100%' }}>
-            <TextField
-              autoFocus
-              placeholder="Enter name"
-              fullWidth
-            />
-          </FormControl>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleDialogClose}>Cancel</Button>
-          <Button type="submit" onClick={handleDialogClose}>Submit</Button>
-        </DialogActions>
-      </Dialog>
+      
       <FilterSidebar openFilterSidebar={openFilterSidebar} toggleDrawer={toggleDrawer} />
             
     </Box>
