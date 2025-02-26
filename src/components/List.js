@@ -59,7 +59,6 @@ const generateAdditionalRows = () => {
 const allRows = [...initialRows, ...generateAdditionalRows()];
 
 const columns = [
-  { field: 'select', headerName: '', width: 50, sortable: false },
   { field: 'name', headerName: 'Name', width: 150 },
   { field: 'title', headerName: 'Title', width: 100 },
   { field: 'phone', headerName: 'Phone', width: 150 },
@@ -72,7 +71,7 @@ const columns = [
 const ListTable = () => {
   const theme = useTheme();
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(0);
   const [filteredRows, setFilteredRows] = useState(allRows);
   const [anchorEl, setAnchorEl] = useState(null);
   const [viewMenuAnchorEl, setViewMenuAnchorEl] = useState(null);
@@ -344,7 +343,7 @@ const ListTable = () => {
                 </IconButton>
       </Box>
 
-      {/* Table */}
+     
       
       {/* New Record Dialog */}
       <Dialog open={openNewDialog} onClose={() => setOpenNewDialog(false)} maxWidth="sm" fullWidth>
@@ -413,26 +412,27 @@ const ListTable = () => {
         </DialogActions>
       </Dialog>
     </Box>
-
-    <Box 
+ {/* Table */}
+ <Box 
   sx={{ 
     height: 'calc(100vh - 120px)', 
     width: '100%', 
     overflow: 'hidden',
     display: 'grid',
     gridTemplateColumns: '1fr',
-    gridTemplateRows: '1fr auto', // Added space for pagination
+    gridTemplateRows: '1fr auto',
   }}
 >
-  <Box sx={{ overflow: 'hidden', width: '100%', height: '100%' }}>
+  <Box sx={{ overflow: 'hidden', width: '100%'}}>
     <DataGrid
+    pageSizeOptions={[10, 25, 50]}
       rows={filteredRows}
       columns={columns.map(column => ({
         ...column,
+        flex: 1, // Make all columns equal width
+        minWidth: 100, // Minimum width for each column
         resizable: true,
         headerAlign: 'left',
-        
-        
         renderCell: column.field === 'name' ? 
           (params) => (
             <Box 
@@ -445,18 +445,20 @@ const ListTable = () => {
       }))}
       
       // Pagination properties
-      pageSize={rowsPerPage || 10}
-      rowsPerPageOptions={[10, 20, 50]}
-      page={page}
-      onPageChange={(newPage) => setPage(newPage)}
-      onPageSizeChange={(newPageSize) => setRowsPerPage(newPageSize)}
+      initialState={{
+        pagination: {
+          paginationModel: {
+            pageSize: 10,
+          },
+        },
+      }}
       
       checkboxSelection
       disableColumnMenu
       disableSelectionOnClick
       onSelectionModelChange={handleSelectionChange}
       autoHeight={false}
-      color={"#ffff"}
+      
       // Show footer with pagination
       hideFooter={false}
       hideFooterSelectedRowCount={false}
@@ -465,29 +467,16 @@ const ListTable = () => {
         ColumnSeparator: () => (
           <div
             style={{
-              width: '4px',
-              height: '70%',
-              margin: '0 -2px',
-              backgroundColor: '#1926d2',
-              cursor: 'col-resize',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
+              width: '1px',
+              height: '20px',
+              margin: '0',
+              backgroundColor: '#e0e0e0',
               position: 'absolute',
               right: 0,
-              top: '15%',
+              top: 'calc(50% - 10px)',
               zIndex: 100,
-              borderRadius: '2px',
             }}
-          >
-            <div
-              style={{
-                width: '1px',
-                height: '60%',
-                backgroundColor: 'white',
-              }}
-            />
-          </div>
+          />
         ),
       }}
       
@@ -495,42 +484,31 @@ const ListTable = () => {
         height: '100%',
         width: '100%',
         overflow: 'auto',
+        backgroundColor: 'white',
         '& .MuiDataGrid-main': {
           overflow: 'auto !important',
         },
         '& .MuiDataGrid-virtualScroller': {
           overflow: 'auto !important',
+          backgroundColor: 'white',
         },
         '& .MuiDataGrid-columnHeaders': {
           backgroundColor: 'white',
           position: 'sticky',
           top: 0,
           zIndex: 1,
+          borderBottom: '1px solid #e0e0e0',
           '& .MuiDataGrid-columnHeaderTitle': {
-            
             textAlign: 'left',
             fontSize: theme.typography.fontSizes.contentSize,
             fontWeight: theme.typography.fontWeight.contentweight,
           },
           '& .MuiDataGrid-columnHeader': {
             position: 'relative',
-            '&:hover': {
-              '& .MuiDataGrid-columnSeparator': {
-                opacity: 100,
-                width: '4px',
-                transition: 'all',
-              }
-            }
           },
           '& .MuiDataGrid-columnSeparator': {
             display: 'block',
-            opacity: 100,
-            width:"2px",
-            transition: 'all',
-            opacity: 0,
-            position: 'absolute',
-            right: 0,
-            top: '50%',
+            opacity: 1,  // Always show separators
           },
           cursor: 'default'
         },
@@ -538,20 +516,23 @@ const ListTable = () => {
           backgroundColor: 'white',
           fontSize: theme.typography.fontSizes.contentSize,
           cursor: 'default',
+          '&:not(:last-child)': {
+            borderBottom: '1px solid #f0f0f0',
+          },
           '& .MuiDataGrid-cell': {
             textAlign: 'left',
+            borderRight: 'none', // Remove cell borders
           },
         },
         // Footer/pagination styling
         '& .MuiDataGrid-footer': {
           borderTop: '1px solid #e0e0e0',
           backgroundColor: 'white',
-          color:'white'
         },
         // Custom scrollbar styling
         '& ::-webkit-scrollbar': {
-          height: '0px',
-          width: '0px',
+          height: '8px',
+          width: '8px',
         },
         '& ::-webkit-scrollbar-track': {
           background: '#f1f1f1',

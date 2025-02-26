@@ -170,7 +170,7 @@ const theme = useTheme();
                                 borderRadius: 4,
                             }}
                         />
-                        <Button variant='contained' size='large' sx={{ lineHeight: "2.5rem"}} disableElevation>
+                        <Button variant='contained' size='large' sx={{ lineHeight: "36px"}} disableElevation>
                             Search
                         </Button>
                     </Box>
