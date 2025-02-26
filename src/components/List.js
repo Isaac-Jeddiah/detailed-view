@@ -474,6 +474,8 @@ const ListTable = () => {
       maxHeight: "90vh",
       overflowY: "auto",
       padding: "20px",
+      margin: 0,
+    boxSizing: "border-box",
     },
   }}
 >
@@ -595,6 +597,8 @@ const ListTable = () => {
       maxHeight: "90vh",
       overflowY: "auto",
       padding: "20px",
+      margin: 0,
+    boxSizing: "border-box",
     },
   }}
 >
@@ -728,6 +732,8 @@ const ListTable = () => {
       left: "50%",
       transform: "translate(-50%, -50%)",
       padding: "20px",
+      margin: 0,
+    boxSizing: "border-box",
     },
   }}
 >
