@@ -431,8 +431,8 @@ const ListTable = () => {
         ...column,
         resizable: true,
         headerAlign: 'left',
-        flex: 1,
-        minWidth: 150,
+        
+        
         renderCell: column.field === 'name' ? 
           (params) => (
             <Box 
