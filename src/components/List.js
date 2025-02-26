@@ -274,15 +274,15 @@ const ListTable = () => {
           onClose={() => setViewOptionsAnchorEl(null)}
         >
           <MenuItem onClick={() => handleViewChange('kanban')}>
-            <ViewKanban fontSize="small" sx={{ mr: 1 }} />
+            <ViewKanban fontSize="small" sx={{ mr: 1,color:theme.typography.color.icon }} />
             Kanban View
           </MenuItem>
           <MenuItem onClick={() => handleViewChange('grid')}>
-            <ViewModule fontSize="small" sx={{ mr: 1 }} />
+            <ViewModule fontSize="small" sx={{ mr: 1 ,color:theme.typography.color.icon}} />
             Grid View
           </MenuItem>
           <MenuItem onClick={() => handleViewChange('split')}>
-            <ViewStream fontSize="small" sx={{ mr: 1 }} />
+            <ViewStream fontSize="small" sx={{ mr: 1 ,color:theme.typography.color.icon}} />
             Split View
           </MenuItem>
         </Menu>
@@ -306,28 +306,28 @@ const ListTable = () => {
           onClose={() => setOptionsAnchorEl(null)}
         >
           <MenuItem onClick={() => {setOpenNewDialog(true); setOptionsAnchorEl(null);}}>
-            <Add fontSize="small" sx={{ mr: 1 }} />
+            <Add fontSize="small" sx={{ mr: 1 ,color:theme.typography.color.icon}} />
             New
           </MenuItem>
           <MenuItem 
             onClick={() => {setOpenEditDialog(true); setOptionsAnchorEl(null);}}
             disabled={isActionDisabled}
           >
-            <Edit fontSize="small" sx={{ mr: 1 }} />
+            <Edit fontSize="small" sx={{ mr: 1,color:theme.typography.color.icon }} />
             Edit
           </MenuItem>
           <MenuItem 
             onClick={handleExport}
             disabled={isActionDisabled}
           >
-            <GetApp fontSize="small" sx={{ mr: 1 }} />
+            <GetApp fontSize="small" sx={{ mr: 1,color:theme.typography.color.icon }} />
             Export
           </MenuItem>
           <MenuItem 
             onClick={() => {setOpenDeleteDialog(true); setOptionsAnchorEl(null);}}
             disabled={isActionDisabled}
           >
-            <Delete fontSize="small" sx={{ mr: 1 }} />
+            <Delete fontSize="small" sx={{ mr: 1,color:theme.typography.color.icon }} />
             Delete
           </MenuItem>
         </Menu>

@@ -23,6 +23,7 @@ const theme = createTheme({
        label:'#444444',
        fieldunderline:'#d2d2d2',
        border:'#747474',
+       icon:'#2596be',
     },
     spaces:{
          fieldSpacing : "16px",// Adjust field spacing here 

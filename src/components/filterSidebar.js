@@ -17,9 +17,9 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { TransitionGroup } from 'react-transition-group';
-
+import { useTheme } from "@mui/material/styles";
 const FilterSidebar = ({ openFilterSidebar, toggleDrawer }) => {
-
+const theme = useTheme();
     const [filtersCount, setFiltersCount] = React.useState(1);
     const [filters, setFilters] = React.useState(Array(filtersCount).fill("default"));
     const [filterLogicValue, setFilterLogicVale] = React.useState('');
@@ -135,12 +135,12 @@ const FilterSidebar = ({ openFilterSidebar, toggleDrawer }) => {
                         <Close />
                     </IconButton>
                     <ListItemText
-                        primary="FILTERS"
+                        primary="ALL FILTERS"
                         slotProps={{
                             primary: {
                                 sx: {
-                                    fontSize: "24px",
-                                    fontWeight: "500"
+                                    fontSize: theme.typography.fontSizes.headingSize,
+                                    fontWeight: theme.typography.fontSizes.headingSize
                                 },
                             },
                         }}
@@ -160,6 +160,11 @@ const FilterSidebar = ({ openFilterSidebar, toggleDrawer }) => {
                                         <Search />
                                     </InputAdornment>
                                 ),
+                            }}
+                            InputLabelProps={{
+                                
+                                fontSize: theme.typography.fontSizes.labelsize,
+                                
                             }}
                             style={{
                                 borderRadius: 4,

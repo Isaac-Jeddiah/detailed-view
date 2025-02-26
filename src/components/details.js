@@ -1509,7 +1509,7 @@ export default function DetailsTable() {
                                 !allFieldsEditable ? "standard" : "outlined"
                               }
                               fullWidth
-                              defaultValue={"6/28"}
+                              
                               value={
                                 editableFields.expiry
                                   ? tempValues.expiry
