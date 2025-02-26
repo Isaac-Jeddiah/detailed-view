@@ -11,7 +11,7 @@ import { FormProvider } from "../context/Formcontext";
 import "./dashboard1.css";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from '../theme';
-const Dashboard1 = () => {
+const Dashboard2 = () => {
   const [selectedIndex, setSelectedIndex] = useState(1);
   const [open, setOpen] = useState(true);
 
