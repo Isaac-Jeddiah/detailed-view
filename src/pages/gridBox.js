@@ -8,9 +8,10 @@ import Filterbar from "../components/filterbar";
 import DetailsTable from "../components/details";
 import Sidebar from "../components/sidebar";
 import useTheme from "@mui/material";
+import theme from "../theme";
 import { ThemeProvider } from "@mui/material/styles";
 const Gridlayout = () => {
-  
+  const theme = useTheme();
   const [selectedIndex, setSelectedIndex] = useState(1);
   const [open, setOpen] = useState(true);
   const NAVBAR_HEIGHT = 56;
