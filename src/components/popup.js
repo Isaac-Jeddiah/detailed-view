@@ -133,28 +133,33 @@ const Popup = ({ closePopup }) => {
   const namefield="name";
   return (
     <Box
+    sx={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      bgcolor: "rgba(0, 0, 0, 0.5)",
+      zIndex: 1300,
+    }}
+  >
+    <Paper
+      elevation={24}
       sx={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        bgcolor: "rgba(0, 0, 0, 0.5)",
-        zIndex: 1300,
-        p: 2,
+        width: "100%",
+        maxWidth: "1000px",
+        maxHeight: "90vh",
+        p: "20px", // Consistent padding on all sides (32px)
+        overflowY: "auto",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
       }}
     >
-      <Paper
-        elevation={24}
-        sx={{
-          width: "100%",
-          maxWidth: "1000px",
-          p: 3,
-        }}
-      >
         {/* Section 1 */}
       
     <Box

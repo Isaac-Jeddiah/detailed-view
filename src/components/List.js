@@ -203,7 +203,7 @@ const ListTable = () => {
   return (
     <Box>
       <Box>
-      <Box display="flex" flexDirection="row" alignItems="center" gap="16px" padding="16px">
+      <Box display="flex" flexDirection="row" alignItems="center" gap="16px" padding="16px" mb={"16px"}>
         {/* Left side - Filter dropdown */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Button
@@ -235,116 +235,166 @@ const ListTable = () => {
      
         {/* Spacer */}
         <Box sx={{ flex: 1 }} />
-
         {/* Search bar */}
-        <TextField
-          size="small"
-          variant="outlined"
-          placeholder="Search Account"
-          value={searchQuery}
-          onChange={handleSearch}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Search />
-              </InputAdornment>
-            ),
-          }}
-          sx={{ width: '250px' }}
-        />
-               {/* View options button with border */}
-               <Button
-          startIcon={<ViewKanban />}
-          onClick={(e) => setViewOptionsAnchorEl(e.currentTarget)}
-          endIcon={<ArrowDropDown />}
-          sx={{
-            color: "#c2c2c2",
-            height:"40px",
-            border: "1px solid #ccc",
-            textTransform: 'none',
-          
-          }}
-        >
-          
-        </Button>
-        <Menu
-          anchorEl={viewOptionsAnchorEl}
-          open={Boolean(viewOptionsAnchorEl)}
-          onClose={() => setViewOptionsAnchorEl(null)}
-        >
-          <MenuItem onClick={() => handleViewChange('kanban')}>
-            <ViewKanban fontSize="small" sx={{ mr: 1,color:theme.typography.color.icon }} />
-            Kanban View
-          </MenuItem>
-          <MenuItem onClick={() => handleViewChange('grid')}>
-            <ViewModule fontSize="small" sx={{ mr: 1 ,color:theme.typography.color.icon}} />
-            Grid View
-          </MenuItem>
-          <MenuItem onClick={() => handleViewChange('split')}>
-            <ViewStream fontSize="small" sx={{ mr: 1 ,color:theme.typography.color.icon}} />
-            Split View
-          </MenuItem>
-        </Menu>
-
-   {/* Options button (blue) */}
-   <Button
-          variant="contained"
-          onClick={(e) => setOptionsAnchorEl(e.currentTarget)}
-          endIcon={<ArrowDropDown />}
-          sx={{
-            backgroundColor: '#1976d2',
-            color: 'white',
-            
-          }}
-        >
-          OPTIONS
-        </Button>
-        <Menu
-          anchorEl={optionsAnchorEl}
-          open={Boolean(optionsAnchorEl)}
-          onClose={() => setOptionsAnchorEl(null)}
-        >
-          <MenuItem onClick={() => {setOpenNewDialog(true); setOptionsAnchorEl(null);}}>
-            <Add fontSize="small" sx={{ mr: 1 ,color:theme.typography.color.icon}} />
-            New
-          </MenuItem>
-          <MenuItem 
-            onClick={() => {setOpenEditDialog(true); setOptionsAnchorEl(null);}}
-            disabled={isActionDisabled}
-          >
-            <Edit fontSize="small" sx={{ mr: 1,color:theme.typography.color.icon }} />
-            Edit
-          </MenuItem>
-          <MenuItem 
-            onClick={handleExport}
-            disabled={isActionDisabled}
-          >
-            <GetApp fontSize="small" sx={{ mr: 1,color:theme.typography.color.icon }} />
-            Export
-          </MenuItem>
-          <MenuItem 
-            onClick={() => {setOpenDeleteDialog(true); setOptionsAnchorEl(null);}}
-            disabled={isActionDisabled}
-          >
-            <Delete fontSize="small" sx={{ mr: 1,color:theme.typography.color.icon }} />
-            Delete
-          </MenuItem>
-        </Menu>
-
-        {/* Settings icon */}
-        <IconButton sx={{ border: '1px solid #ccc', borderRadius: '4px', ml: 1 }}>
-          <Settings />
-        </IconButton>
-
-        {/* Filter icon */}
-        <IconButton sx={{ border: '1px solid #ccc', borderRadius: '4px', ml: 1 }}
-         onClick={toggleDrawer(true)}>
-                    <FilterAlt />
-                </IconButton>
-      </Box>
-
-     
+<TextField
+  size="small"
+  variant="outlined"
+  placeholder="Search Account"
+  value={searchQuery}
+  onChange={handleSearch}
+  InputProps={{
+    startAdornment: (
+      <InputAdornment position="start">
+        <Search fontSize="small" />
+      </InputAdornment>
+    ),
+    sx: {
+      height: '40px',
+      fontSize: '14px',
+    }
+  }}
+  sx={{ 
+    width: '250px',
+  mr:'-6px', // Mar gin right for spacing
+    '& .MuiOutlinedInput-root': {
+      height: '40px',
+    },
+    '& .MuiInputBase-input': {
+      fontSize: '14px',
       
+    }
+  }}
+/>
+
+{/* View options button with border */}
+<Button
+  startIcon={<ViewKanban fontSize="small" />}
+  onClick={(e) => setViewOptionsAnchorEl(e.currentTarget)}
+  endIcon={<ArrowDropDown fontSize="small" />}
+  sx={{
+    color: "#c2c2c2",
+    height: "40px",
+    border: "1px solid #ccc",
+    textTransform: 'none',
+    fontSize: '14px',
+   
+     // Margin right for spacing
+    minWidth: 'auto',
+  }}
+/>
+
+<Menu
+  anchorEl={viewOptionsAnchorEl}
+  open={Boolean(viewOptionsAnchorEl)}
+  onClose={() => setViewOptionsAnchorEl(null)}
+  PaperProps={{
+    sx: {
+      '& .MuiMenuItem-root': {
+        fontSize: '14px',
+        height: '40px',
+      }
+    }
+  }}
+>
+  <MenuItem onClick={() => handleViewChange('kanban')}>
+    <ViewKanban fontSize="small" sx={{ mr: 1, color: theme.typography.color.icon }} />
+    Kanban View
+  </MenuItem>
+  <MenuItem onClick={() => handleViewChange('grid')}>
+    <ViewModule fontSize="small" sx={{ mr: 1, color: theme.typography.color.icon }} />
+    Grid View
+  </MenuItem>
+  <MenuItem onClick={() => handleViewChange('split')}>
+    <ViewStream fontSize="small" sx={{ mr: 1, color: theme.typography.color.icon }} />
+    Split View
+  </MenuItem>
+</Menu>
+
+{/* Options button (blue) */}
+<Button
+  variant="contained"
+  onClick={(e) => setOptionsAnchorEl(e.currentTarget)}
+  endIcon={<ArrowDropDown fontSize="small" />}
+  sx={{
+    backgroundColor: '#1976d2',
+    color: 'white',
+    height: '40px',
+    fontSize: '14px',
+    ml:'-6px', 
+    // Margin right for spacing
+  }}
+>
+  OPTIONS
+</Button>
+
+<Menu
+  anchorEl={optionsAnchorEl}
+  open={Boolean(optionsAnchorEl)}
+  onClose={() => setOptionsAnchorEl(null)}
+  PaperProps={{
+    sx: {
+      '& .MuiMenuItem-root': {
+        fontSize: '14px',
+        height: '40px',
+      }
+    }
+  }}
+>
+  <MenuItem onClick={() => {setOpenNewDialog(true); setOptionsAnchorEl(null);}}>
+    <Add fontSize="small" sx={{ mr: 1, color: theme.typography.color.icon }} />
+    New
+  </MenuItem>
+  <MenuItem 
+    onClick={() => {setOpenEditDialog(true); setOptionsAnchorEl(null);}}
+    disabled={isActionDisabled}
+  >
+    <Edit fontSize="small" sx={{ mr: 1, color: theme.typography.color.icon }} />
+    Edit
+  </MenuItem>
+  <MenuItem 
+    onClick={handleExport}
+    disabled={isActionDisabled}
+  >
+    <GetApp fontSize="small" sx={{ mr: 1, color: theme.typography.color.icon }} />
+    Export
+  </MenuItem>
+  <MenuItem 
+    onClick={() => {setOpenDeleteDialog(true); setOptionsAnchorEl(null);}}
+    disabled={isActionDisabled}
+  >
+    <Delete fontSize="small" sx={{ mr: 1, color: theme.typography.color.icon }} />
+    Delete
+  </MenuItem>
+</Menu>
+
+{/* Settings icon */}
+<IconButton 
+  sx={{ 
+    border: '1px solid #ccc', 
+    borderRadius: '4px', 
+    ml:'-6px', 
+    height: '40px',
+    width: '40px',
+    
+  }}
+>
+  <Settings fontSize="small" />
+</IconButton>
+
+{/* Filter icon */}
+<IconButton 
+  sx={{ 
+    border: '1px solid #ccc', 
+    borderRadius: '4px',
+    height: '40px',
+    width: '40px',
+    ml:'-6px', 
+  }}
+  onClick={toggleDrawer(true)}
+>
+  <FilterAlt fontSize="small" />
+</IconButton>
+</Box>     
       {/* New Record Dialog */}
       <Dialog open={openNewDialog} onClose={() => setOpenNewDialog(false)} maxWidth="sm" fullWidth>
         <DialogTitle>New Account</DialogTitle>
