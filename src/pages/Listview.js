@@ -5,7 +5,7 @@ import Navbar from "../components/navbar";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import DataTable from "../components/deals";
 import Filterbar from "../components/filterbar";
-import DetailsTable from "../components/details";
+import ListTable from "../components/list";
 import Sidebar from "../components/sidebar";
 import { FormProvider } from "../context/Formcontext";
 import "./dashboard1.css";
@@ -62,8 +62,8 @@ const Dashboard1 = () => {
           <Box className="contentBox">
             <Box className="formProviderBox">
               <FormProvider>
-                <Filterbar />
-                <DetailsTable />
+                
+                <ListTable />
               </FormProvider>
             </Box>
           </Box>
