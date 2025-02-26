@@ -32,6 +32,7 @@ const theme = createTheme({
   dividerabovespacing : "8px", //Adjust divider-below spacing her
   Overviewbottomspacing :"8px",
   topspacing : "16px",
+  filterbarabove:"0px",
     },
     padding:{
       fieldpadding : "8px",// Adjust field padding here
