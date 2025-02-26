@@ -18,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard1 />} />
           <Route path="/gridlayout" element={<Gridlayout />} />
+  <Route path="/listview" element={<Dashboard2 />} />
         </Routes>
       
     </Router>
