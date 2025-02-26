@@ -7,7 +7,7 @@ const theme = createTheme({
       headingSize: '20px',//Adjust to variant h5
       subheadingSize: '18px',//adjust to variant h6
       contentSize: '14px',
-      labelsize:'12px'//Adjust to variant normal
+      labelsize:'14px'//Adjust to variant normal
     },
     fontWeight:{
       headingWeight: 500, //Adjust to variant h5
