@@ -59,9 +59,9 @@ const Dashboard2 = () => {
           </IconButton>
         </Box>
         
-        <List className="mainContent" sx={{marginTop:theme.typography.spaces.filterbarabove}}>
+        <List className="mainContent" >
           <Navbar />
-          <Box className="contentBox">
+          <Box className="contentBox" sx={{marginTop:theme.typography.spaces.listviewabove}}>
             <Box className="formProviderBox">
               <FormProvider>
                <ListTable></ListTable>

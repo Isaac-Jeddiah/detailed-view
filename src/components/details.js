@@ -588,7 +588,7 @@ export default function DetailsTable() {
     <Box
       sx={{
         position: "relative",
-
+        
         padding: "0px 0px 0px 0px",
       }}
     >

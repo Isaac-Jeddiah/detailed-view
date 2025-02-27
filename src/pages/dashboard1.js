@@ -57,10 +57,10 @@ const Dashboard1 = () => {
             )}
           </IconButton>
         </Box>
-        <List className="mainContent" sx={{marginTop:theme.typography.spaces.filterbarabove}}>
+        <List className="mainContent" >
           <Navbar />
-          <Box className="contentBox">
-            <Box className="formProviderBox">
+          <Box className="contentBox" sx={{mt:theme.typography.spaces.filterbarabove}}>
+            <Box className="formProviderBox" >
               <FormProvider>
                 <Filterbar />
                 <DetailsTable />

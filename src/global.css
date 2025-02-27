@@ -1,4 +1,5 @@
 /* src/global.css */
+/* you can change other styles on theme.js with global variable*/
 .buttonContainer {
     display: flex;
     justify-content: space-between; /* Space out the buttons */

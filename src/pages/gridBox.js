@@ -46,7 +46,11 @@ const Gridlayout = () => {
       
       <Box
         key={index}
-        sx={{ marginX: "8px", paddingY: "0px", marginY: "-16px",marginTop:theme.typography.spaces.filterbarabove }}
+        sx={{ 
+          position: "relative",
+          
+          padding: "0px 0px 0px 0px",
+        marginX: "8px", paddingY: "0px", marginY: "-16px",marginTop:theme.typography.spaces.homebarabove }}
       >
         <Box sx={{ padding: 2 }}>
           <Grid container spacing={2} justifyContent="center">
@@ -163,7 +167,7 @@ const Gridlayout = () => {
         >
           <Box
             sx={{
-              marginTop: "62px",
+              marginTop: "20px",
               marginBottom: "16px",
               paddingBottom: "16px",
             }}

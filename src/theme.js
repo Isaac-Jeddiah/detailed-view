@@ -36,6 +36,8 @@ const theme = createTheme({
   Overviewbottomspacing :"8px",
   topspacing : "16px",
   filterbarabove:"0px",
+  homebarabove:"0px",
+  listviewabove:"0px",
     },
     padding:{
       fieldpadding : "8px",// Adjust field padding here

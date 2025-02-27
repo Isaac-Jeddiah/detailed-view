@@ -218,7 +218,11 @@ const ListTable = () => {
   // Check if actions should be disabled
   const isActionDisabled = selectedRows.length != 0;
   return (
-    <Box>
+    <Box sx={{
+      position: "relative",
+      
+      padding: "0px 0px 0px 0px",
+    }}>
       <Box>
       <Box display="flex" flexDirection="row" alignItems="center" gap="16px" padding="16px" mb={"16px"}>
         {/* Left side - Filter dropdown */}
